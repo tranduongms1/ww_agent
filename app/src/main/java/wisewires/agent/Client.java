@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 
 public class Client {
-    static Logger logger = LoggerFactory.getLogger(Client.class);
+    private Logger logger = LoggerFactory.getLogger(Client.class);
 
     private final String serverAddress;
     private final String endpoint;
@@ -25,7 +25,11 @@ public class Client {
 
     public Client(String serverAddress, String token) {
         this.serverAddress = serverAddress;
-        this.endpoint = "http://" + serverAddress + "/api/v4";
+        if (Util.isValidIPv4(serverAddress)) {
+            this.endpoint = "http://" + serverAddress + "/api/v4";
+        } else {
+            this.endpoint = "https://" + serverAddress + "/api/v4";
+        }
         this.token = token;
         this.client = HttpClient.newHttpClient();
     }

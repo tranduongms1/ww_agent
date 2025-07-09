@@ -1,15 +1,106 @@
 package wisewires.agent;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 public class Context {
     public Client client;
-    public Map<String, String> sso;
 
     public String site;
-    public String stg;
-
-    public boolean cookieReady = false;
-    public boolean aemReady = false;
+    public String siteUid;
+    public String env;
+    public Map<String, String> sso;
     public boolean ssoSignedIn = false;
+
+    private boolean cookieReady = false;
+    private Map<String, Boolean> aemReady = new HashMap<>();
+    private Map<String, Boolean> popupClosed = new HashMap<>();
+    private Profile profile;
+
+    public Context() {
+        this.siteUid = "";
+        this.env = "prod";
+        this.sso = Map.of("email", "test4.buivan@gmail.com", "mk", "Heocon12");
+    }
+
+    public String envKey() {
+        return "%s_%s_%s".formatted(site.toUpperCase(), siteUid != "" ? siteUid : "estore", env != "" ? env : "prod");
+    }
+
+    public boolean isCookieReady() {
+        return cookieReady;
+    }
+
+    public void setCookieReady() {
+        cookieReady = true;
+    }
+
+    public boolean isAEMReady() {
+        Boolean value = aemReady.get(envKey());
+        return value != null ? value : false;
+    }
+
+    public void setAEMReady() {
+        aemReady.put(envKey(), true);
+    }
+
+    public boolean isPopupClosed() {
+        Boolean value = popupClosed.get(envKey());
+        return value != null ? value : false;
+    }
+
+    public void setPopupClosed() {
+        popupClosed.put(envKey(), true);
+    }
+
+    public Profile getProfile() throws Exception {
+        if (profile == null) {
+            InputStream inputStream = JsonReader.class.getResourceAsStream("/data/" + site + ".json");
+            InputStreamReader reader = new InputStreamReader(inputStream);
+            if (inputStream == null) {
+                throw new Exception("Data file for %s not found!".formatted(site));
+            }
+            profile = new Gson().fromJson(reader, Profile.class);
+        }
+        return profile;
+    }
+
+    public String getCookieUrl() {
+        return "https://%s.shop.samsung.com/getcookie.html".formatted(env);
+    }
+
+    public String getPointingUrl() {
+        return "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=se&storeDomain=https://stg2-eu-api.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/se/cart";
+    }
+
+    public String getHomeUrl() {
+        return "https://p6-pre-qa2.samsung.com/%s".formatted(siteUid);
+    }
+
+    public String getShopUrl() {
+        String tail = siteUid != "" ? siteUid : "";
+        if (env.equalsIgnoreCase("prod")) {
+            return "https://shop.samsung.com/%s%s".formatted(site.toLowerCase(), tail);
+        }
+        return "https://%s.shop.samsung.com/%s%s".formatted(env, site.toLowerCase(), tail);
+    }
+
+    public String getCartUrl() {
+        String tail = siteUid != "" ? siteUid : "";
+        if (env.equalsIgnoreCase("prod")) {
+            return "https://shop.samsung.com/%s%s/cart".formatted(site.toLowerCase(), tail);
+        }
+        return "https://%s.shop.samsung.com/%s%s/cart".formatted(env, site.toLowerCase(), tail);
+    }
+
+    public String getAPIEndpoint() throws Exception {
+        Map<String, String> apiEndpoints = getProfile().getApiEndpoints();
+        String tail = siteUid != "" ? siteUid : site.toLowerCase();
+        return apiEndpoints.get(env) + tail;
+    }
 }

@@ -1,0 +1,138 @@
+package wisewires.agent;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public abstract class Cart {
+    static Logger logger = LoggerFactory.getLogger(Cart.class);
+
+    static String getCartId(Context c) {
+        if (WebUI.driver != null) {
+            String js = "return window.sessionStorage.ref || window.localStorage[`spartacus⚿${arguments[0]}⚿cart`]";
+            return (String) WebUI.driver.executeScript(js, c.siteUid != "" ? c.siteUid : c.site.toLowerCase());
+        }
+        return null;
+    }
+
+    static String waitCartId(Context c) {
+        return WebUI.wait(30).withMessage("has cart id").until(d -> getCartId(c));
+    }
+
+    static String mustCartId(Context c) {
+        String id = getCartId(c);
+        if (id == null || id.isEmpty()) {
+            WebUI.openBrowser(c, c.getCartUrl());
+            id = waitCartId(c);
+        }
+        return id;
+    }
+
+    public static void addProduct(Context c, String url) throws Exception {
+        WebUI.openBrowser(c, url);
+        WebUI.mustCloseAllPopup(c);
+        BC.continueToCart();
+    }
+
+    static void clickCheckoutButton() throws Exception {
+        try {
+            WebUI.wait(10).until(d -> {
+                WebElement btn = WebUI.waitElement("[data-an-la='proceed to checkout']", 30);
+                WebUI.scrollToCenter(btn);
+                WebUI.delay(1);
+                btn.click();
+                return true;
+            });
+        } catch (Exception e) {
+            throw new Exception("Unable to click checkout button on cart page", e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    static boolean mustEmpty(Context c) throws Exception {
+        mustCartId(c);
+        String endpoint = c.getAPIEndpoint();
+        Map<String, Object> cart = API.getCurrentCartInfo(endpoint);
+        List<Object> entries = (List<Object>) cart.get("entries");
+        if (entries.isEmpty())
+            return true;
+        entries.forEach(e -> {
+            API.deleteCartEntry(endpoint, 0);
+        });
+        return false;
+    }
+
+    static boolean mustNotEmpty(Context c) throws Exception {
+        mustCartId(c);
+        String endpoint = c.getAPIEndpoint();
+        Map<String, Object> cart = API.getCurrentCartInfo(endpoint);
+        long totalItems = (long) cart.get("totalItems");
+        if (totalItems > 0)
+            return true;
+        List<Map<String, Object>> variants = API.getProductVariants(endpoint);
+        variants = new ArrayList<>(variants.stream().filter(Util::isPurchasable).toList());
+        Collections.shuffle(variants);
+        for (Map<String, Object> variant : variants) {
+            try {
+                API.addToCart(endpoint, (String) variant.get("code"));
+                return false;
+            } catch (Exception ignore) {
+            }
+        }
+        throw new Exception("Unable to find product to add to cart");
+    }
+
+    static String getCartAlert() {
+        WebElement alert = WebUI.findElement(".cart-alert");
+        return alert != null ? alert.getText() : null;
+    }
+
+    static void navigateTo(Context c, boolean reloadIfReadyOnCart) {
+        if (WebUI.driver != null && WebUI.getUrl().contains("/cart")) {
+            if (reloadIfReadyOnCart) {
+                WebUI.driver.navigate().refresh();
+            }
+        } else {
+            WebUI.openBrowser(c, c.getCartUrl());
+        }
+    }
+
+    static void guestCheckout(Context c) throws Exception {
+        try {
+            String to = "[data-an-la='proceed to checkout']";
+            WebElement btn = WebUI.waitElement(to, 5);
+            WebUI.scrollToCenter(btn);
+            WebUI.delay(1);
+            WebUI.click(to);
+            String email = c.getProfile().getCustomerInfo().get("email");
+            Object result = WebUI.wait(30, 1).withMessage("navigate to checkout").until(driver -> {
+                String alert = getCartAlert();
+                if (alert != null) {
+                    return new Exception(alert);
+                }
+                String url = driver.getCurrentUrl();
+                if (url.contains("/guestlogin/")) {
+                    WebUI.fill("[formcontrolname='guestEmail']", email);
+                    WebUI.delay(3);
+                    WebUI.click("[data-an-tr='account-login'][data-an-la='guest'].pill-btn");
+                }
+                return url.contains("/checkout");
+            });
+            if (result instanceof Exception) {
+                throw (Exception) result;
+            }
+            logger.info("Navigated to checkout page");
+        } catch (Exception e) {
+            throw new Exception("Unable to checkout as guest", e);
+        }
+    }
+
+    static void ssoCheckout(Context c) throws Exception {
+
+    }
+}

@@ -1,17 +1,41 @@
 package wisewires.agent;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class WebUI {
+    private static Logger logger = LoggerFactory.getLogger(WebUI.class);
+
     static ChromeDriver driver;
+
+    public static void delay(int seconds) {
+        try {
+            Thread.sleep(1000 * seconds);
+        } catch (InterruptedException ignore) {
+        }
+    }
+
+    static void openBrowser(Context c, String url) {
+        if (url.contains("pre-qa")) {
+            mustAEMReady(c);
+        } else if (url.startsWith("https://stg")) {
+            mustGetCookie(c);
+        }
+        openBrowser(url);
+        logger.info("Opened: " + url);
+    }
 
     static void openBrowser(String url) {
         if (driver == null) {
@@ -27,29 +51,71 @@ public abstract class WebUI {
     }
 
     static void getCookie(Context c) {
-        String url = "https://stg2.shop.samsung.com/getcookie.html";
         if (driver == null) {
-            openBrowser(url);
+            openBrowser(c.getCookieUrl());
         } else {
-            driver.executeScript("window.open(arguments[0])", url);
-            Util.delay(2);
+            driver.executeScript("window.open(arguments[0])", c.getCookieUrl());
+            delay(2);
             switchToWindow(1);
             waitElement(".hubble-error-page h3", 10);
             driver.close();
             switchToWindow(0);
         }
-        c.cookieReady = true;
+        c.setCookieReady();
     }
 
     static void mustGetCookie(Context c) {
-        if (!c.cookieReady) {
+        if (!c.isCookieReady()) {
             getCookie(c);
         }
     }
 
+    static void getPointing(Context c) {
+        String url = c.getPointingUrl();
+        driver.get(url);
+        delay(1);
+        wait(30).withMessage("AEM login").until(d -> {
+            WebElement elm = findElement("#login.coral-Form");
+            if (elm != null) {
+                fill("input[name='j_username']", "qauser01");
+                fill("input[name='j_password']", "samsungqa");
+                click("#submit-button");
+            }
+            return !driver.getCurrentUrl().contains("login.html");
+        });
+        driver.get(url);
+        delay(1);
+    }
+
     static void mustAEMReady(Context c) {
-        if (c.aemReady)
-            return;
+        if (!c.isAEMReady()) {
+            mustGetCookie(c);
+            getPointing(c);
+            c.setAEMReady();
+        }
+    }
+
+    static void closeAllPopup(Context c) {
+        String to = "#truste-consent-button, #privacyBtn, [data-an-la='cookie bar:accept'], [an-ac='cookie bar:accept'], #preferenceCheckBtn, .ins-element-close-button";
+        wait(20, 2).until(d -> {
+            List<WebElement> elms = d.findElements(By.cssSelector(to));
+            if (elms.stream().anyMatch(WebElement::isDisplayed)) {
+                List<WebElement> terms = d.findElements(By.cssSelector("#privacy-terms, #privacy-terms2"));
+                driver.executeScript("for (const e of arguments[0]) e.click()", terms);
+                driver.executeScript("for (const e of arguments[0]) e.click()", elms);
+                String script = "a=document.createElement('style');a.innerHTML='iframe.fpw-view, #spr-live-chat-app {display:none !important}';document.head.appendChild(a)";
+                driver.executeScript(script);
+                return true;
+            }
+            return false;
+        });
+        c.setPopupClosed();
+    }
+
+    static void mustCloseAllPopup(Context c) {
+        if (!c.isPopupClosed()) {
+            closeAllPopup(c);
+        }
     }
 
     static void click(String selector) {
@@ -67,6 +133,22 @@ public abstract class WebUI {
                 .orElse(null);
     }
 
+    static List<WebElement> findElements(String selector) {
+        return driver.findElements(By.cssSelector(selector))
+                .stream()
+                .filter(WebElement::isDisplayed)
+                .toList();
+    }
+
+    public static void fill(String selector, String value) {
+        wait(5).until(d -> {
+            WebElement elm = findElement(selector);
+            elm.clear();
+            elm.sendKeys(value);
+            return true;
+        });
+    }
+
     public static String getDomAttribute(WebElement elm, String... attrs) {
         for (String attr : attrs) {
             String value = elm.getDomAttribute(attr);
@@ -75,6 +157,38 @@ public abstract class WebUI {
             }
         }
         return "";
+    }
+
+    public static String getUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    static void hover(String selector) throws Exception {
+        try {
+            WebElement elm = waitElement(selector, 5);
+            wait(5).until(ExpectedConditions.elementToBeClickable(elm));
+            Actions builder = new Actions(driver);
+            builder.moveToElement(elm).perform();
+        } catch (Exception e) {
+            throw new Exception("Unable to hover on %s".formatted(selector), e);
+        }
+    }
+
+    public static boolean isSite(String site) {
+        return driver.getCurrentUrl().contains("/" + site.toLowerCase());
+    }
+
+    public static boolean isOneOfSites(String... sites) {
+        String url = driver.getCurrentUrl();
+        for (String site : sites) {
+            if (url.contains("/" + site.toLowerCase() + "/"))
+                return true;
+        }
+        return false;
+    }
+
+    public static void scrollToCenter(WebElement elm) {
+        driver.executeScript("arguments[0].scrollIntoView({block:'center'})", elm);
     }
 
     static void switchToWindow(int index) {
@@ -101,5 +215,19 @@ public abstract class WebUI {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static boolean waitForElementNotPresent(String selector, int seconds) {
+        return wait(seconds)
+                .withMessage("waiting for element '%s' to disappear".formatted(selector))
+                .until(d -> d.findElements(By.cssSelector(selector)).isEmpty());
+    }
+
+    public static boolean waitForStaleness(WebElement elm, int seconds) {
+        return wait(seconds).until(ExpectedConditions.stalenessOf(elm));
+    }
+
+    public static boolean waitForUrlContains(String fraction, int seconds) {
+        return wait(seconds).until(ExpectedConditions.urlContains(fraction));
     }
 }
