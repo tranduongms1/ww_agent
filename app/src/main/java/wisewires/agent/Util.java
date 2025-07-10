@@ -2,7 +2,9 @@ package wisewires.agent;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Map;
+import java.util.function.BinaryOperator;
 
 public abstract class Util {
     public static boolean isValidIPv4(String ip) {
@@ -29,4 +31,10 @@ public abstract class Util {
         long stockLevel = (long) stock.get("stockLevel");
         return stockLevel > 0;
     }
+
+    public static BinaryOperator<List<String>> appendFunction = (current, update) -> {
+        List<String> combined = new java.util.ArrayList<>(current);
+        combined.addAll(update);
+        return combined;
+    };
 }

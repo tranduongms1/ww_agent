@@ -2,8 +2,11 @@ package wisewires.agent;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -16,6 +19,19 @@ public class Context {
     public String env;
     public Map<String, String> sso;
     public boolean ssoSignedIn = false;
+
+    public CheckoutProcess checkoutProcess;
+
+    public AtomicReference<String> selectedDeliveryType = new AtomicReference<>();
+
+    public int seenDeliveryTypes = 0;
+    public AtomicReference<List<String>> selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
+
+    public int seenDeliveryLists = 0;
+    public AtomicReference<List<String>> selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
+
+    public int seenDeliverySlots = 0;
+    public AtomicReference<List<String>> selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
 
     private boolean cookieReady = false;
     private Map<String, Boolean> aemReady = new HashMap<>();
@@ -102,5 +118,16 @@ public class Context {
         Map<String, String> apiEndpoints = getProfile().getApiEndpoints();
         String tail = siteUid != "" ? siteUid : site.toLowerCase();
         return apiEndpoints.get(env) + tail;
+    }
+
+    public void cleanCheckoutVariables() {
+        this.checkoutProcess = null;
+        this.selectedDeliveryType = new AtomicReference<>();
+        this.seenDeliveryTypes = 0;
+        this.selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
+        this.seenDeliveryLists = 0;
+        this.selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
+        this.seenDeliverySlots = 0;
+        this.selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
     }
 }

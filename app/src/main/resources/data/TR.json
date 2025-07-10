@@ -9,5 +9,17 @@
         "lastName": "test",
         "phoneNumber": "5498773829",
         "vatNumber": "32785648542"
+    },
+    "customerAddress": {
+        "line1": "line1",
+        "adminLevel2": "İSTANBUL",
+        "adminLevel3": "ADALAR",
+        "adminLevel4": "BURGAZADA MAH"
+    },
+    "billingAddress": {
+        "line1": "line1bill",
+        "adminLevel2": "ANKARA",
+        "adminLevel3": "AKYURT",
+        "adminLevel4": "AHMETADİL MAH"
     }
 }

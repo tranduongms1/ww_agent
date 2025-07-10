@@ -130,13 +130,21 @@ public abstract class SmokeTest {
                 }
 
             case "continue":
-                leading = Tokens.removeLeading(tokens, "to", "checkout", "page", "as", "guest", "register", "user");
+                leading = Tokens.removeLeading(tokens, "to", "checkout", "payment", "page",
+                        "as", "guest", "register", "user");
                 if (leading.contains("checkout")) {
                     if (Tokens.containsAny(leading, "register", "user")) {
                         Cart.ssoCheckout(c);
                     } else {
                         Cart.guestCheckout(c);
                     }
+                }
+                if (leading.contains("payment")) {
+                    Checkout.waitForNavigateTo();
+                    if (c.checkoutProcess == null) {
+                        c.checkoutProcess = new CheckoutProcess();
+                    }
+                    Checkout.process(c);
                 }
                 break;
         }

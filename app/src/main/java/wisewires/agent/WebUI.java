@@ -1,9 +1,11 @@
 package wisewires.agent;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -125,8 +127,23 @@ public abstract class WebUI {
         });
     }
 
+    public static void click(WebElement elm) {
+        wait(5).until(d -> {
+            elm.click();
+            return true;
+        });
+    }
+
     static WebElement findElement(String selector) {
         return driver.findElements(By.cssSelector(selector))
+                .stream()
+                .filter(WebElement::isDisplayed)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static WebElement findElement(SearchContext root, By by) {
+        return root.findElements(by)
                 .stream()
                 .filter(WebElement::isDisplayed)
                 .findFirst()
@@ -214,6 +231,29 @@ public abstract class WebUI {
             return wait(seconds).withMessage(msg).until(d -> findElement(selector));
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    public static WebElement waitElement(SearchContext root, By by, int seconds) {
+        try {
+            return wait(seconds)
+                    .withMessage("element located by '%s'".formatted(by))
+                    .until(d -> findElement(root, by));
+        } catch (Exception e) {
+            logger.warn("Element located by '%s' not found".formatted(by));
+            return null;
+        }
+    }
+
+    public static List<WebElement> waitElements(String selector, int seconds) {
+        try {
+            return wait(seconds).withMessage("elements located by '%s'".formatted(selector)).until(d -> {
+                List<WebElement> elms = findElements(selector);
+                return elms.isEmpty() ? null : elms;
+            });
+        } catch (Exception e) {
+            logger.warn("Elements located by '%s' not found".formatted(selector));
+            return new ArrayList<>();
         }
     }
 
