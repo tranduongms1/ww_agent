@@ -6,8 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class SmokeTest {
-    private static Logger logger = LoggerFactory.getLogger(SmokeTest.class);
+public abstract class Browser {
+    private static Logger logger = LoggerFactory.getLogger(Browser.class);
 
     static void run(Context c, String req) throws Exception {
         List<String> tokens = Tokens.tokenize(req);

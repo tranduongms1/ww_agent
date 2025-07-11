@@ -95,7 +95,7 @@ public class Agent extends WebSocketClient {
                 if (!line.isBlank()) {
                     executor.submit(() -> {
                         try {
-                            SmokeTest.run(ctx, line);
+                            Browser.run(ctx, line);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
