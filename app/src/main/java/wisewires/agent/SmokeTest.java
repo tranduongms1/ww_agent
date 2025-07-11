@@ -164,14 +164,17 @@ public abstract class SmokeTest {
                     TokenSingleMatch match = Tokens.getFormName(tokens);
                     switch (match.value) {
                         case "customer info":
+                            Checkout.waitForNavigateTo();
                             c.mustCheckoutProcess().untilSeenForm("app-customer-info-v2");
                             Checkout.process(c);
                             break;
                         case "customer address":
+                            Checkout.waitForNavigateTo();
                             c.mustCheckoutProcess().untilSeenForm("app-customer-address-v2");
                             Checkout.process(c);
                             break;
                         case "billing address":
+                            Checkout.waitForNavigateTo();
                             c.mustCheckoutProcess().untilSeenForm("app-billing-address-v2");
                             Checkout.process(c);
                             break;

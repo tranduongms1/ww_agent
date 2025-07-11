@@ -704,7 +704,7 @@ public abstract class Checkout {
         String to = "app-checkout-one";
         try {
             WebUI.waitElement(to, 10);
-            logger.info("navigated to Checkout page");
+            logger.info("Checkout page loaded success");
             WebUI.delay(2);
         } catch (Exception e) {
             throw new Exception("checkout main content not loaded");
