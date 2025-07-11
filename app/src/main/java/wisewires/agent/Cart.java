@@ -59,8 +59,10 @@ public abstract class Cart {
         String endpoint = c.getAPIEndpoint();
         Map<String, Object> cart = API.getCurrentCartInfo(endpoint);
         List<Object> entries = (List<Object>) cart.get("entries");
-        if (entries.isEmpty())
+        if (entries.isEmpty()) {
+            logger.info("Cart is EMPTY now");
             return true;
+        }
         entries.forEach(e -> {
             API.deleteCartEntry(endpoint, 0);
         });
@@ -80,6 +82,7 @@ public abstract class Cart {
         for (Map<String, Object> variant : variants) {
             try {
                 API.addToCart(endpoint, (String) variant.get("code"));
+                logger.info("Cart is NOT empty now");
                 return false;
             } catch (Exception ignore) {
             }

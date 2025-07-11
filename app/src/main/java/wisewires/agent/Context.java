@@ -120,6 +120,13 @@ public class Context {
         return apiEndpoints.get(env) + tail;
     }
 
+    public CheckoutProcess mustCheckoutProcess() {
+        if (this.checkoutProcess == null) {
+            this.checkoutProcess = new CheckoutProcess();
+        }
+        return this.checkoutProcess;
+    }
+
     public void cleanCheckoutVariables() {
         this.checkoutProcess = null;
         this.selectedDeliveryType = new AtomicReference<>();

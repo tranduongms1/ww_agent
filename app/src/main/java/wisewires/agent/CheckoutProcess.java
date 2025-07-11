@@ -1,6 +1,7 @@
 package wisewires.agent;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 
 import org.slf4j.Logger;
@@ -75,5 +76,27 @@ public class CheckoutProcess {
         this.selectDeliveryTypeAtLineFunc = CheckoutProcess::defaultSelectDeliveryTypeAtLine;
         this.selectDeliveryOptionFunc = CheckoutProcess::defaultSelectDeliveryOption;
         this.untilFunc = CheckoutProcess::defaultUntil;
+    }
+
+    public void untilSeenForm(String formId) {
+        AtomicBoolean seen = new AtomicBoolean(false);
+        this.fillFormFunc = (Context c, String id, List<String> formSelectors) -> {
+            if (id.equals(formId)) {
+                seen.set(true);
+                logger.info("Form '%s' is now displayed".formatted(formId));
+                return true;
+            }
+            return false;
+        };
+        this.untilFunc = (Context c) -> {
+            if (seen.get()) {
+                return true;
+            }
+            if (WebUI.getUrl().contains("CHECKOUT_STEP_PAYMENT")) {
+                logger.error("Unable to process until seen form '%s'".formatted(formId));
+                return true;
+            }
+            return false;
+        };
     }
 }

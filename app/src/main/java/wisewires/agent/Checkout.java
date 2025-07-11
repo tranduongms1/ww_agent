@@ -658,12 +658,12 @@ public abstract class Checkout {
                 result = new Exception("Unable to go to payment: Payment not available");
                 break;
             }
-            String currentStep = url.split("step=")[1];
-            logger.info("Current checkout step: " + currentStep);
             if (c.checkoutProcess.untilFunc.test(c)) {
                 result = true;
                 break;
             }
+            String currentStep = url.split("step=")[1];
+            logger.info("Current checkout step: " + currentStep);
             result = WebUI.wait(90).withMessage("process step " + currentStep).until(driver -> {
                 try {
                     c.seenDeliveryTypes = 0;

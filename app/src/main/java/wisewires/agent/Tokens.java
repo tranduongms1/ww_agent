@@ -5,6 +5,16 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+class TokenSingleMatch {
+    String value;
+    List<String> leading;
+
+    TokenSingleMatch(String value, List<String> leading) {
+        this.value = value;
+        this.leading = leading;
+    }
+}
+
 public abstract class Tokens {
     public static List<String> tokenize(String input) {
         List<String> tokens = new ArrayList<>();
@@ -59,5 +69,24 @@ public abstract class Tokens {
             }
         }
         return l;
+    }
+
+    static TokenSingleMatch getFormName(List<String> tokens) {
+        List<String> leading = Tokens.removeLeading(tokens, "all", "form",
+                "customer", "info", "customer info",
+                "customer", "delivery", "address", "customer address", "delivery address",
+                "billing", "address", "billing address");
+        if (Tokens.containsAll(leading, "customer", "info")
+                || Tokens.containsAny(leading, "customer info")) {
+            return new TokenSingleMatch("customer info", leading);
+        } else if (Tokens.containsAll(leading, "customer", "address")
+                || Tokens.containsAll(leading, "delivery", "address")
+                || Tokens.containsAny(leading, "customer address", "delivery address")) {
+            return new TokenSingleMatch("customer address", leading);
+        } else if (Tokens.containsAll(leading, "billing", "address")
+                || Tokens.containsAny(leading, "billing address")) {
+            return new TokenSingleMatch("billing address", leading);
+        }
+        return new TokenSingleMatch("", leading);
     }
 }
