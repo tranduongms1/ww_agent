@@ -1,0 +1,28 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "0412376678",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "3 Murray Rose Ave",
+        "postalCode": "4218",
+        "adminLevel2": "BROADBEACH",
+        "adminLevel1": "Queensland"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "0412376678",
+        "line1": "3 Murray Rose Ave",
+        "postalCode": "2000",
+        "adminLevel2": "BARANGAROO",
+        "adminLevel1": "New South Wales"
+    }
+}

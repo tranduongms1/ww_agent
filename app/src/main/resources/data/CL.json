@@ -1,0 +1,30 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smb-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "958699987",
+        "dateOfBirth": "01/04/1988",
+        "vatNumber": "12166250-7"
+    },
+    "customerAddress": {
+        "adminLevel1": "Metropolitana de Santiago",
+        "adminLevel2": "La Florida",
+        "line2": "line2",
+        "line1": "123"
+    },
+    "billingAddress": {
+        "companyId": "32132132-1",
+        "companyName": "wisewires",
+        "commercializeTxt": "IT",
+        "phone2": "958699911",
+        "line2": "line2Bill",
+        "line1": "222",
+        "adminLevel1": "Arica y Parinacota",
+        "adminLevel2": "Arica"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smc-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "3213213213",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "78 O'Connor St Ottawa, ON, K1P 5M7",
+        "line1": "78 O'Connor St",
+        "adminLevel2": "Ottawa",
+        "adminLevel1": "Ontario",
+        "postalCode": "K1P 5M7"
+    },
+    "billingAddress": {
+        "searchAddress": "67 Stanhope Main Rd Lewisporte, NL, A0G 3A0",
+        "line1": "67 Stanhope Main Rd",
+        "adminLevel2": "Lewisporte",
+        "adminLevel1": "Newfoundland and Labrador",
+        "postalCode": "A0G 3A0"
+    }
+}

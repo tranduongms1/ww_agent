@@ -1,0 +1,33 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn4-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "07791154325",
+        "dateOfBirth": "01/04/1988",
+        "title": "mr"
+    },
+    "customerAddress": {
+        "postalCode": "KT16 0PS",
+        "line1": "Samsung Electronics, Samsung House",
+        "country": "UK",
+        "adminLevel2": "Chertsey",
+        "companyType": "Sole trader",
+        "companySize": "26-50"
+    },
+    "billingAddress": {
+        "title": "mr",
+        "firstName": "diff",
+        "lastName": "Bill",
+        "email": "autotestww@gmail.com",
+        "phoneCode": "+44",
+        "phoneNumber": "07791112355",
+        "searchAddress": "BD24 0AA",
+        "line1": "1 Sandholme Drive",
+        "adminLevel2": "Settle"
+    }
+}

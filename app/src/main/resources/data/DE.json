@@ -1,0 +1,23 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn5-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "title": "Herr",
+        "firstName": "Max",
+        "lastName": "Mustermann",
+        "phoneCode": "+49",
+        "phoneNumber": "6925434126",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "Diedersdorfer Weg 12277 Berlin",
+        "line1": "Diedersdorfer Weg",
+        "line2": "1",
+        "postalCode": "12277",
+        "adminLevel2": "Berlin"
+    },
+    "billingAddress": {}
+}

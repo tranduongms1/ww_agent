@@ -1,0 +1,21 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn2-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "title": "Mme",
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+33(0)",
+        "phoneNumber": "0612345678",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "postalCode": "75001",
+        "adminLevel2": "PARIS",
+        "line1": "1 PORTE BERGER"
+    },
+    "billingAddress": {}
+}

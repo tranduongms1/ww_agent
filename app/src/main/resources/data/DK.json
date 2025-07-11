@@ -1,0 +1,22 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+45 (Denmark)",
+        "phoneNumber": "01234567",
+        "dateOfBirth_Day": "01",
+        "dateOfBirth_Month": "01",
+        "dateOfBirth_Year": "1999"
+    },
+    "customerAddress": {
+        "adminLevel2": "Odense NØ",
+        "line1": "Møllebakken 82",
+        "postalCode": "5240"
+    },
+    "billingAddress": {}
+}
