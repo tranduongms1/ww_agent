@@ -10,7 +10,7 @@
             "request": "launch",
             "mainClass": "wisewires.agent.App",
             "projectName": "app",
-            "args": "10.1.4.113:8065"
+            "args": "10.1.4.178"
         }
     ]
 }
