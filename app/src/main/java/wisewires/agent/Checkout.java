@@ -90,6 +90,7 @@ public abstract class Checkout {
     }
 
     static Object fillForm(Context c, String formID, WebElement form, List<String> formSelectors) throws Exception {
+        CheckoutProcess p = c.checkoutProcess;
         Profile profile = c.getProfile();
         switch (formID) {
             case "app-delivery-info-delivery-first": {
@@ -221,7 +222,7 @@ public abstract class Checkout {
             }
 
             case "delivery_type_top": {
-                if (c.checkoutProcess.selectDeliveryTypeFunc.apply(c, formID)) {
+                if (p.selectDeliveryTypeFunc.apply(c, formID)) {
                     return true;
                 }
                 formSelectors.remove(DELIVERY_INFO_TABS_SELECTOR);
@@ -230,34 +231,34 @@ public abstract class Checkout {
             }
 
             case "delivery_type_line": {
-                c.seenDeliveryTypes++;
-                int index = c.selectedDeliveryTypes.get().size() + 1;
-                if (c.seenDeliveryTypes < index)
+                p.seenDeliveryTypes++;
+                int index = p.selectedDeliveryTypes.get().size() + 1;
+                if (p.seenDeliveryTypes < index)
                     break;
-                if (c.checkoutProcess.selectDeliveryTypeAtLineFunc.apply(c, index)) {
+                if (p.selectDeliveryTypeAtLineFunc.apply(c, index)) {
                     return true;
                 }
                 return false;
             }
 
             case "delivery_list": {
-                c.seenDeliveryLists++;
-                int index = c.selectedDeliveryOptions.get().size() + 1;
-                if (c.seenDeliveryLists < index)
+                p.seenDeliveryLists++;
+                int index = p.selectedDeliveryOptions.get().size() + 1;
+                if (p.seenDeliveryLists < index)
                     break;
                 WebUI.waitElement("ul.slot_list", 2);
-                if (c.checkoutProcess.selectDeliveryOptionFunc.apply(c, index)) {
+                if (p.selectDeliveryOptionFunc.apply(c, index)) {
                     return true;
                 }
                 return false;
             }
 
             case "delivery_slot_list": {
-                c.seenDeliverySlots++;
-                int index = c.selectedDeliverySlots.get().size() + 1;
-                if (c.seenDeliverySlots < index)
+                p.seenDeliverySlots++;
+                int index = p.selectedDeliverySlots.get().size() + 1;
+                if (p.seenDeliverySlots < index)
                     break;
-                if (c.checkoutProcess.selectDeliverySlotFunc.apply(c, index)) {
+                if (p.selectDeliverySlotFunc.apply(c, index)) {
                     return true;
                 }
                 return false;
@@ -650,6 +651,7 @@ public abstract class Checkout {
     }
 
     static void process(Context c) throws Exception {
+        CheckoutProcess p = c.checkoutProcess;
         List<String> formSelectors = new ArrayList<>(FORM_SELECTOR);
         Object result = null;
         for (int errorCount = 0; errorCount < 3;) {
@@ -658,7 +660,7 @@ public abstract class Checkout {
                 result = new Exception("Unable to go to payment: Payment not available");
                 break;
             }
-            if (c.checkoutProcess.untilFunc.test(c)) {
+            if (p.untilFunc.test(c)) {
                 result = true;
                 break;
             }
@@ -666,9 +668,9 @@ public abstract class Checkout {
             logger.info("Current checkout step: " + currentStep);
             result = WebUI.wait(90).withMessage("process step " + currentStep).until(driver -> {
                 try {
-                    c.seenDeliveryTypes = 0;
-                    c.seenDeliveryLists = 0;
-                    c.seenDeliverySlots = 0;
+                    p.seenDeliveryTypes = 0;
+                    p.seenDeliveryLists = 0;
+                    p.seenDeliverySlots = 0;
                     List<WebElement> forms = WebUI.findElements(String.join(",", formSelectors));
                     for (WebElement form : forms) {
                         String formID = getFormId(form);
@@ -676,7 +678,7 @@ public abstract class Checkout {
                             logger.info(String.format("Form %s not displayed, skipping", formID));
                             continue;
                         }
-                        if (c.checkoutProcess.fillFormFunc.apply(c, formID, formSelectors)) {
+                        if (p.fillFormFunc.apply(c, formID, formSelectors)) {
                             return true;
                         }
                         final Object r = fillForm(c, formID, form, formSelectors);
@@ -693,7 +695,7 @@ public abstract class Checkout {
             });
             errorCount = result instanceof Exception ? errorCount + 1 : 0;
         }
-        c.cleanCheckoutVariables();
+        c.checkoutProcess = null;
         if (result instanceof Exception) {
             throw (Exception) result;
         }

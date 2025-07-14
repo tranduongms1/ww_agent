@@ -1,7 +1,9 @@
 package wisewires.agent;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 
 import org.slf4j.Logger;
@@ -35,6 +37,17 @@ interface SelectDeliverySlotFunction {
 public class CheckoutProcess {
     static Logger logger = LoggerFactory.getLogger(CheckoutProcess.class);
 
+    public AtomicReference<String> selectedDeliveryType = new AtomicReference<>();
+
+    public int seenDeliveryTypes = 0;
+    public AtomicReference<List<String>> selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
+
+    public int seenDeliveryLists = 0;
+    public AtomicReference<List<String>> selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
+
+    public int seenDeliverySlots = 0;
+    public AtomicReference<List<String>> selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
+
     public FillFormFunction fillFormFunc;
     public SelectDeliveryTypeFunction selectDeliveryTypeFunc;
     public SelectDeliveryTypeAtLineFunction selectDeliveryTypeAtLineFunc;
@@ -47,22 +60,22 @@ public class CheckoutProcess {
     }
 
     public static boolean defaultSelectDeliveryType(Context c, String type) {
-        c.selectedDeliveryType.set("Any");
+        c.checkoutProcess.selectedDeliveryType.set("Any");
         return false;
     }
 
     public static boolean defaultSelectDeliveryTypeAtLine(Context c, int line) {
-        c.selectedDeliveryTypes.accumulateAndGet(List.of("Any"), Util.appendFunction);
+        c.checkoutProcess.selectedDeliveryTypes.accumulateAndGet(List.of("Any"), Util.appendFunction);
         return false;
     }
 
     public static boolean defaultSelectDeliveryOption(Context c, int line) {
-        c.selectedDeliveryOptions.accumulateAndGet(List.of("Any"), Util.appendFunction);
+        c.checkoutProcess.selectedDeliveryOptions.accumulateAndGet(List.of("Any"), Util.appendFunction);
         return false;
     }
 
     public static boolean defaultSelectDeliverySlot(Context c, int line) {
-        c.selectedDeliverySlots.accumulateAndGet(List.of("Any"), Util.appendFunction);
+        c.checkoutProcess.selectedDeliverySlots.accumulateAndGet(List.of("Any"), Util.appendFunction);
         return false;
     }
 
@@ -98,5 +111,15 @@ public class CheckoutProcess {
             }
             return false;
         };
+    }
+
+    public void reset() {
+        this.selectedDeliveryType = new AtomicReference<>();
+        this.seenDeliveryTypes = 0;
+        this.selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
+        this.seenDeliveryLists = 0;
+        this.selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
+        this.seenDeliverySlots = 0;
+        this.selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
     }
 }
