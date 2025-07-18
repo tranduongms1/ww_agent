@@ -17,7 +17,7 @@ public abstract class Checkout {
     static String DELIVERY_TAB_GROUP_CONTAINER_TOP = ".delivery-tab__group-container:has(.delivery-tab__group-container):has([role='tab']:not(hidden))";
     static String DELIVERY_TAB_GROUP_CONTAINER = ".delivery-tab__group-container:not(:has(.delivery-tab__group-container)):has([role='tab']:not(hidden))";
 
-    static List<String> FORM_SELECTOR = List.of(
+    static List<String> FORM_LOCATORS = List.of(
             "app-delivery-info-delivery-first",
             "app-customer-info-v2",
             "app-delivery-info-pickup-first",
@@ -52,7 +52,7 @@ public abstract class Checkout {
             "app-packetery",
             "app-sameday-locker");
 
-    static String NEXT_SELECTOR = """
+    static String NEXT_LOCATOR = """
             app-delivery-info-delivery-first button.search-delivery-options-btn,
             button[data-an-la='customer details:Continue to delivery options'i],
             app-checkout-step-contact-info button.customer-details--continue-btn,
@@ -89,21 +89,22 @@ public abstract class Checkout {
         return tagName;
     }
 
-    static Object fillForm(Context c, String formID, WebElement form, List<String> formSelectors) throws Exception {
+    static Object fillForm(Context c, String formID, WebElement form) throws Exception {
         CheckoutProcess p = c.checkoutProcess;
+        List<String> locators = p.formLocators;
         Profile profile = c.getProfile();
         switch (formID) {
             case "app-delivery-info-delivery-first": {
                 String postalCode = profile.getCustomerAddress().get("postalCode");
                 fillDeliveryFirstForm(postalCode);
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 break;
             }
 
             case "app-customer-info-v2": {
                 logger.info("Processing customer info form");
                 CustomerInfo.autoFill(profile.getCustomerInfo(), true);
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 break;
             }
 
@@ -114,8 +115,8 @@ public abstract class Checkout {
                     requiredOnly = false;
                 }
                 CustomerAddress.autoFill(profile.getCustomerAddress(), requiredOnly);
-                formSelectors.remove(formID);
-                if (!formSelectors.contains("app-delivery-info-pickup-first")) {
+                locators.remove(formID);
+                if (!locators.contains("app-delivery-info-pickup-first")) {
                     WebUI.waitElement(".shipment-stepper", 10);
                     return false; // No click continue button
                 }
@@ -129,7 +130,7 @@ public abstract class Checkout {
                     requiredOnly = false;
                 }
                 BillingAddress.autoFill(profile.getBillingAddress(), requiredOnly);
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 break;
             }
 
@@ -137,7 +138,7 @@ public abstract class Checkout {
                 logger.info("Processing SMC form");
                 fillSMCForm(profile.getCustomerInfo(), true);
                 checkSMCTermAndConditions();
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 break;
             }
 
@@ -145,21 +146,21 @@ public abstract class Checkout {
                 logger.info("Processing trade-in form");
                 WebUI.delay(2);
                 fillTradeInForm(profile.getTradeInInfo(), true);
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 break;
             }
 
             case "app-checkout-step-sim": {
                 logger.info("Processing SIM form");
                 fillSIMForm(profile.getSIMInfo());
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 break;
             }
 
             case "app-checkout-identification": {
                 logger.info("Processing customer identification form");
                 fillIdentificationForm(profile.getCustomerInfo(), true);
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 break;
             }
 
@@ -171,7 +172,7 @@ public abstract class Checkout {
                     WebUI.scrollToCenter(elm);
                     WebUI.delay(1);
                     WebUI.click(elm);
-                    formSelectors.remove(formID);
+                    locators.remove(formID);
                 }
                 break;
             }
@@ -200,7 +201,7 @@ public abstract class Checkout {
                 } catch (Exception e) {
                     throw new Exception("Unable to check required term and conditions" + e);
                 }
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 break;
             }
 
@@ -210,14 +211,14 @@ public abstract class Checkout {
                         app-delivery-info-delivery-first,
                         app-delivery-info-pickup-first,
                         app-delivery-info-no-pickup-split""", 10);
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 return false;
             }
 
             case "app-delivery-info-pickup-first": {
                 logger.info("Wait for customer address form");
                 WebUI.waitElement("app-customer-address-v2", 5);
-                formSelectors.remove(formID);
+                locators.remove(formID);
                 return false;
             }
 
@@ -225,8 +226,8 @@ public abstract class Checkout {
                 if (p.selectDeliveryTypeFunc.apply(c, formID)) {
                     return true;
                 }
-                formSelectors.remove(DELIVERY_INFO_TABS_SELECTOR);
-                formSelectors.remove(DELIVERY_TAB_GROUP_CONTAINER_TOP);
+                locators.remove(DELIVERY_INFO_TABS_SELECTOR);
+                locators.remove(DELIVERY_TAB_GROUP_CONTAINER_TOP);
                 return false;
             }
 
@@ -266,7 +267,7 @@ public abstract class Checkout {
 
             case "delivery_info_tnc": {
                 Delivery.acceptAllTermAndConditions();
-                formSelectors.remove(".delivery-info__tnc");
+                locators.remove(".delivery-info__tnc");
                 break;
             }
 
@@ -275,7 +276,7 @@ public abstract class Checkout {
                 WebUI.delay(1);
                 Delivery.fillAdditionalLocationInfoForm();
                 WebUI.waitElement("ul.slot_list", 15);
-                formSelectors.remove("app-delivery-info-additional-location-info");
+                locators.remove("app-delivery-info-additional-location-info");
                 return false;
             }
 
@@ -621,7 +622,7 @@ public abstract class Checkout {
     }
 
     static boolean nextStep() throws Exception {
-        WebElement nextButton = WebUI.findElement(NEXT_SELECTOR);
+        WebElement nextButton = WebUI.findElement(NEXT_LOCATOR);
         if (nextButton != null) {
             WebUI.scrollToCenter(nextButton);
             WebUI.delay(1);
@@ -652,7 +653,7 @@ public abstract class Checkout {
 
     static void process(Context c) throws Exception {
         CheckoutProcess p = c.checkoutProcess;
-        List<String> formSelectors = new ArrayList<>(FORM_SELECTOR);
+        p.formLocators = new ArrayList<>(FORM_LOCATORS);
         Object result = null;
         for (int errorCount = 0; errorCount < 3;) {
             String url = WebUI.getUrl();
@@ -671,17 +672,18 @@ public abstract class Checkout {
                     p.seenDeliveryTypes = 0;
                     p.seenDeliveryLists = 0;
                     p.seenDeliverySlots = 0;
-                    List<WebElement> forms = WebUI.findElements(String.join(",", formSelectors));
+                    By locator = By.cssSelector(String.join(",", p.formLocators));
+                    List<WebElement> forms = WebUI.driver.findElements(locator);
                     for (WebElement form : forms) {
                         String formID = getFormId(form);
+                        if (!p.preFillFormFunc.apply(c, formID, form)) {
+                            return true;
+                        }
                         if (!form.isDisplayed()) {
                             logger.info(String.format("Form %s not displayed, skipping", formID));
                             continue;
                         }
-                        if (p.fillFormFunc.apply(c, formID, formSelectors)) {
-                            return true;
-                        }
-                        final Object r = fillForm(c, formID, form, formSelectors);
+                        final Object r = fillForm(c, formID, form);
                         if (r instanceof Boolean) {
                             return r;
                         }

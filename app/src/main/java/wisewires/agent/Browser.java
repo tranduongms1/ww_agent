@@ -127,13 +127,13 @@ public abstract class Browser {
             case "ensure": {
                 leading = Tokens.removeLeading(tokens, "cart", "page", "not", "empty");
                 if (Tokens.containsAll(leading, "cart", "empty")) {
-                    boolean mustReload = true;
+                    boolean ready;
                     if (leading.contains("not")) {
-                        mustReload = Cart.mustNotEmpty(c);
+                        ready = Cart.mustNotEmpty(c);
                     } else {
-                        mustReload = Cart.mustEmpty(c);
+                        ready = Cart.mustEmpty(c);
                     }
-                    Cart.navigateTo(c, mustReload);
+                    Cart.navigateTo(c, !ready);
                     WebUI.mustCloseAllPopup(c);
                 }
             }
@@ -168,17 +168,17 @@ public abstract class Browser {
                     switch (match.value) {
                         case "customer info":
                             Checkout.waitForNavigateTo();
-                            c.mustCheckoutProcess().untilSeenForm("app-customer-info-v2");
+                            c.mustCheckoutProcess().untilForm("app-customer-info-v2");
                             Checkout.process(c);
                             break;
                         case "customer address":
                             Checkout.waitForNavigateTo();
-                            c.mustCheckoutProcess().untilSeenForm("app-customer-address-v2");
+                            c.mustCheckoutProcess().untilForm("app-customer-address-v2");
                             Checkout.process(c);
                             break;
                         case "billing address":
                             Checkout.waitForNavigateTo();
-                            c.mustCheckoutProcess().untilSeenForm("app-billing-address-v2");
+                            c.mustCheckoutProcess().untilForm("app-billing-address-v2");
                             Checkout.process(c);
                             break;
                     }

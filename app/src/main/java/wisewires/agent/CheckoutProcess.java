@@ -6,12 +6,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @FunctionalInterface
-interface FillFormFunction {
-    boolean apply(Context c, String formID, List<String> formSelectors);
+interface PreFillFormFunction {
+    boolean apply(Context c, String formID, WebElement form);
 }
 
 @FunctionalInterface
@@ -37,6 +38,8 @@ interface SelectDeliverySlotFunction {
 public class CheckoutProcess {
     static Logger logger = LoggerFactory.getLogger(CheckoutProcess.class);
 
+    List<String> formLocators;
+
     public AtomicReference<String> selectedDeliveryType = new AtomicReference<>();
 
     public int seenDeliveryTypes = 0;
@@ -48,15 +51,15 @@ public class CheckoutProcess {
     public int seenDeliverySlots = 0;
     public AtomicReference<List<String>> selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
 
-    public FillFormFunction fillFormFunc;
+    public PreFillFormFunction preFillFormFunc;
     public SelectDeliveryTypeFunction selectDeliveryTypeFunc;
     public SelectDeliveryTypeAtLineFunction selectDeliveryTypeAtLineFunc;
     public SelectDeliveryOptionFunction selectDeliveryOptionFunc;
     public SelectDeliverySlotFunction selectDeliverySlotFunc;
     public Predicate<Context> untilFunc;
 
-    public static boolean noopFillForm(Context c, String formID, List<String> formSelectors) {
-        return false;
+    public static boolean defaultPreFillForm(Context c, String formID, WebElement form) {
+        return true;
     }
 
     public static boolean defaultSelectDeliveryType(Context c, String type) {
@@ -84,36 +87,37 @@ public class CheckoutProcess {
     }
 
     CheckoutProcess() {
-        this.fillFormFunc = CheckoutProcess::noopFillForm;
         this.selectDeliveryTypeFunc = CheckoutProcess::defaultSelectDeliveryType;
         this.selectDeliveryTypeAtLineFunc = CheckoutProcess::defaultSelectDeliveryTypeAtLine;
         this.selectDeliveryOptionFunc = CheckoutProcess::defaultSelectDeliveryOption;
-        this.untilFunc = CheckoutProcess::defaultUntil;
     }
 
-    public void untilSeenForm(String formId) {
+    public CheckoutProcess untilForm(String formId) {
         AtomicBoolean seen = new AtomicBoolean(false);
-        this.fillFormFunc = (Context c, String id, List<String> formSelectors) -> {
+        PreFillFormFunction preFillFormFunc = this.preFillFormFunc;
+        this.preFillFormFunc = (Context c, String id, WebElement form) -> {
+            if (preFillFormFunc != null && preFillFormFunc.apply(c, id, form)) {
+                return true;
+            }
             if (id.equals(formId)) {
+                logger.info("Processed until form '%s'".formatted(formId));
                 seen.set(true);
-                logger.info("Form '%s' is now displayed".formatted(formId));
-                return true;
             }
-            return false;
+            return !seen.get();
         };
+        Predicate<Context> untilFunc = this.untilFunc;
         this.untilFunc = (Context c) -> {
-            if (seen.get()) {
-                return true;
+            if (untilFunc != null && !untilFunc.test(c)) {
+                return false;
             }
-            if (WebUI.getUrl().contains("CHECKOUT_STEP_PAYMENT")) {
-                logger.error("Unable to process until seen form '%s'".formatted(formId));
-                return true;
-            }
-            return false;
+            return seen.get();
         };
+        return this;
     }
 
     public void reset() {
+        this.preFillFormFunc = null;
+        this.untilFunc = null;
         this.selectedDeliveryType = new AtomicReference<>();
         this.seenDeliveryTypes = 0;
         this.selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
