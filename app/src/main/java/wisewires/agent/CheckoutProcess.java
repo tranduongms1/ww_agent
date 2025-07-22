@@ -92,6 +92,21 @@ public class CheckoutProcess {
         this.selectDeliveryOptionFunc = CheckoutProcess::defaultSelectDeliveryOption;
     }
 
+    public CheckoutProcess untilSeen(String locator) {
+        Predicate<Context> untilFunc = this.untilFunc;
+        this.untilFunc = (Context c) -> {
+            if (untilFunc != null && !untilFunc.test(c)) {
+                return false;
+            }
+            boolean seen = WebUI.findElement(locator) != null;
+            if (seen) {
+                logger.info("Element '%s' is now displayed".formatted(locator));
+            }
+            return seen;
+        };
+        return this;
+    }
+
     public CheckoutProcess untilForm(String formId) {
         AtomicBoolean seen = new AtomicBoolean(false);
         PreFillFormFunction preFillFormFunc = this.preFillFormFunc;
@@ -113,6 +128,15 @@ public class CheckoutProcess {
             return seen.get();
         };
         return this;
+    }
+
+    public void ensureNotNull() {
+        if (this.preFillFormFunc == null) {
+            this.preFillFormFunc = CheckoutProcess::defaultPreFillForm;
+        }
+        if (this.untilFunc == null) {
+            this.untilFunc = CheckoutProcess::defaultUntil;
+        }
     }
 
     public void reset() {

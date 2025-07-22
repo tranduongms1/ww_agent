@@ -654,6 +654,7 @@ public abstract class Checkout {
     static void process(Context c) throws Exception {
         CheckoutProcess p = c.checkoutProcess;
         p.formLocators = new ArrayList<>(FORM_LOCATORS);
+        p.ensureNotNull();
         Object result = null;
         for (int errorCount = 0; errorCount < 3;) {
             String url = WebUI.getUrl();
