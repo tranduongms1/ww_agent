@@ -4,9 +4,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.slf4j.Logger;
@@ -72,11 +69,9 @@ public class Agent extends WebSocketClient {
 
     private class AgentRunThread implements Runnable {
         private final Agent agent;
-        private final ExecutorService executor;
 
         AgentRunThread(Agent agent) {
             this.agent = agent;
-            this.executor = Executors.newSingleThreadExecutor();
         }
 
         @Override
@@ -84,34 +79,32 @@ public class Agent extends WebSocketClient {
             while (!Thread.interrupted()) {
                 Post post = agent.posts.poll();
                 if (post != null) {
-                    runPost(post);
+                    try {
+                        Attachment attachment = new Attachment();
+                        attachment.setColor("default");
+                        attachment.setText(post.getMessage());
+                        client.updatePost(post.getId(), attachment);
+                        runPost(post);
+                        attachment.setColor("good");
+                        client.updatePost(post.getId(), attachment);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
 
-        public void runPost(Post post) {
+        public void runPost(Post post) throws Exception {
             List<String> lines = post.getMessage().lines().toList();
             for (String line : lines) {
                 if (!line.isBlank()) {
-                    executor.submit(() -> {
-                        try {
-                            Browser.run(ctx, line);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    });
+                    Browser.run(ctx, line);
                 }
             }
-            executor.submit(() -> {
-                try {
-                    if (ctx.checkoutProcess != null) {
-                        Checkout.waitForNavigateTo();
-                        Checkout.process(ctx);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
+            if (ctx.checkoutProcess != null) {
+                Checkout.waitForNavigateTo();
+                Checkout.process(ctx);
+            }
         }
     }
 }
