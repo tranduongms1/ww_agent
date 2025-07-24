@@ -6,7 +6,7 @@
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
-        "lastName": "test",
+        "lastName": "Test",
         "phoneCode": "+45 (Denmark)",
         "phoneNumber": "01234567",
         "dateOfBirth_Day": "01",
@@ -18,5 +18,12 @@
         "line1": "Møllebakken 82",
         "postalCode": "5240"
     },
-    "billingAddress": {}
+    "billingAddress": {
+        "firstName": "Test",
+        "lastName": "Auto",
+        "phoneNumber": "07654321",
+        "line1": "Møllebakken 82",
+        "postalCode": "5240",
+        "adminLevel2": "Odense NØ"
+    }
 }
