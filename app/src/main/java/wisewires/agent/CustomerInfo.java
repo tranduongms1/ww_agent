@@ -20,10 +20,10 @@ public class CustomerInfo {
             List<WebElement> fields = Form.getFields(to, true);
             for (WebElement field : fields) {
                 String nameOrLabel = Form.getNameOrLabel(field);
-                if (!Form.checkEnable(field, nameOrLabel)) {
+                if (!Form.checkEnable(logger, field, nameOrLabel)) {
                     continue;
                 }
-                fillField(field, nameOrLabel, data);
+                fillField(logger, field, nameOrLabel, data);
             }
             logger.info("Customer info form filled");
         } catch (Exception e) {
@@ -31,7 +31,8 @@ public class CustomerInfo {
         }
     }
 
-    static void fillField(WebElement field, String nameOrLabel, Map<String, String> data) throws Exception {
+    static void fillField(Logger logger, WebElement field, String nameOrLabel, Map<String, String> data)
+            throws Exception {
         WebUI.scrollToCenter(field);
         Thread.sleep(500);
         switch (nameOrLabel) {

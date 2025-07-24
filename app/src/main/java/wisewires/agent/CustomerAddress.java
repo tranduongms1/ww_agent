@@ -18,7 +18,7 @@ public class CustomerAddress {
             String to = "app-customer-address-v2";
             for (WebElement field : Form.getFields(to, requiredOnly)) {
                 String nameOrLabel = Form.getNameOrLabel(field);
-                if (!Form.checkEnable(field, nameOrLabel)) {
+                if (!Form.checkEnable(logger, field, nameOrLabel)) {
                     continue;
                 }
                 switch (nameOrLabel) {
@@ -47,11 +47,11 @@ public class CustomerAddress {
                             "companyName",
                             "companyNameOpt":
                     case "vatNumber":
-                        CustomerInfo.fillField(field, nameOrLabel, data);
+                        CustomerInfo.fillField(logger, field, nameOrLabel, data);
                         break;
 
                     default:
-                        fillField(field, nameOrLabel, data);
+                        fillField(logger, field, nameOrLabel, data);
                 }
             }
             logger.info("Customer address form filled");
@@ -60,7 +60,8 @@ public class CustomerAddress {
         }
     }
 
-    static void fillField(WebElement field, String nameOrLabel, Map<String, String> data) throws Exception {
+    static void fillField(Logger logger, WebElement field, String nameOrLabel, Map<String, String> data)
+            throws Exception {
         WebUI.scrollToCenter(field);
         switch (nameOrLabel) {
             case

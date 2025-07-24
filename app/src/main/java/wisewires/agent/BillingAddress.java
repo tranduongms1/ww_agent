@@ -14,7 +14,7 @@ public class BillingAddress {
             String to = "app-billing-address-v2";
             for (WebElement field : Form.getFields(to, requiredOnly)) {
                 String nameOrLabel = Form.getNameOrLabel(field);
-                if (!Form.checkEnable(field, nameOrLabel)) {
+                if (!Form.checkEnable(logger, field, nameOrLabel)) {
                     continue;
                 }
                 switch (nameOrLabel) {
@@ -75,7 +75,7 @@ public class BillingAddress {
                             "Title",
                             "Titre",
                             "Anrede":
-                        CustomerInfo.fillField(field, nameOrLabel, data);
+                        CustomerInfo.fillField(logger, field, nameOrLabel, data);
                         break;
 
                     case "fiscalCode":
@@ -84,7 +84,7 @@ public class BillingAddress {
                         break;
 
                     default:
-                        CustomerAddress.fillField(field, nameOrLabel, data);
+                        CustomerAddress.fillField(logger, field, nameOrLabel, data);
                 }
             }
             logger.info("Billing address form filled");

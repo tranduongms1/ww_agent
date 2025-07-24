@@ -66,6 +66,10 @@ public class Form {
     }
 
     public static boolean checkEnable(WebElement field, String nameOrLabel) {
+        return checkEnable(logger, field, nameOrLabel);
+    }
+
+    public static boolean checkEnable(Logger logger, WebElement field, String nameOrLabel) {
         if (!field.isDisplayed()) {
             logger.warn(String.format("Field %s is not displayed, skipping", nameOrLabel));
             return false;
