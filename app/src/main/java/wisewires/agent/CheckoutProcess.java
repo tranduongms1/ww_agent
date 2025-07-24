@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 @FunctionalInterface
 interface PreFillFormFunction {
-    boolean apply(Context c, String formID, WebElement form);
+    boolean apply(Context c, String formID, WebElement form) throws Exception;
 }
 
 @FunctionalInterface
@@ -102,7 +102,7 @@ public class CheckoutProcess {
         }
     }
 
-    public boolean preFillForm(Context c, String formID, WebElement form) {
+    public boolean preFillForm(Context c, String formID, WebElement form) throws Exception {
         Iterator<PreFillFormFunction> iterator = preFillFormFuncs.iterator();
         while (iterator.hasNext()) {
             if (!iterator.next().apply(c, formID, form)) {
@@ -126,10 +126,13 @@ public class CheckoutProcess {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-billing-address-v2")) {
-                logger.info("Selected different billing address");
+                BillingAddress.uncheckSameAsShipping();
                 done.set(true);
             }
             return !done.get();
+        });
+        this.untilFuncs.add((Context c) -> {
+            return done.get();
         });
         return this;
     }

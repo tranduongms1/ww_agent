@@ -122,12 +122,14 @@ public class BillingAddress {
                 String taxInvoice = ".mdc-checkbox:has([name='isUserWantTaxInvoice']), .mdc-checkbox:has([name='vatCode'])";
                 WebElement elmTaxInvoice = WebUI.findElement(taxInvoice);
                 WebUI.scrollToCenter(elmTaxInvoice);
-                WebUI.delay(2);
+                WebUI.delay(1);
                 Form.check(elmTaxInvoice);
                 WebUI.delay(2);
             }
             String to = ".mdc-checkbox:has([name='sameAsShipping'])";
             WebElement elm = WebUI.waitElement(to, 5);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
             Form.uncheck(elm);
             logger.info("Un-checked billing address same as shipping");
         } catch (Exception e) {

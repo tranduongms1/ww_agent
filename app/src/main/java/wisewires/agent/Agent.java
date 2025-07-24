@@ -105,6 +105,7 @@ public class Agent extends WebSocketClient {
             executor.submit(() -> {
                 try {
                     if (ctx.checkoutProcess != null) {
+                        Checkout.waitForNavigateTo();
                         Checkout.process(ctx);
                     }
                 } catch (Exception e) {
