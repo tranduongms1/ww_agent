@@ -654,7 +654,7 @@ public abstract class Checkout {
     static void process(Context c) throws Exception {
         CheckoutProcess p = c.checkoutProcess;
         p.formLocators = new ArrayList<>(FORM_LOCATORS);
-        p.ensureNotNull();
+        p.preProcess();
         Object result = null;
         for (int errorCount = 0; errorCount < 3;) {
             String url = WebUI.getUrl();
@@ -662,13 +662,13 @@ public abstract class Checkout {
                 result = new Exception("Unable to go to payment: Payment not available");
                 break;
             }
-            if (p.untilFunc.test(c)) {
+            if (p.isDone(c)) {
                 result = true;
                 break;
             }
             String currentStep = url.split("step=")[1];
             logger.info("Current checkout step: " + currentStep);
-            result = WebUI.wait(90).withMessage("process step " + currentStep).until(driver -> {
+            result = WebUI.wait(900).withMessage("process step " + currentStep).until(driver -> {
                 try {
                     p.seenDeliveryTypes = 0;
                     p.seenDeliveryLists = 0;
@@ -677,7 +677,7 @@ public abstract class Checkout {
                     List<WebElement> forms = WebUI.driver.findElements(locator);
                     for (WebElement form : forms) {
                         String formID = getFormId(form);
-                        if (!p.preFillFormFunc.apply(c, formID, form)) {
+                        if (!p.preFillForm(c, formID, form)) {
                             return true;
                         }
                         if (!form.isDisplayed()) {

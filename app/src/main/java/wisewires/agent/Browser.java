@@ -160,6 +160,13 @@ public abstract class Browser {
                 break;
             }
 
+            case "select": {
+                if (Tokens.containsAll(tokens, "different", "billing", "address")) {
+                    c.mustCheckoutProcess().selectDifferentBillingAddress();
+                    break;
+                }
+            }
+
             case "process": {
                 leading = Tokens.removeLeading(tokens, "until");
                 if (Tokens.containsAny(leading, "until")) {
@@ -169,17 +176,14 @@ public abstract class Browser {
                         case "customer info":
                             Checkout.waitForNavigateTo();
                             c.mustCheckoutProcess().untilForm("app-customer-info-v2");
-                            Checkout.process(c);
                             break;
                         case "customer address":
                             Checkout.waitForNavigateTo();
                             c.mustCheckoutProcess().untilForm("app-customer-address-v2");
-                            Checkout.process(c);
                             break;
                         case "billing address":
                             Checkout.waitForNavigateTo();
                             c.mustCheckoutProcess().untilForm("app-billing-address-v2");
-                            Checkout.process(c);
                             break;
                     }
                 }
@@ -198,7 +202,7 @@ public abstract class Browser {
                 }
                 if (leading.contains("payment")) {
                     Checkout.waitForNavigateTo();
-                    c.mustCheckoutProcess();
+                    c.mustCheckoutProcess().untilPayment();
                     Checkout.process(c);
                 }
                 break;

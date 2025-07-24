@@ -1,6 +1,7 @@
 package wisewires.agent;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -51,12 +52,12 @@ public class CheckoutProcess {
     public int seenDeliverySlots = 0;
     public AtomicReference<List<String>> selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
 
-    public PreFillFormFunction preFillFormFunc;
+    public List<PreFillFormFunction> preFillFormFuncs = new ArrayList<>();
     public SelectDeliveryTypeFunction selectDeliveryTypeFunc;
     public SelectDeliveryTypeAtLineFunction selectDeliveryTypeAtLineFunc;
     public SelectDeliveryOptionFunction selectDeliveryOptionFunc;
     public SelectDeliverySlotFunction selectDeliverySlotFunc;
-    public Predicate<Context> untilFunc;
+    public List<Predicate<Context>> untilFuncs = new ArrayList<>();
 
     public static boolean defaultPreFillForm(Context c, String formID, WebElement form) {
         return true;
@@ -92,56 +93,82 @@ public class CheckoutProcess {
         this.selectDeliveryOptionFunc = CheckoutProcess::defaultSelectDeliveryOption;
     }
 
-    public CheckoutProcess untilSeen(String locator) {
-        Predicate<Context> untilFunc = this.untilFunc;
-        this.untilFunc = (Context c) -> {
-            if (untilFunc != null && !untilFunc.test(c)) {
-                return false;
+    public void preProcess() {
+        if (this.preFillFormFuncs.isEmpty()) {
+            this.preFillFormFuncs.add(CheckoutProcess::defaultPreFillForm);
+        }
+        if (this.untilFuncs.isEmpty()) {
+            this.untilFuncs.add(CheckoutProcess::defaultUntil);
+        }
+    }
+
+    public boolean preFillForm(Context c, String formID, WebElement form) {
+        Iterator<PreFillFormFunction> iterator = preFillFormFuncs.iterator();
+        while (iterator.hasNext()) {
+            if (!iterator.next().apply(c, formID, form)) {
+                iterator.remove();
             }
+        }
+        return !preFillFormFuncs.isEmpty();
+    }
+
+    public boolean isDone(Context c) {
+        Iterator<Predicate<Context>> iterator = untilFuncs.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().test(c)) {
+                iterator.remove();
+            }
+        }
+        return untilFuncs.isEmpty();
+    }
+
+    public CheckoutProcess selectDifferentBillingAddress() {
+        AtomicBoolean done = new AtomicBoolean(false);
+        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+            if (id.equals("app-billing-address-v2")) {
+                logger.info("Selected different billing address");
+                done.set(true);
+            }
+            return !done.get();
+        });
+        return this;
+    }
+
+    public CheckoutProcess untilSeen(String locator) {
+        this.untilFuncs.add((Context c) -> {
             boolean seen = WebUI.findElement(locator) != null;
             if (seen) {
                 logger.info("Element '%s' is now displayed".formatted(locator));
             }
             return seen;
-        };
+        });
         return this;
     }
 
     public CheckoutProcess untilForm(String formId) {
         AtomicBoolean seen = new AtomicBoolean(false);
-        PreFillFormFunction preFillFormFunc = this.preFillFormFunc;
-        this.preFillFormFunc = (Context c, String id, WebElement form) -> {
-            if (preFillFormFunc != null && preFillFormFunc.apply(c, id, form)) {
-                return true;
-            }
+        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals(formId)) {
                 logger.info("Processed until form '%s'".formatted(formId));
                 seen.set(true);
             }
             return !seen.get();
-        };
-        Predicate<Context> untilFunc = this.untilFunc;
-        this.untilFunc = (Context c) -> {
-            if (untilFunc != null && !untilFunc.test(c)) {
-                return false;
-            }
+        });
+        this.untilFuncs.add((Context c) -> {
             return seen.get();
-        };
+        });
         return this;
     }
 
-    public void ensureNotNull() {
-        if (this.preFillFormFunc == null) {
-            this.preFillFormFunc = CheckoutProcess::defaultPreFillForm;
-        }
-        if (this.untilFunc == null) {
-            this.untilFunc = CheckoutProcess::defaultUntil;
-        }
+    public CheckoutProcess untilPayment() {
+        this.preFillFormFuncs.add(CheckoutProcess::defaultPreFillForm);
+        this.untilFuncs.add(CheckoutProcess::defaultUntil);
+        return this;
     }
 
     public void reset() {
-        this.preFillFormFunc = null;
-        this.untilFunc = null;
+        this.preFillFormFuncs.clear();
+        this.untilFuncs.clear();
         this.selectedDeliveryType = new AtomicReference<>();
         this.seenDeliveryTypes = 0;
         this.selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());

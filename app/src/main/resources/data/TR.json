@@ -6,7 +6,7 @@
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
-        "lastName": "test",
+        "lastName": "Test",
         "phoneNumber": "5498773829",
         "vatNumber": "32785648542"
     },
@@ -17,6 +17,8 @@
         "adminLevel4": "BURGAZADA MAH"
     },
     "billingAddress": {
+        "firstName": "Test",
+        "lastName": "Auto",
         "line1": "line1bill",
         "adminLevel2": "ANKARA",
         "adminLevel3": "AKYURT",
