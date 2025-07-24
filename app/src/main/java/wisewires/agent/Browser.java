@@ -142,6 +142,9 @@ public abstract class Browser {
                 Profile profile = c.getProfile();
                 TokenSingleMatch match = Tokens.getFormName(tokens);
                 boolean all = Tokens.containsAny(match.leading, "all");
+                if (c.checkoutProcess != null) {
+                    Checkout.process(c);
+                }
                 switch (match.value) {
                     case "customer info":
                         CustomerInfo.autoFill(profile.getCustomerInfo(), !all);
@@ -170,20 +173,32 @@ public abstract class Browser {
             case "process": {
                 leading = Tokens.removeLeading(tokens, "until");
                 if (Tokens.containsAny(leading, "until")) {
-                    Tokens.removeLeading(tokens, "seen", "meet");
+                    boolean seenOnly = !Tokens.removeLeading(tokens, "seen", "meet").isEmpty();
                     TokenSingleMatch match = Tokens.getFormName(tokens);
                     switch (match.value) {
                         case "customer info":
                             Checkout.waitForNavigateTo();
-                            c.mustCheckoutProcess().untilForm("app-customer-info-v2");
+                            if (seenOnly) {
+                                c.mustCheckoutProcess().untilSeen("app-customer-info-v2");
+                            } else {
+                                c.mustCheckoutProcess().untilForm("app-customer-info-v2");
+                            }
                             break;
                         case "customer address":
                             Checkout.waitForNavigateTo();
-                            c.mustCheckoutProcess().untilForm("app-customer-address-v2");
+                            if (seenOnly) {
+                                c.mustCheckoutProcess().untilSeen("app-customer-address-v2");
+                            } else {
+                                c.mustCheckoutProcess().untilForm("app-customer-address-v2");
+                            }
                             break;
                         case "billing address":
                             Checkout.waitForNavigateTo();
-                            c.mustCheckoutProcess().untilForm("app-billing-address-v2");
+                            if (seenOnly) {
+                                c.mustCheckoutProcess().untilSeen("app-billing-address-v2");
+                            } else {
+                                c.mustCheckoutProcess().untilForm("app-billing-address-v2");
+                            }
                             break;
                     }
                 }

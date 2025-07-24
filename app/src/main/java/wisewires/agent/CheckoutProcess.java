@@ -138,6 +138,9 @@ public class CheckoutProcess {
     }
 
     public CheckoutProcess untilSeen(String locator) {
+        this.preFillFormFuncs.add((c, formID, form) -> {
+            return WebUI.findElement(locator) == null;
+        });
         this.untilFuncs.add((Context c) -> {
             boolean seen = WebUI.findElement(locator) != null;
             if (seen) {
