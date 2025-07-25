@@ -116,13 +116,11 @@ public class Form {
             select(elm.findElement(By.cssSelector("mat-select")), value);
             return;
         } else if (elm.getTagName().equals("mat-select")) {
-            for (int i = 0; i < 3; i++) {
-                if (elm.getDomAttribute("aria-expanded").equals("true"))
-                    break;
-                WebUI.scrollToCenter(elm);
-                WebUI.delay(1);
-                Thread.sleep(200);
+            WebUI.scrollToCenter(elm);
+            Thread.sleep(500);
+            if (!elm.getDomAttribute("aria-expanded").equals("true")) {
                 elm.click();
+                Thread.sleep(500);
             }
             String id = elm.getDomAttribute("id");
             String xpath = "//*[@id='%s-panel']//mat-option[.//*[normalize-space(text())='%s']]".formatted(id, value);

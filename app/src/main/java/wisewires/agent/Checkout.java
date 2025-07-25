@@ -668,7 +668,7 @@ public abstract class Checkout {
             }
             String currentStep = url.split("step=")[1];
             logger.info("Current checkout step: " + currentStep);
-            result = WebUI.wait(900).withMessage("process step " + currentStep).until(driver -> {
+            result = WebUI.wait(90).withMessage("process step " + currentStep).until(driver -> {
                 try {
                     p.seenDeliveryTypes = 0;
                     p.seenDeliveryLists = 0;
