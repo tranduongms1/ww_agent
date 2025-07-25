@@ -9,6 +9,7 @@ import com.google.gson.stream.JsonReader;
 
 public class Context {
     public Client client;
+    public Post post;
 
     public String site;
     public String siteUid;

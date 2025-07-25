@@ -78,8 +78,9 @@ public class Agent extends WebSocketClient {
         public void run() {
             while (!Thread.interrupted()) {
                 Post post = agent.posts.poll();
-                if (post != null) {
+                if (post != null && post.getType().isEmpty()) {
                     try {
+                        ctx.post = post;
                         Attachment attachment = new Attachment();
                         attachment.setColor("default");
                         attachment.setText(post.getMessage());

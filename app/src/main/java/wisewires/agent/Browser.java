@@ -2,7 +2,6 @@ package wisewires.agent;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -220,6 +219,24 @@ public abstract class Browser {
                     c.mustCheckoutProcess().untilPayment();
                     Checkout.process(c);
                 }
+                break;
+            }
+
+            case "verify": {
+                String url = Util.captureFullPage();
+                String fileId = c.client.uploadFile(c.post.getChannelId(), url);
+                Post post = new Post();
+                post.setChannelId(c.post.getChannelId());
+                post.setMessage("⬜ " + req);
+                // post.setMessage("✅ " + req);
+                post.setFileIds(List.of(fileId));
+                post.setRootId(c.post.getId());
+                post.setType("custom_verify");
+                post.getProps().put("agentLogs", List.of(
+                        "Change current site to DK",
+                        "Cart is NOT EMPTY now",
+                        "Continue to checkout page"));
+                c.client.createPost(post);
                 break;
             }
         }
