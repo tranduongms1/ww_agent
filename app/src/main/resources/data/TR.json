@@ -23,5 +23,11 @@
         "adminLevel2": "ANKARA",
         "adminLevel3": "AKYURT",
         "adminLevel4": "AHMETADİL MAH"
+    },
+    "tradeInData": {
+        "category": "mobile",
+        "brand": "Apple",
+        "model": "iPhone 11",
+        "imei": "109243004159964"
     }
 }

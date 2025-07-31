@@ -24,5 +24,11 @@
         "postalCode": "2000",
         "adminLevel2": "BARANGAROO",
         "adminLevel1": "New South Wales"
+    },
+    "tradeInData": {
+        "category": "Phone",
+        "brand": "Samsung",
+        "model": "Galaxy Z Fold 4",
+        "storage": "512"
     }
 }

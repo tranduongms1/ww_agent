@@ -3,8 +3,12 @@ package wisewires.agent;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class BC {
+    private static Logger logger = LoggerFactory.getLogger(BC.class);
+
     static boolean isTradeInOptionSelectable() {
         String to = ".s-option-trade a[an-la='trade-in:yes'i], .wearable-option.trade-in button[an-la='trade-in:yes'i]";
         WebElement elm = WebUI.findElement(to);
@@ -14,6 +18,25 @@ public abstract class BC {
             return false;
         }
         return true;
+    }
+
+    static void addTradeIn(Context c) throws Exception {
+        try {
+            String to = """
+                    .s-option-trade a[an-la='trade-in:yes'i],
+                    .wearable-option.trade-in button[an-la='trade-in:yes'i]""";
+            WebElement elm = WebUI.waitElement(to, 10);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            WebUI.click(to);
+            logger.info("Trade-in option 'Yes' clicked");
+            WebUI.waitElement(TradeIn.MODAL_LOCATOR, 10);
+            logger.info("Trade-in popup opened");
+            TradeIn.process(c);
+            logger.info("Trade-in added success on BC page");
+        } catch (Exception e) {
+            throw new Exception("Unable to add trade-in on BC page");
+        }
     }
 
     static boolean shouldSelectSCP() {

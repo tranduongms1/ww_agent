@@ -26,5 +26,12 @@
         "line1": "222",
         "adminLevel1": "Arica y Parinacota",
         "adminLevel2": "Arica"
+    },
+    "tradeInData": {
+        "category": "SMARTPHONE",
+        "brand": "Samsung",
+        "model": "Galaxy S23 Ultra",
+        "storage": "512 GB",
+        "imei": "354721885019565"
     }
 }

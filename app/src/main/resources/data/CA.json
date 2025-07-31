@@ -23,5 +23,13 @@
         "adminLevel2": "Lewisporte",
         "adminLevel1": "Newfoundland and Labrador",
         "postalCode": "A0G 3A0"
+    },
+    "tradeInData": {
+        "category": "Phone",
+        "brand": "Samsung",
+        "model": "GALAXY Z FOLD 4 5G",
+        "storage": "512GB",
+        "color": "Black",
+        "imei": "351787742847020"
     }
 }

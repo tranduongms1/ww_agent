@@ -17,5 +17,12 @@
         "adminLevel2": "PARIS",
         "line1": "1 PORTE BERGER"
     },
-    "billingAddress": {}
+    "billingAddress": {},
+    "tradeInData": {
+        "category": "SMARTPHONE",
+        "brand": "Samsung",
+        "model": "Galaxy Z Fold5",
+        "storage": "256Go",
+        "imei": "351787742847020"
+    }
 }

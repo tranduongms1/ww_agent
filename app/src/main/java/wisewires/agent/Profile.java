@@ -9,6 +9,7 @@ public class Profile {
     private HashMap<String, String> customerInfo;
     private HashMap<String, String> customerAddress;
     private HashMap<String, String> billingAddress;
+    private HashMap<String, String> tradeInData;
     private HashMap<String, String> tradeInInfo;
     private HashMap<String, String> simInfo;
 
@@ -42,6 +43,17 @@ public class Profile {
 
     public void setBillingAddress(HashMap<String, String> billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public HashMap<String, String> getTradeInData() {
+        if (tradeInData == null) {
+            return new HashMap<>();
+        }
+        return tradeInData;
+    }
+
+    public void setTradeInData(HashMap<String, String> tradeInData) {
+        this.tradeInData = tradeInData;
     }
 
     public HashMap<String, String> getTradeInInfo() {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -99,18 +100,21 @@ public abstract class WebUI {
 
     static void closeAllPopup(Context c) {
         String to = "#truste-consent-button, #privacyBtn, [data-an-la='cookie bar:accept'], [an-ac='cookie bar:accept'], #preferenceCheckBtn, .ins-element-close-button";
-        wait(20, 2).until(d -> {
-            List<WebElement> elms = d.findElements(By.cssSelector(to));
-            if (elms.stream().anyMatch(WebElement::isDisplayed)) {
-                List<WebElement> terms = d.findElements(By.cssSelector("#privacy-terms, #privacy-terms2"));
-                driver.executeScript("for (const e of arguments[0]) e.click()", terms);
-                driver.executeScript("for (const e of arguments[0]) e.click()", elms);
-                String script = "a=document.createElement('style');a.innerHTML='iframe.fpw-view, #spr-live-chat-app {display:none !important}';document.head.appendChild(a)";
-                driver.executeScript(script);
-                return true;
-            }
-            return false;
-        });
+        try {
+            wait(6, 2).until(d -> {
+                List<WebElement> elms = WebUI.findElements(to);
+                if (elms.stream().anyMatch(WebElement::isDisplayed)) {
+                    List<WebElement> terms = WebUI.findElements("#privacy-terms, #privacy-terms2");
+                    driver.executeScript("for (const e of arguments[0]) e.click()", terms);
+                    driver.executeScript("for (const e of arguments[0]) e.click()", elms);
+                    String script = "a=document.createElement('style');a.innerHTML='iframe.fpw-view, #spr-live-chat-app {display:none !important}';document.head.appendChild(a)";
+                    driver.executeScript(script);
+                    return true;
+                }
+                return false;
+            });
+        } catch (Exception ignore) {
+        }
         c.setPopupClosed();
     }
 
@@ -134,6 +138,13 @@ public abstract class WebUI {
         });
     }
 
+    public static void click(WebElement elm, int x, int y) {
+        Rectangle rect = elm.getRect();
+        int xOffset = x - Math.floorDiv(rect.width, 2);
+        int yOffset = y - Math.floorDiv(rect.height, 2);
+        new Actions(WebUI.driver).moveToElement(elm, xOffset, yOffset).click().perform();
+    }
+
     static WebElement findElement(String selector) {
         return driver.findElements(By.cssSelector(selector))
                 .stream()
@@ -152,6 +163,13 @@ public abstract class WebUI {
 
     static List<WebElement> findElements(String selector) {
         return driver.findElements(By.cssSelector(selector))
+                .stream()
+                .filter(WebElement::isDisplayed)
+                .toList();
+    }
+
+    public static List<WebElement> findElements(SearchContext root, By by) {
+        return root.findElements(by)
                 .stream()
                 .filter(WebElement::isDisplayed)
                 .toList();
@@ -261,6 +279,12 @@ public abstract class WebUI {
         return wait(seconds)
                 .withMessage("waiting for element '%s' to disappear".formatted(selector))
                 .until(d -> d.findElements(By.cssSelector(selector)).isEmpty());
+    }
+
+    public static boolean waitForDisappear(WebElement elm, int seconds) {
+        return wait(seconds).until(ExpectedConditions.or(
+                ExpectedConditions.stalenessOf(elm),
+                ExpectedConditions.invisibilityOf(elm)));
     }
 
     public static boolean waitForStaleness(WebElement elm, int seconds) {

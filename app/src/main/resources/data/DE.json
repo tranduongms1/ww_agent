@@ -19,5 +19,12 @@
         "postalCode": "12277",
         "adminLevel2": "Berlin"
     },
-    "billingAddress": {}
+    "billingAddress": {},
+    "tradeInData": {
+        "category": "SMARTPHONE",
+        "brand": "Samsung",
+        "model": "Galaxy S22 Ultra 5G",
+        "storage": "512 GB",
+        "imei": "301296444933956"
+    }
 }

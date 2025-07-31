@@ -25,5 +25,11 @@
         "line1": "Møllebakken 82",
         "postalCode": "5240",
         "adminLevel2": "Odense NØ"
+    },
+    "tradeInData": {
+        "category": "Mobiles",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip4 5G 128GB F721B",
+        "imei": "353185442215903"
     }
 }
