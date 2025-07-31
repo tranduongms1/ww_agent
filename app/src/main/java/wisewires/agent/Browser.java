@@ -99,21 +99,37 @@ public abstract class Browser {
             case "add": {
                 if (tokens.contains("cart")) {
                     boolean mustReload = false;
-                    List<String> items = new ArrayList<>();
+                    class Item {
+                        String urlOrSKU;
+                        List<String> addedServices = new ArrayList<>();
+                    }
+                    List<Item> items = new ArrayList<>();
                     while (!tokens.isEmpty()) {
                         Tokens.removeLeading(tokens, "product", "and", "+", "from", "bc", "pd", "page", "to", "cart");
                         if (!tokens.isEmpty()) {
-                            items.add(tokens.remove(0));
+                            Item item = new Item();
+                            item.urlOrSKU = tokens.remove(0);
+                            leading = Tokens.removeLeading(tokens, "with", "trade-in", "trade-up", "sc+", "and", "+");
+                            if (Tokens.containsAny(leading, "trade-in")) {
+                                item.addedServices.add("TradeIn");
+                            }
+                            if (Tokens.containsAny(leading, "trade-up")) {
+                                item.addedServices.add("TradeUp");
+                            }
+                            if (Tokens.containsAny(leading, "sc+")) {
+                                item.addedServices.add("SC+");
+                            }
+                            items.add(item);
                         }
                     }
-                    for (String item : items) {
+                    for (Item item : items) {
                         logger.info("Add to cart: " + item);
-                        if (item.startsWith("https://")) {
-                            Cart.addProduct(c, item);
+                        if (item.urlOrSKU.startsWith("https://")) {
+                            Cart.addProduct(c, item.urlOrSKU, item.addedServices);
                             mustReload = false;
                         } else {
                             Cart.mustCartId(c);
-                            API.addToCart(c.getAPIEndpoint(), item);
+                            API.addToCart(c.getAPIEndpoint(), item.urlOrSKU);
                             mustReload = true;
                         }
                     }

@@ -33,9 +33,12 @@ public abstract class Cart {
         return id;
     }
 
-    public static void addProduct(Context c, String url) throws Exception {
+    public static void addProduct(Context c, String url, List<String> addedServices) throws Exception {
         WebUI.openBrowser(c, url);
         WebUI.mustCloseAllPopup(c);
+        if (addedServices.contains("TradeIn")) {
+            BC.addTradeIn(c);
+        }
         BC.continueToCart();
     }
 
