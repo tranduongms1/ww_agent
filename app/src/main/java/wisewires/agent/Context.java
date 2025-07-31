@@ -22,7 +22,7 @@ public class Context {
     private boolean cookieReady = false;
     private Map<String, Boolean> aemReady = new HashMap<>();
     private Map<String, Boolean> popupClosed = new HashMap<>();
-    private Profile profile;
+    private Map<String, Profile> profiles = new HashMap<>();
 
     public Context() {
         this.siteUid = "";
@@ -61,15 +61,15 @@ public class Context {
     }
 
     public Profile getProfile() throws Exception {
-        if (profile == null) {
+        if (!profiles.containsKey(site)) {
             InputStream inputStream = JsonReader.class.getResourceAsStream("/data/" + site + ".json");
             InputStreamReader reader = new InputStreamReader(inputStream);
             if (inputStream == null) {
                 throw new Exception("Data file for %s not found!".formatted(site));
             }
-            profile = new Gson().fromJson(reader, Profile.class);
+            profiles.put(site, new Gson().fromJson(reader, Profile.class));
         }
-        return profile;
+        return profiles.get(site);
     }
 
     public String getCookieUrl() {
