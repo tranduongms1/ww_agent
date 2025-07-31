@@ -118,11 +118,15 @@ public class Client {
         doPost("/posts", post);
     }
 
-    public void updatePost(String postId, Map<String, Object> patch) throws Exception {
-        doPut("/posts/" + postId + "/patch", patch);
+    public void updatePost(String postId, Map<String, Object> patch) {
+        try {
+            doPut("/posts/" + postId + "/patch", patch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void updatePost(String postId, Attachment... attachments) throws Exception {
+    public void updatePost(String postId, Attachment... attachments) {
         updatePost(postId, Map.of(
                 "message", "",
                 "props", Map.of("attachments", attachments)));

@@ -79,17 +79,19 @@ public class Agent extends WebSocketClient {
             while (!Thread.interrupted()) {
                 Post post = agent.posts.poll();
                 if (post != null && post.getType().isEmpty()) {
+                    Attachment attachment = new Attachment();
+                    attachment.setColor("default");
+                    attachment.setText(post.getMessage());
                     try {
-                        ctx.post = post;
-                        Attachment attachment = new Attachment();
-                        attachment.setColor("default");
-                        attachment.setText(post.getMessage());
                         client.updatePost(post.getId(), attachment);
+                        ctx.post = post;
                         runPost(post);
                         attachment.setColor("good");
                         client.updatePost(post.getId(), attachment);
                     } catch (Exception e) {
                         e.printStackTrace();
+                        attachment.setColor("danger");
+                        client.updatePost(post.getId(), attachment);
                     }
                 }
             }
