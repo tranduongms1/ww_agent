@@ -245,8 +245,7 @@ public abstract class WebUI {
 
     static WebElement waitElement(String selector, int seconds) {
         try {
-            String msg = "element located by '%s'".formatted(selector);
-            return wait(seconds).withMessage(msg).until(d -> findElement(selector));
+            return wait(seconds).until(d -> findElement(selector));
         } catch (Exception e) {
             return null;
         }
@@ -254,31 +253,44 @@ public abstract class WebUI {
 
     public static WebElement waitElement(SearchContext root, By by, int seconds) {
         try {
-            return wait(seconds)
-                    .withMessage("element located by '%s'".formatted(by))
-                    .until(d -> findElement(root, by));
+            return wait(seconds).until(d -> findElement(root, by));
         } catch (Exception e) {
-            logger.warn("Element located by '%s' not found".formatted(by));
             return null;
         }
     }
 
     public static List<WebElement> waitElements(String selector, int seconds) {
         try {
-            return wait(seconds).withMessage("elements located by '%s'".formatted(selector)).until(d -> {
+            return wait(seconds).until(d -> {
                 List<WebElement> elms = findElements(selector);
                 return elms.isEmpty() ? null : elms;
             });
         } catch (Exception e) {
-            logger.warn("Elements located by '%s' not found".formatted(selector));
             return new ArrayList<>();
         }
     }
 
-    public static boolean waitForElementNotPresent(String selector, int seconds) {
+    public static List<WebElement> waitElements(SearchContext root, By by, int seconds) {
+        try {
+            return wait(seconds).until(d -> {
+                List<WebElement> elms = findElements(root, by);
+                return elms.isEmpty() ? null : elms;
+            });
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    public static boolean waitForNotPresent(String selector, int seconds) {
         return wait(seconds)
                 .withMessage("waiting for element '%s' to disappear".formatted(selector))
                 .until(d -> d.findElements(By.cssSelector(selector)).isEmpty());
+    }
+
+    public static boolean waitForNotDisplayed(String selector, int seconds) {
+        return wait(seconds)
+                .withMessage("waiting for element '%s' not displayed".formatted(selector))
+                .until(d -> findElement(selector) == null);
     }
 
     public static boolean waitForDisappear(WebElement elm, int seconds) {

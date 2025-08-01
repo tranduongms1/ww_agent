@@ -32,6 +32,7 @@ public abstract class TradeIn {
             [data-an-la='trade-in:check device condition:next'],
             [an-la='trade-in:enter imei:next'],
             [data-an-la='trade-in:enter imei:next'],
+            app-step-one-au .pill-btn--blue.view-more,
             [an-la='trade-in:step2:next'],
             [an-la='trade-in:apply discount:apply trade in'],
             [data-an-la='trade-in:apply discount:add to cart'],
@@ -39,10 +40,10 @@ public abstract class TradeIn {
             [data-an-la='trade-in:device1:apply discount:add to cart']""";
 
     static String getStepName(WebElement modal) throws Exception {
-        WebElement closeBtn = modal.findElement(By.cssSelector("""
+        WebElement closeBtn = WebUI.waitElement(modal, By.cssSelector("""
                 .trade-in-popup__close,
                 .trade-in-popup-v3__close,
-                .modal__close"""));
+                .modal__close"""), 5);
         if (closeBtn != null) {
             return WebUI.getDomAttribute(closeBtn, "an-la", "data-an-la").split(":")[1];
         }
@@ -50,8 +51,6 @@ public abstract class TradeIn {
     }
 
     static boolean select(WebElement elm, String option) throws Exception {
-        WebUI.scrollToCenter(elm);
-        WebUI.delay(1);
         String className = elm.getAttribute("class");
         if (className.contains("trade-in-select")) {
             if (!className.contains("is-opened")) {
@@ -59,6 +58,7 @@ public abstract class TradeIn {
                 if (selected.equalsIgnoreCase(option.trim())) {
                     return false;
                 }
+                WebUI.scrollToCenter(elm);
                 elm.click();
                 WebUI.delay(1);
             }
@@ -66,15 +66,39 @@ public abstract class TradeIn {
             WebElement opt = elm.findElement(By.cssSelector(css));
             WebUI.scrollToCenter(opt);
             opt.click();
+            return true;
         }
-        return true;
+        if (className.contains("mat-expansion-panel")) {
+            if (!className.contains("mat-expanded")) {
+                String selected = WebUI.driver.executeScript("""
+                        const e = arguments[0].querySelector(`
+                            .mat-expansion-panel-header-title,
+                            .trade-in__search
+                        `);
+                        return e.value || e.innerText.trim()""", elm).toString();
+                if (selected.equalsIgnoreCase(option.trim())) {
+                    return false;
+                }
+                WebUI.scrollToCenter(elm);
+                elm.click();
+                WebUI.delay(1);
+            }
+            String xpath = ".//span[%s='%s']".formatted(Util.XPATH_TEXT_LOWER, option.toLowerCase());
+            WebElement opt = elm.findElement(By.xpath(xpath));
+            WebUI.scrollToCenter(opt);
+            opt.click();
+            return true;
+        }
+        throw new Exception("Select is not handled");
     }
 
     static void selectCategory(WebElement elm, String category) throws Exception {
         try {
-            String css = ":has(> [value*='%s'i])".replaceAll("%s", category);
+            String css = ":has(> [value*='%s'i]), [data-an-la$='%s'i]".replaceAll("%s", category);
             WebElement opt = elm.findElement(By.cssSelector(css));
-            if (opt.findElements(By.cssSelector(":checked")).isEmpty()) {
+            boolean checked = WebUI.getDomAttribute(opt, "class").contains("checked") ||
+                    !opt.findElements(By.cssSelector(":checked")).isEmpty();
+            if (!checked) {
                 WebUI.scrollToCenter(opt);
                 opt.click();
                 logger.info("Device category '%s' selected".formatted(category));
@@ -124,37 +148,80 @@ public abstract class TradeIn {
         }
     }
 
+    static String getSelectType(WebElement elm) throws Exception {
+        String className = elm.getAttribute("class");
+        if (className.contains("category"))
+            return "category";
+
+        if (className.contains("trade-in-select"))
+            return elm.findElement(By.cssSelector("ul")).getAttribute("id");
+
+        if (className.contains("mat-mdc-radio-group")) {
+            String id = WebUI.getDomAttribute(elm, "id");
+            return id.isEmpty() ? "category" : id; // AU site
+        }
+
+        if (className.contains("mat-expansion-panel")) {
+            return WebUI.driver.executeScript(
+                    "return arguments[0].parentNode.parentNode.querySelector('.trade-in__dropdown-header-text').innerText",
+                    elm).toString();
+        }
+
+        throw new Exception("Unknow device select type");
+    }
+
     static void selectDevice(WebElement modal, Map<String, String> data) throws Exception {
         List<WebElement> elms = modal.findElements(By.cssSelector("""
                 .trade-in-popup__category-device,
                 .trade-in-popup-v3__tradeIn-category,
-                .trade-in-select"""));
+                .trade-in-select,
+                mat-radio-group,
+                mat-expansion-panel"""));
         for (WebElement elm : elms) {
             if (!elm.isDisplayed()) {
                 continue;
             }
-            String className = WebUI.getDomAttribute(elm, "class");
-            if (className.contains("category")) {
-                selectCategory(elm, data.get("category"));
-            } else if (className.contains("trade-in-select")) {
-                String id = elm.findElement(By.cssSelector("ul")).getAttribute("id");
-                switch (id) {
-                    case "brand", "brandName", "manufacturer":
-                        selectBrand(elm, data.get("brand"));
-                        break;
+            String selectType = getSelectType(elm);
+            switch (selectType) {
+                case "category":
+                    selectCategory(elm, data.get("category"));
+                    break;
 
-                    case "model", "modelName":
-                        selectModel(elm, data.get("model"));
-                        break;
+                case
+                        "brand",
+                        "brandName",
+                        "manufacturer",
+                        "Brand",
+                        "Manufacturer",
+                        "Indtast producent:",
+                        "Marque":
+                    selectBrand(elm, data.get("brand"));
+                    break;
 
-                    case "storage", "capacity", "memory":
-                        selectStorage(elm, data.get("storage"));
-                        break;
+                case
+                        "model",
+                        "modelName",
+                        "Device",
+                        "Model",
+                        "Indtast model:",
+                        "Modèle":
+                    selectModel(elm, data.get("model"));
+                    break;
 
-                    case "color":
-                        selectColor(elm, data.get("color"));
-                        break;
-                }
+                case
+                        "storage",
+                        "capacity",
+                        "memory",
+                        "Storage",
+                        "Capacité ou carte graphique":
+                    selectStorage(elm, data.get("storage"));
+                    break;
+
+                case
+                        "color",
+                        "Color":
+                    selectColor(elm, data.get("color"));
+                    break;
             }
         }
     }
@@ -162,11 +229,12 @@ public abstract class TradeIn {
     static void selectDeviceConditions(WebElement modal) throws Exception {
         try {
             List<List<WebElement>> questions = new ArrayList<>();
-            List<WebElement> elms = WebUI.findElements(modal, By.cssSelector("""
+            List<WebElement> elms = WebUI.waitElements(modal, By.cssSelector("""
                     .trade-in-popup__condition-list-item,
                     .trade-in-popup__summary-accept-list,
                     .trade-in-popup-v3__condition-list-item,
-                    .trade-in-popup-v3__summary-accept-list"""));
+                    .trade-in-popup-v3__summary-accept-list,
+                    .condition-radio"""), 5);
             for (WebElement elm : elms) {
                 if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
                     By by = By.cssSelector(":has(> [type='radio'])");
@@ -182,7 +250,10 @@ public abstract class TradeIn {
     static void acceptTermsAndConditions(WebElement modal) throws Exception {
         List<WebElement> elms = WebUI.findElements(modal, By.cssSelector("""
                 .trade-in-popup__confirm-terms .checkbox-radio,
-                .trade-in-popup-v3__terms .checkbox-v2"""));
+                .trade-in-popup-v3__terms .checkbox-v2,
+                .terms-and-conditions-container,
+                .tnc-container,
+                .trade-in__tnc mat-checkbox"""));
         for (WebElement elm : elms) {
             if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
                 WebUI.scrollToCenter(elm);
@@ -195,15 +266,19 @@ public abstract class TradeIn {
 
     static void enterIMEI(WebElement modal, String imei) throws Exception {
         try {
-            WebElement input = WebUI.findElement(modal, By.cssSelector("""
+            WebElement input = WebUI.waitElement(modal, By.cssSelector("""
                     .trade-in-popup__imei-form input,
-                    .trade-in-popup-v3__imei-form input"""));
+                    .trade-in-popup-v3__imei-form input,
+                    .trade-in-summary__imei-input input"""), 5);
             WebUI.scrollToCenter(input);
             input.clear();
-            input.sendKeys(imei + Keys.ENTER);
             WebUI.delay(1);
+            input.sendKeys(imei + Keys.ENTER);
+            WebUI.delay(2);
             logger.info("Device IMEI '%s' entered".formatted(imei));
-            Optional<WebElement> loading = modal.findElements(By.cssSelector(".circular-progress")).stream().findAny();
+            Optional<WebElement> loading = modal
+                    .findElements(By.cssSelector(".circular-progress, mat-spinner"))
+                    .stream().findAny();
             if (loading.isPresent()) {
                 WebUI.delay(2);
                 WebUI.waitForDisappear(loading.get(), 10);
@@ -214,11 +289,12 @@ public abstract class TradeIn {
         }
     }
 
-    static boolean nextStep() throws Exception {
+    static boolean nextStep(WebElement modal) throws Exception {
         WebElement btn = WebUI.findElement(NEXT_LOCATOR);
-        if (!btn.isEnabled()) {
-            throw new Exception("TradeIn: Next button is not enabled");
+        if (btn == null && WebUI.findElement(".circular-progress") != null) {
+            throw new Exception("Modal keep loading");
         }
+        WebUI.wait(3).withMessage("Next button enabled").until(d -> btn.isEnabled());
         btn.click();
         logger.info("Next button clicked");
         WebUI.waitForDisappear(btn, 10);
@@ -234,45 +310,52 @@ public abstract class TradeIn {
         Map<String, String> data = c.getProfile().getTradeInData();
         Exception error = null;
         int errorCount = 0;
-        while (errorCount < 3) {
+        while (errorCount < 5) {
             try {
+                WebUI.waitForNotDisplayed(".circular-progress", 5);
                 WebElement modal = WebUI.findElement(MODAL_LOCATOR);
                 String currentStep = getStepName(modal);
-                switch (currentStep) {
-                    case "trade-in guide":
-                        break;
+                try {
+                    switch (currentStep) {
+                        case "trade-in guide":
+                            break;
 
-                    case "select device":
-                        selectDevice(modal, data);
-                        break;
+                        case "select device":
+                            selectDevice(modal, data);
+                            break;
 
-                    case "check device condition":
-                        selectDeviceConditions(modal);
-                        acceptTermsAndConditions(modal);
-                        break;
+                        case "check device condition":
+                            selectDeviceConditions(modal);
+                            acceptTermsAndConditions(modal);
+                            break;
 
-                    case "enter imei":
-                        enterIMEI(modal, data.get("imei"));
-                        acceptTermsAndConditions(modal);
-                        break;
-
-                    case "apply discount":
-                        if (List.of("CA").contains(c.site)) {
+                        case "enter imei":
                             enterIMEI(modal, data.get("imei"));
-                        }
-                        acceptTermsAndConditions(modal);
-                        break;
+                            acceptTermsAndConditions(modal);
+                            break;
+
+                        case "apply discount":
+                            if (List.of("CA", "DK").contains(c.site)) {
+                                enterIMEI(modal, data.get("imei"));
+                            }
+                            acceptTermsAndConditions(modal);
+                            break;
+                    }
+                } catch (StaleElementReferenceException e) {
+                    WebUI.delay(1);
+                    continue;
                 }
-                boolean modalClosed = nextStep();
+                boolean modalClosed = nextStep(modal);
                 if (modalClosed) {
                     logger.info("Popup closed");
                     error = null;
                     break;
                 }
-            } catch (StaleElementReferenceException ignore) {
+                errorCount = 0;
             } catch (Exception e) {
                 error = e;
                 errorCount++;
+                WebUI.delay(2);
             }
         }
         if (error != null) {

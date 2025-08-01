@@ -16,6 +16,8 @@ import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v138.page.Page;
 
 public abstract class Util {
+    static String XPATH_TEXT_LOWER = "translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')";
+
     public static boolean isValidIPv4(String ip) {
         try {
             InetAddress address = InetAddress.getByName(ip);

@@ -56,7 +56,7 @@ public abstract class SSO {
                         WebUI.click(to);
                     }
                     WebUI.click("button#terms");
-                    WebUI.waitForElementNotPresent("button#terms", 30);
+                    WebUI.waitForNotPresent("button#terms", 30);
                 }
                 if (url.contains("/changePasswordCycle")) {
                     WebUI.click(".one-cancel.one-button");
