@@ -39,6 +39,52 @@ public abstract class BC {
         }
     }
 
+    static void addSCPlus(Context c) throws Exception {
+        try {
+            String to = """
+                    .hubble-product__options-list-wrap:not([style*="hidden"]) .js-smc,
+                    .wearable-option.option-care li:not(.depth-two) button:not([an-la*='none']),
+                    .smc-list .insurance__item--yes,
+                    .pd-select-option__item>.pd-option-selector:has([an-la="samsung care:yes"])""";
+            WebElement elm = WebUI.findElement(to);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            elm.click();
+            logger.info("Samsung Care+ option clicked");
+
+            // Handle additional payment terms
+            String toPayment = """
+                    .hubble-product__options-payment .s-option-box[aria-disabled="false"],
+                    .wearable-option.option-care li.depth-two[aria-disabled="false"],
+                    .hubble-product__options-payment .s-option-box,
+                    .wearable-option.option-care li.depth-two""";
+            WebElement elmPayment = WebUI.findElement(toPayment);
+            if (elmPayment != null) {
+                WebUI.scrollToCenter(elmPayment);
+                WebUI.delay(1);
+                elmPayment.click();
+            }
+            logger.info("Samsung Care+ additional payment terms clicked");
+
+            // Handle SC+ Popup
+            SCPPopup.waitForOpen(10);
+            logger.info("Samsung Care+ popup opened");
+            if (elm.getAttribute("className").contains("smc-item")) {
+                SCPPopup.selectFirstType();
+                SCPPopup.selectFirstDuration();
+                SCPPopup.clickContinue();
+            }
+            logger.info("Samsung Care+ type and duration selected");
+            SCPPopup.checkTermAndCondition();
+            logger.info("Samsung Care+ terms and conditions checked");
+            SCPPopup.clickConfirm();
+            SCPPopup.waitForClose(10);
+            logger.info("Popup closed, Samsung Care+ added successfully");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     static boolean shouldSelectSCP() {
         String to = """
                 .hubble-product__options-list-wrap:not([style*="hidden"]) .js-smc,
