@@ -97,11 +97,24 @@ public abstract class Browser {
             }
 
             case "add": {
+                if (tokens.get(0).equalsIgnoreCase("trade-in")) {
+                    if (WebUI.getUrl().contains("/cart")) {
+                        Cart.addTradeIn(c);
+                    } else {
+                        BC.addTradeIn(c);
+                    }
+                    break;
+                }
                 if (tokens.contains("cart")) {
                     boolean mustReload = false;
                     class Item {
                         String urlOrSKU;
                         List<String> addedServices = new ArrayList<>();
+
+                        @Override
+                        public String toString() {
+                            return urlOrSKU + " with " + addedServices;
+                        }
                     }
                     List<Item> items = new ArrayList<>();
                     while (!tokens.isEmpty()) {

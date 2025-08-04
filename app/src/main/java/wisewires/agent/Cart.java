@@ -42,6 +42,23 @@ public abstract class Cart {
         BC.continueToCart();
     }
 
+    static void addTradeIn(Context c) throws Exception {
+        try {
+            String to = "cx-cart-item-v2 [data-an-la='add service:trade-in']";
+            WebElement elm = WebUI.waitElement(to, 10);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            WebUI.click(to);
+            logger.info("Add trade-in button clicked");
+            WebUI.waitElement(TradeIn.MODAL_LOCATOR, 10);
+            logger.info("Trade-in popup opened");
+            TradeIn.process(c);
+            logger.info("Trade-in added success on cart page");
+        } catch (Exception e) {
+            throw new Exception("Unable to add trade-in on cart page");
+        }
+    }
+
     static void clickCheckoutButton() throws Exception {
         try {
             WebUI.wait(10).until(d -> {
@@ -110,6 +127,7 @@ public abstract class Cart {
 
     static void guestCheckout(Context c) throws Exception {
         try {
+            logger.info("Continue to checkout as guest");
             String to = "[data-an-la='proceed to checkout']";
             WebElement btn = WebUI.waitElement(to, 5);
             WebUI.scrollToCenter(btn);
@@ -124,6 +142,7 @@ public abstract class Cart {
                 String url = driver.getCurrentUrl();
                 if (url.contains("/guestlogin/")) {
                     WebUI.fill("[formcontrolname='guestEmail']", email);
+                    logger.info("Email %s used to checkout".formatted(email));
                     WebUI.delay(3);
                     WebUI.click("[data-an-tr='account-login'][data-an-la='guest'].pill-btn");
                 }
