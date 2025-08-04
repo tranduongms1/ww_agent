@@ -129,7 +129,8 @@ public abstract class BC {
                     [an-la='sticky bar:buy now'],
                     [an-la='sticky bar:buy with subscription'],
                     [an-la='secondary:buy with subscription'],
-                    [an-la='top sticky bar:add to cart']""";
+                    [an-la='top sticky bar:add to cart'],
+                    [an-la='top sticky bar:continue']""";
             if (WebUI.findElement(buyTo) != null) {
                 WebUI.click(buyTo);
                 return false;
