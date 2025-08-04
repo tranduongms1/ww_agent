@@ -52,25 +52,30 @@ public abstract class BC {
     }
 
     static void continueToCart() {
-        WebUI.wait(60, 1).withMessage("added to cart").until(driver -> {
-            if (isTradeInOptionSelectable()) {
-                String to = ".s-option-trade a[an-la='trade-in:no'i], .wearable-option.trade-in button[an-la='trade-in:no'i]";
-                WebElement elm = WebUI.findElement(to);
-                WebUI.scrollToCenter(elm);
-                WebUI.delay(1);
-                elm.click();
+        if (isTradeInOptionSelectable()) {
+            String to = ".s-option-trade a[an-la='trade-in:no'i], .wearable-option.trade-in button[an-la='trade-in:no'i]";
+            WebElement elm = WebUI.findElement(to);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            elm.click();
+        }
+        if (shouldSelectSCP()) {
+            String to = """
+                    .hubble-product__options-list-wrap:not([style*="hidden"]) .js-smc-none,
+                    .hubble-product__options-list-wrap:not([style*="hidden"]) #carenone,
+                    .wearable-option.option-care button[an-la="samsung care:none"],
+                    .smc-list .insurance__item--no""";
+            WebElement elm = WebUI.findElement(to);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            elm.click();
+        }
+        WebUI.wait(30, 1).withMessage("added to cart").until(driver -> {
+            String url = driver.getCurrentUrl();
+            if (url.contains("/cart") || url.contains("/checkout")) {
+                return true;
             }
-            if (shouldSelectSCP()) {
-                String to = """
-                        .hubble-product__options-list-wrap:not([style*="hidden"]) .js-smc-none,
-                        .hubble-product__options-list-wrap:not([style*="hidden"]) #carenone,
-                        .wearable-option.option-care button[an-la="samsung care:none"],
-                        .smc-list .insurance__item--no""";
-                WebElement elm = WebUI.findElement(to);
-                WebUI.scrollToCenter(elm);
-                WebUI.delay(1);
-                elm.click();
-            }
+
             String buyTo = """
                     [an-la='sticky bar:continue'],
                     [an-la='sticky bar:add to cart'],
@@ -83,19 +88,7 @@ public abstract class BC {
                 WebUI.click(buyTo);
                 return false;
             }
-            String continueTo = """
-                    [an-la='add-on:continue'],
-                    [an-la='add-on:go to cart'],
-                    [an-la='free gift:continue'],
-                    #giftContinue,
-                    [an-la='evoucher:continue'],
-                    [an-la='evoucher:go to cart'],
-                    [id='nextBtn'],
-                    [id='primaryInfoGoCartAddOn']""";
-            if (WebUI.findElement(continueTo) != null) {
-                WebUI.click(continueTo);
-                return false;
-            }
+
             String skipTo = "[an-la='evoucher:no addition:skip'], [an-la='evoucher:below evoucher:back']";
             if (WebUI.isSite("FR")) {
                 skipTo = "[id='giftContinue']";
@@ -106,7 +99,18 @@ public abstract class BC {
                 WebUI.click(skipTo);
                 return false;
             }
-            return driver.getCurrentUrl().contains("/cart");
+
+            String continueTo = """
+                    [an-la='add-on:continue'],
+                    [an-la='add-on:go to cart'],
+                    [an-la='free gift:continue'],
+                    #giftContinue,
+                    [an-la='evoucher:continue'],
+                    [an-la='evoucher:go to cart'],
+                    [id='nextBtn'],
+                    [id='primaryInfoGoCartAddOn']""";
+            WebUI.click(continueTo);
+            return false;
         });
     }
 }
