@@ -2,6 +2,7 @@ package wisewires.agent;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -20,6 +21,8 @@ import org.slf4j.LoggerFactory;
 
 public abstract class WebUI {
     private static Logger logger = LoggerFactory.getLogger(WebUI.class);
+
+    static String DISPLAY_NONE = "a=document.createElement('style');a.innerHTML='iframe.fpw-view, #spr-live-chat-app, #fw-player {display:none !important}';document.head.appendChild(a)";
 
     static ChromeDriver driver;
 
@@ -100,20 +103,26 @@ public abstract class WebUI {
 
     static void closeAllPopup(Context c) {
         String to = "#truste-consent-button, #privacyBtn, [data-an-la='cookie bar:accept'], [an-ac='cookie bar:accept'], #preferenceCheckBtn, .ins-element-close-button";
+        WebElement body = WebUI.findElement("body");
         try {
             wait(6, 2).until(d -> {
                 List<WebElement> elms = WebUI.findElements(to);
-                if (elms.stream().anyMatch(WebElement::isDisplayed)) {
+                if (!elms.isEmpty()) {
                     List<WebElement> terms = WebUI.findElements("#privacy-terms, #privacy-terms2");
                     driver.executeScript("for (const e of arguments[0]) e.click()", terms);
                     driver.executeScript("for (const e of arguments[0]) e.click()", elms);
-                    String script = "a=document.createElement('style');a.innerHTML='iframe.fpw-view, #spr-live-chat-app {display:none !important}';document.head.appendChild(a)";
-                    driver.executeScript(script);
+                    driver.executeScript(DISPLAY_NONE);
                     return true;
                 }
                 return false;
             });
         } catch (Exception ignore) {
+        }
+        WebUI.delay(1);
+        if (ExpectedConditions.stalenessOf(body).apply(driver)) {
+            logger.info("Page reloaded, waiting for new ready state");
+            waitForPageLoad(10);
+            driver.executeScript(DISPLAY_NONE);
         }
         c.setPopupClosed();
     }
@@ -146,7 +155,9 @@ public abstract class WebUI {
     }
 
     static WebElement findElement(String selector) {
-        return driver.findElements(By.cssSelector(selector))
+        List<WebElement> elms = driver.findElements(By.cssSelector(selector));
+        Collections.reverse(elms);
+        return elms
                 .stream()
                 .filter(WebElement::isDisplayed)
                 .findFirst()
@@ -297,6 +308,17 @@ public abstract class WebUI {
         return wait(seconds).until(ExpectedConditions.or(
                 ExpectedConditions.stalenessOf(elm),
                 ExpectedConditions.invisibilityOf(elm)));
+    }
+
+    public static void waitForPageLoad(int seconds) {
+        try {
+            wait(seconds, 1).until(d -> {
+                String state = WebUI.driver.executeScript("return document.readyState").toString();
+                return state.equals("complete");
+            });
+        } catch (Exception ignore) {
+        }
+        logger.info("Page loaded");
     }
 
     public static boolean waitForStaleness(WebElement elm, int seconds) {
