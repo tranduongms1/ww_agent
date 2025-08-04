@@ -81,7 +81,7 @@ public abstract class BC {
             SCPPopup.waitForClose(10);
             logger.info("Popup closed, Samsung Care+ added successfully");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new Exception("Unable to add SC+ on BC page", e);
         }
     }
 
