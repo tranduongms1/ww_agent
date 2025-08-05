@@ -74,7 +74,7 @@ public abstract class Tokens {
     static TokenSingleMatch getFormName(List<String> tokens) {
         List<String> leading = Tokens.removeLeading(tokens, "all", "form",
                 "customer", "info", "customer info",
-                "customer", "delivery", "address", "customer address", "delivery address",
+                "customer", "delivery", "shipping", "address", "customer address", "delivery address",
                 "billing", "address", "billing address");
         if (Tokens.containsAll(leading, "customer", "info")
                 || Tokens.containsAny(leading, "customer info")) {
