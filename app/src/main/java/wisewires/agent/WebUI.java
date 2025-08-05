@@ -133,6 +133,24 @@ public abstract class WebUI {
         }
     }
 
+    static void closeBrower(Context c) throws Exception {
+        if (driver != null && c.checkoutProcess != null) {
+            Checkout.waitForNavigateTo();
+            Checkout.process(c);
+        }
+        if (driver != null) {
+            try {
+                for (String handle : driver.getWindowHandles()) {
+                    driver.switchTo().window(handle);
+                    driver.close();
+                }
+            } catch (Exception ignore) {
+            }
+        }
+        driver = null;
+        c = new Context();
+    }
+
     static void click(String selector) {
         wait(5).until(d -> {
             findElement(selector).click();

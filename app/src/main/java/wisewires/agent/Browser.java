@@ -281,6 +281,12 @@ public abstract class Browser {
                 c.client.createPost(post);
                 break;
             }
+
+            case "close": {
+                if (tokens.get(0).equalsIgnoreCase("browser")) {
+                    WebUI.closeBrower(c);
+                }
+            }
         }
     }
 }
