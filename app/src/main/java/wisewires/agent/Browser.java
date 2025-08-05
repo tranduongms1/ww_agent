@@ -196,6 +196,17 @@ public abstract class Browser {
                     c.mustCheckoutProcess().selectDifferentBillingAddress();
                     break;
                 }
+                leading = Tokens.removeLeading(tokens, "new");
+                TokenSingleMatch match = Tokens.getFormName(tokens);
+                switch (match.value) {
+                    case "customer address":
+                        c.mustCheckoutProcess().selectNewCustomerAddress();
+                        break;
+                    case "billing address":
+                        c.mustCheckoutProcess().selectNewBillingAddress();
+                        break;
+                }
+                break;
             }
 
             case "process": {

@@ -81,6 +81,7 @@ public abstract class Tokens {
             return new TokenSingleMatch("customer info", leading);
         } else if (Tokens.containsAll(leading, "customer", "address")
                 || Tokens.containsAll(leading, "delivery", "address")
+                || Tokens.containsAll(leading, "shipping", "address")
                 || Tokens.containsAny(leading, "customer address", "delivery address")) {
             return new TokenSingleMatch("customer address", leading);
         } else if (Tokens.containsAll(leading, "billing", "address")

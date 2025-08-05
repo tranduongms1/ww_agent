@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -182,5 +183,59 @@ public class CheckoutProcess {
         this.selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
         this.seenDeliverySlots = 0;
         this.selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
+    }
+
+    public CheckoutProcess selectNewCustomerAddress() {
+        AtomicBoolean done = new AtomicBoolean(false);
+        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+            if (id.equals("app-customer-address-v2")) {
+                WebElement rb = WebUI.findElement(form, By.cssSelector("mat-radio-button:has(input[value='NEW_ADDRESS'])"));
+                Form.check(rb);
+                logger.info("Checked 'New customer address'");
+                done.set(true);
+            }
+            return !done.get();
+        });
+        this.untilFuncs.add((Context c) -> {
+            CheckoutProcess cp = c.checkoutProcess;
+            if (!done.get()) {
+                WebElement editBtn = WebUI.findElement("[data-an-la='checkout:customer details:edit']");
+                if (editBtn != null && WebUI.findElement("app-customer-address-v2") == null) {
+                    WebUI.scrollToCenter(editBtn);
+                    WebUI.delay(1);
+                    editBtn.click();
+                    WebUI.waitForStaleness(editBtn, 5);
+                    cp.formLocators.remove("app-customer-info-v2");
+                }
+            }
+            return done.get();
+        });
+        return this;
+    }
+
+    public CheckoutProcess selectNewBillingAddress() {
+        AtomicBoolean done = new AtomicBoolean(false);
+        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+            if (id.equals("app-billing-address-v2")) {
+                WebElement rb = WebUI.findElement(form, By.cssSelector("mat-radio-button:has(input[value='NEW_ADDRESS'])"));
+                Form.check(rb);
+                logger.info("Checked 'New billing address'");
+                done.set(true);
+            }
+            return !done.get();
+        });
+        this.untilFuncs.add((Context c) -> {
+            if (!done.get()) {
+                WebElement editBtn = WebUI.findElement("[data-an-la='checkout:customer details:edit']");
+                if (editBtn != null && WebUI.findElement("app-billing-address-v2") == null) {
+                    WebUI.scrollToCenter(editBtn);
+                    WebUI.delay(1);
+                    editBtn.click();
+                    WebUI.waitForStaleness(editBtn, 5);
+                }
+            }
+            return done.get();
+        });
+        return this;
     }
 }
