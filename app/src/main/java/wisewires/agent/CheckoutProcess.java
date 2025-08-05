@@ -250,4 +250,40 @@ public class CheckoutProcess {
         });
         return this;
     }
+
+    public CheckoutProcess checkSaveCustomerAddress() {
+        AtomicBoolean done = new AtomicBoolean(false);
+        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+            if (id.equals("app-customer-address-v2")) {
+                WebElement rb = WebUI.findElement(form,
+                        By.cssSelector("mat-checkbox:has(input[name='saveInAddressBook'])"));
+                Form.check(rb);
+                logger.info("Checked 'Save customer address'");
+                done.set(true);
+            }
+            return !done.get();
+        });
+        this.untilFuncs.add((Context c) -> {
+            return done.get();
+        });
+        return this;
+    }
+
+    public CheckoutProcess checkSaveBillingAddress() {
+        AtomicBoolean done = new AtomicBoolean(false);
+        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+            if (id.equals("app-billing-address-v2")) {
+                WebElement rb = WebUI.findElement(form,
+                        By.cssSelector("mat-checkbox:has(input[name='saveInAddressBook'])"));
+                Form.check(rb);
+                logger.info("Checked 'Save billing address'");
+                done.set(true);
+            }
+            return !done.get();
+        });
+        this.untilFuncs.add((Context c) -> {
+            return done.get();
+        });
+        return this;
+    }
 }

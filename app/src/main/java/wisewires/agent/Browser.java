@@ -291,6 +291,20 @@ public abstract class Browser {
                 if (tokens.get(0).equalsIgnoreCase("browser")) {
                     WebUI.closeBrower(c);
                 }
+                break;
+            }
+
+            case "check": {
+                leading = Tokens.removeLeading(tokens, "save");
+                TokenSingleMatch match = Tokens.getFormName(tokens);
+                switch (match.value) {
+                    case "customer address":
+                        c.mustCheckoutProcess().checkSaveCustomerAddress();
+                        break;
+                    case "billing address":
+                        c.mustCheckoutProcess().checkSaveBillingAddress();
+                        break;
+                }
             }
         }
     }

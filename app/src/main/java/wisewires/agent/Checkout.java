@@ -710,7 +710,7 @@ public abstract class Checkout {
         try {
             WebUI.waitElement(to, 10);
             logger.info("Checkout page loaded success");
-            WebUI.delay(2);
+            WebUI.delay(5);
         } catch (Exception e) {
             throw new Exception("checkout main content not loaded");
         }
