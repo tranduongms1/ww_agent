@@ -131,11 +131,19 @@ public abstract class Cart {
     static void guestCheckout(Context c) throws Exception {
         try {
             logger.info("Continue to checkout as guest");
-            String to = "[data-an-la='proceed to checkout']";
-            WebElement btn = WebUI.waitElement(to, 5);
-            WebUI.scrollToCenter(btn);
-            WebUI.delay(1);
-            WebUI.click(to);
+            String to = """
+                    [data-an-la='proceed to checkout:guest checkout'],
+                    [data-an-la='continue as guest']""";
+            WebUI.wait(10).until(d -> {
+                WebElement btn = WebUI.findElement(to);
+                if (btn == null) {
+                    btn = WebUI.findElement("[data-an-la='proceed to checkout']");
+                }
+                WebUI.scrollToCenter(btn);
+                WebUI.delay(1);
+                btn.click();
+                return true;
+            });
             String email = c.getProfile().getCustomerInfo().get("email");
             Object result = WebUI.wait(30, 1).withMessage("navigate to checkout").until(driver -> {
                 String alert = getCartAlert();

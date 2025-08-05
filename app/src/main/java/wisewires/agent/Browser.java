@@ -250,7 +250,7 @@ public abstract class Browser {
                 if (leading.contains("checkout")) {
                     if (Tokens.containsAny(leading, "register", "user")) {
                         Cart.ssoCheckout(c);
-                    } else {
+                    } else if (Tokens.containsAny(leading, "guest")) {
                         Cart.guestCheckout(c);
                     }
                 }
