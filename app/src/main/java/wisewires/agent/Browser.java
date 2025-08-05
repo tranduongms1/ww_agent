@@ -251,6 +251,11 @@ public abstract class Browser {
                     if (Tokens.containsAny(leading, "register", "user")) {
                         Cart.ssoCheckout(c);
                     } else if (Tokens.containsAny(leading, "guest")) {
+                        if (c.ssoSignedIn) {
+                            throw new Exception("Unable to checkout as guest, please logout first");
+                        }
+                        Cart.guestCheckout(c);
+                    } else {
                         Cart.guestCheckout(c);
                     }
                 }
