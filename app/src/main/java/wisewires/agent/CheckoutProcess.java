@@ -42,6 +42,10 @@ public class CheckoutProcess {
 
     List<String> formLocators;
 
+    static String ADDRESS_DETAILS_EDIT = """
+            .address-details .actions__edit,
+            .checkout-contact-info-header .actions__edit""";
+
     public AtomicReference<String> selectedDeliveryType = new AtomicReference<>();
 
     public int seenDeliveryTypes = 0;
@@ -123,6 +127,18 @@ public class CheckoutProcess {
         return untilFuncs.isEmpty();
     }
 
+    private boolean ensureNotPassedForm(String selector, String backSelector) {
+        WebElement backElm = WebUI.findElement(backSelector);
+        if (backElm != null && WebUI.findElement(selector) == null) {
+            WebUI.scrollToCenter(backElm);
+            WebUI.delay(1);
+            backElm.click();
+            WebUI.waitForStaleness(backElm, 5);
+            return true;
+        }
+        return false;
+    }
+
     public CheckoutProcess selectDifferentBillingAddress() {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
@@ -133,6 +149,9 @@ public class CheckoutProcess {
             return !done.get();
         });
         this.untilFuncs.add((Context c) -> {
+            if (!done.get()) {
+                ensureNotPassedForm("app-billing-address-v2", ADDRESS_DETAILS_EDIT);
+            }
             return done.get();
         });
         return this;
@@ -189,7 +208,8 @@ public class CheckoutProcess {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-customer-address-v2")) {
-                WebElement rb = WebUI.findElement(form, By.cssSelector("mat-radio-button:has(input[value='NEW_ADDRESS'])"));
+                WebElement rb = WebUI.findElement(form,
+                        By.cssSelector("mat-radio-button:has(input[value='NEW_ADDRESS'])"));
                 Form.check(rb);
                 logger.info("Checked 'New customer address'");
                 done.set(true);
@@ -199,12 +219,8 @@ public class CheckoutProcess {
         this.untilFuncs.add((Context c) -> {
             CheckoutProcess cp = c.checkoutProcess;
             if (!done.get()) {
-                WebElement editBtn = WebUI.findElement("[data-an-la='checkout:customer details:edit']");
-                if (editBtn != null && WebUI.findElement("app-customer-address-v2") == null) {
-                    WebUI.scrollToCenter(editBtn);
-                    WebUI.delay(1);
-                    editBtn.click();
-                    WebUI.waitForStaleness(editBtn, 5);
+                boolean passed = ensureNotPassedForm("app-customer-address-v2", ADDRESS_DETAILS_EDIT);
+                if (passed) {
                     cp.formLocators.remove("app-customer-info-v2");
                 }
             }
@@ -217,7 +233,8 @@ public class CheckoutProcess {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-billing-address-v2")) {
-                WebElement rb = WebUI.findElement(form, By.cssSelector("mat-radio-button:has(input[value='NEW_ADDRESS'])"));
+                WebElement rb = WebUI.findElement(form,
+                        By.cssSelector("mat-radio-button:has(input[value='NEW_ADDRESS'])"));
                 Form.check(rb);
                 logger.info("Checked 'New billing address'");
                 done.set(true);
@@ -226,13 +243,7 @@ public class CheckoutProcess {
         });
         this.untilFuncs.add((Context c) -> {
             if (!done.get()) {
-                WebElement editBtn = WebUI.findElement("[data-an-la='checkout:customer details:edit']");
-                if (editBtn != null && WebUI.findElement("app-billing-address-v2") == null) {
-                    WebUI.scrollToCenter(editBtn);
-                    WebUI.delay(1);
-                    editBtn.click();
-                    WebUI.waitForStaleness(editBtn, 5);
-                }
+                ensureNotPassedForm("app-billing-address-v2", ADDRESS_DETAILS_EDIT);
             }
             return done.get();
         });
