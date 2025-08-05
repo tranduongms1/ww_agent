@@ -223,7 +223,7 @@ public abstract class Checkout {
             }
 
             case "delivery_type_top": {
-                if (p.selectDeliveryTypeFunc.apply(c, formID)) {
+                if (p.selectDeliveryTypeFunc.apply(c, form)) {
                     return true;
                 }
                 locators.remove(DELIVERY_INFO_TABS_SELECTOR);
@@ -236,7 +236,7 @@ public abstract class Checkout {
                 int index = p.selectedDeliveryTypes.get().size() + 1;
                 if (p.seenDeliveryTypes < index)
                     break;
-                if (p.selectDeliveryTypeAtLineFunc.apply(c, index)) {
+                if (p.selectDeliveryTypeAtLineFunc.apply(c, index, form)) {
                     return true;
                 }
                 return false;
@@ -248,7 +248,7 @@ public abstract class Checkout {
                 if (p.seenDeliveryLists < index)
                     break;
                 WebUI.waitElement("ul.slot_list", 2);
-                if (p.selectDeliveryOptionFunc.apply(c, index)) {
+                if (p.selectDeliveryOptionFunc.apply(c, index, form)) {
                     return true;
                 }
                 return false;

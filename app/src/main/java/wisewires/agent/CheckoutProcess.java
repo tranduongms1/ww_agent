@@ -19,17 +19,17 @@ interface PreFillFormFunction {
 
 @FunctionalInterface
 interface SelectDeliveryTypeFunction {
-    boolean apply(Context c, String type);
+    boolean apply(Context c, WebElement elm);
 }
 
 @FunctionalInterface
 interface SelectDeliveryTypeAtLineFunction {
-    boolean apply(Context c, int line);
+    boolean apply(Context c, int line, WebElement elm);
 }
 
 @FunctionalInterface
 interface SelectDeliveryOptionFunction {
-    boolean apply(Context c, int line);
+    boolean apply(Context c, int line, WebElement elm);
 }
 
 @FunctionalInterface
@@ -64,22 +64,22 @@ public class CheckoutProcess {
         return true;
     }
 
-    public static boolean defaultSelectDeliveryType(Context c, String type) {
+    public static boolean defaultSelectDeliveryType(Context c, WebElement elm) {
         c.checkoutProcess.selectedDeliveryType.set("Any");
         return false;
     }
 
-    public static boolean defaultSelectDeliveryTypeAtLine(Context c, int line) {
+    public static boolean defaultSelectDeliveryTypeAtLine(Context c, int line, WebElement elm) {
         c.checkoutProcess.selectedDeliveryTypes.accumulateAndGet(List.of("Any"), Util.appendFunction);
         return false;
     }
 
-    public static boolean defaultSelectDeliveryOption(Context c, int line) {
+    public static boolean defaultSelectDeliveryOption(Context c, int line, WebElement elm) {
         c.checkoutProcess.selectedDeliveryOptions.accumulateAndGet(List.of("Any"), Util.appendFunction);
         return false;
     }
 
-    public static boolean defaultSelectDeliverySlot(Context c, int line) {
+    public static boolean defaultSelectDeliverySlot(Context c, int line, WebElement elm) {
         c.checkoutProcess.selectedDeliverySlots.accumulateAndGet(List.of("Any"), Util.appendFunction);
         return false;
     }
