@@ -267,15 +267,12 @@ public abstract class Browser {
                 String fileId = c.client.uploadFile(c.post.getChannelId(), url);
                 Post post = new Post();
                 post.setChannelId(c.post.getChannelId());
-                post.setMessage("⬜ " + req);
-                // post.setMessage("✅ " + req);
+                post.setMessage("✅ " + req);
                 post.setFileIds(List.of(fileId));
                 post.setRootId(c.post.getId());
-                post.setType("custom_verify");
-                post.getProps().put("agentLogs", List.of(
-                        "Change current site to DK",
-                        "Cart is NOT EMPTY now",
-                        "Continue to checkout page"));
+                post.setType("custom_ai_verify");
+                post.getProps().put("currentUrl", WebUI.getUrl());
+                post.getProps().put("logMessages", c.getAllLogs());
                 c.client.createPost(post);
                 break;
             }
