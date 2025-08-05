@@ -10,10 +10,10 @@ public class TradeInProcess {
     static Logger logger = LoggerFactory.getLogger(TradeInProcess.class);
 
     static void selectBestDeviceConditions(List<List<WebElement>> questions) {
-        for (List<WebElement> question : questions) {
-            WebElement opt = question.get(0);
+        for (List<WebElement> options : questions) {
+            WebElement opt = options.get(0);
             if (WebUI.isOneOfSites("CZ", "HK", "HK_EN", "NZ", "TR")) {
-                opt = question.get(question.size() - 1); // Last option
+                opt = Lists.last(options);
             }
             WebUI.scrollToCenter(opt);
             opt.click();
