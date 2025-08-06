@@ -123,8 +123,8 @@ public abstract class Browser {
                             Item item = new Item();
                             item.urlOrSKU = tokens.remove(0);
                             leading = Tokens.removeLeading(tokens, "with",
-                                    "trade-in", "tradein", "trade-up", "tradeup", "sc+");
-                            Tokens.removeLeading(tokens, "and", "+");
+                                    "trade-in", "tradein", "trade-up", "tradeup", "sc+",
+                                    "and", "+");
                             if (Tokens.containsAny(leading, "trade-in", "tradein")) {
                                 item.addedServices.add("TradeIn");
                             }
