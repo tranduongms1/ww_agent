@@ -122,11 +122,13 @@ public abstract class Browser {
                         if (!tokens.isEmpty()) {
                             Item item = new Item();
                             item.urlOrSKU = tokens.remove(0);
-                            leading = Tokens.removeLeading(tokens, "with", "trade-in", "trade-up", "sc+", "and", "+");
-                            if (Tokens.containsAny(leading, "trade-in")) {
+                            leading = Tokens.removeLeading(tokens, "with",
+                                    "trade-in", "tradein", "trade-up", "tradeup", "sc+");
+                            Tokens.removeLeading(tokens, "and", "+");
+                            if (Tokens.containsAny(leading, "trade-in", "tradein")) {
                                 item.addedServices.add("TradeIn");
                             }
-                            if (Tokens.containsAny(leading, "trade-up")) {
+                            if (Tokens.containsAny(leading, "trade-up", "tradeup")) {
                                 item.addedServices.add("TradeUp");
                             }
                             if (Tokens.containsAny(leading, "sc+")) {
@@ -196,15 +198,18 @@ public abstract class Browser {
                     c.mustCheckoutProcess().selectDifferentBillingAddress();
                     break;
                 }
-                leading = Tokens.removeLeading(tokens, "new");
-                TokenSingleMatch match = Tokens.getFormName(tokens);
-                switch (match.value) {
-                    case "customer address":
-                        c.mustCheckoutProcess().selectNewCustomerAddress();
-                        break;
-                    case "billing address":
-                        c.mustCheckoutProcess().selectNewBillingAddress();
-                        break;
+                if (tokens.get(0).equalsIgnoreCase("new")) {
+                    tokens.remove(0);
+                    TokenSingleMatch match = Tokens.getFormName(tokens);
+                    switch (match.value) {
+                        case "customer address":
+                            c.mustCheckoutProcess().selectNewCustomerAddress();
+                            break;
+                        case "billing address":
+                            c.mustCheckoutProcess().selectNewBillingAddress();
+                            break;
+                    }
+                    break;
                 }
                 break;
             }

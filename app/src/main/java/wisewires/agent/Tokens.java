@@ -36,6 +36,15 @@ public abstract class Tokens {
         return tokens;
     }
 
+    public static boolean contains(List<String> list, String s) {
+        for (String item : list) {
+            if (item.equalsIgnoreCase(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean containsAny(List<String> list, String... ss) {
         for (String s : ss) {
             if (list.contains(s)) {
