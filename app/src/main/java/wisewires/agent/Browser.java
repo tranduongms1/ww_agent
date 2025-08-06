@@ -211,6 +211,16 @@ public abstract class Browser {
                     }
                     break;
                 }
+                if (Tokens.containsAny(tokens, "order")) {
+                    if (Tokens.containsAny(tokens, "individual", "personal")) {
+                        c.mustCheckoutProcess().selectIndividualOrder();
+                        break;
+                    }
+                    if (Tokens.containsAny(tokens, "company")) {
+                        c.mustCheckoutProcess().selectCompanyOrder();
+                        break;
+                    }
+                }
                 break;
             }
 

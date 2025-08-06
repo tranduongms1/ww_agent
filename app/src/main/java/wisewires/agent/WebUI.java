@@ -182,6 +182,10 @@ public abstract class WebUI {
                 .orElse(null);
     }
 
+    public static WebElement findElement(SearchContext root, String cssSelector) {
+        return findElement(root, By.cssSelector(cssSelector));
+    }
+
     public static WebElement findElement(SearchContext root, By by) {
         return root.findElements(by)
                 .stream()

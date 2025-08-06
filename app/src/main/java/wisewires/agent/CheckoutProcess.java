@@ -7,7 +7,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -209,8 +208,7 @@ public class CheckoutProcess {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-customer-address-v2")) {
-                WebElement rb = WebUI.findElement(form,
-                        By.cssSelector("mat-radio-button:has(input[value='NEW_ADDRESS'])"));
+                WebElement rb = WebUI.findElement(form, "mat-radio-button:has([value='NEW_ADDRESS'])");
                 Form.check(rb);
                 logger.info("Checked 'New customer address'");
                 done.set(true);
@@ -218,11 +216,10 @@ public class CheckoutProcess {
             return !done.get();
         });
         this.untilFuncs.add((Context c) -> {
-            CheckoutProcess cp = c.checkoutProcess;
             if (!done.get()) {
                 boolean passed = ensureNotPassedForm("app-customer-address-v2", ADDRESS_DETAILS_EDIT);
                 if (passed) {
-                    cp.formLocators.remove("app-customer-info-v2");
+                    c.checkoutProcess.formLocators.remove("app-customer-info-v2");
                 }
             }
             return done.get();
@@ -234,8 +231,7 @@ public class CheckoutProcess {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-billing-address-v2")) {
-                WebElement rb = WebUI.findElement(form,
-                        By.cssSelector("mat-radio-button:has(input[value='NEW_ADDRESS'])"));
+                WebElement rb = WebUI.findElement(form, "mat-radio-button:has([value='NEW_ADDRESS'])");
                 Form.check(rb);
                 logger.info("Checked 'New billing address'");
                 done.set(true);
@@ -244,7 +240,10 @@ public class CheckoutProcess {
         });
         this.untilFuncs.add((Context c) -> {
             if (!done.get()) {
-                ensureNotPassedForm("app-billing-address-v2", ADDRESS_DETAILS_EDIT);
+                boolean passed = ensureNotPassedForm("app-billing-address-v2", ADDRESS_DETAILS_EDIT);
+                if (passed) {
+                    c.checkoutProcess.formLocators.remove("app-customer-address-v2");
+                }
             }
             return done.get();
         });
@@ -255,8 +254,7 @@ public class CheckoutProcess {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-customer-address-v2")) {
-                WebElement rb = WebUI.findElement(form,
-                        By.cssSelector("mat-checkbox:has(input[name='saveInAddressBook'])"));
+                WebElement rb = WebUI.findElement(form, "mat-checkbox:has([name='saveInAddressBook'])");
                 Form.check(rb);
                 logger.info("Checked 'Save customer address'");
                 done.set(true);
@@ -273,10 +271,43 @@ public class CheckoutProcess {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-billing-address-v2")) {
-                WebElement rb = WebUI.findElement(form,
-                        By.cssSelector("mat-checkbox:has(input[name='saveInAddressBook'])"));
+                WebElement rb = WebUI.findElement(form, "mat-checkbox:has([name='saveInAddressBook'])");
                 Form.check(rb);
                 logger.info("Checked 'Save billing address'");
+                done.set(true);
+            }
+            return !done.get();
+        });
+        this.untilFuncs.add((Context c) -> {
+            return done.get();
+        });
+        return this;
+    }
+
+    public CheckoutProcess selectIndividualOrder() {
+        AtomicBoolean done = new AtomicBoolean(false);
+        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+            if (id.equals("app-customer-info-v2")) {
+                WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='PERSONAL_ORDER'])");
+                Form.check(radio);
+                logger.info("Selected individual order");
+                done.set(true);
+            }
+            return !done.get();
+        });
+        this.untilFuncs.add((Context c) -> {
+            return done.get();
+        });
+        return this;
+    }
+
+    public CheckoutProcess selectCompanyOrder() {
+        AtomicBoolean done = new AtomicBoolean(false);
+        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+            if (id.equals("app-customer-info-v2")) {
+                WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='COMPANY_ORDER'])");
+                Form.check(radio);
+                logger.info("Selected company order");
                 done.set(true);
             }
             return !done.get();
