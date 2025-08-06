@@ -34,7 +34,7 @@ interface SelectDeliveryOptionFunction {
 
 @FunctionalInterface
 interface SelectDeliverySlotFunction {
-    boolean apply(Context c, int line);
+    boolean apply(Context c, int line, WebElement elm);
 }
 
 public class CheckoutProcess {
@@ -96,6 +96,7 @@ public class CheckoutProcess {
         this.selectDeliveryTypeFunc = CheckoutProcess::defaultSelectDeliveryType;
         this.selectDeliveryTypeAtLineFunc = CheckoutProcess::defaultSelectDeliveryTypeAtLine;
         this.selectDeliveryOptionFunc = CheckoutProcess::defaultSelectDeliveryOption;
+        this.selectDeliverySlotFunc = CheckoutProcess::defaultSelectDeliverySlot;
     }
 
     public void preProcess() {

@@ -259,7 +259,7 @@ public abstract class Checkout {
                 int index = p.selectedDeliverySlots.get().size() + 1;
                 if (p.seenDeliverySlots < index)
                     break;
-                if (p.selectDeliverySlotFunc.apply(c, index)) {
+                if (p.selectDeliverySlotFunc.apply(c, index, form)) {
                     return true;
                 }
                 return false;
