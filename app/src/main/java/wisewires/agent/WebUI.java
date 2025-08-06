@@ -151,10 +151,11 @@ public abstract class WebUI {
         c = new Context();
     }
 
-    static void click(String selector) {
-        wait(5).until(d -> {
-            findElement(selector).click();
-            return true;
+    static WebElement click(String selector) {
+        return wait(5).until(d -> {
+            WebElement elm = findElement(selector);
+            elm.click();
+            return elm;
         });
     }
 

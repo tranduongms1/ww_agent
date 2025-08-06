@@ -646,8 +646,7 @@ public abstract class Checkout {
             WebUI.waitForStaleness(nextButton, 15);
             logger.info("Navigated to next step");
             WebUI.delay(1);
-            WebUI.wait(30).withMessage("skeleton disappear")
-                    .until(d -> WebUI.findElement(".skeleton") == null);
+            WebUI.waitForNotDisplayed(".skeleton", 15);
             logger.info("Next step loaded success");
             return true;
         }
@@ -710,11 +709,11 @@ public abstract class Checkout {
     }
 
     static void waitForNavigateTo() throws Exception {
-        String to = "app-checkout-one";
         try {
-            WebUI.waitElement(to, 10);
+            WebUI.waitElement(String.join(",", FORM_LOCATORS), 10);
+            WebUI.delay(3);
+            WebUI.waitForNotDisplayed(".skeleton", 30);
             logger.info("Checkout page loaded success");
-            WebUI.delay(5);
         } catch (Exception e) {
             throw new Exception("checkout main content not loaded");
         }

@@ -176,8 +176,10 @@ public class CheckoutProcess {
         if (backElm != null && WebUI.findElement(selector) == null) {
             WebUI.scrollToCenter(backElm);
             WebUI.delay(1);
-            backElm.click();
+            backElm = WebUI.click(backSelector);
             WebUI.waitForStaleness(backElm, 5);
+            WebUI.delay(3);
+            WebUI.waitForNotDisplayed(".skeleton", 10);
             return true;
         }
         return false;
