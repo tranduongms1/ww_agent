@@ -1,0 +1,32 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn2-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+32",
+        "phoneNumber": "1002764784",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "Industriezone Ring 6A 4000 3500 Hasselt",
+        "line1": "Industriezone Ring 4000",
+        "line2": "6",
+        "postalCode": "3500",
+        "adminLevel2": "Hasselt"
+    },
+    "billingAddress": {
+        "country": "België",
+        "firstName": "Diff",
+        "lastName": "Bill",
+        "phoneNumber": "1002764784",
+        "searchAddress": "Industriezone Noord 3000 3016 3500 Hasselt",
+        "line1": "Industriezone Noord 3000",
+        "line2": "3016",
+        "postalCode": "3500",
+        "adminLevel2": "Hasselt"
+    }
+}
