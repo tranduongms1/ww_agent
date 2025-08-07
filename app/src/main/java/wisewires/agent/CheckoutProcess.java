@@ -42,6 +42,11 @@ interface SelectDeliverySlotFunction {
     boolean apply(Context c, int line, WebElement elm);
 }
 
+@FunctionalInterface
+interface OnFormAction {
+    void apply(Context c, WebElement form) throws Exception;
+}
+
 public class CheckoutProcess {
     static Logger logger = LoggerFactory.getLogger(CheckoutProcess.class);
 
@@ -171,24 +176,6 @@ public class CheckoutProcess {
         return false;
     }
 
-    public CheckoutProcess selectDifferentBillingAddress() {
-        AtomicBoolean done = new AtomicBoolean(false);
-        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
-            if (id.equals("app-billing-address-v2")) {
-                BillingAddress.uncheckSameAsShipping();
-                done.set(true);
-            }
-            return !done.get();
-        });
-        this.untilFuncs.add((Context c) -> {
-            if (!done.get()) {
-                ensureNotPassedForm("app-billing-address-v2", ADDRESS_DETAILS_EDIT);
-            }
-            return done.get();
-        });
-        return this;
-    }
-
     public CheckoutProcess untilSeen(String locator) {
         this.preFillFormFuncs.add((c, formID, form) -> {
             return WebUI.findElement(locator) == null;
@@ -236,13 +223,11 @@ public class CheckoutProcess {
         this.selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
     }
 
-    public CheckoutProcess selectNewCustomerAddress() {
+    public CheckoutProcess onCustomerAddress(OnFormAction action) {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-customer-address-v2")) {
-                WebElement rb = WebUI.findElement(form, "mat-radio-button:has([value='NEW_ADDRESS'])");
-                Form.check(rb);
-                logger.info("Checked 'New customer address'");
+                action.apply(c, form);
                 done.set(true);
             }
             return !done.get();
@@ -259,13 +244,11 @@ public class CheckoutProcess {
         return this;
     }
 
-    public CheckoutProcess selectNewBillingAddress() {
+    public CheckoutProcess onBillingAddress(OnFormAction action) {
         AtomicBoolean done = new AtomicBoolean(false);
         this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-billing-address-v2")) {
-                WebElement rb = WebUI.findElement(form, "mat-radio-button:has([value='NEW_ADDRESS'])");
-                Form.check(rb);
-                logger.info("Checked 'New billing address'");
+                action.apply(c, form);
                 done.set(true);
             }
             return !done.get();
@@ -282,38 +265,42 @@ public class CheckoutProcess {
         return this;
     }
 
+    public CheckoutProcess selectNewCustomerAddress() {
+        return onCustomerAddress((c, form) -> {
+            WebElement rb = WebUI.findElement(form, "mat-radio-button:has([value='NEW_ADDRESS'])");
+            Form.check(rb);
+            logger.info("Checked 'New customer address'");
+        });
+    }
+
     public CheckoutProcess checkSaveCustomerAddress() {
-        AtomicBoolean done = new AtomicBoolean(false);
-        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
-            if (id.equals("app-customer-address-v2")) {
-                WebElement rb = WebUI.findElement(form, "mat-checkbox:has([name='saveInAddressBook'])");
-                Form.check(rb);
-                logger.info("Checked 'Save customer address'");
-                done.set(true);
-            }
-            return !done.get();
+        return onCustomerAddress((c, form) -> {
+            WebElement rb = WebUI.findElement(form, "mat-checkbox:has([name='saveInAddressBook'])");
+            Form.check(rb);
+            logger.info("Checked 'Save customer address'");
         });
-        this.untilFuncs.add((Context c) -> {
-            return done.get();
+    }
+
+    public CheckoutProcess selectDifferentBillingAddress() {
+        return onBillingAddress((c, form) -> {
+            BillingAddress.uncheckSameAsShipping();
         });
-        return this;
+    }
+
+    public CheckoutProcess selectNewBillingAddress() {
+        return onBillingAddress((c, form) -> {
+            WebElement rb = WebUI.findElement(form, "mat-radio-button:has([value='NEW_ADDRESS'])");
+            Form.check(rb);
+            logger.info("Checked 'New billing address'");
+        });
     }
 
     public CheckoutProcess checkSaveBillingAddress() {
-        AtomicBoolean done = new AtomicBoolean(false);
-        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
-            if (id.equals("app-billing-address-v2")) {
-                WebElement rb = WebUI.findElement(form, "mat-checkbox:has([name='saveInAddressBook'])");
-                Form.check(rb);
-                logger.info("Checked 'Save billing address'");
-                done.set(true);
-            }
-            return !done.get();
+        return onBillingAddress((c, form) -> {
+            WebElement rb = WebUI.findElement(form, "mat-checkbox:has([name='saveInAddressBook'])");
+            Form.check(rb);
+            logger.info("Checked 'Save billing address'");
         });
-        this.untilFuncs.add((Context c) -> {
-            return done.get();
-        });
-        return this;
     }
 
     public CheckoutProcess selectIndividualOrder() {
