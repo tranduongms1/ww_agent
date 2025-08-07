@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,11 @@ interface SelectDeliveryOptionFunction {
 }
 
 @FunctionalInterface
+interface SelectDeliveryServiceFunction {
+    boolean apply(Context c, int line, WebElement elm);
+}
+
+@FunctionalInterface
 interface SelectDeliverySlotFunction {
     boolean apply(Context c, int line, WebElement elm);
 }
@@ -48,18 +54,22 @@ public class CheckoutProcess {
     public AtomicReference<String> selectedDeliveryType = new AtomicReference<>();
 
     public int seenDeliveryTypes = 0;
-    public AtomicReference<List<String>> selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
+    public AtomicReference<List<String>> selectedDeliveryTypes = new AtomicReference<>(new ArrayList<>());
+
+    public int seenDeliveryServices = 0;
+    public AtomicReference<List<String>> selectedDeliveryServices = new AtomicReference<>(new ArrayList<>());
 
     public int seenDeliveryLists = 0;
-    public AtomicReference<List<String>> selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
+    public AtomicReference<List<String>> selectedDeliveryOptions = new AtomicReference<>(new ArrayList<>());
 
     public int seenDeliverySlots = 0;
-    public AtomicReference<List<String>> selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
+    public AtomicReference<List<String>> selectedDeliverySlots = new AtomicReference<>(new ArrayList<>());
 
     public List<PreFillFormFunction> preFillFormFuncs = new ArrayList<>();
     public SelectDeliveryTypeFunction selectDeliveryTypeFunc;
     public SelectDeliveryTypeAtLineFunction selectDeliveryTypeAtLineFunc;
     public SelectDeliveryOptionFunction selectDeliveryOptionFunc;
+    public SelectDeliveryServiceFunction selectDeliveryServiceFunc;
     public SelectDeliverySlotFunction selectDeliverySlotFunc;
     public List<Predicate<Context>> untilFuncs = new ArrayList<>();
 
@@ -82,6 +92,27 @@ public class CheckoutProcess {
         return false;
     }
 
+    private static void onSelectedDeliveryService(Context c, int line, WebElement elm) {
+        String value = elm.getAttribute("id").replaceFirst("group\\d+", "");
+        c.checkoutProcess.selectedDeliveryServices.accumulateAndGet(List.of(value), Util.appendFunction);
+        logger.info("Delivery service '%s' selected for consigment %d".formatted(value, line));
+    }
+
+    public static boolean defaultSelectDeliveryService(Context c, int line, WebElement elm) {
+        List<WebElement> opts = elm.findElements(By.cssSelector("mat-radio-button"));
+        for (WebElement opt : opts) {
+            if (opt.getAttribute("class").contains("checked")) {
+                onSelectedDeliveryService(c, line, opt);
+                return false;
+            }
+        }
+        WebElement opt = opts.get(0);
+        WebUI.scrollToCenter(opt);
+        opt.click();
+        onSelectedDeliveryService(c, line, opt);
+        return false;
+    }
+
     public static boolean defaultSelectDeliverySlot(Context c, int line, WebElement elm) {
         c.checkoutProcess.selectedDeliverySlots.accumulateAndGet(List.of("Any"), Util.appendFunction);
         return false;
@@ -95,6 +126,7 @@ public class CheckoutProcess {
         this.selectDeliveryTypeFunc = CheckoutProcess::defaultSelectDeliveryType;
         this.selectDeliveryTypeAtLineFunc = CheckoutProcess::defaultSelectDeliveryTypeAtLine;
         this.selectDeliveryOptionFunc = CheckoutProcess::defaultSelectDeliveryOption;
+        this.selectDeliveryServiceFunc = CheckoutProcess::defaultSelectDeliveryService;
         this.selectDeliverySlotFunc = CheckoutProcess::defaultSelectDeliverySlot;
     }
 

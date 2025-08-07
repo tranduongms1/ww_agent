@@ -35,6 +35,7 @@ public abstract class Checkout {
             DELIVERY_TAB_GROUP_CONTAINER_TOP,
             DELIVERY_TAB_GROUP_CONTAINER,
             "ul.delivery_list",
+            "ul.service_list",
             "ul.slot_list",
             ".delivery-info__tnc",
             "app-delivery-info-additional-location-info",
@@ -80,6 +81,8 @@ public abstract class Checkout {
                 }
             } else if (className.contains("delivery_list")) {
                 return "delivery_list";
+            } else if (className.contains("service_list")) {
+                return "delivery_service_list";
             } else if (className.contains("slot_list")) {
                 return "delivery_slot_list";
             } else if (className.contains("delivery-info__tnc")) {
@@ -236,10 +239,7 @@ public abstract class Checkout {
                 int index = p.selectedDeliveryTypes.get().size() + 1;
                 if (p.seenDeliveryTypes < index)
                     break;
-                if (p.selectDeliveryTypeAtLineFunc.apply(c, index, form)) {
-                    return true;
-                }
-                return false;
+                return p.selectDeliveryTypeAtLineFunc.apply(c, index, form);
             }
 
             case "delivery_list": {
@@ -248,10 +248,16 @@ public abstract class Checkout {
                 if (p.seenDeliveryLists < index)
                     break;
                 WebUI.waitElement("ul.slot_list", 2);
-                if (p.selectDeliveryOptionFunc.apply(c, index, form)) {
-                    return true;
-                }
-                return false;
+                return p.selectDeliveryOptionFunc.apply(c, index, form);
+            }
+
+            case "delivery_service_list": {
+                p.seenDeliveryServices++;
+                int index = p.selectedDeliveryServices.get().size() + 1;
+                if (p.seenDeliveryServices < index)
+                    break;
+                WebUI.waitElement("ul.slot_list", 2);
+                return p.selectDeliveryServiceFunc.apply(c, index, form);
             }
 
             case "delivery_slot_list": {
@@ -259,10 +265,7 @@ public abstract class Checkout {
                 int index = p.selectedDeliverySlots.get().size() + 1;
                 if (p.seenDeliverySlots < index)
                     break;
-                if (p.selectDeliverySlotFunc.apply(c, index, form)) {
-                    return true;
-                }
-                return false;
+                return p.selectDeliverySlotFunc.apply(c, index, form);
             }
 
             case "delivery_info_tnc": {
@@ -672,6 +675,7 @@ public abstract class Checkout {
                 try {
                     p.seenDeliveryTypes = 0;
                     p.seenDeliveryLists = 0;
+                    p.seenDeliveryServices = 0;
                     p.seenDeliverySlots = 0;
                     By locator = By.cssSelector(String.join(",", p.formLocators));
                     List<WebElement> forms = WebUI.driver.findElements(locator);
