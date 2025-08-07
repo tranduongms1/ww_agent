@@ -165,11 +165,9 @@ public abstract class WebUI {
         });
     }
 
-    public static void click(WebElement elm, int x, int y) {
+    public static void click(WebElement elm, int dx, int dy) {
         Rectangle rect = elm.getRect();
-        int xOffset = x - Math.floorDiv(rect.width, 2);
-        int yOffset = y - Math.floorDiv(rect.height, 2);
-        new Actions(WebUI.driver).moveToElement(elm, xOffset, yOffset).click().perform();
+        new Actions(WebUI.driver).moveToLocation(rect.x + dx, rect.y + dy).click().perform();
     }
 
     static WebElement findElement(String selector) {
@@ -253,6 +251,10 @@ public abstract class WebUI {
                 return true;
         }
         return false;
+    }
+
+    public static void scrollIntoView(WebElement elm) {
+        driver.executeScript("arguments[0].scrollIntoView()", elm);
     }
 
     public static void scrollToCenter(WebElement elm) {

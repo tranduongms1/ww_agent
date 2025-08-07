@@ -42,6 +42,9 @@ public abstract class Cart {
         if (addedServices.contains("SC+")) {
             BC.addSCPlus(c);
         }
+        if (addedServices.contains("TradeUp")) {
+            PD.addTradeUp(c);
+        }
         BC.continueToCart();
     }
 
