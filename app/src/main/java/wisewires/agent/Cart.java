@@ -37,6 +37,9 @@ public abstract class Cart {
         WebUI.openBrowser(c, url);
         WebUI.mustCloseAllPopup(c);
         if (Util.isPDPage()) {
+            if (addedServices.contains("SC+")) {
+                PD.addSCPlus(c);
+            }
             if (addedServices.contains("TradeIn")) {
                 PD.addTradeIn(c);
             }

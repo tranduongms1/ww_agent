@@ -41,6 +41,43 @@ public abstract class PD {
         }
     }
 
+    static void addSCPlus(Context c) throws Exception {
+        try {
+            String to = """
+                    .hubble-product__options-list-wrap:not([style*='hidden']) .js-smc,
+                    .wearable-option.option-care li:not(.depth-two) button:not([an-la*='none']),
+                    .smc-list .insurance__item--yes,
+                    .pd-select-option__item>.pd-option-selector:has([an-la='samsung care:yes'])""";
+            WebElement elm = WebUI.findElement(to);
+            if (elm != null) {
+                WebUI.scrollToCenter(elm);
+                WebUI.delay(1);
+                elm.click();
+            }
+
+            // Handle additional payment terms
+            String toPayment = "div[class='pd-select-option__payment'] .pd-option-selector div:has([an-la='samsung care:yes'])";
+            WebElement elmPayment = WebUI.findElement(toPayment);
+
+            if (elmPayment != null) {
+                WebUI.scrollToCenter(elmPayment);
+                WebUI.delay(1);
+                elmPayment.click();
+            }
+
+            // Handle SC+ Popup
+            if (elm.getAttribute("className").contains("smc-item")) {
+                SCPPopup.selectFirstType();
+                SCPPopup.selectFirstDuration();
+                SCPPopup.clickContinue();
+            }
+            SCPPopup.checkTermAndCondition();
+            SCPPopup.clickConfirm();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     static void continueToCart() {
         WebUI.wait(30, 1).withMessage("added to cart").until(driver -> {
             String buyTo = """
