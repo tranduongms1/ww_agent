@@ -78,6 +78,25 @@ public abstract class PD {
         }
     }
 
+    static void addEWarranty(Context c) throws Exception {
+        try {
+            String to = ".pd-option-selector:has([an-la='extended warranty:yes'i])";
+            WebElement elm = WebUI.waitElement(to, 10);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            WebUI.click(to);
+            logger.info("E-Warranty option 'Yes' clicked");
+            EWPopup.waitForOpen(10);
+            EWPopup.selectOptionByTitle("1 Year Extended Warranty");
+            EWPopup.acceptTermAndConditions();
+            EWPopup.clickConfirm();
+            EWPopup.waitForClose(10);
+            logger.info("E-Warranty added success on PD page");
+        } catch (Exception e) {
+            throw new Exception("Unable to add trade-up on PD page");
+        }
+    }
+
     static void continueToCart() {
         WebUI.wait(30, 1).withMessage("added to cart").until(driver -> {
             String buyTo = """

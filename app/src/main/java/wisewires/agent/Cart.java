@@ -46,6 +46,9 @@ public abstract class Cart {
             if (addedServices.contains("TradeUp")) {
                 PD.addTradeUp(c);
             }
+            if (addedServices.contains("EWarranty")) {
+                PD.addEWarranty(c);
+            }
             PD.continueToCart();
         } else {
             if (addedServices.contains("TradeIn")) {
