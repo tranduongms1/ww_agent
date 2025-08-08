@@ -42,7 +42,7 @@ public class SCPPopup {
                 return true;
             });
         } catch (Exception e) {
-            throw new RuntimeException("Unable to select Term and Condition", e);
+            throw new Exception("Unable to select Term and Condition", e);
         }
     }
 
@@ -55,7 +55,7 @@ public class SCPPopup {
                 logger.info("Selected first SC+ type");
             }
         } catch (Exception e) {
-            throw new RuntimeException("Unable to select first SC+ type", e);
+            throw new Exception("Unable to select first SC+ type", e);
         }
 
     }
@@ -69,7 +69,7 @@ public class SCPPopup {
                 logger.info("Selected first SC+ duration");
             }
         } catch (Exception e) {
-            throw new RuntimeException("Unable to select first SC+ duration", e);
+            throw new Exception("Unable to select first SC+ duration", e);
         }
     }
 
@@ -112,7 +112,7 @@ public class SCPPopup {
                 return false;
             });
         } catch (Exception e) {
-            throw new RuntimeException("Unable to select SC+ Item", e);
+            throw new Exception("Unable to select SC+ Item", e);
         }
     }
 
@@ -127,7 +127,7 @@ public class SCPPopup {
                 logger.info("Clicked Continue in SC+ popup");
             }
         } catch (Exception e) {
-            throw new RuntimeException("Unable to click Continue", e);
+            throw new Exception("Unable to click Continue", e);
         }
     }
 
@@ -147,7 +147,7 @@ public class SCPPopup {
                 logger.info("Clicked Confirm in SC+ popup");
             }
         } catch (Exception e) {
-            throw new RuntimeException("Unable to click Confirm", e);
+            throw new Exception("Unable to click Confirm", e);
         }
     }
 

@@ -74,7 +74,7 @@ public abstract class PD {
             SCPPopup.checkTermAndCondition();
             SCPPopup.clickConfirm();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new Exception(e);
         }
     }
 
