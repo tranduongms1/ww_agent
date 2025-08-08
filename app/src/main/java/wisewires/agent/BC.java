@@ -69,7 +69,7 @@ public abstract class BC {
             // Handle SC+ Popup
             SCPPopup.waitForOpen(10);
             logger.info("Samsung Care+ popup opened");
-            if (elm.getAttribute("className").contains("smc-item")) {
+            if (elm.getAttribute("class").contains("smc-item")) {
                 SCPPopup.selectFirstType();
                 SCPPopup.selectFirstDuration();
                 SCPPopup.clickContinue();
