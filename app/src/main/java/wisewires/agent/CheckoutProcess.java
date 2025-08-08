@@ -88,18 +88,18 @@ public class CheckoutProcess {
     }
 
     public static boolean defaultSelectDeliveryTypeAtLine(Context c, int line, WebElement elm) {
-        c.checkoutProcess.selectedDeliveryTypes.accumulateAndGet(List.of("Any"), Util.appendFunction);
+        c.checkoutProcess.selectedDeliveryTypes.get().add("Any");
         return false;
     }
 
     public static boolean defaultSelectDeliveryOption(Context c, int line, WebElement elm) {
-        c.checkoutProcess.selectedDeliveryOptions.accumulateAndGet(List.of("Any"), Util.appendFunction);
+        c.checkoutProcess.selectedDeliveryOptions.get().add("Any");
         return false;
     }
 
     private static void onSelectedDeliveryService(Context c, int line, WebElement elm) {
         String value = elm.getAttribute("id").replaceFirst("group\\d+", "");
-        c.checkoutProcess.selectedDeliveryServices.accumulateAndGet(List.of(value), Util.appendFunction);
+        c.checkoutProcess.selectedDeliveryServices.get().add(value);
         logger.info("Delivery service '%s' selected for consigment %d".formatted(value, line));
     }
 
@@ -119,7 +119,7 @@ public class CheckoutProcess {
     }
 
     public static boolean defaultSelectDeliverySlot(Context c, int line, WebElement elm) {
-        c.checkoutProcess.selectedDeliverySlots.accumulateAndGet(List.of("Any"), Util.appendFunction);
+        c.checkoutProcess.selectedDeliverySlots.get().add("Any");
         return false;
     }
 
@@ -127,20 +127,27 @@ public class CheckoutProcess {
         return WebUI.getUrl().contains("CHECKOUT_STEP_PAYMENT");
     }
 
-    CheckoutProcess() {
-        this.selectDeliveryTypeFunc = CheckoutProcess::defaultSelectDeliveryType;
-        this.selectDeliveryTypeAtLineFunc = CheckoutProcess::defaultSelectDeliveryTypeAtLine;
-        this.selectDeliveryOptionFunc = CheckoutProcess::defaultSelectDeliveryOption;
-        this.selectDeliveryServiceFunc = CheckoutProcess::defaultSelectDeliveryService;
-        this.selectDeliverySlotFunc = CheckoutProcess::defaultSelectDeliverySlot;
-    }
-
     public void preProcess() {
-        if (this.preFillFormFuncs.isEmpty()) {
-            this.preFillFormFuncs.add(CheckoutProcess::defaultPreFillForm);
+        if (selectDeliveryTypeFunc == null) {
+            selectDeliveryTypeFunc = CheckoutProcess::defaultSelectDeliveryType;
         }
-        if (this.untilFuncs.isEmpty()) {
-            this.untilFuncs.add(CheckoutProcess::defaultUntil);
+        if (selectDeliveryTypeAtLineFunc == null) {
+            selectDeliveryTypeAtLineFunc = CheckoutProcess::defaultSelectDeliveryTypeAtLine;
+        }
+        if (selectDeliveryOptionFunc == null) {
+            selectDeliveryOptionFunc = CheckoutProcess::defaultSelectDeliveryOption;
+        }
+        if (selectDeliveryServiceFunc == null) {
+            selectDeliveryServiceFunc = CheckoutProcess::defaultSelectDeliveryService;
+        }
+        if (selectDeliverySlotFunc == null) {
+            selectDeliverySlotFunc = CheckoutProcess::defaultSelectDeliverySlot;
+        }
+        if (preFillFormFuncs.isEmpty()) {
+            preFillFormFuncs.add(CheckoutProcess::defaultPreFillForm);
+        }
+        if (untilFuncs.isEmpty()) {
+            untilFuncs.add(CheckoutProcess::defaultUntil);
         }
     }
 
@@ -177,10 +184,10 @@ public class CheckoutProcess {
     }
 
     public CheckoutProcess untilSeen(String locator) {
-        this.preFillFormFuncs.add((c, formID, form) -> {
+        preFillFormFuncs.add((c, formID, form) -> {
             return WebUI.findElement(locator) == null;
         });
-        this.untilFuncs.add((Context c) -> {
+        untilFuncs.add((Context c) -> {
             boolean seen = WebUI.findElement(locator) != null;
             if (seen) {
                 logger.info("Element '%s' is now displayed".formatted(locator));
@@ -192,47 +199,47 @@ public class CheckoutProcess {
 
     public CheckoutProcess untilForm(String formId) {
         AtomicBoolean seen = new AtomicBoolean(false);
-        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+        preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals(formId)) {
                 logger.info("Processed until form '%s'".formatted(formId));
                 seen.set(true);
             }
             return !seen.get();
         });
-        this.untilFuncs.add((Context c) -> {
+        untilFuncs.add((Context c) -> {
             return seen.get();
         });
         return this;
     }
 
     public CheckoutProcess untilPayment() {
-        this.preFillFormFuncs.add(CheckoutProcess::defaultPreFillForm);
-        this.untilFuncs.add(CheckoutProcess::defaultUntil);
+        preFillFormFuncs.add(CheckoutProcess::defaultPreFillForm);
+        untilFuncs.add(CheckoutProcess::defaultUntil);
         return this;
     }
 
     public void reset() {
-        this.preFillFormFuncs.clear();
-        this.untilFuncs.clear();
-        this.selectedDeliveryType = new AtomicReference<>();
-        this.seenDeliveryTypes = 0;
-        this.selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
-        this.seenDeliveryLists = 0;
-        this.selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
-        this.seenDeliverySlots = 0;
-        this.selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
+        preFillFormFuncs.clear();
+        untilFuncs.clear();
+        selectedDeliveryType = new AtomicReference<>();
+        seenDeliveryTypes = 0;
+        selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
+        seenDeliveryLists = 0;
+        selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
+        seenDeliverySlots = 0;
+        selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
     }
 
     public CheckoutProcess onCustomerAddress(OnFormAction action) {
         AtomicBoolean done = new AtomicBoolean(false);
-        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+        preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-customer-address-v2")) {
                 action.apply(c, form);
                 done.set(true);
             }
             return !done.get();
         });
-        this.untilFuncs.add((Context c) -> {
+        untilFuncs.add((Context c) -> {
             if (!done.get()) {
                 boolean passed = ensureNotPassedForm("app-customer-address-v2", ADDRESS_DETAILS_EDIT);
                 if (passed) {
@@ -246,14 +253,14 @@ public class CheckoutProcess {
 
     public CheckoutProcess onBillingAddress(OnFormAction action) {
         AtomicBoolean done = new AtomicBoolean(false);
-        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+        preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-billing-address-v2")) {
                 action.apply(c, form);
                 done.set(true);
             }
             return !done.get();
         });
-        this.untilFuncs.add((Context c) -> {
+        untilFuncs.add((Context c) -> {
             if (!done.get()) {
                 boolean passed = ensureNotPassedForm("app-billing-address-v2", ADDRESS_DETAILS_EDIT);
                 if (passed) {
@@ -305,7 +312,7 @@ public class CheckoutProcess {
 
     public CheckoutProcess selectIndividualOrder() {
         AtomicBoolean done = new AtomicBoolean(false);
-        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+        preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-customer-info-v2")) {
                 WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='PERSONAL_ORDER'])");
                 Form.check(radio);
@@ -314,7 +321,7 @@ public class CheckoutProcess {
             }
             return !done.get();
         });
-        this.untilFuncs.add((Context c) -> {
+        untilFuncs.add((Context c) -> {
             return done.get();
         });
         return this;
@@ -322,7 +329,7 @@ public class CheckoutProcess {
 
     public CheckoutProcess selectCompanyOrder() {
         AtomicBoolean done = new AtomicBoolean(false);
-        this.preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+        preFillFormFuncs.add((Context c, String id, WebElement form) -> {
             if (id.equals("app-customer-info-v2")) {
                 WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='COMPANY_ORDER'])");
                 Form.check(radio);
@@ -331,7 +338,7 @@ public class CheckoutProcess {
             }
             return !done.get();
         });
-        this.untilFuncs.add((Context c) -> {
+        untilFuncs.add((Context c) -> {
             return done.get();
         });
         return this;

@@ -6,12 +6,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Base64;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.BinaryOperator;
-
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v138.page.Page;
 
@@ -42,12 +39,6 @@ public abstract class Util {
         long stockLevel = (long) stock.get("stockLevel");
         return stockLevel > 0;
     }
-
-    public static BinaryOperator<List<String>> appendFunction = (current, update) -> {
-        List<String> combined = new java.util.ArrayList<>(current);
-        combined.addAll(update);
-        return combined;
-    };
 
     public static String captureFullPage() throws IOException {
         DevTools devTools = WebUI.driver.getDevTools();
