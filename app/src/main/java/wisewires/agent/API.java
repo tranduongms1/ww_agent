@@ -7,32 +7,36 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 public abstract class API {
-    static void addToCart(String apiEndpoint, String sku) {
-        int quantity = 1;
-        if (sku.contains(":")) {
-            String[] tokens = sku.split(":");
-            sku = tokens[0];
-            quantity = Integer.parseInt(tokens[1]);
-        }
-        Map<String, Object> data = Map.of("product", Map.of("code", sku), "quantity", quantity);
-        String script = """
-                    return fetch(`${arguments[0]}/users/current/carts/current/entries`, {
-                        method: "POST",
-                        headers:{'content-type':'application/json'},
-                        body: `${arguments[1]}`,
-                        mode: "cors",
-                        credentials: "include"
-                    })
-                        .then(async res => {
-                            if (res.status != 200) {
-                                var data = await res.text();
-                                throw new Error(JSON.parse(data).errors[0].message)
-                            }
-                            return res.text();
+    static void addToCart(String apiEndpoint, String sku) throws Exception {
+        try {
+            int quantity = 1;
+            if (sku.contains(":")) {
+                String[] tokens = sku.split(":");
+                sku = tokens[0];
+                quantity = Integer.parseInt(tokens[1]);
+            }
+            Map<String, Object> data = Map.of("product", Map.of("code", sku), "quantity", quantity);
+            String script = """
+                        return fetch(`${arguments[0]}/users/current/carts/current/entries`, {
+                            method: "POST",
+                            headers:{'content-type':'application/json'},
+                            body: `${arguments[1]}`,
+                            mode: "cors",
+                            credentials: "include"
                         })
-                        .then(data => arguments[2](JSON.parse(data).id));
-                """;
-        WebUI.driver.executeAsyncScript(script, apiEndpoint, new Gson().toJson(data));
+                            .then(async res => {
+                                if (res.status != 200) {
+                                    var data = await res.text();
+                                    throw new Error(JSON.parse(data).errors[0].message)
+                                }
+                                return res.text();
+                            })
+                            .then(data => arguments[2](JSON.parse(data).id));
+                    """;
+            WebUI.driver.executeAsyncScript(script, apiEndpoint, new Gson().toJson(data));
+        } catch (Exception e) {
+            throw new Exception("Unable to add %s to cart".formatted(sku));
+        }
     }
 
     static void deleteCartEntry(String apiEndpoint, int entry) {
