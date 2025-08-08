@@ -208,9 +208,7 @@ public class CheckoutProcess {
             }
             return !seen.get();
         });
-        untilFuncs.add((Context c) -> {
-            return seen.get();
-        });
+        untilFuncs.add(c -> seen.get());
         return this;
     }
 
@@ -230,6 +228,24 @@ public class CheckoutProcess {
         selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
         seenDeliverySlots = 0;
         selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
+    }
+
+    public CheckoutProcess onCustomerInfo(OnFormAction action) {
+        AtomicBoolean done = new AtomicBoolean(false);
+        preFillFormFuncs.add((Context c, String id, WebElement form) -> {
+            if (id.equals("app-customer-info-v2")) {
+                action.apply(c, form);
+                done.set(true);
+            }
+            return !done.get();
+        });
+        untilFuncs.add((Context c) -> {
+            if (!done.get()) {
+                ensureNotPassedForm("app-customer-info-v2", "[data-an-la='checkout:customer details:edit']");
+            }
+            return done.get();
+        });
+        return this;
     }
 
     public CheckoutProcess onCustomerAddress(OnFormAction action) {
@@ -313,36 +329,18 @@ public class CheckoutProcess {
     }
 
     public CheckoutProcess selectIndividualOrder() {
-        AtomicBoolean done = new AtomicBoolean(false);
-        preFillFormFuncs.add((Context c, String id, WebElement form) -> {
-            if (id.equals("app-customer-info-v2")) {
-                WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='PERSONAL_ORDER'])");
-                Form.check(radio);
-                logger.info("Selected individual order");
-                done.set(true);
-            }
-            return !done.get();
+        return onCustomerInfo((c, form) -> {
+            WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='PERSONAL_ORDER'])");
+            Form.check(radio);
+            logger.info("Selected individual order");
         });
-        untilFuncs.add((Context c) -> {
-            return done.get();
-        });
-        return this;
     }
 
     public CheckoutProcess selectCompanyOrder() {
-        AtomicBoolean done = new AtomicBoolean(false);
-        preFillFormFuncs.add((Context c, String id, WebElement form) -> {
-            if (id.equals("app-customer-info-v2")) {
-                WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='COMPANY_ORDER'])");
-                Form.check(radio);
-                logger.info("Selected company order");
-                done.set(true);
-            }
-            return !done.get();
+        return onCustomerInfo((c, form) -> {
+            WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='COMPANY_ORDER'])");
+            Form.check(radio);
+            logger.info("Selected company order");
         });
-        untilFuncs.add((Context c) -> {
-            return done.get();
-        });
-        return this;
     }
 }
