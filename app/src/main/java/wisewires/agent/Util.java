@@ -9,6 +9,8 @@ import java.util.Base64;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v138.page.Page;
 
@@ -57,5 +59,14 @@ public abstract class Util {
         out.write(Base64.getDecoder().decode(base64Image));
         out.close();
         return filePath;
+    }
+
+    public static boolean isPDPage() {
+        String pdSelector = "div[class*='pdp-header']";
+        WebElement pdPage = WebUI.findElement(pdSelector);
+        if (pdPage != null) {
+            return true;
+        }
+        return false;
     }
 }

@@ -40,4 +40,47 @@ public abstract class PD {
             throw new Exception("Unable to add trade-up on PD page");
         }
     }
+
+    static void continueToCart() {
+        WebUI.wait(30, 1).withMessage("added to cart").until(driver -> {
+            String buyTo = """
+                    [an-la='secondary Nav:add to cart'],
+                    [an-la='secondary Nav:pre order'],
+                    [an-la='pd buying tool:add to cart'],
+                    .cost-box__cta a[an-ac='addToCart']""";
+            if (WebUI.findElement(buyTo) != null) {
+                WebElement elm = WebUI.findElement(buyTo);
+                WebUI.scrollToCenter(elm);
+                WebUI.click(elm);
+                return false;
+            }
+
+            String skipTo = "[an-la='evoucher:no addition:skip'], [an-la='evoucher:below evoucher:back']";
+            if (WebUI.isSite("FR")) {
+                skipTo = "[id='giftContinue']";
+            } else if (WebUI.isOneOfSites("HK", "HK_EN")) {
+                skipTo = "[an-la='evoucher:below evoucher:back'], [an-la='evoucher:no addition:redeem']";
+            }
+            if (WebUI.findElement(skipTo) != null) {
+                WebUI.click(skipTo);
+                return false;
+            }
+
+            String continueTo = """
+                    [an-la='add-on:continue'],
+                    [an-la='add-on:go to cart'],
+                    [an-la='free gift:continue'],
+                    #giftContinue,
+                    [an-la='evoucher:continue'],
+                    [an-la='evoucher:go to cart'],
+                    [id='nextBtn'],
+                    [id='primaryInfoGoCartAddOn']""";
+            if (WebUI.findElement(continueTo) != null) {
+                WebUI.click(continueTo);
+                return false;
+            }
+
+            return driver.getCurrentUrl().contains("/cart");
+        });
+    }
 }

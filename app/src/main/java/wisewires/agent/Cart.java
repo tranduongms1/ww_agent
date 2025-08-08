@@ -36,16 +36,23 @@ public abstract class Cart {
     public static void addProduct(Context c, String url, List<String> addedServices) throws Exception {
         WebUI.openBrowser(c, url);
         WebUI.mustCloseAllPopup(c);
-        if (addedServices.contains("TradeIn")) {
-            BC.addTradeIn(c);
+        if (Util.isPDPage()) {
+            if (addedServices.contains("TradeIn")) {
+                PD.addTradeIn(c);
+            }
+            if (addedServices.contains("TradeUp")) {
+                PD.addTradeUp(c);
+            }
+            PD.continueToCart();
+        } else {
+            if (addedServices.contains("TradeIn")) {
+                BC.addTradeIn(c);
+            }
+            if (addedServices.contains("SC+")) {
+                BC.addSCPlus(c);
+            }
+            BC.continueToCart();
         }
-        if (addedServices.contains("SC+")) {
-            BC.addSCPlus(c);
-        }
-        if (addedServices.contains("TradeUp")) {
-            PD.addTradeUp(c);
-        }
-        BC.continueToCart();
     }
 
     static void addTradeIn(Context c) throws Exception {
