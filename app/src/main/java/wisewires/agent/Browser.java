@@ -124,7 +124,8 @@ public abstract class Browser {
                             item.urlOrSKU = tokens.remove(0);
                             leading = Tokens.removeLeading(tokens, "with",
                                     "trade-in", "tradein", "trade-up", "tradeup",
-                                    "sc+", "e-warranty", "ewarranty", "warranty",
+                                    "sc+", "smc", "sub", "subscription",
+                                    "e-warranty", "ewarranty", "warranty",
                                     "and", "+");
                             if (Tokens.containsAny(leading, "trade-in", "tradein")) {
                                 item.addedServices.add("TradeIn");
@@ -132,8 +133,12 @@ public abstract class Browser {
                             if (Tokens.containsAny(leading, "trade-up", "tradeup")) {
                                 item.addedServices.add("TradeUp");
                             }
-                            if (Tokens.containsAny(leading, "sc+")) {
-                                item.addedServices.add("SC+");
+                            if (Tokens.containsAny(leading, "sc+", "smc")) {
+                                if (Tokens.containsAny(leading, "sub", "subscription")) {
+                                    item.addedServices.add("SUBSC+");
+                                } else {
+                                    item.addedServices.add("SC+");
+                                }
                             }
                             if (Tokens.containsAny(leading, "e-warranty", "ewarranty", "warranty")) {
                                 item.addedServices.add("EWarranty");

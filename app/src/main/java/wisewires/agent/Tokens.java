@@ -47,7 +47,7 @@ public abstract class Tokens {
 
     public static boolean containsAny(List<String> list, String... ss) {
         for (String s : ss) {
-            if (list.contains(s)) {
+            if (contains(list, s)) {
                 return true;
             }
         }
