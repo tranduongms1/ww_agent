@@ -143,13 +143,15 @@ public abstract class TradeUp {
 
                                 case
                                         "model",
-                                        "Select Size":
+                                        "Select Size",
+                                        "Selecteer maat":
                                     select(elm, data.get("model"));
                                     break;
 
                                 case
                                         "brand",
-                                        "Select Brand":
+                                        "Select Brand",
+                                        "Selecteer merk":
                                     select(elm, data.get("brand"));
                                     break;
                             }

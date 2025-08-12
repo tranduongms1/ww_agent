@@ -3,6 +3,10 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn2-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
+    "exchangeEndpoints": {
+        "prod": "https://p1.ecom.samsung.com/v1/exchange/api/bel",
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/bel"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -28,5 +32,19 @@
         "line2": "3016",
         "postalCode": "3500",
         "adminLevel2": "Hasselt"
+    },
+    "serviceData": {
+        "TradeUp": {
+            "store_id": "be",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "0DD76B7D-4228-4F46-AAE2-E8DA59DCE8D0",
+            "type": "TradeIn",
+            "sku": "QE65S94DATXXN",
+            "delayed_gratification": false
+        }
     }
 }
