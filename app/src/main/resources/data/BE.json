@@ -34,6 +34,32 @@
         "adminLevel2": "Hasselt"
     },
     "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-L8P-TRADEIN",
+            "addToCartType": "append",
+            "provider": "L8P",
+            "additionalInfos": {
+                "targetProductCode": "SM-F966BZKBEUB",
+                "provider": "L8P",
+                "productCode": "deviceType:mobile phone:model:T_MOBILEPHONE_SAMSUNG_GALAXYS24:capacity:L08631",
+                "responses": [
+                    {
+                        "name": "screen_working||mobile phone_be",
+                        "value": "true"
+                    },
+                    {
+                        "name": "data_wiped||mobile phone_be",
+                        "value": "true"
+                    },
+                    {
+                        "name": "device_working||mobile phone_be",
+                        "value": "true"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
         "TradeUp": {
             "store_id": "be",
             "device_info": {
