@@ -26,6 +26,10 @@ public abstract class Browser {
                 break;
             }
 
+            case "delay":
+                WebUI.delay(Integer.parseInt(tokens.get(0)));
+                break;
+
             case "open", "go", "navigate": {
                 leading = Tokens.removeLeading(tokens, "to", "home", "shop", "cart", "page");
                 if (leading.containsAll(List.of("shop", "home"))) {
@@ -331,6 +335,18 @@ public abstract class Browser {
                     c.mustCheckoutProcess().untilPayment();
                     Checkout.process(c);
                 }
+                break;
+            }
+
+            case "capture": {
+                String url = Util.captureFullPage();
+                String fileId = c.client.uploadFile(c.post.getChannelId(), url);
+                Post post = new Post();
+                post.setChannelId(c.post.getChannelId());
+                post.setMessage(req);
+                post.setFileIds(List.of(fileId));
+                post.setRootId(c.post.getId());
+                c.client.createPost(post);
                 break;
             }
 
