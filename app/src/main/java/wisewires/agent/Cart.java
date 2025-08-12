@@ -2,6 +2,7 @@ package wisewires.agent;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -104,6 +105,39 @@ public abstract class Cart {
             logger.info("Trade-in added success for %s at cart entry %d".formatted(sku, entryNumber));
         } catch (Exception e) {
             throw new Exception("Unable to add trade-in for %s at cart entry %d".formatted(sku, entryNumber));
+        }
+    }
+
+    static void addTradeUpViaAPI(Context c, String sku, long entryNumber) throws Exception {
+        try {
+            Profile p = c.getProfile();
+            Map<String, Object> data = p.getServiceData().get("TradeUp");
+            if (data.containsKey("serviceCode")) {
+                API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, data);
+            } else {
+                String deviceId = API.getTradeInDevice(c.getExchangeEndpoint(), c.site.split("_")[0], sku);
+                data.put("device_id", deviceId);
+                data.put("sku", sku);
+                String exchangeId = API.createExchangeId(c.getExchangeEndpoint(), data);
+                Map<String, Object> exchangeData = Map.of("exchangeId", exchangeId, "provider", "EXCHANGE");
+                API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, exchangeData);
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to add trade-up for %s at cart entry %d".formatted(sku, entryNumber));
+        }
+    }
+
+    static void addSMCViaAPI(Context c, long entryNumber, Map<String, Object> option) throws Exception {
+        try {
+            Map<String, Object> info = new HashMap<>(Map.of("key", "paymentCycle"));
+            if (option.get("subscriptionFrequency") != null) {
+                info.put("value", option.get("subscriptionFrequency"));
+            }
+            Map<String, Object> data = Map.of("serviceCode", option.get("code"), "additionalInfos", List.of(info));
+            API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, data);
+            logger.info("SC+ with code %s added to cart entry %d".formatted(option.get("code"), entryNumber));
+        } catch (Exception e) {
+            throw new Exception("Unable to add SC+ at cart entry %d".formatted(entryNumber));
         }
     }
 

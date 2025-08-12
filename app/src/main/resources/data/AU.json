@@ -4,7 +4,7 @@
         "stg2": "https://s2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "exchangeEndpoints": {
-        "prod": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus",
+        "prod": "https://aep1-org.ecom.samsung.com/v1/exchange/api/aus",
         "stg2": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus"
     },
     "customerInfo": {
@@ -46,6 +46,18 @@
                     "value": "130"
                 }
             ]
+        },
+        "TradeUp": {
+            "store_id": "au",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "96E22093-601E-45E7-8D5F-3A541C0B37A4",
+            "type": "TradeIn",
+            "sku": "QA85LS03DAWXXY",
+            "delayed_gratification": false
         }
     }
 }

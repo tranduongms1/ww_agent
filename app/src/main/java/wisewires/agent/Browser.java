@@ -115,7 +115,7 @@ public abstract class Browser {
 
                         @Override
                         public String toString() {
-                            return urlOrSKU + " with " + addedServices;
+                            return urlOrSKU + " with added services " + addedServices;
                         }
                     }
                     List<Item> items = new ArrayList<>();
@@ -126,7 +126,7 @@ public abstract class Browser {
                             item.urlOrSKU = tokens.remove(0);
                             leading = Tokens.removeLeading(tokens, "with",
                                     "trade-in", "tradein", "trade-up", "tradeup",
-                                    "sc+", "smc", "sub", "subscription",
+                                    "sc+", "smc", "std", "standard", "sub", "subscription",
                                     "e-warranty", "ewarranty", "warranty",
                                     "and", "+");
                             if (Tokens.containsAny(leading, "trade-in", "tradein")) {
@@ -137,7 +137,9 @@ public abstract class Browser {
                             }
                             if (Tokens.containsAny(leading, "sc+", "smc")) {
                                 if (Tokens.containsAny(leading, "sub", "subscription")) {
-                                    item.addedServices.add("SUBSC+");
+                                    item.addedServices.add("SUB-SC+");
+                                } else if (Tokens.containsAny(leading, "std", "standard")) {
+                                    item.addedServices.add("STD-SC+");
                                 } else {
                                     item.addedServices.add("SC+");
                                 }
@@ -155,13 +157,36 @@ public abstract class Browser {
                             mustReload = false;
                         } else {
                             Cart.mustCartId(c);
-                            API.addToCart(c.getAPIEndpoint(), item.urlOrSKU);
+                            String sku = item.urlOrSKU;
+                            API.addToCart(c.getAPIEndpoint(), sku);
                             if (!item.addedServices.isEmpty()) {
                                 Thread.sleep(2000);
                                 Map<String, Object> cartInfo = API.getCurrentCartInfo(c.getAPIEndpoint());
-                                long entryNumber = Util.getCartEntryNumber(cartInfo, item.urlOrSKU);
+                                long entryNumber = Util.getCartEntryNumber(cartInfo, sku);
                                 if (item.addedServices.contains("TradeIn")) {
-                                    Cart.addTradeInViaAPI(c, item.urlOrSKU, entryNumber);
+                                    Cart.addTradeInViaAPI(c, sku, entryNumber);
+                                }
+                                if (item.addedServices.contains("TradeUp")) {
+                                    Cart.addTradeUpViaAPI(c, sku, entryNumber);
+                                }
+                                if (item.addedServices.contains("SUB-SC+")) {
+                                    Map<String, Object> option = API.getSubSMCService(c, sku);
+                                    if (option == null)
+                                        throw new Exception("No Subcription SC+ avaiable for %s".formatted(sku));
+                                    Cart.addSMCViaAPI(c, entryNumber, option);
+                                }
+                                if (item.addedServices.contains("STD-SC+")) {
+                                    Map<String, Object> option = API.getStdSMCService(c, sku);
+                                    if (option == null)
+                                        throw new Exception("No Standard SC+ avaiable for %s".formatted(sku));
+                                    Cart.addSMCViaAPI(c, entryNumber, option);
+                                }
+                                if (item.addedServices.contains("SC+")) {
+                                    Map<String, Object> option = API.getSMCServices(c, sku)
+                                            .stream().findFirst().orElse(null);
+                                    if (option == null)
+                                        throw new Exception("No SC+ avaiable for %s".formatted(sku));
+                                    Cart.addSMCViaAPI(c, entryNumber, option);
                                 }
                             }
                             mustReload = true;
