@@ -226,12 +226,10 @@ public abstract class Checkout {
             }
 
             case "delivery_type_top": {
-                if (p.selectDeliveryTypeFunc.apply(c, form)) {
-                    return true;
-                }
+                boolean done = p.selectDeliveryTypeFunc.apply(c, form);
                 locators.remove(DELIVERY_INFO_TABS_SELECTOR);
                 locators.remove(DELIVERY_TAB_GROUP_CONTAINER_TOP);
-                return false;
+                return done;
             }
 
             case "delivery_type_line": {

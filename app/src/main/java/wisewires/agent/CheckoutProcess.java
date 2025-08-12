@@ -306,7 +306,13 @@ public class CheckoutProcess {
         });
     }
 
-    public CheckoutProcess selectDifferentBillingAddress() {
+    public CheckoutProcess checkSameAsShippingAddress() {
+        return onBillingAddress((c, form) -> {
+            BillingAddress.checkSameAsShipping();
+        });
+    }
+
+    public CheckoutProcess uncheckSameAsShippingAddress() {
         return onBillingAddress((c, form) -> {
             BillingAddress.uncheckSameAsShipping();
         });

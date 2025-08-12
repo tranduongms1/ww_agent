@@ -225,12 +225,12 @@ public abstract class Browser {
             }
 
             case "fill": {
-                Profile profile = c.getProfile();
                 TokenSingleMatch match = Tokens.getFormName(tokens);
                 boolean all = Tokens.containsAny(match.leading, "all");
                 if (c.checkoutProcess != null) {
                     Checkout.process(c);
                 }
+                Profile profile = c.getProfile();
                 switch (match.value) {
                     case "customer info":
                         CustomerInfo.autoFill(profile.getCustomerInfo(), !all);
@@ -251,7 +251,7 @@ public abstract class Browser {
 
             case "select": {
                 if (Tokens.containsAll(tokens, "different", "billing", "address")) {
-                    c.mustCheckoutProcess().selectDifferentBillingAddress();
+                    c.mustCheckoutProcess().uncheckSameAsShippingAddress();
                     break;
                 }
                 if (tokens.get(0).equalsIgnoreCase("new")) {
