@@ -10,7 +10,7 @@ import java.util.List;
 public class SCPPopup {
     static Logger logger = LoggerFactory.getLogger(SCPPopup.class);
 
-    static void checkTermAndCondition() throws Exception {
+    static void acceptTermAndConditions() throws Exception {
         try {
             WebUI.wait(5, 1).withMessage("Check SC+ terms and conditions").until(driver -> {
                 List<WebElement> elms;
@@ -49,11 +49,9 @@ public class SCPPopup {
     static void selectFirstType() throws Exception {
         try {
             String to = ".smc-modal :has(> [name='smc-types'])";
-            WebElement elm = WebUI.findElement(to);
-            if (elm != null) {
-                elm.click();
-                logger.info("Selected first SC+ type");
-            }
+            WebElement elm = WebUI.waitElement(to, 5);
+            elm.click();
+            logger.info("Selected first SC+ type");
         } catch (Exception e) {
             throw new Exception("Unable to select first SC+ type", e);
         }
@@ -63,11 +61,9 @@ public class SCPPopup {
     static void selectFirstDuration() throws Exception {
         try {
             String to = ".smc-modal :has(> [name='smc-durations'])";
-            WebElement elm = WebUI.findElement(to);
-            if (elm != null) {
-                elm.click();
-                logger.info("Selected first SC+ duration");
-            }
+            WebElement elm = WebUI.waitElement(to, 5);
+            elm.click();
+            logger.info("Selected first SC+ duration");
         } catch (Exception e) {
             throw new Exception("Unable to select first SC+ duration", e);
         }
@@ -134,11 +130,11 @@ public class SCPPopup {
     static void clickConfirm() throws Exception {
         try {
             String to = """
-                button[an-la="samsung care:confirm"],
-                button[data-an-la="samsung care:add to cart"],
-                app-samsung-care-v2 .modal__footer button[type="submit"],
-                button[data-an-la="samsung care:confirm"],
-                a[an-la="samsung care:confirm"]""";
+                    button[an-la="samsung care:confirm"],
+                    button[data-an-la="samsung care:add to cart"],
+                    app-samsung-care-v2 .modal__footer button[type="submit"],
+                    button[data-an-la="samsung care:confirm"],
+                    a[an-la="samsung care:confirm"]""";
             WebElement elm = WebUI.findElement(to);
             if (elm != null) {
                 WebUI.scrollToCenter(elm);
@@ -160,11 +156,7 @@ public class SCPPopup {
                     .js-added-service-modal-SMC,
                     .added-service-modal.show,
                     app-samsung-care""";
-            List<WebElement> elms = WebUI.findElements(to);
-            if (elms.isEmpty()) {
-                return true;
-            }
-            return false;
+            return WebUI.findElement(to) == null;
         });
     }
 
@@ -177,8 +169,7 @@ public class SCPPopup {
                     .js-added-service-modal-SMC,
                     .added-service-modal.show,
                     app-samsung-care""";
-            List<WebElement> elms = WebUI.findElements(to);
-            return !elms.isEmpty();
+            return WebUI.findElement(to) != null;
         });
     }
 }

@@ -71,7 +71,7 @@ public abstract class PD {
                 SCPPopup.selectFirstDuration();
                 SCPPopup.clickContinue();
             }
-            SCPPopup.checkTermAndCondition();
+            SCPPopup.acceptTermAndConditions();
             SCPPopup.clickConfirm();
         } catch (Exception e) {
             throw new Exception(e);

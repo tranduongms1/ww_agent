@@ -75,7 +75,7 @@ public abstract class BC {
                 SCPPopup.clickContinue();
             }
             logger.info("Samsung Care+ type and duration selected");
-            SCPPopup.checkTermAndCondition();
+            SCPPopup.acceptTermAndConditions();
             logger.info("Samsung Care+ terms and conditions checked");
             SCPPopup.clickConfirm();
             SCPPopup.waitForClose(10);
