@@ -79,6 +79,23 @@ public abstract class Cart {
         }
     }
 
+    static void addTradeUp(Context c) throws Exception {
+        try {
+            String to = "cx-cart-item-v2 [data-an-la='add service:trade-up']";
+            WebElement elm = WebUI.waitElement(to, 10);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            WebUI.click(to);
+            logger.info("Add trade-up button clicked");
+            WebUI.waitElement(TradeUp.MODAL_LOCATOR, 10);
+            logger.info("Trade-up popup opened");
+            TradeUp.process(c);
+            logger.info("Trade-up added success on cart page");
+        } catch (Exception e) {
+            throw new Exception("Unable to add trade-up on cart page");
+        }
+    }
+
     @SuppressWarnings("unchecked")
     static void addTradeInViaAPI(Context c, String sku, long entryNumber) throws Exception {
         try {

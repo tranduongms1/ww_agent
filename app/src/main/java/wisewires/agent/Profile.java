@@ -12,6 +12,7 @@ public class Profile {
     private HashMap<String, String> billingAddress;
     private HashMap<String, String> tradeInData;
     private HashMap<String, String> tradeInInfo;
+    private HashMap<String, String> tradeUpData;
     private HashMap<String, String> simInfo;
 
     private Map<String, Map<String, Object>> serviceData;
@@ -76,6 +77,17 @@ public class Profile {
 
     public void setTradeInInfo(HashMap<String, String> tradeInInfo) {
         this.tradeInInfo = tradeInInfo;
+    }
+
+    public HashMap<String, String> getTradeUpData() {
+        if (tradeUpData == null) {
+            return new HashMap<>();
+        }
+        return tradeUpData;
+    }
+
+    public void setTradeUpData(HashMap<String, String> tradeUpData) {
+        this.tradeUpData = tradeUpData;
     }
 
     public HashMap<String, String> getSIMInfo() {

@@ -2,6 +2,7 @@ package wisewires.agent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,24 +14,30 @@ public abstract class TradeUp {
     static Logger logger = LoggerFactory.getLogger(TradeIn.class);
 
     static String MODAL_LOCATOR = """
-            .vd-trade-in-popup""";
+            .vd-trade-in-popup,
+            [class^='trade-up-steps']""";
 
     static String FIELD_LOCATORS = """
             input#postal-code,
             [formcontrolname='postCodeControl'],
             .sdf-comp-model-menu,
-            .sdf-comp-brand-menu""";
+            .sdf-comp-brand-menu,
+            mat-expansion-panel""";
 
     static String NEXT_LOCATOR = """
             [an-la='trade-up:select device:next'],
+            [data-an-la='trade-up:select device:next'],
             [an-la='trade-up:check device condition:next'],
-            [an-la*='apply trade up']""";
+            [data-an-la='trade-up:check device condition:next'],
+            [an-la*='apply trade up'],
+            [data-an-la*='apply trade up']""";
 
     static String getStepName(WebElement modal) throws Exception {
         WebElement closeBtn = WebUI.waitElement(modal, By.cssSelector("""
-                .vd-trade-in-popup__close"""), 5);
+                .vd-trade-in-popup__close,
+                .modal__close"""), 5);
         if (closeBtn != null) {
-            return WebUI.getDomAttribute(closeBtn, "an-la").split(":")[1];
+            return WebUI.getDomAttribute(closeBtn, "an-la", "data-an-la").split(":")[1];
         }
         return "unknow";
     }
@@ -41,6 +48,11 @@ public abstract class TradeUp {
             return "model";
         if (name.contains("brand"))
             return "brand";
+        if (name.contains("mat-expansion-panel")) {
+            return WebUI.driver.executeScript(
+                    "return arguments[0].parentNode.parentNode.querySelector('.trade-up__dropdown-header .device_category').innerText",
+                    elm).toString();
+        }
         return name;
     }
 
@@ -73,10 +85,15 @@ public abstract class TradeUp {
 
     static void acceptTermsAndConditions(WebElement modal) throws Exception {
         List<WebElement> elms = WebUI.findElements(modal, By.cssSelector("""
-                .vd-trade-in-popup__agree .checkbox-v2"""));
+                .vd-trade-in-popup__agree .checkbox-v2,
+                .mdc-checkbox:has(+ label .trade-up__tc)"""));
         for (WebElement elm : elms) {
             if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
-                WebUI.scrollIntoView(elm);
+                if (elm.getDomAttribute("class").contains("checkbox-v2")) {
+                    WebUI.scrollIntoView(elm);
+                } else {
+                    WebUI.scrollToCenter(elm);
+                }
                 WebUI.delay(1);
                 WebUI.click(elm, 10, 10);
                 logger.info("Term and conditions accepted");
@@ -93,7 +110,7 @@ public abstract class TradeUp {
         btn.click();
         logger.info("Next button clicked");
         WebUI.waitForDisappear(btn, 10);
-        if (WebUI.findElement(MODAL_LOCATOR) == null) {
+        if (WebUI.waitElement(MODAL_LOCATOR, 3) == null) {
             return true;
         }
         WebUI.waitElement(NEXT_LOCATOR, 10);
@@ -102,6 +119,7 @@ public abstract class TradeUp {
     }
 
     static void process(Context c) throws Exception {
+        Map<String, String> data = c.getProfile().getTradeUpData();
         Exception error = null;
         int errorCount = 0;
         while (errorCount < 3) {
@@ -118,17 +136,21 @@ public abstract class TradeUp {
                                 case "postal-code", "postCodeControl":
                                     elm.clear();
                                     WebUI.delay(1);
-                                    elm.sendKeys("5000");
+                                    elm.sendKeys(data.get("postalCode"));
                                     elm.sendKeys(Keys.ENTER);
                                     WebUI.waitElement(".sdf-comp-postal-code-input-panel.success", 5);
                                     break;
 
-                                case "model":
-                                    select(elm, name);
+                                case
+                                        "model",
+                                        "Select Size":
+                                    select(elm, data.get("model"));
                                     break;
 
-                                case "brand":
-                                    select(elm, name);
+                                case
+                                        "brand",
+                                        "Select Brand":
+                                    select(elm, data.get("brand"));
                                     break;
                             }
                         }

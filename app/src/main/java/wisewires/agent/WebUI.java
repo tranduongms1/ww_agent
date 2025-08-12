@@ -4,9 +4,9 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -166,9 +166,13 @@ public abstract class WebUI {
         });
     }
 
+    @SuppressWarnings("unchecked")
     public static void click(WebElement elm, int dx, int dy) {
-        Rectangle rect = elm.getRect();
-        new Actions(WebUI.driver).moveToLocation(rect.x + dx, rect.y + dy).click().perform();
+        Map<String, Number> rect = (Map<String, Number>) WebUI.driver
+                .executeScript("return arguments[0].getBoundingClientRect()", elm);
+        int top = rect.get("top").intValue();
+        int left = rect.get("left").intValue();
+        new Actions(WebUI.driver).moveToLocation(left + dx, top + dy).click().perform();
     }
 
     static WebElement findElement(String selector) {

@@ -107,6 +107,14 @@ public abstract class Browser {
                     }
                     break;
                 }
+                if (tokens.get(0).equalsIgnoreCase("trade-up")) {
+                    if (WebUI.getUrl().contains("/cart")) {
+                        Cart.addTradeUp(c);
+                    } else {
+                        PD.addTradeUp(c);
+                    }
+                    break;
+                }
                 if (tokens.contains("cart")) {
                     boolean mustReload = false;
                     class Item {
