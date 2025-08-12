@@ -3,6 +3,10 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
+    "exchangeEndpoints": {
+        "prod": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus",
+        "stg2": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -30,5 +34,18 @@
         "brand": "Samsung",
         "model": "Galaxy Z Fold 4",
         "storage": "512"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T_SAMSUNG_SM-G780F_128",
+            "addToCartType": "append",
+            "provider": "ASURION",
+            "additionalInfos": [
+                {
+                    "key": "discountAmount",
+                    "value": "130"
+                }
+            ]
+        }
     }
 }

@@ -15,7 +15,7 @@ public abstract class Cart {
     static String getCartId(Context c) {
         if (WebUI.driver != null) {
             String js = "return window.sessionStorage.ref || window.localStorage[`spartacus⚿${arguments[0]}⚿cart`]";
-            return (String) WebUI.driver.executeScript(js, c.siteUid != "" ? c.siteUid : c.site.toLowerCase());
+            return (String) WebUI.driver.executeScript(js, c.getSiteUid());
         }
         return null;
     }
@@ -75,6 +75,35 @@ public abstract class Cart {
             logger.info("Trade-in added success on cart page");
         } catch (Exception e) {
             throw new Exception("Unable to add trade-in on cart page");
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    static void addTradeInViaAPI(Context c, String sku, long entryNumber) throws Exception {
+        try {
+            Profile p = c.getProfile();
+            Map<String, Object> data = p.getServiceData().get("TradeIn");
+            if (data.containsKey("serviceCode")) {
+                if (data.get("additionalInfos") instanceof Map) {
+                    Map<String, Object> payload = (Map<String, Object>) data.get("additionalInfos");
+                    payload.put("orderEntryNumber", entryNumber);
+                    payload.put("targetProductCode", sku);
+                    List<Object> info = API.getTradeInAdditionalInfos(c.getAPIEndpoint(), payload);
+                    info.add(Map.of("key", "IMEI", "value", MockData.IMEI()));
+                    data.put("additionalInfos", info);
+                }
+                API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, data);
+            } else {
+                String deviceId = API.getTradeInDevice(c.getExchangeEndpoint(), c.site, sku);
+                data.put("device_id", deviceId);
+                data.put("sku", sku);
+                String exchangeId = API.createExchangeId(c.getExchangeEndpoint(), data);
+                Map<String, Object> exchangeData = Map.of("exchangeId", exchangeId);
+                API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, exchangeData);
+            }
+            logger.info("Trade-in added success for %s at cart entry %d".formatted(sku, entryNumber));
+        } catch (Exception e) {
+            throw new Exception("Unable to add trade-in for %s at cart entry %d".formatted(sku, entryNumber));
         }
     }
 

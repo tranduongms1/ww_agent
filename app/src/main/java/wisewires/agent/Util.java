@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Base64;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -40,6 +41,23 @@ public abstract class Util {
             return false;
         long stockLevel = (long) stock.get("stockLevel");
         return stockLevel > 0;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static Map<String, Object> getCartEntry(Map<String, Object> cartInfo, String sku) {
+        List<Map<String, Object>> entries = (List<Map<String, Object>>) cartInfo.get("entries");
+        for (Map<String, Object> entry : entries) {
+            Map<String, Object> product = (Map<String, Object>) entry.get("product");
+            if (product.get("code").toString().equalsIgnoreCase(sku)) {
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    public static long getCartEntryNumber(Map<String, Object> cartInfo, String sku) {
+        Map<String, Object> entry = getCartEntry(cartInfo, sku);
+        return entry != null ? (long) entry.get("entryNumber") : -1;
     }
 
     public static String captureFullPage() throws IOException {

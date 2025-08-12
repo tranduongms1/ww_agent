@@ -103,10 +103,18 @@ public class Context {
         return "https://%s.shop.samsung.com/%s%s/cart".formatted(env, site.toLowerCase(), tail);
     }
 
+    public String getSiteUid() {
+        return siteUid != "" ? siteUid : site.toLowerCase();
+    }
+
     public String getAPIEndpoint() throws Exception {
         Map<String, String> apiEndpoints = getProfile().getApiEndpoints();
-        String tail = siteUid != "" ? siteUid : site.toLowerCase();
-        return apiEndpoints.get(env) + tail;
+        return apiEndpoints.get(env) + getSiteUid();
+    }
+
+    public String getExchangeEndpoint() throws Exception {
+        Map<String, String> endpoints = getProfile().getExchangeEndpoints();
+        return endpoints.get(env);
     }
 
     public CheckoutProcess mustCheckoutProcess() {

@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Profile {
     private Map<String, String> apiEndpoints;
+    private Map<String, String> exchangeEndpoints;
 
     private HashMap<String, String> customerInfo;
     private HashMap<String, String> customerAddress;
@@ -13,12 +14,22 @@ public class Profile {
     private HashMap<String, String> tradeInInfo;
     private HashMap<String, String> simInfo;
 
+    private Map<String, Map<String, Object>> serviceData;
+
     public Map<String, String> getApiEndpoints() {
         return apiEndpoints;
     }
 
     public void setApiEndpoints(Map<String, String> apiEndpoints) {
         this.apiEndpoints = apiEndpoints;
+    }
+
+    public Map<String, String> getExchangeEndpoints() {
+        return exchangeEndpoints;
+    }
+
+    public void setExchangeEndpoints(Map<String, String> exchangeEndpoints) {
+        this.exchangeEndpoints = exchangeEndpoints;
     }
 
     public HashMap<String, String> getCustomerInfo() {
@@ -73,5 +84,16 @@ public class Profile {
 
     public void setSIMInfo(HashMap<String, String> simInfo) {
         this.simInfo = simInfo;
+    }
+
+    public Map<String, Map<String, Object>> getServiceData() {
+        if (serviceData == null) {
+            return new HashMap<>();
+        }
+        return serviceData;
+    }
+
+    public void setServiceData(Map<String, Map<String, Object>> serviceData) {
+        this.serviceData = serviceData;
     }
 }

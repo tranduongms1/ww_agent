@@ -2,6 +2,8 @@ package wisewires.agent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -154,6 +156,14 @@ public abstract class Browser {
                         } else {
                             Cart.mustCartId(c);
                             API.addToCart(c.getAPIEndpoint(), item.urlOrSKU);
+                            if (!item.addedServices.isEmpty()) {
+                                Thread.sleep(2000);
+                                Map<String, Object> cartInfo = API.getCurrentCartInfo(c.getAPIEndpoint());
+                                long entryNumber = Util.getCartEntryNumber(cartInfo, item.urlOrSKU);
+                                if (item.addedServices.contains("TradeIn")) {
+                                    Cart.addTradeInViaAPI(c, item.urlOrSKU, entryNumber);
+                                }
+                            }
                             mustReload = true;
                         }
                     }
