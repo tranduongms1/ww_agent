@@ -1,5 +1,6 @@
 package wisewires.agent;
 
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -145,5 +146,62 @@ public abstract class Payment {
             payment-mode-cybersource-paypal""";
 
     static void process(Context c) throws Exception {
+        WebElement form = WebUI.waitElement(PAYMENT_MODE_LOCATOR, 15);
+        switch (form.getTagName()) {
+            case
+                    "app-card-on-delivery-payment",
+                    "app-cod-payment":
+                payWithCOD(c, form);
+                break;
+
+            case
+                    "app-payment-mode-credit-card":
+                payWithCreditCard(c, form);
+                break;
+
+            case
+                    "app-payment-mode-adyen-paypal",
+                    "app-payment-mode-paypal",
+                    "app-payment-mode-paypal-credit",
+                    "payment-mode-cybersource-paypal":
+                payWithPayPal(c, form);
+                break;
+
+            case
+                    "app-payment-mode-glow":
+                payWithGlow(c, form);
+                break;
+
+            case
+                    "app-payment-mode-adyen-klarna",
+                    "app-payment-mode-adyen-klarna-installment",
+                    "app-payment-mode-klarna",
+                    "app-payment-mode-klarna-de":
+                payWithKlarna(c, form);
+                break;
+
+            default:
+                throw new Exception("Unknow payment mode " + form.getTagName());
+        }
+    }
+
+    static void payWithCOD(Context c, WebElement elm) throws Exception {
+
+    }
+
+    static void payWithCreditCard(Context c, WebElement elm) throws Exception {
+
+    }
+
+    static void payWithPayPal(Context c, WebElement elm) throws Exception {
+
+    }
+
+    static void payWithGlow(Context c, WebElement elm) throws Exception {
+
+    }
+
+    static void payWithKlarna(Context c, WebElement elm) throws Exception {
+
     }
 }
