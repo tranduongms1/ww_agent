@@ -72,7 +72,7 @@ public abstract class API {
                     credentials: "include"
                 })
                     .then(res => {
-                        if (res.status >= 400) throw new Error('response status code: ' + res.status);
+                        if (res.status >= 500) throw new Error('response status code: ' + res.status);
                         arguments[2](res.status);
                     })""";
         WebUI.driver.executeAsyncScript(script, apiEndpoint, entry);
