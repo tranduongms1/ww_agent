@@ -29,6 +29,24 @@ public abstract class Browser {
                 break;
             }
 
+            case "set", "use": {
+                if (Tokens.containsAny(tokens, "sso", "checkout")) {
+                    while (!tokens.isEmpty()) {
+                        leading = Tokens.removeLeading(tokens, "sso", "checkout", "email", "and", "password");
+                        if (leading.contains("email")) {
+                            c.sso.put("email", tokens.remove(0));
+                            c.getProfile().getCustomerInfo().put("email", c.sso.get("email"));
+                            logger.info("Change checkout email to %s".formatted(c.sso.get("email")));
+                        }
+                        if (leading.contains("password")) {
+                            c.sso.put("mk", tokens.remove(0));
+                            logger.info("Change checkout password to %s".formatted(c.sso.get("mk")));
+                        }
+                    }
+                }
+                break;
+            }
+
             case "delay":
                 WebUI.delay(Integer.parseInt(tokens.get(0)));
                 break;

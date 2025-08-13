@@ -29,8 +29,8 @@ public class Context {
 
     public Context() {
         this.siteUid = "";
-        this.env = "prod";
-        this.sso = Map.of("email", "test4.buivan@gmail.com", "mk", "Heocon12");
+        this.env = "stg2";
+        this.sso = new HashMap<>(Map.of("email", "test4.buivan@gmail.com", "mk", "Heocon12"));
     }
 
     public String envKey() {
