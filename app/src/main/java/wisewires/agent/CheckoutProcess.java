@@ -50,11 +50,11 @@ interface OnFormAction {
 public class CheckoutProcess {
     static Logger logger = LoggerFactory.getLogger(CheckoutProcess.class);
 
-    List<String> formLocators;
-
-    static String ADDRESS_DETAILS_EDIT = """
+    private static String ADDRESS_DETAILS_EDIT = """
             .address-details .actions__edit,
             .checkout-contact-info-header .actions__edit""";
+
+    public List<String> formLocators;
 
     public AtomicReference<String> selectedDeliveryType = new AtomicReference<>();
 
@@ -78,32 +78,52 @@ public class CheckoutProcess {
     public SelectDeliverySlotFunction selectDeliverySlotFunc;
     public List<Predicate<Context>> untilFuncs = new ArrayList<>();
 
-    public static boolean defaultPreFillForm(Context c, String formID, WebElement form) {
+    private static boolean defaultPreFillForm(Context c, String formID, WebElement form) {
         return true;
     }
 
-    public static boolean defaultSelectDeliveryType(Context c, WebElement elm) {
+    private static boolean defaultSelectDeliveryType(Context c, WebElement elm) {
         c.checkoutProcess.selectedDeliveryType.set("Any");
         return false;
     }
 
-    public static boolean defaultSelectDeliveryTypeAtLine(Context c, int line, WebElement elm) {
+    private static boolean defaultSelectDeliveryTypeAtLine(Context c, int line, WebElement elm) {
         c.checkoutProcess.selectedDeliveryTypes.get().add("Any");
         return false;
     }
 
-    public static boolean defaultSelectDeliveryOption(Context c, int line, WebElement elm) {
-        c.checkoutProcess.selectedDeliveryOptions.get().add("Any");
+    private static String getOptionId(WebElement elm) {
+        return elm.getAttribute("id").replaceFirst("group\\d+", "");
+    }
+
+    private static void onSelectedDeliveryOption(Context c, int line, WebElement elm) {
+        String value = getOptionId(elm.findElement(By.cssSelector("input")));
+        c.checkoutProcess.selectedDeliveryOptions.get().add(value);
+        logger.info("Delivery option '%s' selected for consigment %d".formatted(value, line));
+    }
+
+    private static boolean defaultSelectDeliveryOption(Context c, int line, WebElement elm) {
+        List<WebElement> opts = elm.findElements(By.cssSelector("li label:has(input)"));
+        for (WebElement opt : opts) {
+            if (opt.getAttribute("class").contains("selected-mode")) {
+                onSelectedDeliveryOption(c, line, opt);
+                return false;
+            }
+        }
+        WebElement opt = opts.get(0);
+        WebUI.scrollToCenter(opt);
+        opt.click();
+        onSelectedDeliveryOption(c, line, opt);
         return false;
     }
 
     private static void onSelectedDeliveryService(Context c, int line, WebElement elm) {
-        String value = elm.getAttribute("id").replaceFirst("group\\d+", "");
+        String value = getOptionId(elm);
         c.checkoutProcess.selectedDeliveryServices.get().add(value);
         logger.info("Delivery service '%s' selected for consigment %d".formatted(value, line));
     }
 
-    public static boolean defaultSelectDeliveryService(Context c, int line, WebElement elm) {
+    private static boolean defaultSelectDeliveryService(Context c, int line, WebElement elm) {
         List<WebElement> opts = elm.findElements(By.cssSelector("mat-radio-button"));
         for (WebElement opt : opts) {
             if (opt.getAttribute("class").contains("checked")) {
@@ -118,12 +138,12 @@ public class CheckoutProcess {
         return false;
     }
 
-    public static boolean defaultSelectDeliverySlot(Context c, int line, WebElement elm) {
+    private static boolean defaultSelectDeliverySlot(Context c, int line, WebElement elm) {
         c.checkoutProcess.selectedDeliverySlots.get().add("Any");
         return false;
     }
 
-    public static boolean defaultUntil(Context c) {
+    private static boolean defaultUntil(Context c) {
         return WebUI.getUrl().contains("CHECKOUT_STEP_PAYMENT");
     }
 
@@ -171,6 +191,18 @@ public class CheckoutProcess {
         return untilFuncs.isEmpty();
     }
 
+    public void reset() {
+        preFillFormFuncs.clear();
+        untilFuncs.clear();
+        selectedDeliveryType = new AtomicReference<>();
+        seenDeliveryTypes = 0;
+        selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
+        seenDeliveryLists = 0;
+        selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
+        seenDeliverySlots = 0;
+        selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
+    }
+
     private boolean ensureNotPassedForm(String selector, String backSelector) {
         WebElement backElm = WebUI.findElement(backSelector);
         if (backElm != null && WebUI.findElement(selector) == null) {
@@ -216,18 +248,6 @@ public class CheckoutProcess {
         preFillFormFuncs.add(CheckoutProcess::defaultPreFillForm);
         untilFuncs.add(CheckoutProcess::defaultUntil);
         return this;
-    }
-
-    public void reset() {
-        preFillFormFuncs.clear();
-        untilFuncs.clear();
-        selectedDeliveryType = new AtomicReference<>();
-        seenDeliveryTypes = 0;
-        selectedDeliveryTypes = new AtomicReference<List<String>>(new ArrayList<>());
-        seenDeliveryLists = 0;
-        selectedDeliveryOptions = new AtomicReference<List<String>>(new ArrayList<>());
-        seenDeliverySlots = 0;
-        selectedDeliverySlots = new AtomicReference<List<String>>(new ArrayList<>());
     }
 
     public CheckoutProcess onCustomerInfo(OnFormAction action) {
@@ -290,6 +310,22 @@ public class CheckoutProcess {
         return this;
     }
 
+    public CheckoutProcess selectIndividualOrder() {
+        return onCustomerInfo((c, form) -> {
+            WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='PERSONAL_ORDER'])");
+            Form.check(radio);
+            logger.info("Selected individual order");
+        });
+    }
+
+    public CheckoutProcess selectCompanyOrder() {
+        return onCustomerInfo((c, form) -> {
+            WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='COMPANY_ORDER'])");
+            Form.check(radio);
+            logger.info("Selected company order");
+        });
+    }
+
     public CheckoutProcess selectNewCustomerAddress() {
         return onCustomerAddress((c, form) -> {
             WebElement rb = WebUI.findElement(form, "mat-radio-button:has([value='NEW_ADDRESS'])");
@@ -331,22 +367,6 @@ public class CheckoutProcess {
             WebElement rb = WebUI.findElement(form, "mat-checkbox:has([name='saveInAddressBook'])");
             Form.check(rb);
             logger.info("Checked 'Save billing address'");
-        });
-    }
-
-    public CheckoutProcess selectIndividualOrder() {
-        return onCustomerInfo((c, form) -> {
-            WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='PERSONAL_ORDER'])");
-            Form.check(radio);
-            logger.info("Selected individual order");
-        });
-    }
-
-    public CheckoutProcess selectCompanyOrder() {
-        return onCustomerInfo((c, form) -> {
-            WebElement radio = WebUI.findElement(form, "mat-radio-button:has([value='COMPANY_ORDER'])");
-            Form.check(radio);
-            logger.info("Selected company order");
         });
     }
 }
