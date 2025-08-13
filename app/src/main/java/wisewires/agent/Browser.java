@@ -313,6 +313,8 @@ public abstract class Browser {
                                 c.mustCheckoutProcess().untilForm("app-billing-address-v2");
                             }
                             break;
+                        case "delivery":
+                            c.mustCheckoutProcess().untilSeen("app-checkout-step-delivery");
                     }
                 }
                 break;
@@ -344,6 +346,10 @@ public abstract class Browser {
             case "pay", "payment":
                 Tokens.removeLeading(tokens, "with", "the");
                 String methodName = String.join(" ", tokens);
+                if (!WebUI.getUrl().contains("CHECKOUT_STEP_PAYMENT")) {
+                    c.mustCheckoutProcess().untilPayment();
+                    Checkout.process(c);
+                }
                 Payment.expandPaymentMethod(methodName);
                 Payment.process(c);
                 break;
