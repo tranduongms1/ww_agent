@@ -171,6 +171,14 @@ public class Form {
         }
     }
 
+    public static void setProcessed(WebElement elm) {
+        WebUI.driver.executeScript("arguments[0].setAttribute('data-auto-processed', true)", elm);
+    }
+
+    public static boolean isProcessed(WebElement elm) {
+        return elm.getDomAttribute("data-auto-processed") != null;
+    }
+
     static void uploadFile(String selector, String resourcePath) throws Exception {
         try {
             WebElement elm = WebUI.driver.findElement(By.cssSelector(selector));

@@ -221,13 +221,13 @@ public abstract class WebUI {
     }
 
     public static String getDomAttribute(WebElement elm, String... attrs) {
-        for (String attr : attrs) {
-            String value = elm.getDomAttribute(attr);
-            if (value != null) {
-                return value;
-            }
-        }
-        return "";
+        return WebUI.driver.executeScript("""
+                for (const attr of arguments[1]) {
+                    let value = arguments[0].getAttribute(attr);
+                    if (value) return value;
+                }
+                return '';
+                """, elm, attrs).toString();
     }
 
     public static String getUrl() {
