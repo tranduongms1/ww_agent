@@ -341,6 +341,13 @@ public abstract class Browser {
                 break;
             }
 
+            case "pay", "payment":
+                Tokens.removeLeading(tokens, "with", "the");
+                String methodName = String.join(" ", tokens);
+                Payment.expandPaymentMethod(methodName);
+                Payment.process(c);
+                break;
+
             case "capture": {
                 String url = Util.captureFullPage();
                 String fileId = c.client.uploadFile(c.post.getChannelId(), url);
