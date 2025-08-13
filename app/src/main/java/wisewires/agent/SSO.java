@@ -85,7 +85,7 @@ public abstract class SSO {
         }
     }
 
-    static void mustSignedOut(Context c) {
+    static void mustSignedOut(Context c) throws Exception {
         if (c.ssoSignedIn) {
             String lastUrl = WebUI.getUrl();
             String js = "return Boolean(window.samsung instanceof Object && window.samsung.account && window.samsung.account.signOut)";

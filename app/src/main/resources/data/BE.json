@@ -1,4 +1,11 @@
 {
+    "stores": {
+        "besme": "/business",
+        "samsungmembers_be": "/multistore/bm/samsungmembers_be",
+        "amg_be": "/multistore/bp/amg_be",
+        "healthcare_employees_be": "/multistore/bp/healthcare_employees_be",
+        "employee_be": "/multistore/be/employee_be"
+    },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn2-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"

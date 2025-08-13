@@ -19,6 +19,9 @@ public abstract class Browser {
                 if (tokens.contains("site")) {
                     c.site = tokens.remove(0).toUpperCase();
                     logger.info("Change current site to %s".formatted(c.site));
+                } else if (tokens.contains("store")) {
+                    c.siteUid = tokens.remove(0).toLowerCase();
+                    logger.info("Change current store to %s".formatted(c.siteUid));
                 } else if (tokens.contains("env")) {
                     c.env = tokens.remove(0).toLowerCase();
                     logger.info("Change current env to %s".formatted(c.env));

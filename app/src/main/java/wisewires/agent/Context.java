@@ -87,20 +87,19 @@ public class Context {
         return "https://p6-pre-qa2.samsung.com/%s".formatted(siteUid);
     }
 
-    public String getShopUrl() {
-        String tail = siteUid != "" ? siteUid : "";
+    public String getShopUrl() throws Exception {
+        String tail = "";
+        if (!siteUid.isEmpty()) {
+            tail = getProfile().getStores().get(siteUid);
+        }
         if (env.equalsIgnoreCase("prod")) {
             return "https://shop.samsung.com/%s%s".formatted(site.toLowerCase(), tail);
         }
         return "https://%s.shop.samsung.com/%s%s".formatted(env, site.toLowerCase(), tail);
     }
 
-    public String getCartUrl() {
-        String tail = siteUid != "" ? siteUid : "";
-        if (env.equalsIgnoreCase("prod")) {
-            return "https://shop.samsung.com/%s%s/cart".formatted(site.toLowerCase(), tail);
-        }
-        return "https://%s.shop.samsung.com/%s%s/cart".formatted(env, site.toLowerCase(), tail);
+    public String getCartUrl() throws Exception {
+        return getShopUrl() + "/cart";
     }
 
     public String getSiteUid() {

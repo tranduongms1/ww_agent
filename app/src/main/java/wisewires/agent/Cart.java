@@ -25,7 +25,7 @@ public abstract class Cart {
         return WebUI.wait(30).withMessage("has cart id").until(d -> getCartId(c));
     }
 
-    static String mustCartId(Context c) {
+    static String mustCartId(Context c) throws Exception {
         String id = getCartId(c);
         if (id == null || id.isEmpty()) {
             WebUI.openBrowser(c, c.getCartUrl());
@@ -214,7 +214,7 @@ public abstract class Cart {
         return alert != null ? alert.getText() : null;
     }
 
-    static void navigateTo(Context c, boolean reloadIfReadyOnCart) {
+    static void navigateTo(Context c, boolean reloadIfReadyOnCart) throws Exception {
         if (WebUI.driver != null && WebUI.getUrl().contains("/cart")) {
             if (reloadIfReadyOnCart) {
                 WebUI.driver.navigate().refresh();
