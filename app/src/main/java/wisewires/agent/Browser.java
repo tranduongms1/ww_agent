@@ -299,15 +299,19 @@ public abstract class Browser {
                 }
                 if (tokens.contains("delivery")) {
                     String type = null;
-                    String option = null;
+                    Object option = null;
                     int consignment = 0;
                     while (!tokens.isEmpty()) {
-                        leading = Tokens.removeLeading(tokens, "delivery", "option", "mode", "service", "on", "for",
-                                "first", "1st", "second", "2nd", "third", "3rd", "fourth", "4th",
+                        leading = Tokens.removeLeading(tokens, "delivery", "option", "mode", "time", "slot", "service",
+                                "on", "for", "first", "1st", "second", "2nd", "third", "3rd", "fourth", "4th",
                                 "consignment", "line", "and");
                         if (Tokens.containsAny(leading, "option", "mode")) {
                             type = "option";
                             option = tokens.remove(0);
+                            continue;
+                        } else if (Tokens.contains(leading, "slot")) {
+                            type = "slot";
+                            option = Integer.parseInt(tokens.remove(0));
                             continue;
                         } else if (Tokens.contains(leading, "service")) {
                             type = "service";
@@ -321,7 +325,7 @@ public abstract class Browser {
                             consignment = 3;
                         } else if (Tokens.containsAny(leading, "fourth", "4th")) {
                             consignment = 4;
-                        } else if (type != null && !tokens.isEmpty()) {
+                        } else if (type != null && option != null && !tokens.isEmpty()) {
                             option = tokens.remove(0);
                             continue;
                         }

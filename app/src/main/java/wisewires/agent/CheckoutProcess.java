@@ -112,6 +112,7 @@ public class CheckoutProcess {
         }
         WebElement opt = opts.get(0);
         WebUI.scrollToCenter(opt);
+        WebUI.delay(1);
         opt.click();
         onSelectedDeliveryOption(c, line, opt);
         return false;
@@ -124,22 +125,36 @@ public class CheckoutProcess {
     }
 
     private static boolean defaultSelectDeliveryService(Context c, int line, WebElement elm) {
-        List<WebElement> opts = elm.findElements(By.cssSelector("mat-radio-button"));
+        List<WebElement> opts = WebUI.waitElements(elm, By.cssSelector("mat-radio-button, mat-checkbox"), 10);
         for (WebElement opt : opts) {
             if (opt.getAttribute("class").contains("checked")) {
                 onSelectedDeliveryService(c, line, opt);
                 return false;
             }
         }
-        WebElement opt = opts.get(0);
-        WebUI.scrollToCenter(opt);
-        opt.click();
-        onSelectedDeliveryService(c, line, opt);
+        c.checkoutProcess.selectedDeliveryServices.get().add(null);
         return false;
     }
 
+    private static void onSelectedDeliverySlot(Context c, int line, WebElement elm) {
+        String value = elm.findElement(By.cssSelector(".delivery-dates-date")).getText().replaceAll("\\n", " ");
+        c.checkoutProcess.selectedDeliverySlots.get().add(value);
+        logger.info("Delivery slot '%s' selected for consignment %d".formatted(value, line));
+    }
+
     private static boolean defaultSelectDeliverySlot(Context c, int line, WebElement elm) {
-        c.checkoutProcess.selectedDeliverySlots.get().add("Any");
+        List<WebElement> opts = WebUI.waitElements(elm, By.cssSelector(".delivery-dates"), 10);
+        for (WebElement opt : opts) {
+            if (opt.getAttribute("class").contains("selected-date")) {
+                onSelectedDeliverySlot(c, line, opt);
+                return false;
+            }
+        }
+        WebElement opt = opts.get(0);
+        WebUI.scrollToCenter(opt);
+        WebUI.delay(1);
+        opt.click();
+        onSelectedDeliverySlot(c, line, opt);
         return false;
     }
 
@@ -388,6 +403,7 @@ public class CheckoutProcess {
             if (line == consignment) {
                 WebElement item = findDeliveryOptionByTitleOrCode(elm, option);
                 WebUI.scrollToCenter(item);
+                WebUI.delay(1);
                 item.click();
                 onSelectedDeliveryOption(c, line, item);
                 return false;
@@ -417,6 +433,7 @@ public class CheckoutProcess {
             if (line == consignment) {
                 WebElement item = findDeliveryServiceByCode(elm, service);
                 WebUI.scrollToCenter(item);
+                WebUI.delay(1);
                 item.click();
                 onSelectedDeliveryService(c, line, elm);
                 return false;
@@ -430,13 +447,36 @@ public class CheckoutProcess {
         return this;
     }
 
-    public void selectDelivery(String type, int consignment, String option) {
+    public CheckoutProcess selectDeliverySlot(int consignment, int index) {
+        SelectDeliverySlotFunction func = selectDeliverySlotFunc;
+        selectDeliverySlotFunc = (c, line, elm) -> {
+            if (line == consignment) {
+                WebElement item = elm.findElements(By.cssSelector(".delivery-dates")).get(index - 1);
+                WebUI.scrollToCenter(item);
+                WebUI.delay(1);
+                item.click();
+                onSelectedDeliverySlot(c, line, elm);
+                return false;
+            }
+            if (func != null) {
+                return func.apply(c, line, elm);
+            } else {
+                return CheckoutProcess.defaultSelectDeliverySlot(c, line, elm);
+            }
+        };
+        return this;
+    }
+
+    public void selectDelivery(String type, int consignment, Object option) {
         switch (type) {
             case "option", "mode":
-                selectDeliveryOption(consignment, option);
+                selectDeliveryOption(consignment, (String) option);
+                break;
+            case "slot":
+                selectDeliverySlot(consignment, (int) option);
                 break;
             case "service":
-                selectDeliveryService(consignment, option);
+                selectDeliveryService(consignment, (String) option);
                 break;
         }
     }
