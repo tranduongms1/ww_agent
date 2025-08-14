@@ -1,0 +1,72 @@
+{
+    "stores": {
+        "smb": "/business",
+        "plsme": "/business"
+    },
+    "pointingUrls": {
+        "v2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://p2-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://v2.shop.samsung.com&cart=https://v2.shop.samsung.com/pl/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "v2": "https://p2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn2-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "Slużewiec, Mokotów Postępu 14",
+        "postalCode": "00-009",
+        "adminLevel2": "Warsaw",
+        "phoneNumber": "999999999"
+    },
+    "billingAddress": {
+        "line1": "123",
+        "postalCode": "00-009",
+        "adminLevel2": "Warsaw",
+        "country": "Polska",
+        "phoneCode": "+48",
+        "phoneNumber": "123456789",
+        "firstName": "BillFirst",
+        "lastName": "BillLast",
+        "companyName": "Wisewires",
+        "vatNumber": "1231216692"
+    },
+    "tradeInInfo": {
+        "iban": "PL12341234123412341234123412"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": null
+        },
+        "TradeUp": {
+            "serviceCode": "T_Sa_RE_1-3",
+            "addToCartType": "",
+            "provider": "WORLDBUSINESSTV",
+            "additionalInfos": [
+                {
+                    "key": "isTradeInTVEnabled",
+                    "value": true
+                }
+            ]
+        },
+        "creditCardData": {
+            "cardNumber": "4111 1111 1111 1111",
+            "holderName": "PL",
+            "expiryDate": "03/30",
+            "cvv": "737"
+        },
+        "masterCardData": {
+            "cardNumber": "5555 4444 3333 1111",
+            "holderName": "PL",
+            "expiryDate": "03/30",
+            "cvv": "737"
+        }
+    }
+}

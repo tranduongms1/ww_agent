@@ -33,10 +33,10 @@ public abstract class WebUI {
         }
     }
 
-    static void openBrowser(Context c, String url) {
+    static void openBrowser(Context c, String url) throws Exception {
         if (url.contains("pre-qa")) {
             mustAEMReady(c);
-        } else if (url.startsWith("https://stg")) {
+        } else if (url.startsWith("https://stg") || url.startsWith("https://v2")) {
             mustGetCookie(c);
         }
         openBrowser(url);
@@ -76,7 +76,7 @@ public abstract class WebUI {
         }
     }
 
-    static void getPointing(Context c) {
+    static void getPointing(Context c) throws Exception {
         String url = c.getPointingUrl();
         driver.get(url);
         delay(1);
@@ -93,7 +93,7 @@ public abstract class WebUI {
         delay(1);
     }
 
-    static void mustAEMReady(Context c) {
+    static void mustAEMReady(Context c) throws Exception {
         if (!c.isAEMReady()) {
             mustGetCookie(c);
             getPointing(c);

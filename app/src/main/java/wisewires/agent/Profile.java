@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Profile {
     private Map<String, String> stores;
+    private Map<String, String> pointingUrls;
     private Map<String, String> apiEndpoints;
     private Map<String, String> exchangeEndpoints;
 
@@ -17,6 +18,14 @@ public class Profile {
     private HashMap<String, String> simInfo;
 
     private Map<String, Map<String, Object>> serviceData;
+
+    public Map<String, String> getPointingUrls() {
+        return pointingUrls != null ? pointingUrls : new HashMap<>();
+    }
+
+    public void setPointingUrls(Map<String, String> pointingUrls) {
+        this.pointingUrls = pointingUrls;
+    }
 
     public Map<String, String> getStores() {
         return stores != null ? stores : new HashMap<>();

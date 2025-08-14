@@ -79,10 +79,6 @@ public class Context {
         return "https://%s.shop.samsung.com/getcookie.html".formatted(env);
     }
 
-    public String getPointingUrl() {
-        return "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=se&storeDomain=https://stg2-eu-api.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/se/cart";
-    }
-
     public String getHomeUrl() {
         return "https://p6-pre-qa2.samsung.com/%s".formatted(siteUid);
     }
@@ -104,6 +100,11 @@ public class Context {
 
     public String getSiteUid() {
         return siteUid != "" ? siteUid : site.toLowerCase();
+    }
+
+    public String getPointingUrl() throws Exception {
+        Map<String, String> urls = getProfile().getPointingUrls();
+        return urls.get(env);
     }
 
     public String getAPIEndpoint() throws Exception {
