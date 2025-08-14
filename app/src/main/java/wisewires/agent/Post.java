@@ -76,4 +76,8 @@ public class Post {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getStringProp(String key) {
+        return (String) getProps().get(key);
+    }
 }

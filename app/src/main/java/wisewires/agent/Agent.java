@@ -1,7 +1,9 @@
 package wisewires.agent;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import org.java_websocket.client.WebSocketClient;
@@ -78,20 +80,54 @@ public class Agent extends WebSocketClient {
         public void run() {
             while (!Thread.interrupted()) {
                 Post post = agent.posts.poll();
-                if (post != null && post.getType().isEmpty()) {
-                    Attachment attachment = new Attachment();
-                    attachment.setColor("default");
-                    attachment.setText(post.getMessage());
-                    try {
-                        client.updatePost(post.getId(), attachment);
-                        ctx.post = post;
-                        runPost(post);
-                        attachment.setColor("good");
-                        client.updatePost(post.getId(), attachment);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        attachment.setColor("danger");
-                        client.updatePost(post.getId(), attachment);
+                if (post == null || !post.getRootId().isEmpty())
+                    continue;
+                switch (post.getType()) {
+                    case "": {
+                        Attachment attachment = new Attachment();
+                        attachment.setColor("default");
+                        attachment.setText(post.getMessage());
+                        try {
+                            client.updatePost(post.getId(), attachment);
+                            ctx.post = post;
+                            runPost(post);
+                            attachment.setColor("good");
+                            client.updatePost(post.getId(), attachment);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            attachment.setColor("danger");
+                            client.updatePost(post.getId(), attachment);
+                        }
+                        break;
+                    }
+                    case "custom_test_case": {
+                        Attachment attachment = new Attachment();
+                        attachment.setColor("default");
+                        attachment.setText(post.getMessage());
+                        try {
+                            client.updatePost(post.getId(), attachment);
+                            ctx.post = post;
+                            runTestCase(post);
+                            attachment.setColor("good");
+                            client.updatePost(post.getId(), attachment);
+                        } catch (Exception e) {
+                            attachment.setColor("danger");
+                            client.updatePost(post.getId(), attachment);
+                            try {
+                                attachment.setText(e.getMessage());
+                                String path = Util.captureFullPage();
+                                String fileId = client.uploadFile(post.getChannelId(), path);
+                                Post p = new Post();
+                                p.setChannelId(post.getChannelId());
+                                p.setRootId(post.getId());
+                                p.setFileIds(List.of(fileId));
+                                p.setProps(new HashMap<>(Map.of("attachments", List.of(attachment))));
+                                client.createPost(p);
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                        break;
                     }
                 }
             }
@@ -99,6 +135,19 @@ public class Agent extends WebSocketClient {
 
         public void runPost(Post post) throws Exception {
             List<String> lines = post.getMessage().lines().toList();
+            for (String line : lines) {
+                if (!line.isBlank()) {
+                    Browser.run(ctx, line);
+                }
+            }
+            if (ctx.checkoutProcess != null) {
+                Checkout.waitForNavigateTo();
+                Checkout.process(ctx);
+            }
+        }
+
+        public void runTestCase(Post post) throws Exception {
+            List<String> lines = post.getStringProp("script").lines().toList();
             for (String line : lines) {
                 if (!line.isBlank()) {
                     Browser.run(ctx, line);
