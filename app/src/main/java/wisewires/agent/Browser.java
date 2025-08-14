@@ -3,7 +3,6 @@ package wisewires.agent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -296,6 +295,44 @@ public abstract class Browser {
                     if (Tokens.containsAny(tokens, "company")) {
                         c.mustCheckoutProcess().selectCompanyOrder();
                         break;
+                    }
+                }
+                if (tokens.contains("delivery")) {
+                    String type = null;
+                    String option = null;
+                    int consignment = 0;
+                    while (!tokens.isEmpty()) {
+                        leading = Tokens.removeLeading(tokens, "delivery", "option", "mode", "service", "on", "for",
+                                "first", "1st", "second", "2nd", "third", "3rd", "fourth", "4th",
+                                "consignment", "line", "and");
+                        if (Tokens.containsAny(leading, "option", "mode")) {
+                            type = "option";
+                            option = tokens.remove(0);
+                            continue;
+                        } else if (Tokens.contains(leading, "service")) {
+                            type = "service";
+                            option = tokens.remove(0);
+                            continue;
+                        } else if (Tokens.containsAny(leading, "first", "1st")) {
+                            consignment = 1;
+                        } else if (Tokens.containsAny(leading, "second", "2nd")) {
+                            consignment = 2;
+                        } else if (Tokens.containsAny(leading, "third", "3rd")) {
+                            consignment = 3;
+                        } else if (Tokens.containsAny(leading, "fourth", "4th")) {
+                            consignment = 4;
+                        } else if (type != null && !tokens.isEmpty()) {
+                            option = tokens.remove(0);
+                            continue;
+                        }
+                        if (type != null && option != null) {
+                            c.mustCheckoutProcess().selectDelivery(type, consignment > 0 ? consignment : 1, option);
+                            option = null;
+                            consignment = 0;
+                        }
+                    }
+                    if (type != null && option != null) {
+                        c.mustCheckoutProcess().selectDelivery(type, consignment > 0 ? consignment : 1, option);
                     }
                 }
                 break;

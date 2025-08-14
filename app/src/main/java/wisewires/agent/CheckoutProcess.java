@@ -99,7 +99,7 @@ public class CheckoutProcess {
     private static void onSelectedDeliveryOption(Context c, int line, WebElement elm) {
         String value = getOptionId(elm.findElement(By.cssSelector("input")));
         c.checkoutProcess.selectedDeliveryOptions.get().add(value);
-        logger.info("Delivery option '%s' selected for consigment %d".formatted(value, line));
+        logger.info("Delivery option '%s' selected for consignment %d".formatted(value, line));
     }
 
     private static boolean defaultSelectDeliveryOption(Context c, int line, WebElement elm) {
@@ -120,7 +120,7 @@ public class CheckoutProcess {
     private static void onSelectedDeliveryService(Context c, int line, WebElement elm) {
         String value = getOptionId(elm);
         c.checkoutProcess.selectedDeliveryServices.get().add(value);
-        logger.info("Delivery service '%s' selected for consigment %d".formatted(value, line));
+        logger.info("Delivery service '%s' selected for consignment %d".formatted(value, line));
     }
 
     private static boolean defaultSelectDeliveryService(Context c, int line, WebElement elm) {
@@ -368,5 +368,76 @@ public class CheckoutProcess {
             Form.check(rb);
             logger.info("Checked 'Save billing address'");
         });
+    }
+
+    private static WebElement findDeliveryOptionByTitleOrCode(WebElement elm, String option) {
+        return (WebElement) WebUI.driver.executeScript("""
+                let s = arguments[1];
+                return Array.from(arguments[0].querySelectorAll('li')).find(opt => {
+                    let e = opt.querySelector('.delivery-mode-name-text');
+                    if (e && e.innerText.trim().toLowerCase().startsWith(s+'\\n')) return true;
+                    e = opt.querySelector('input');
+                    if (e.id.replace(/group\\d+/, '').toLowerCase() == s) return true;
+                    return false;
+                })""", elm, option.toLowerCase());
+    }
+
+    public CheckoutProcess selectDeliveryOption(int consignment, String option) {
+        SelectDeliveryOptionFunction func = selectDeliveryOptionFunc;
+        selectDeliveryOptionFunc = (c, line, elm) -> {
+            if (line == consignment) {
+                WebElement item = findDeliveryOptionByTitleOrCode(elm, option);
+                WebUI.scrollToCenter(item);
+                item.click();
+                onSelectedDeliveryOption(c, line, item);
+                return false;
+            }
+            if (func != null) {
+                return func.apply(c, line, elm);
+            } else {
+                return CheckoutProcess.defaultSelectDeliveryOption(c, line, elm);
+            }
+        };
+        return this;
+    }
+
+    private static WebElement findDeliveryServiceByCode(WebElement elm, String service) {
+        return (WebElement) WebUI.driver.executeScript("""
+                let s = arguments[1];
+                return Array.from(arguments[0].querySelectorAll('li')).find(opt => {
+                    let e = opt.querySelector('mat-radio-button');
+                    if (e.id.replace(/group\\d+/, '').toLowerCase() == s) return true;
+                    return false;
+                })""", elm, service.toLowerCase());
+    }
+
+    public CheckoutProcess selectDeliveryService(int consignment, String service) {
+        SelectDeliveryServiceFunction func = selectDeliveryServiceFunc;
+        selectDeliveryServiceFunc = (c, line, elm) -> {
+            if (line == consignment) {
+                WebElement item = findDeliveryServiceByCode(elm, service);
+                WebUI.scrollToCenter(item);
+                item.click();
+                onSelectedDeliveryService(c, line, elm);
+                return false;
+            }
+            if (func != null) {
+                return func.apply(c, line, elm);
+            } else {
+                return CheckoutProcess.defaultSelectDeliveryService(c, line, elm);
+            }
+        };
+        return this;
+    }
+
+    public void selectDelivery(String type, int consignment, String option) {
+        switch (type) {
+            case "option", "mode":
+                selectDeliveryOption(consignment, option);
+                break;
+            case "service":
+                selectDeliveryService(consignment, option);
+                break;
+        }
     }
 }
