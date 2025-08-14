@@ -410,6 +410,9 @@ public abstract class Browser {
                 break;
 
             case "capture": {
+                if (c.checkoutProcess != null) {
+                    Checkout.process(c);
+                }
                 String url = Util.captureFullPage();
                 String fileId = c.client.uploadFile(c.post.getChannelId(), url);
                 Post post = new Post();
@@ -422,6 +425,9 @@ public abstract class Browser {
             }
 
             case "verify": {
+                if (c.checkoutProcess != null) {
+                    Checkout.process(c);
+                }
                 String url = Util.captureFullPage();
                 String fileId = c.client.uploadFile(c.post.getChannelId(), url);
                 Post post = new Post();
