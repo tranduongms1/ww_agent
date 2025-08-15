@@ -12,6 +12,7 @@ public abstract class Payment {
     static Logger logger = LoggerFactory.getLogger(Payment.class);
 
     static Map<String, List<String>> MODE_LOCATORS = Map.of(
+            "blik", List.of(".payment-image.p24-blik"),
             "credit card", List.of(".payment-image.adyenCc"),
             "cod", List.of(".payment-image.cod"));
 
@@ -204,6 +205,7 @@ public abstract class Payment {
     static void clickPayNow() throws Exception {
         try {
             WebElement elm = WebUI.waitElement(PAY_NOW_LOCATOR, 10);
+            WebUI.wait(5).withMessage("pay now button enable").until(d -> !Form.isDisabled(elm));
             WebUI.scrollToCenter(elm);
             WebUI.delay(1);
             WebUI.click(elm);
@@ -217,6 +219,10 @@ public abstract class Payment {
         WebElement form = WebUI.waitElement(PAYMENT_FORM_LOCATOR, 15);
         WebUI.waitForNotPresent(".paymentmode-detail-loading", 15);
         switch (form.getTagName()) {
+            case "app-payment-mode-p24-blik":
+                payWithBlik(c, form);
+                break;
+
             case
                     "app-card-on-delivery-payment",
                     "app-cod-payment":
@@ -413,6 +419,18 @@ public abstract class Payment {
 
     static void payWithPayPal(Context c, WebElement elm) throws Exception {
 
+    }
+
+    static void payWithBlik(Context c, WebElement elm) throws Exception {
+        try {
+            String blikCode = MockData.uniqueBlikCodes(1);
+            logger.info("blikCode: " + blikCode);
+            WebUI.fill("input[formcontrolname='blikT6Code']", blikCode);
+            clickPayNow();
+            WebUI.waitForUrlContains("/orderConfirmation", 15);
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with Blik" + e.getMessage());
+        }
     }
 
     static void payWithGlow(Context c, WebElement elm) throws Exception {

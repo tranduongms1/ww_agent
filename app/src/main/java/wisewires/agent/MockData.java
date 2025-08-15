@@ -1,6 +1,10 @@
 package wisewires.agent;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class MockData {
@@ -95,5 +99,23 @@ public abstract class MockData {
                     Integer.parseInt(temp + number.substring(i, Math.min(i + 9, number.length()))) % 97);
         }
         return Integer.parseInt(temp);
+    }
+
+    public static String uniqueBlikCodes(int amount) throws Exception {
+        if (amount > 999) {
+            throw new Exception("The requested amount must be between 1 and 999");
+        }
+        Set<Integer> used = new HashSet<>();
+        Random rand = new Random();
+        List<String> result = new ArrayList<>();
+        while (result.size() < amount) {
+            int number = rand.nextInt(999) + 1;
+            if (!used.contains(number)) {
+                used.add(number);
+                String code = String.format("777%03d", number);
+                result.add(code);
+            }
+        }
+        return result.get(0);
     }
 }
