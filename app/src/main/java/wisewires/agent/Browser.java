@@ -230,6 +230,18 @@ public abstract class Browser {
                 break;
             }
 
+            case "apply": {
+                if (tokens.get(0).equalsIgnoreCase("voucher")) {
+                    Tokens.removeLeading(tokens, "voucher", "code");
+                    if (WebUI.getUrl().contains("/cart")) {
+                        Cart.applyVoucher(tokens.get(0));
+                    } else {
+                        Checkout.applyVoucher(tokens.get(0));
+                    }
+                    break;
+                }
+            }
+
             case "ensure": {
                 leading = Tokens.removeLeading(tokens, "cart", "page", "not", "empty");
                 if (Tokens.containsAll(leading, "cart", "empty")) {

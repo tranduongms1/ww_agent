@@ -706,6 +706,19 @@ public abstract class Checkout {
         logger.info("Checkout processed success");
     }
 
+    static void applyVoucher(String voucher) throws Exception {
+        try {
+            logger.info("applying voucher code %s".formatted(voucher));
+            String input = "[formcontrolname='couponCode']";
+            WebUI.fill(input, voucher);
+            WebUI.delay(1);
+            String btnApply = "[data-an-la='coupon:apply']";
+            WebUI.click(btnApply);
+        } catch (Exception e) {
+            throw new Exception("Unable to apply voucher on checkout page");
+        }
+    }
+
     static void waitForNavigateTo() throws Exception {
         try {
             WebUI.waitElement(String.join(",", FORM_LOCATORS), 10);

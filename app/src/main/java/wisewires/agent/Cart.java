@@ -158,6 +158,19 @@ public abstract class Cart {
         }
     }
 
+    static void applyVoucher(String voucher) throws Exception {
+        try {
+            logger.info("applying voucher code %s".formatted(voucher));
+            String input = "[formcontrolname='couponCode']";
+            WebUI.fill(input, voucher);
+            WebUI.delay(1);
+            String btnApply = "[data-an-la='coupon:apply']";
+            WebUI.click(btnApply);
+        } catch (Exception e) {
+            throw new Exception("Unable to apply voucher on cart page", e);
+        }
+    }
+
     static void clickCheckoutButton() throws Exception {
         try {
             WebUI.wait(10).until(d -> {
