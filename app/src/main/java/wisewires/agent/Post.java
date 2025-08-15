@@ -1,9 +1,6 @@
 package wisewires.agent;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import com.google.gson.Gson;
 
 public class Post {
@@ -11,7 +8,7 @@ public class Post {
     private String channel_id;
     private String message;
     private List<String> file_ids;
-    private HashMap<String, Object> props;
+    private PostProps props;
     private String root_id;
     private String type;
 
@@ -22,7 +19,8 @@ public class Post {
 
     Post(String channelId, Attachment attachment) {
         this.channel_id = channelId;
-        this.props = new HashMap<>(Map.of("attachments", List.of(attachment)));
+        this.props = new PostProps();
+        this.props.getAttachments().add(attachment);
     }
 
     public static Post fromJson(String json) {
@@ -61,14 +59,11 @@ public class Post {
         this.file_ids = fileIds;
     }
 
-    public HashMap<String, Object> getProps() {
-        if (this.props == null) {
-            this.props = new HashMap<>();
-        }
-        return this.props;
+    public PostProps getProps() {
+        return props;
     }
 
-    public void setProps(HashMap<String, Object> props) {
+    public void setProps(PostProps props) {
         this.props = props;
     }
 
@@ -88,7 +83,26 @@ public class Post {
         this.type = type;
     }
 
-    public String getStringProp(String key) {
-        return (String) getProps().get(key);
+    Attachment firstAttachment() {
+        return getProps().getAttachments().get(0);
+    }
+
+    public String getScript() {
+        if (getProps().getScript() != null) {
+            return getProps().getScript();
+        }
+        return getMessage();
+    }
+
+    public void preRun() {
+        if (getProps().getAttachments().isEmpty()) {
+            Attachment attachment = new Attachment(getMessage());
+            getProps().getAttachments().add(attachment);
+            if (getType().isEmpty()) {
+                getProps().setScript(getMessage());
+            }
+        }
+        firstAttachment().setColor("default");
+        firstAttachment().setActions(null);
     }
 }

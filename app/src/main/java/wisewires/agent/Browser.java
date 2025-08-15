@@ -302,7 +302,8 @@ public abstract class Browser {
                     Object option = null;
                     int consignment = 0;
                     while (!tokens.isEmpty()) {
-                        leading = Tokens.removeLeading(tokens, "delivery", "type", "option", "mode", "time", "slot", "service",
+                        leading = Tokens.removeLeading(tokens, "delivery", "type", "option", "mode",
+                                "time", "slot", "service",
                                 "on", "for", "first", "1st", "second", "2nd", "third", "3rd", "fourth", "4th",
                                 "consignment", "line", "and");
                         if (Tokens.contains(leading, "type")) {
@@ -435,8 +436,7 @@ public abstract class Browser {
                 Post p = new Post(c.post.getChannelId(), "✅ " + req);
                 p.setRootId(c.post.getId());
                 p.setType("custom_ai_verify");
-                p.getProps().put("currentUrl", WebUI.getUrl());
-                p.getProps().put("logMessages", c.getAllLogs());
+                p.getProps().setCurrentUrl(WebUI.getUrl());
                 Util.captureImageAndCreatePost(c, p);
                 break;
             }

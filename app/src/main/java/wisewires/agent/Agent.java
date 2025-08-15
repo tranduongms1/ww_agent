@@ -2,6 +2,7 @@ package wisewires.agent;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import org.java_websocket.client.WebSocketClient;
@@ -14,6 +15,7 @@ public class Agent extends WebSocketClient {
 
     private Context ctx;
     private Client client;
+    private String plugginUrl;
     private Queue<Post> posts;
     private Thread runThread;
 
@@ -25,10 +27,22 @@ public class Agent extends WebSocketClient {
         this.addHeader("Authorization", "Bearer " + token);
         this.ctx = new Context();
         this.client = new Client(serverAddress, token);
+        this.plugginUrl = "http://%s/plugins/wisewires-ai".formatted(serverAddress);
         this.ctx.client = this.client;
         this.posts = new ConcurrentLinkedQueue<Post>();
         this.runThread = new Thread(new AgentRunThread(this));
         this.runThread.start();
+    }
+
+    private void withRetry(Attachment attachment) throws Exception {
+        attachment.setColor("danger");
+        attachment.setActions(List.of(Map.of(
+                "type", "button",
+                "name", "Retry",
+                "style", "primary",
+                "integration", Map.of(
+                        "url", plugginUrl + "/test/retry",
+                        "context", Map.of("agentId", client.getUserId())))));
     }
 
     @Override
@@ -41,7 +55,7 @@ public class Agent extends WebSocketClient {
     public void onMessage(String message) {
         WebSocketMessage msg = WebSocketMessage.fromJson(message);
         switch (msg.getEvent()) {
-            case "posted": {
+            case "posted", "custom_wisewires-ai_retry": {
                 Post post = Post.fromJson(msg.getString("post"));
                 posts.add(post);
                 break;
@@ -82,36 +96,40 @@ public class Agent extends WebSocketClient {
                     continue;
                 switch (post.getType()) {
                     case "": {
-                        Attachment attachment = new Attachment(post.getMessage());
-                        attachment.setColor("default");
+                        post.preRun();
+                        Attachment attachment = post.firstAttachment();
                         try {
-                            client.updatePost(post.getId(), attachment);
+                            client.updatePost(post);
                             ctx.post = post;
                             runPost(post);
                             attachment.setColor("good");
-                            client.updatePost(post.getId(), attachment);
+                            client.updatePost(post);
                         } catch (Exception e) {
                             e.printStackTrace();
-                            attachment.setColor("danger");
-                            client.updatePost(post.getId(), attachment);
+                            try {
+                                withRetry(attachment);
+                                client.updatePost(post);
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
                         }
                         break;
                     }
                     case "custom_test_case": {
-                        Attachment attachment = new Attachment(post.getMessage());
-                        attachment.setColor("default");
+                        post.preRun();
+                        Attachment attachment = post.firstAttachment();
                         try {
-                            client.updatePost(post.getId(), attachment);
+                            client.updatePost(post);
                             ctx.post = post;
                             runTestCase(post);
-                            attachment.setColor("good");
-                            client.updatePost(post.getId(), attachment);
+                            post.firstAttachment().setColor("good");
+                            client.updatePost(post);
                         } catch (Exception e) {
-                            attachment.setColor("danger");
-                            client.updatePost(post.getId(), attachment);
                             try {
-                                attachment.setText(e.getMessage());
-                                Post p = new Post(post.getChannelId(), attachment);
+                                withRetry(attachment);
+                                client.updatePost(post);
+
+                                Post p = new Post(post.getChannelId(), new Attachment("danger", e.getMessage()));
                                 p.setRootId(post.getId());
                                 Util.captureImageAndCreatePost(ctx, p);
                             } catch (Exception e1) {
@@ -125,7 +143,7 @@ public class Agent extends WebSocketClient {
         }
 
         public void runPost(Post post) throws Exception {
-            List<String> lines = post.getMessage().lines().toList();
+            List<String> lines = post.getScript().lines().toList();
             for (String line : lines) {
                 if (!line.isBlank()) {
                     Browser.run(ctx, line);
@@ -138,7 +156,7 @@ public class Agent extends WebSocketClient {
         }
 
         public void runTestCase(Post post) throws Exception {
-            List<String> lines = post.getStringProp("script").lines().toList();
+            List<String> lines = post.getProps().getScript().lines().toList();
             for (String line : lines) {
                 if (!line.isBlank()) {
                     Browser.run(ctx, line);

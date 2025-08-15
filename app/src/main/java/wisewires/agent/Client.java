@@ -126,10 +126,10 @@ public class Client {
         }
     }
 
-    public void updatePost(String postId, Attachment... attachments) {
-        updatePost(postId, Map.of(
+    public void updatePost(Post post) {
+        updatePost(post.getId(), Map.of(
                 "message", "",
-                "props", Map.of("attachments", attachments)));
+                "props", post.getProps()));
     }
 
     @SuppressWarnings("unchecked")
