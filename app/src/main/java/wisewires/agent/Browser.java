@@ -302,10 +302,14 @@ public abstract class Browser {
                     Object option = null;
                     int consignment = 0;
                     while (!tokens.isEmpty()) {
-                        leading = Tokens.removeLeading(tokens, "delivery", "option", "mode", "time", "slot", "service",
+                        leading = Tokens.removeLeading(tokens, "delivery", "type", "option", "mode", "time", "slot", "service",
                                 "on", "for", "first", "1st", "second", "2nd", "third", "3rd", "fourth", "4th",
                                 "consignment", "line", "and");
-                        if (Tokens.containsAny(leading, "option", "mode")) {
+                        if (Tokens.contains(leading, "type")) {
+                            type = "type";
+                            option = tokens.remove(0);
+                            continue;
+                        } else if (Tokens.containsAny(leading, "option", "mode")) {
                             type = "option";
                             option = tokens.remove(0);
                             continue;
