@@ -1,9 +1,7 @@
 package wisewires.agent;
 
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import org.java_websocket.client.WebSocketClient;
@@ -84,9 +82,8 @@ public class Agent extends WebSocketClient {
                     continue;
                 switch (post.getType()) {
                     case "": {
-                        Attachment attachment = new Attachment();
+                        Attachment attachment = new Attachment(post.getMessage());
                         attachment.setColor("default");
-                        attachment.setText(post.getMessage());
                         try {
                             client.updatePost(post.getId(), attachment);
                             ctx.post = post;
@@ -101,9 +98,8 @@ public class Agent extends WebSocketClient {
                         break;
                     }
                     case "custom_test_case": {
-                        Attachment attachment = new Attachment();
+                        Attachment attachment = new Attachment(post.getMessage());
                         attachment.setColor("default");
-                        attachment.setText(post.getMessage());
                         try {
                             client.updatePost(post.getId(), attachment);
                             ctx.post = post;
@@ -115,14 +111,9 @@ public class Agent extends WebSocketClient {
                             client.updatePost(post.getId(), attachment);
                             try {
                                 attachment.setText(e.getMessage());
-                                String path = Util.captureFullPage();
-                                String fileId = client.uploadFile(post.getChannelId(), path);
-                                Post p = new Post();
-                                p.setChannelId(post.getChannelId());
+                                Post p = new Post(post.getChannelId(), attachment);
                                 p.setRootId(post.getId());
-                                p.setFileIds(List.of(fileId));
-                                p.setProps(new HashMap<>(Map.of("attachments", List.of(attachment))));
-                                client.createPost(p);
+                                Util.captureImageAndCreatePost(ctx, p);
                             } catch (Exception e1) {
                                 e1.printStackTrace();
                             }

@@ -46,7 +46,7 @@ public abstract class BC {
                     .wearable-option.option-care li:not(.depth-two) button:not([an-la*='none']),
                     .smc-list .insurance__item--yes,
                     .pd-select-option__item>.pd-option-selector:has([an-la="samsung care:yes"])""";
-            WebElement elm = WebUI.findElement(to);
+            WebElement elm = WebUI.waitElement(to, 10);
             WebUI.scrollToCenter(elm);
             WebUI.delay(1);
             elm.click();

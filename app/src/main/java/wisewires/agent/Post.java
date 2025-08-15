@@ -2,6 +2,7 @@ package wisewires.agent;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 
@@ -13,6 +14,16 @@ public class Post {
     private HashMap<String, Object> props;
     private String root_id;
     private String type;
+
+    Post(String channelId, String message) {
+        this.channel_id = channelId;
+        this.message = message;
+    }
+
+    Post(String channelId, Attachment attachment) {
+        this.channel_id = channelId;
+        this.props = new HashMap<>(Map.of("attachments", List.of(attachment)));
+    }
 
     public static Post fromJson(String json) {
         return new Gson().fromJson(json, Post.class);

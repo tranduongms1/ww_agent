@@ -79,6 +79,13 @@ public abstract class Util {
         return filePath;
     }
 
+    public static void captureImageAndCreatePost(Context c, Post post) throws Exception {
+        String path = Util.captureFullPage();
+        String fileId = c.client.uploadFile(post.getChannelId(), path);
+        post.setFileIds(List.of(fileId));
+        c.client.createPost(post);
+    }
+
     public static boolean isPDPage() {
         String pdSelector = "div[class*='pdp-header']";
         WebElement pdPage = WebUI.findElement(pdSelector);

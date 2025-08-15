@@ -4,6 +4,10 @@ public class Attachment {
     private String color;
     private String text;
 
+    Attachment(String text) {
+        this.text = text;
+    }
+
     public String getColor() {
         return color;
     }

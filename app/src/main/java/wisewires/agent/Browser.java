@@ -422,14 +422,9 @@ public abstract class Browser {
                 if (c.checkoutProcess != null) {
                     Checkout.process(c);
                 }
-                String url = Util.captureFullPage();
-                String fileId = c.client.uploadFile(c.post.getChannelId(), url);
-                Post post = new Post();
-                post.setChannelId(c.post.getChannelId());
-                post.setMessage(req);
-                post.setFileIds(List.of(fileId));
-                post.setRootId(c.post.getId());
-                c.client.createPost(post);
+                Post p = new Post(c.post.getChannelId(), req);
+                p.setRootId(c.post.getId());
+                Util.captureImageAndCreatePost(c, p);
                 break;
             }
 
@@ -437,17 +432,12 @@ public abstract class Browser {
                 if (c.checkoutProcess != null) {
                     Checkout.process(c);
                 }
-                String url = Util.captureFullPage();
-                String fileId = c.client.uploadFile(c.post.getChannelId(), url);
-                Post post = new Post();
-                post.setChannelId(c.post.getChannelId());
-                post.setMessage("✅ " + req);
-                post.setFileIds(List.of(fileId));
-                post.setRootId(c.post.getId());
-                post.setType("custom_ai_verify");
-                post.getProps().put("currentUrl", WebUI.getUrl());
-                post.getProps().put("logMessages", c.getAllLogs());
-                c.client.createPost(post);
+                Post p = new Post(c.post.getChannelId(), "✅ " + req);
+                p.setRootId(c.post.getId());
+                p.setType("custom_ai_verify");
+                p.getProps().put("currentUrl", WebUI.getUrl());
+                p.getProps().put("logMessages", c.getAllLogs());
+                Util.captureImageAndCreatePost(c, p);
                 break;
             }
 
