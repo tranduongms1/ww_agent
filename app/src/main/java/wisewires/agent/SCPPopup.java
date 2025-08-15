@@ -1,7 +1,6 @@
 package wisewires.agent;
 
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,37 +11,19 @@ public class SCPPopup {
 
     static void acceptTermAndConditions() throws Exception {
         try {
-            WebUI.wait(5, 1).withMessage("Check SC+ terms and conditions").until(driver -> {
-                List<WebElement> elms;
-                Actions action = new Actions(driver);
-
-                String altBox = """
-                        .tandc-item__img,
-                        .checkbox-radio__label""";
-                String defBox = """
-                        .hubble-care-popup-new__check-list .checkbox-radio input,
-                        .smc-modal .tandc__item,
-                        .js-added-services-container .added-services-terms .checkbox-square,
-                        app-samsung-care-v2 mat-checkbox div[class="mdc-checkbox"]""";
-
-                if (WebUI.findElement(altBox) != null) {
-                    elms = WebUI.findElements(altBox);
-                } else if (WebUI.findElement(defBox) != null) {
-                    elms = WebUI.findElements(defBox);
-                } else {
-                    elms = null;
-                    return true;
-                }
-                for (WebElement elm : elms) {
-                    WebUI.scrollToCenter(elm);
-                    WebUI.delay(1);
-                    action.moveToElement(elm).click().perform();
-                    logger.info("Checked SC+ terms and conditions");
-                }
-                return true;
-            });
+            String to = """
+                    .hubble-care-popup-new__check-list .checkbox-radio,
+                    .smc-modal .tandc__item,
+                    .js-added-services-container .added-services-terms .checkbox-square,
+                    app-samsung-care-v2 mat-checkbox div[class="mdc-checkbox"]""";
+            List<WebElement> elms = WebUI.waitElements(to, 2);
+            for (WebElement elm : elms) {
+                WebUI.scrollIntoView(elm);
+                WebUI.delay(1);
+                WebUI.click(elm, 12, 12);
+            }
         } catch (Exception e) {
-            throw new Exception("Unable to select Term and Condition", e);
+            throw new Exception("Unable to select Term and Conditions", e);
         }
     }
 
