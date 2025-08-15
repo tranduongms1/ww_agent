@@ -12,7 +12,8 @@ public abstract class Payment {
     static Logger logger = LoggerFactory.getLogger(Payment.class);
 
     static Map<String, List<String>> MODE_LOCATORS = Map.of(
-            "credit card", List.of(".payment-image.adyenCc"));
+            "credit card", List.of(".payment-image.adyenCc"),
+            "cod", List.of(".payment-image.cod"));
 
     static String PAYMENT_FORM_LOCATOR = """
             app-card-on-delivery-payment,
@@ -255,7 +256,12 @@ public abstract class Payment {
     }
 
     static void payWithCOD(Context c, WebElement elm) throws Exception {
-
+        try {
+            clickPayNow();
+            WebUI.waitForUrlContains("/orderConfirmation", 15);
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with COD", e);
+        }
     }
 
     private static void handleCreditCardField(WebElement field, Context c) throws Exception {
