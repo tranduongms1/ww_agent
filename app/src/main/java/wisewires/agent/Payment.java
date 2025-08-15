@@ -14,7 +14,10 @@ public abstract class Payment {
     static Map<String, List<String>> MODE_LOCATORS = Map.of(
             "blik", List.of(".payment-image.p24-blik"),
             "credit card", List.of(".payment-image.adyenCc"),
-            "cod", List.of(".payment-image.cod"));
+            "cod", List.of(".payment-image.cod"),
+            "fbt", List.of(".payment-image.p24-fbt"),
+            "fast bank trasfer", List.of(".payment-image.p24-fbt"),
+            "tbt", List.of(".payment-image.tbt"));
 
     static String PAYMENT_FORM_LOCATOR = """
             app-card-on-delivery-payment,
@@ -234,6 +237,10 @@ public abstract class Payment {
                 payWithCreditCard(c, form);
                 break;
 
+            case "app-payment-mode-p24-fast-bank-transfer":
+                payWithFBT(c, form);
+                break;
+
             case
                     "app-payment-mode-adyen-paypal",
                     "app-payment-mode-paypal",
@@ -431,6 +438,32 @@ public abstract class Payment {
         } catch (Exception e) {
             throw new Exception("Unable to pay with Blik" + e.getMessage());
         }
+    }
+
+    static void payWithFBT(Context c, WebElement form) throws Exception {
+        acceptTermAndConditions();
+        clickPayNow();
+        WebUI.wait(60, 2).withMessage("Pay with fast bank transfer").until(d -> {
+            if (WebUI.getUrl().contains("/orderConfirmation"))
+                return true;
+            String to = """
+                    [data-an-la="payment:pay now:internetbanka"],
+                    [data-an-la='payment:pay now:internet banking'],
+                    [data-an-la="payment:pay now:bank"],
+                    .payment-group-label:has(img[alt='blik']),
+                    [data-for='BLIK-null-null-tip'] div,
+                    button[name='user_account_pbl[correct]']
+                    """;
+            List<WebElement> elms = WebUI.driver.findElements(By.cssSelector(to));
+            for (WebElement elm : elms) {
+                if (!elm.isDisplayed())
+                    continue;
+                WebUI.scrollToCenter(elm);
+                WebUI.delay(1);
+                elm.click();
+            }
+            return false;
+        });
     }
 
     static void payWithGlow(Context c, WebElement elm) throws Exception {
