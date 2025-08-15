@@ -253,7 +253,7 @@ public abstract class Cart {
                     WebUI.delay(3);
                     WebUI.click("[data-an-tr='account-login'][data-an-la='guest'].pill-btn");
                 }
-                return url.contains("/checkout");
+                return url.contains("/checkout/one");
             });
             if (result instanceof Exception) {
                 throw (Exception) result;

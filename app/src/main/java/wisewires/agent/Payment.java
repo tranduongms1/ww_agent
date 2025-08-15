@@ -152,8 +152,7 @@ public abstract class Payment {
             payment-mode-credit-card-installment,
             payment-mode-cybersource-paypal""";
 
-    static String PAY_NOW_LOCATOR = """
-            [data-an-la="payment:pay now:card or debit card"]""";
+    static String PAY_NOW_LOCATOR = "[data-an-tr='checkout-payment-detail']";
 
     static void expandPaymentMethod(String methodName) throws Exception {
         String to = "app-payment-modes mat-expansion-panel-header:has(.payment-title)";
@@ -205,7 +204,7 @@ public abstract class Payment {
         try {
             WebElement elm = WebUI.waitElement(PAY_NOW_LOCATOR, 10);
             WebUI.scrollToCenter(elm);
-            WebUI.delay(2);
+            WebUI.delay(1);
             WebUI.click(elm);
             logger.info("Pay Now button clicked");
         } catch (Exception e) {

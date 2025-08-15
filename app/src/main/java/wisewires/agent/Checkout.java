@@ -254,7 +254,6 @@ public abstract class Checkout {
                 int index = p.selectedDeliveryServices.get().size() + 1;
                 if (p.seenDeliveryServices < index)
                     break;
-                WebUI.waitElement("ul.slot_list", 2);
                 return p.selectDeliveryServiceFunc.apply(c, index, form);
             }
 
@@ -263,6 +262,7 @@ public abstract class Checkout {
                 int index = p.selectedDeliverySlots.get().size() + 1;
                 if (p.seenDeliverySlots < index)
                     break;
+                WebUI.waitElement("ul.service_list", 2);
                 return p.selectDeliverySlotFunc.apply(c, index, form);
             }
 

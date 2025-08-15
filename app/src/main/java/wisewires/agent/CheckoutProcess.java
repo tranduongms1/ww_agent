@@ -421,7 +421,7 @@ public class CheckoutProcess {
         return (WebElement) WebUI.driver.executeScript("""
                 let s = arguments[1];
                 return Array.from(arguments[0].querySelectorAll('li')).find(opt => {
-                    let e = opt.querySelector('mat-radio-button');
+                    let e = opt.querySelector('mat-radio-button, mat-checkbox');
                     if (e.id.replace(/group\\d+/, '').toLowerCase() == s) return true;
                     return false;
                 })""", elm, service.toLowerCase());

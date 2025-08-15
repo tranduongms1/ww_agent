@@ -406,6 +406,7 @@ public abstract class Browser {
                 Tokens.removeLeading(tokens, "with", "the");
                 String methodName = String.join(" ", tokens);
                 if (!WebUI.getUrl().contains("CHECKOUT_STEP_PAYMENT")) {
+                    Checkout.waitForNavigateTo();
                     c.mustCheckoutProcess().untilPayment();
                     Checkout.process(c);
                 }
