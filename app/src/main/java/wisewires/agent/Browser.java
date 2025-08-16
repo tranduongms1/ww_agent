@@ -258,6 +258,68 @@ public abstract class Browser {
                 break;
             }
 
+            case "increase", "decrease": {
+                int line = 1;
+                leading = Tokens.removeLeading(tokens, "cart", "item", "quantity", "qty", "at", "line");
+                if (leading.contains("line")) {
+                    line = Integer.parseInt(tokens.remove(0));
+                }
+                leading = Tokens.removeLeading(tokens, "to", "by");
+                if (leading.contains("to")) {
+                    int target = Integer.parseInt(tokens.remove(0));
+                    logger.info("%s cart item at line %d to %d".formatted(arg, line, target));
+                    int initial = Cart.getItemQty(line);
+                    if (arg.equalsIgnoreCase("increase")) {
+                        Cart.increaseQty(line, target - initial);
+                    } else {
+                        Cart.decreaseQty(line, initial - target);
+                    }
+                } else if (Tokens.containsAny(leading, "by")) {
+                    int count = Integer.parseInt(tokens.remove(0));
+                    logger.info("%s cart item at line %d by %d".formatted(arg, line, count));
+                    if (arg.equalsIgnoreCase("increase")) {
+                        Cart.increaseQty(line, count);
+                    } else {
+                        Cart.decreaseQty(line, count);
+                    }
+                } else {
+                    if (arg.equalsIgnoreCase("increase")) {
+                        Cart.increaseQty(line, 1);
+                    } else {
+                        Cart.decreaseQty(line, 1);
+                    }
+                }
+                break;
+            }
+
+            case "change": {
+                int line = 1;
+                leading = Tokens.removeLeading(tokens, "cart", "item", "quantity", "qty", "at", "line");
+                if (leading.contains("line")) {
+                    line = Integer.parseInt(tokens.remove(0));
+                }
+                leading = Tokens.removeLeading(tokens, "to");
+                if (leading.contains("to")) {
+                    int qty = Integer.parseInt(tokens.remove(0));
+                    Cart.changeItemQty(line, qty);
+                }
+                break;
+            }
+
+            case "remove": {
+                leading = Tokens.removeLeading(tokens, "product", "item", "by", "with", "sku",
+                        "at", "line", "from", "cart");
+                if (leading.contains("line")) {
+                    int line = Integer.parseInt(tokens.remove(0));
+                    Cart.removeItemByIndex(line);
+                }
+                if (leading.contains("sku")) {
+                    String sku = tokens.remove(0).toUpperCase();
+                    Cart.removeItemBySKU(sku);
+                }
+                break;
+            }
+
             case "fill": {
                 TokenSingleMatch match = Tokens.getFormName(tokens);
                 boolean all = Tokens.containsAny(match.leading, "all");

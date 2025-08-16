@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -171,6 +172,56 @@ public abstract class Cart {
         }
     }
 
+    static int getItemQty(int line) {
+        String to = ".cart-item-list:nth-child(%s) input.input-qty".formatted(line);
+        WebElement input = WebUI.waitElement(to, 3);
+        String value = WebUI.driver.executeScript("return arguments[0].value", input).toString();
+        return Integer.parseInt(value);
+    }
+
+    static void increaseQty(int line, int count) throws Exception {
+        try {
+            String to = ".cart-item-list:nth-child(%s) .btn-qty-plus".formatted(line);
+            WebElement btn = WebUI.waitElement(to, 3);
+            WebUI.scrollToCenter(btn);
+            WebUI.delay(1);
+            for (int i = 0; i < count; i++) {
+                WebUI.click(to);
+                WebUI.delay(2);
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to increase cart item quantity", e);
+        }
+    }
+
+    static void decreaseQty(int line, int count) throws Exception {
+        try {
+            String to = ".cart-item-list:nth-child(%s) .decrement_focus".formatted(line);
+            WebElement btn = WebUI.waitElement(to, 3);
+            WebUI.scrollToCenter(btn);
+            WebUI.delay(1);
+            for (int i = 0; i < count; i++) {
+                WebUI.click(to);
+                WebUI.delay(2);
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to decrease cart item quantity", e);
+        }
+    }
+
+    static void changeItemQty(int line, int count) throws Exception {
+        try {
+            String to = ".cart-item-list:nth-child(%s) input.input-qty".formatted(line);
+            WebElement input = WebUI.waitElement(to, 3);
+            WebUI.scrollToCenter(input);
+            WebUI.delay(1);
+            input.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+            input.sendKeys(Integer.toString(count) + Keys.ESCAPE);
+        } catch (Exception e) {
+            throw new Exception("Unable to change cart item quantity", e);
+        }
+    }
+
     static void clickCheckoutButton() throws Exception {
         try {
             WebUI.wait(10).until(d -> {
@@ -220,6 +271,51 @@ public abstract class Cart {
             }
         }
         throw new Exception("Unable to find product to add to cart");
+    }
+
+    private static void removeConfirmYes() throws Exception {
+        try {
+            String to = """
+                    app-cart-item-remove-modal [data-an-la='Yes'i],
+                    app-cart-item-remove-modal [data-an-la='remove-item'],
+                    app-cart-item-remove-modal [data-an-tr='cart-product-remove'],
+                    app-remove-service-modal [data-an-tr='cart-product-remove'],
+                    #removeEntryConfirmationModal button.js-remove-entry,
+                    .modal-remove-service .trade-in-remove-main""";
+            WebElement btn = WebUI.waitElement(to, 3);
+            if (btn != null) {
+                btn.click();
+                WebUI.delay(1);
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to click remove confirm yes", e);
+        }
+    }
+
+    static void removeItemByIndex(int line) throws Exception {
+        try {
+            String to = ".cart-item-list:nth-child(%s) .cart-item__remove--btn".formatted(line);
+            WebElement btn = WebUI.waitElement(to, 3);
+            WebUI.scrollToCenter(btn);
+            WebUI.delay(1);
+            btn.click();
+            removeConfirmYes();
+        } catch (Exception e) {
+            throw new Exception("Unable to remove cart item", e);
+        }
+    }
+
+    static void removeItemBySKU(String sku) throws Exception {
+        try {
+            String to = "[data-modelcode='%s'] .cart-item__remove--btn".formatted(sku);
+            WebElement btn = WebUI.waitElement(to, 3);
+            WebUI.scrollToCenter(btn);
+            WebUI.delay(1);
+            btn.click();
+            removeConfirmYes();
+        } catch (Exception e) {
+            throw new Exception("Unable to remove cart item", e);
+        }
     }
 
     static String getCartAlert() {
