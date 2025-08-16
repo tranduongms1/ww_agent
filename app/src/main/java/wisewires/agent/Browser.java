@@ -240,6 +240,7 @@ public abstract class Browser {
                     }
                     break;
                 }
+                break;
             }
 
             case "ensure": {
@@ -254,6 +255,7 @@ public abstract class Browser {
                     Cart.navigateTo(c, !ready);
                     WebUI.mustCloseAllPopup(c);
                 }
+                break;
             }
 
             case "fill": {
@@ -471,6 +473,7 @@ public abstract class Browser {
                         c.mustCheckoutProcess().checkSaveBillingAddress();
                         break;
                 }
+                break;
             }
         }
     }
