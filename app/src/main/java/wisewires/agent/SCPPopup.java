@@ -38,7 +38,7 @@ public class SCPPopup {
 
     static void selectType(WebElementSelector selector) throws Exception {
         try {
-            String to = ".smc-modal :has(> [name='smc-types'])";
+            String to = ":has(> [name='smc-types'])";
             List<WebElement> elms = WebUI.waitElements(to, 5);
             selector.apply(elms);
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class SCPPopup {
 
     static void selectDuration(WebElementSelector selector) throws Exception {
         try {
-            String to = ".smc-modal :has(> [name='smc-durations'])";
+            String to = ":has(> [name='smc-durations'])";
             List<WebElement> elms = WebUI.waitElements(to, 5);
             selector.apply(elms);
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class SCPPopup {
 
     static void selectOption(WebElementSelector selector) throws Exception {
         try {
-            String to = ".smc-modal .smc-option";
+            String to = ".smc-option";
             List<WebElement> elms = WebUI.waitElements(to, 5);
             selector.apply(elms);
         } catch (Exception e) {
