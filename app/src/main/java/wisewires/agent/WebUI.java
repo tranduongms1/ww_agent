@@ -19,6 +19,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@FunctionalInterface
+interface WebElementSelector {
+    void apply(List<WebElement> elms) throws Exception;
+}
+
 public abstract class WebUI {
     private static Logger logger = LoggerFactory.getLogger(WebUI.class);
 
@@ -264,6 +269,12 @@ public abstract class WebUI {
 
     public static void scrollToCenter(WebElement elm) {
         driver.executeScript("arguments[0].scrollIntoView({block:'center'})", elm);
+    }
+
+    public static void scrollToCenterAndClick(WebElement elm, int milisecond) throws Exception {
+        WebUI.scrollToCenter(elm);
+        Thread.sleep(milisecond);
+        elm.click();
     }
 
     static void switchToWindow(int index) {

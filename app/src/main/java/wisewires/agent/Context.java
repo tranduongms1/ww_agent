@@ -19,6 +19,7 @@ public class Context {
     public Map<String, String> sso;
     public boolean ssoSignedIn = false;
 
+    public SCPProcess scpProcess;
     public CheckoutProcess checkoutProcess;
 
     private boolean cookieReady = false;
@@ -115,6 +116,13 @@ public class Context {
     public String getExchangeEndpoint() throws Exception {
         Map<String, String> endpoints = getProfile().getExchangeEndpoints();
         return endpoints.get(env);
+    }
+
+    public SCPProcess mustSCPProcess() {
+        if (this.scpProcess == null) {
+            this.scpProcess = new SCPProcess();
+        }
+        return this.scpProcess;
     }
 
     public CheckoutProcess mustCheckoutProcess() {

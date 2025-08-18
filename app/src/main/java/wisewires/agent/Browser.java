@@ -139,6 +139,15 @@ public abstract class Browser {
                     }
                     break;
                 }
+                if (tokens.get(0).equalsIgnoreCase("sc+")) {
+                    c.mustSCPProcess();
+                    if (WebUI.getUrl().contains("/cart")) {
+                        Cart.addSCPlus(c);
+                    } else {
+                        BC.addSCPlus(c);
+                    }
+                    break;
+                }
                 if (tokens.contains("cart")) {
                     boolean mustReload = false;
                     class Item {

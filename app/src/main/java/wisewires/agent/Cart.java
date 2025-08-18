@@ -40,6 +40,7 @@ public abstract class Cart {
         WebUI.mustCloseAllPopup(c);
         if (Util.isPDPage()) {
             if (addedServices.contains("SC+")) {
+                c.mustSCPProcess();
                 PD.addSCPlus(c);
             }
             if (addedServices.contains("TradeIn")) {
@@ -57,6 +58,7 @@ public abstract class Cart {
                 BC.addTradeIn(c);
             }
             if (addedServices.contains("SC+")) {
+                c.mustSCPProcess();
                 BC.addSCPlus(c);
             }
             BC.continueToCart();
@@ -94,6 +96,23 @@ public abstract class Cart {
             logger.info("Trade-up added success on cart page");
         } catch (Exception e) {
             throw new Exception("Unable to add trade-up on cart page");
+        }
+    }
+
+    static void addSCPlus(Context c) throws Exception {
+        SCPProcess p = c.scpProcess;
+        try {
+            String to = ".cart-item [data-an-la='add service:samsung care']";
+            WebElement btn = WebUI.waitElement(to, 5);
+            WebUI.scrollToCenterAndClick(btn, 1000);
+            SCPPopup.waitForOpen(10);
+            SCPPopup.selectOption(p.selectOption);
+            SCPPopup.acceptTermAndConditions();
+            SCPPopup.clickConfirm();
+            SCPPopup.waitForClose(10);
+            logger.info("Popup closed, Samsung Care+ added successfully");
+        } catch (Exception e) {
+            throw new Exception("Unable to add SC+ on cart page", e);
         }
     }
 

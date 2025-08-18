@@ -67,8 +67,8 @@ public abstract class PD {
 
             // Handle SC+ Popup
             if (elm.getAttribute("class").contains("smc-item")) {
-                SCPPopup.selectFirstType();
-                SCPPopup.selectFirstDuration();
+                SCPPopup.selectType(SCPProcess::selectFirstType);
+                SCPPopup.selectDuration(SCPProcess::selectFirstDuration);
                 SCPPopup.clickContinue();
             }
             SCPPopup.acceptTermAndConditions();

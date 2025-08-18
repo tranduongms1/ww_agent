@@ -9,6 +9,14 @@ import java.util.List;
 public class SCPPopup {
     static Logger logger = LoggerFactory.getLogger(SCPPopup.class);
 
+    static String MODAL_LOCATOR = """
+            .hubble-care-popup-new,
+            .smc-modal,
+            app-samsung-care-v2.modal,
+            .js-added-service-modal-SMC,
+            .added-service-modal.show,
+            app-samsung-care""";
+
     static void acceptTermAndConditions() throws Exception {
         try {
             String to = """
@@ -22,31 +30,39 @@ public class SCPPopup {
                 WebUI.delay(1);
                 WebUI.click(elm, 12, 12);
             }
+            logger.info("Samsung Care+ terms and conditions checked");
         } catch (Exception e) {
             throw new Exception("Unable to select Term and Conditions", e);
         }
     }
 
-    static void selectFirstType() throws Exception {
+    static void selectType(WebElementSelector selector) throws Exception {
         try {
             String to = ".smc-modal :has(> [name='smc-types'])";
-            WebElement elm = WebUI.waitElement(to, 5);
-            elm.click();
-            logger.info("Selected first SC+ type");
+            List<WebElement> elms = WebUI.waitElements(to, 5);
+            selector.apply(elms);
         } catch (Exception e) {
-            throw new Exception("Unable to select first SC+ type", e);
+            throw new Exception("Unable to select SC+ type", e);
         }
-
     }
 
-    static void selectFirstDuration() throws Exception {
+    static void selectDuration(WebElementSelector selector) throws Exception {
         try {
             String to = ".smc-modal :has(> [name='smc-durations'])";
-            WebElement elm = WebUI.waitElement(to, 5);
-            elm.click();
-            logger.info("Selected first SC+ duration");
+            List<WebElement> elms = WebUI.waitElements(to, 5);
+            selector.apply(elms);
         } catch (Exception e) {
-            throw new Exception("Unable to select first SC+ duration", e);
+            throw new Exception("Unable to select SC+ duration", e);
+        }
+    }
+
+    static void selectOption(WebElementSelector selector) throws Exception {
+        try {
+            String to = ".smc-modal .smc-option";
+            List<WebElement> elms = WebUI.waitElements(to, 5);
+            selector.apply(elms);
+        } catch (Exception e) {
+            throw new Exception("Unable to select SC+ option", e);
         }
     }
 
@@ -97,12 +113,10 @@ public class SCPPopup {
         try {
             String to = ".smc-modal [an-la='samsung care:continue']";
             WebElement elm = WebUI.waitElement(to, 5);
-            if (elm != null) {
-                WebUI.scrollToCenter(elm);
-                WebUI.delay(1);
-                elm.click();
-                logger.info("Clicked Continue in SC+ popup");
-            }
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            elm.click();
+            logger.info("Clicked Continue in SC+ popup");
         } catch (Exception e) {
             throw new Exception("Unable to click Continue", e);
         }
@@ -117,40 +131,24 @@ public class SCPPopup {
                     button[data-an-la="samsung care:confirm"],
                     a[an-la="samsung care:confirm"]""";
             WebElement elm = WebUI.findElement(to);
-            if (elm != null) {
-                WebUI.scrollToCenter(elm);
-                WebUI.delay(1);
-                elm.click();
-                logger.info("Clicked Confirm in SC+ popup");
-            }
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            elm.click();
+            logger.info("Clicked Confirm in SC+ popup");
         } catch (Exception e) {
             throw new Exception("Unable to click Confirm", e);
         }
     }
 
-    static void waitForClose(int timeOut) {
-        WebUI.wait(timeOut, 1).withMessage("Waiting for SC+ popup to close").until(driver -> {
-            String to = """
-                    .hubble-care-popup-new,
-                    .smc-modal,
-                    app-samsung-care-v2.modal,
-                    .js-added-service-modal-SMC,
-                    .added-service-modal.show,
-                    app-samsung-care""";
-            return WebUI.findElement(to) == null;
+    static void waitForOpen(int timeOut) {
+        WebUI.wait(timeOut, 1).withMessage("SC+ popup to open").until(driver -> {
+            return WebUI.findElement(MODAL_LOCATOR) != null;
         });
     }
 
-    static void waitForOpen(int timeOut) {
-        WebUI.wait(timeOut, 1).withMessage("Waiting for SC+ popup to open").until(driver -> {
-            String to = """
-                    .hubble-care-popup-new,
-                    .smc-modal,
-                    app-samsung-care-v2.modal,
-                    .js-added-service-modal-SMC,
-                    .added-service-modal.show,
-                    app-samsung-care""";
-            return WebUI.findElement(to) != null;
+    static void waitForClose(int timeOut) {
+        WebUI.wait(timeOut, 1).withMessage("SC+ popup to close").until(driver -> {
+            return WebUI.findElement(MODAL_LOCATOR) == null;
         });
     }
 }
