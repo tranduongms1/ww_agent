@@ -96,7 +96,7 @@ public abstract class BC {
             WebElement elm = WebUI.findElement(to);
             WebUI.scrollToCenter(elm);
             WebUI.delay(1);
-            elm.click();
+            WebUI.click(to);
         }
         if (shouldSelectSCP()) {
             String to = """
@@ -107,7 +107,7 @@ public abstract class BC {
             WebElement elm = WebUI.findElement(to);
             WebUI.scrollToCenter(elm);
             WebUI.delay(1);
-            elm.click();
+            WebUI.click(to);
         }
         WebUI.wait(30, 1).withMessage("added to cart").until(driver -> {
             String url = driver.getCurrentUrl();

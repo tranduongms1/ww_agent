@@ -20,6 +20,7 @@ public class Context {
     public boolean ssoSignedIn = false;
 
     public SCPProcess scpProcess;
+    public PFProcess pfProcess;
     public CheckoutProcess checkoutProcess;
 
     private boolean cookieReady = false;

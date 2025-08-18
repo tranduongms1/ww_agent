@@ -51,7 +51,7 @@ public abstract class Browser {
                 break;
 
             case "open", "go", "navigate": {
-                leading = Tokens.removeLeading(tokens, "to", "home", "shop", "cart", "page");
+                leading = Tokens.removeLeading(tokens, "to", "home", "shop", "cart", "pf", "pd", "bc", "page");
                 if (leading.containsAll(List.of("shop", "home"))) {
                     WebUI.openBrowser(c, c.getShopUrl());
                 } else if (leading.contains("home")) {
@@ -119,6 +119,14 @@ public abstract class Browser {
                 } else {
                     SSO.mustSignedOut(c);
                 }
+                break;
+            }
+
+            case "find": {
+                Tokens.removeLeading(tokens, "product");
+                String productName = String.join(" ", tokens);
+                c.pfProcess = new PFProcess();
+                PF.findProductCard(c, productName);
                 break;
             }
 
@@ -252,6 +260,16 @@ public abstract class Browser {
                 break;
             }
 
+            case "click": {
+                if (c.pfProcess != null) {
+                    if (Tokens.containsAll(tokens, "buy", "now")) {
+                        PF.clickBuyNow(c);
+                        WebUI.closeAllPopup(c);
+                    }
+                }
+                break;
+            }
+
             case "ensure": {
                 leading = Tokens.removeLeading(tokens, "cart", "page", "not", "empty");
                 if (Tokens.containsAll(leading, "cart", "empty")) {
@@ -355,6 +373,20 @@ public abstract class Browser {
             }
 
             case "select": {
+                if (c.pfProcess != null) {
+                    while (!tokens.isEmpty()) {
+                        String value = tokens.remove(0);
+                        leading = Tokens.removeLeading(tokens, "color", "and", "storage");
+                        if (leading.contains("color")) {
+                            PF.selectColor(c, value);
+                        } else if (leading.contains("storage")) {
+                            PF.selectStorage(c, value);
+                        } else {
+                            break;
+                        }
+                    }
+                    break;
+                }
                 if (Tokens.containsAll(tokens, "different", "billing", "address")) {
                     c.mustCheckoutProcess().uncheckSameAsShippingAddress();
                     break;

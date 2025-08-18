@@ -116,19 +116,18 @@ public abstract class WebUI {
                     List<WebElement> terms = WebUI.findElements("#privacy-terms, #privacy-terms2");
                     driver.executeScript("for (const e of arguments[0]) e.click()", terms);
                     driver.executeScript("for (const e of arguments[0]) e.click()", elms);
-                    driver.executeScript(DISPLAY_NONE);
                     return true;
                 }
                 return false;
             });
         } catch (Exception ignore) {
         }
-        WebUI.delay(1);
+        WebUI.delay(2);
         if (ExpectedConditions.stalenessOf(body).apply(driver)) {
             logger.info("Page reloaded, waiting for new ready state");
             waitForPageLoad(10);
-            driver.executeScript(DISPLAY_NONE);
         }
+        driver.executeScript(DISPLAY_NONE);
         c.setPopupClosed();
     }
 
