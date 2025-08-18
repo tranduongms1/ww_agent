@@ -60,6 +60,9 @@ public class Post {
     }
 
     public PostProps getProps() {
+        if (props == null) {
+            props = new PostProps();
+        }
         return props;
     }
 
