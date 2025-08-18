@@ -13,6 +13,11 @@ import org.slf4j.LoggerFactory;
 public abstract class Checkout {
     static Logger logger = LoggerFactory.getLogger(Checkout.class);
 
+    public static String CUSTOMER_INFO_EDIT = "[data-an-la='checkout:customer details:edit']";
+    public static String ADDRESS_DETAILS_EDIT = """
+            .address-details .actions__edit,
+            .checkout-contact-info-header .actions__edit""";
+
     static String DELIVERY_INFO_TABS_SELECTOR = "div.delivery-info-tabs:not(.invisible-tabs):not(:has(.invisible-tabs)):has([role='tab']:not(hidden))";
     static String DELIVERY_TAB_GROUP_CONTAINER_TOP = ".delivery-tab__group-container:has(.delivery-tab__group-container):has([role='tab']:not(hidden))";
     static String DELIVERY_TAB_GROUP_CONTAINER = ".delivery-tab__group-container:not(:has(.delivery-tab__group-container)):has([role='tab']:not(hidden))";
@@ -727,6 +732,34 @@ public abstract class Checkout {
             logger.info("Checkout page loaded success");
         } catch (Exception e) {
             throw new Exception("checkout main content not loaded");
+        }
+    }
+
+    static void clickEditCustomerAddress() throws Exception {
+        try {
+            WebElement edit = WebUI.findElement(ADDRESS_DETAILS_EDIT);
+            WebUI.scrollToCenter(edit);
+            WebUI.delay(1);
+            edit.click();
+            logger.info("Clicked edit customer address");
+            WebUI.delay(2);
+            WebUI.waitForNotDisplayed(".skeleton", 10);
+        } catch (Exception e) {
+            throw new Exception("Unable to click edit customer address", e);
+        }
+    }
+
+    static void clickEditCustomerInfo() throws Exception {
+        try {
+            WebElement edit = WebUI.findElement(CUSTOMER_INFO_EDIT);
+            WebUI.scrollToCenter(edit);
+            WebUI.delay(1);
+            edit.click();
+            logger.info("Clicked edit customer info");
+            WebUI.delay(2);
+            WebUI.waitForNotDisplayed(".skeleton", 10);
+        } catch (Exception e) {
+            throw new Exception("Unable to click edit customer info", e);
         }
     }
 }

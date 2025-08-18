@@ -50,10 +50,6 @@ interface OnFormAction {
 public class CheckoutProcess {
     static Logger logger = LoggerFactory.getLogger(CheckoutProcess.class);
 
-    private static String ADDRESS_DETAILS_EDIT = """
-            .address-details .actions__edit,
-            .checkout-contact-info-header .actions__edit""";
-
     public List<String> formLocators;
 
     public AtomicReference<String> selectedDeliveryType = new AtomicReference<>();
@@ -276,7 +272,7 @@ public class CheckoutProcess {
         });
         untilFuncs.add((Context c) -> {
             if (!done.get()) {
-                ensureNotPassedForm("app-customer-info-v2", "[data-an-la='checkout:customer details:edit']");
+                ensureNotPassedForm("app-customer-info-v2", Checkout.CUSTOMER_INFO_EDIT);
             }
             return done.get();
         });
@@ -294,7 +290,7 @@ public class CheckoutProcess {
         });
         untilFuncs.add((Context c) -> {
             if (!done.get()) {
-                boolean passed = ensureNotPassedForm("app-customer-address-v2", ADDRESS_DETAILS_EDIT);
+                boolean passed = ensureNotPassedForm("app-customer-address-v2", Checkout.ADDRESS_DETAILS_EDIT);
                 if (passed) {
                     c.checkoutProcess.formLocators.remove("app-customer-info-v2");
                 }
@@ -315,7 +311,7 @@ public class CheckoutProcess {
         });
         untilFuncs.add((Context c) -> {
             if (!done.get()) {
-                boolean passed = ensureNotPassedForm("app-billing-address-v2", ADDRESS_DETAILS_EDIT);
+                boolean passed = ensureNotPassedForm("app-billing-address-v2", Checkout.ADDRESS_DETAILS_EDIT);
                 if (passed) {
                     c.checkoutProcess.formLocators.remove("app-customer-address-v2");
                 }

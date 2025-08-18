@@ -259,17 +259,6 @@ public abstract class Browser {
                 }
                 break;
             }
-
-            case "click": {
-                if (c.pfProcess != null) {
-                    if (Tokens.containsAll(tokens, "buy", "now")) {
-                        PF.clickBuyNow(c);
-                        WebUI.closeAllPopup(c);
-                    }
-                }
-                break;
-            }
-
             case "ensure": {
                 leading = Tokens.removeLeading(tokens, "cart", "page", "not", "empty");
                 if (Tokens.containsAll(leading, "cart", "empty")) {
@@ -459,6 +448,28 @@ public abstract class Browser {
                     }
                     if (type != null && option != null) {
                         c.mustCheckoutProcess().selectDelivery(type, consignment > 0 ? consignment : 1, option);
+                    }
+                }
+                break;
+            }
+
+            case "click": {
+                if (c.pfProcess != null) {
+                    if (Tokens.containsAll(tokens, "buy", "now")) {
+                        PF.clickBuyNow(c);
+                        WebUI.closeAllPopup(c);
+                    }
+                }
+                if (tokens.get(0).equalsIgnoreCase("edit")) {
+                    tokens.remove(0);
+                    TokenSingleMatch match = Tokens.getFormName(tokens);
+                    switch (match.value) {
+                        case "customer info":
+                            Checkout.clickEditCustomerInfo();
+                            break;
+                        case "customer address":
+                            Checkout.clickEditCustomerAddress();
+                            break;
                     }
                 }
                 break;
