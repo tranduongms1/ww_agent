@@ -470,8 +470,15 @@ public abstract class Browser {
             }
 
             case "continue": {
-                leading = Tokens.removeLeading(tokens, "to", "checkout", "payment", "page",
+                leading = Tokens.removeLeading(tokens, "to", "cart", "checkout", "payment", "page",
                         "as", "guest", "register", "user");
+                if (leading.contains("cart")) {
+                    if (Util.isPDPage()) {
+                        PD.continueToCart();
+                    } else {
+                        BC.continueToCart();
+                    }
+                }
                 if (leading.contains("checkout")) {
                     if (Tokens.containsAny(leading, "register", "user")) {
                         Cart.ssoCheckout(c);
