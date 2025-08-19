@@ -62,6 +62,10 @@ public class Context {
         popupClosed.put(envKey(), true);
     }
 
+    public void unsetPopupClosed() {
+        popupClosed.put(envKey(), false);
+    }
+
     public Profile getProfile() throws Exception {
         if (!profiles.containsKey(site)) {
             InputStream inputStream = JsonReader.class.getResourceAsStream("/data/" + site + ".json");

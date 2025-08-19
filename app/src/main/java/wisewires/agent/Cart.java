@@ -63,6 +63,8 @@ public abstract class Cart {
             }
             BC.continueToCart();
         }
+        // FIX: When close popup on AEM but not on Hybrid
+        c.unsetPopupClosed();
     }
 
     static void addTradeIn(Context c) throws Exception {
