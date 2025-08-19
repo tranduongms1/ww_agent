@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -93,5 +94,12 @@ public abstract class Util {
             return true;
         }
         return false;
+    }
+
+    public static <K, V> Map<K, V> combined(Map<K, V> m1, Map<K, V> m2) {
+        Map<K, V> combined = new HashMap<>();
+        combined.putAll(m1);
+        combined.putAll(m2);
+        return combined;
     }
 }

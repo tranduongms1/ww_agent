@@ -67,6 +67,10 @@ public class Profile {
         this.customerAddress = customerAddress;
     }
 
+    public Map<String, String> getShippingAddress() {
+        return Util.combined(customerInfo, customerAddress);
+    }
+
     public HashMap<String, String> getBillingAddress() {
         return billingAddress;
     }
