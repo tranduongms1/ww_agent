@@ -719,6 +719,8 @@ public abstract class Checkout {
             WebUI.delay(1);
             String btnApply = "[data-an-la='coupon:apply']";
             WebUI.click(btnApply);
+            WebUI.delay(2);
+            WebUI.waitForNotDisplayed("mat-spinner", 10);
         } catch (Exception e) {
             throw new Exception("Unable to apply voucher on checkout page");
         }

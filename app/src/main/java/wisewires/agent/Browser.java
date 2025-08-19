@@ -260,7 +260,7 @@ public abstract class Browser {
                 break;
             }
             case "ensure": {
-                leading = Tokens.removeLeading(tokens, "cart", "page", "not", "empty");
+                leading = Tokens.removeLeading(tokens, "cart", "page", "is", "not", "empty");
                 if (Tokens.containsAll(leading, "cart", "empty")) {
                     boolean ready;
                     if (leading.contains("not")) {
