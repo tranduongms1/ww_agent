@@ -470,6 +470,9 @@ public abstract class Browser {
                         case "customer address":
                             Checkout.clickEditCustomerAddress();
                             break;
+                        case "delivery":
+                            Checkout.clickEditDeliveryInfo();
+                            break;
                     }
                 }
                 break;

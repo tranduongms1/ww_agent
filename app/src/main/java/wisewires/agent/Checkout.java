@@ -18,6 +18,9 @@ public abstract class Checkout {
             .address-details .actions__edit,
             .checkout-contact-info-header .actions__edit""";
 
+    public static String DELIVERY_INFO_EDIT = """
+            .delivery-item-container .actions__edit""";
+
     static String DELIVERY_INFO_TABS_SELECTOR = "div.delivery-info-tabs:not(.invisible-tabs):not(:has(.invisible-tabs)):has([role='tab']:not(hidden))";
     static String DELIVERY_TAB_GROUP_CONTAINER_TOP = ".delivery-tab__group-container:has(.delivery-tab__group-container):has([role='tab']:not(hidden))";
     static String DELIVERY_TAB_GROUP_CONTAINER = ".delivery-tab__group-container:not(:has(.delivery-tab__group-container)):has([role='tab']:not(hidden))";
@@ -762,6 +765,20 @@ public abstract class Checkout {
             WebUI.waitForNotDisplayed(".skeleton", 10);
         } catch (Exception e) {
             throw new Exception("Unable to click edit customer info", e);
+        }
+    }
+
+    static void clickEditDeliveryInfo() throws Exception {
+        try {
+            WebElement edit = WebUI.findElement(DELIVERY_INFO_EDIT);
+            WebUI.scrollToCenter(edit);
+            WebUI.delay(1);
+            edit.click();
+            logger.info("Clicked edit delivery info");
+            WebUI.delay(2);
+            WebUI.waitForNotDisplayed(".skeleton", 10);
+        } catch (Exception e) {
+            throw new Exception("Unable to click edit delivery info", e);
         }
     }
 }
