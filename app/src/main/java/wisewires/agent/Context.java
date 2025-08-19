@@ -2,9 +2,7 @@ package wisewires.agent;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -27,7 +25,6 @@ public class Context {
     private Map<String, Boolean> aemReady = new HashMap<>();
     private Map<String, Boolean> popupClosed = new HashMap<>();
     private Map<String, Profile> profiles = new HashMap<>();
-    private List<String> logMessages = new ArrayList<>();
 
     public Context() {
         this.siteUid = "";
@@ -133,15 +130,15 @@ public class Context {
         return this.checkoutProcess;
     }
 
-    public void log(String message) {
-        logMessages.add(message);
-    }
+    public void reset() {
+        ssoSignedIn = false;
 
-    public List<String> getAllLogs() {
-        return logMessages;
-    }
+        scpProcess = null;
+        pfProcess = null;
+        checkoutProcess = null;
 
-    public void clearLogs() {
-        logMessages.clear();
+        cookieReady = false;
+        aemReady = new HashMap<>();
+        popupClosed = new HashMap<>();
     }
 }

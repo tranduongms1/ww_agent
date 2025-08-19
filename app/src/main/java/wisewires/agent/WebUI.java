@@ -83,7 +83,7 @@ public abstract class WebUI {
 
     static void getPointing(Context c) throws Exception {
         String url = c.getPointingUrl();
-        driver.get(url);
+        openBrowser(url);
         delay(1);
         wait(30).withMessage("AEM login").until(d -> {
             WebElement elm = findElement("#login.coral-Form");
@@ -152,7 +152,6 @@ public abstract class WebUI {
             }
         }
         driver = null;
-        c = new Context();
     }
 
     static WebElement click(String selector) {

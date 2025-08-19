@@ -579,6 +579,7 @@ public abstract class Browser {
             case "close": {
                 if (tokens.get(0).equalsIgnoreCase("browser")) {
                     WebUI.closeBrower(c);
+                    c.reset();
                 }
                 break;
             }
