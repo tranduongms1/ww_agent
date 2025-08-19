@@ -31,5 +31,24 @@
         "brand": "Samsung",
         "model": "Samsung Galaxy Z Flip4 5G 128GB F721B",
         "imei": "353185442215903"
+    },
+    "serviceData": {},
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "dk",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "dk",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "dk",
+        "expiryDate": "03/30",
+        "cvv": "7373"
     }
 }

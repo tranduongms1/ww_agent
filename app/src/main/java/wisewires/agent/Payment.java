@@ -12,12 +12,15 @@ public abstract class Payment {
     static Logger logger = LoggerFactory.getLogger(Payment.class);
 
     static Map<String, List<String>> MODE_LOCATORS = Map.of(
+            "amex card", List.of(".payment-image.adyenCc"),
             "blik", List.of(".payment-image.p24-blik"),
             "credit card", List.of(".payment-image.adyenCc"),
             "cod", List.of(".payment-image.cod"),
             "fbt", List.of(".payment-image.p24-fbt"),
             "fast bank trasfer", List.of(".payment-image.p24-fbt"),
-            "tbt", List.of(".payment-image.tbt"));
+            "master card", List.of(".payment-image.adyenCc"),
+            "tbt", List.of(".payment-image.tbt"),
+            "visa card", List.of(".payment-image.adyenCc"));
 
     static String PAYMENT_FORM_LOCATOR = """
             app-card-on-delivery-payment,
