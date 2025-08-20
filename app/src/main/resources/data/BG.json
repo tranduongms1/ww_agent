@@ -1,0 +1,102 @@
+{
+    "stores": {
+        "bg_smb": "/multistore/bgepp/bg_smb",
+        "bg_employee": "/multistore/bgepp/bg_employee"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=bg&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/bg/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2"
+    },
+    "servicesV2Endpoint": "https://stg2.shop.samsung.com/bg",
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "phoneNumber": "61234567",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "5432",
+        "adminLevel2": "Абланица",
+        "adminLevel1": "Благоевград",
+        "phoneNumber": "0912358531",
+        "companyName": "WW",
+        "companyId": "WW",
+        "vatNumber": "123456789"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "Test",
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "4000",
+        "adminLevel3": "Благоевград",
+        "adminLevel2": "Бабяк",
+        "phoneNumber": "0912358531"
+    },
+    "tradeInData": {
+        "category": "Smartphones",
+        "brand": "Samsung",
+        "model": "GALAXY S23 ULTRA",
+        "storage": "512GB",
+        "imei": "301296444933956"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-F956BDBNEUE",
+                "provider": "FOXWAY",
+                "productCode": "67183",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        }
+    },
+    "creditCardTitle": "Банкова карта",
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "BG",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "BG",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "BG",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "codTitle": "Плащане при доставка"
+}
