@@ -28,8 +28,8 @@ public abstract class Logout {
     }
 
     static void fromCartGNB(Context c) throws Exception {
-        if (!WebUI.getUrl().contains("/cart")) {
-            WebUI.driver.get(c.getCartUrl());
+        if (!WebUI.isOnSiteCart(c)) {
+            Cart.navigateTo(c, false);
         }
         fromShopGNB(c);
     }

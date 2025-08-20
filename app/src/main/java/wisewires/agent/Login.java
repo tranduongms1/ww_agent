@@ -30,7 +30,9 @@ public abstract class Login {
     }
 
     static void fromCartGNB(Context c) throws Exception {
-        Cart.navigateTo(c, false);
+        if (!WebUI.isOnSiteCart(c)) {
+            Cart.navigateTo(c, false);
+        }
         fromShopGNB(c);
     }
 

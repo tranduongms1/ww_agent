@@ -261,6 +261,13 @@ public abstract class WebUI {
         return false;
     }
 
+    public static boolean isOnSiteCart(Context c) throws Exception {
+        if (driver != null && driver.getCurrentUrl().startsWith(c.getCartUrl())) {
+            return true;
+        }
+        return false;
+    }
+
     public static void scrollIntoView(WebElement elm) {
         driver.executeScript("arguments[0].scrollIntoView()", elm);
     }

@@ -347,13 +347,14 @@ public abstract class Cart {
     }
 
     static void navigateTo(Context c, boolean reloadIfReadyOnCart) throws Exception {
-        if (WebUI.driver != null && WebUI.getUrl().contains("/cart")) {
+        if (WebUI.isOnSiteCart(c)) {
             if (reloadIfReadyOnCart) {
                 WebUI.driver.navigate().refresh();
             }
         } else {
             WebUI.openBrowser(c, c.getCartUrl());
         }
+        WebUI.waitElement("cx-cart-details", 15);
     }
 
     static void guestCheckout(Context c) throws Exception {
