@@ -1,10 +1,10 @@
 {
     "stores": {
         "smb": "/business",
-        "plsme": "/business"
+        "ptsme": "/business"
     },
     "pointingUrls": {
-        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://p2-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://v2.shop.samsung.com&cart=https://v2.shop.samsung.com/pl/cart"
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pt&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/pt/cart"
     },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
