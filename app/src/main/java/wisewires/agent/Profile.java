@@ -8,6 +8,7 @@ public class Profile {
     private Map<String, String> pointingUrls;
     private Map<String, String> apiEndpoints;
     private Map<String, String> exchangeEndpoints;
+    private Map<String, String> tariffEndpoints;
 
     private HashMap<String, String> customerInfo;
     private HashMap<String, String> customerAddress;
@@ -49,6 +50,17 @@ public class Profile {
 
     public void setExchangeEndpoints(Map<String, String> exchangeEndpoints) {
         this.exchangeEndpoints = exchangeEndpoints;
+    }
+
+    public Map<String, String> getTariffEndpoints() {
+        if (tariffEndpoints == null) {
+            return new HashMap<>();
+        }
+        return tariffEndpoints;
+    }
+
+    public void setTariffEndpoints(Map<String, String> tariffEndpoints) {
+        this.tariffEndpoints = tariffEndpoints;
     }
 
     public HashMap<String, String> getCustomerInfo() {

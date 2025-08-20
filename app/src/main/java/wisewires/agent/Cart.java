@@ -180,6 +180,23 @@ public abstract class Cart {
         }
     }
 
+    static void addSIMViaAPI(Context c, String sku, long entryNumber, Map<String, Object> plan) throws Exception {
+        try {
+            Map<String, Object> data = new HashMap<>(Map.of(
+                    "serviceType", "SIM_PLAN",
+                    "planId", plan.get("id")));
+            if (plan.get("serviceProduct") != null) {
+                data.put("serviceCode", plan.get("serviceProduct"));
+            } else {
+                data.put("serviceCode", API.getSIMServiceCode(c, sku, plan.get("carrier")));
+            }
+            API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, data);
+            logger.info("SIM added success for %s at cart entry %d".formatted(sku, entryNumber));
+        } catch (Exception e) {
+            throw new Exception("Unable to add SIM  for %s at cart entry %d".formatted(sku, entryNumber));
+        }
+    }
+
     static void applyVoucher(String voucher) throws Exception {
         try {
             logger.info("applying voucher code %s".formatted(voucher));

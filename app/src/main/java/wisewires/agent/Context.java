@@ -120,6 +120,11 @@ public class Context {
         return endpoints.get(env);
     }
 
+    public String getTariffEndpoint() throws Exception {
+        Map<String, String> endpoints = getProfile().getTariffEndpoints();
+        return endpoints.get(env);
+    }
+
     public SCPProcess mustSCPProcess() {
         if (this.scpProcess == null) {
             this.scpProcess = new SCPProcess();

@@ -176,7 +176,7 @@ public abstract class Browser {
                             leading = Tokens.removeLeading(tokens, "with",
                                     "trade-in", "tradein", "trade-up", "tradeup",
                                     "sc+", "smc", "std", "standard", "sub", "subscription",
-                                    "e-warranty", "ewarranty", "warranty",
+                                    "sim", "e-warranty", "ewarranty", "warranty",
                                     "and", "+");
                             if (Tokens.containsAny(leading, "trade-in", "tradein")) {
                                 item.addedServices.add("TradeIn");
@@ -192,6 +192,9 @@ public abstract class Browser {
                                 } else {
                                     item.addedServices.add("SC+");
                                 }
+                            }
+                            if (Tokens.containsAny(leading, "sim")) {
+                                item.addedServices.add("SIM");
                             }
                             if (Tokens.containsAny(leading, "e-warranty", "ewarranty", "warranty")) {
                                 item.addedServices.add("EWarranty");
@@ -236,6 +239,13 @@ public abstract class Browser {
                                     if (option == null)
                                         throw new Exception("No SC+ avaiable for %s".formatted(sku));
                                     Cart.addSMCViaAPI(c, entryNumber, option);
+                                }
+                                if (item.addedServices.contains("SIM")) {
+                                    List<Map<String, Object>> plans = API.getSIMPlans(c, sku);
+                                    if (plans.isEmpty())
+                                        throw new Exception("No SIM plan avaiable for %s".formatted(sku));
+                                    Map<String, Object> plan = plans.get(0);
+                                    Cart.addSIMViaAPI(c, sku, entryNumber, plan);
                                 }
                             }
                             mustReload = true;

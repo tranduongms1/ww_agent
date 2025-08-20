@@ -232,6 +232,47 @@ public abstract class API {
         return WebUI.driver.executeAsyncScript(script, exchangeEndpoint, body).toString();
     }
 
+    @SuppressWarnings("unchecked")
+    public static List<Map<String, Object>> getSIMPlans(Context c, String sku) throws Exception {
+        String url = c.getTariffEndpoint() != null
+                ? "%s/sku/%s/plans?fields=DEFAULT".formatted(c.getTariffEndpoint(), sku)
+                : "%s/carriers/device/%s/plans?fields=DEFAULT".formatted(c.getAPIEndpoint(), sku);
+        String script = """
+                    return fetch(arguments[0], {
+                        method: "GET",
+                        credentials: "include"
+                    })
+                        .then(res => {
+                            if (res.status!=200) throw new Error('response status code: ' + res.status);
+                            return res.text();
+                        })
+                        .then(data => arguments[1](JSON.parse(data).carriers.reduce((p, c) => [...p, ...c.tariffPlans], [])));
+                """;
+        return (List<Map<String, Object>>) WebUI.driver.executeAsyncScript(script, url);
+    }
+
+    public static String getSIMServiceCode(Context c, String sku, Object carrier) throws Exception {
+        String script = """
+                    return fetch(`${arguments[0]}/products/${arguments[1]}?fields=FULL`, {
+                        method: "GET",
+                        mode: "cors",
+                        credentials: "include"
+                    })
+                        .then(res => {
+                            if (res.status!=200) throw new Error('response status code: ' + res.status);
+                            return res.text();
+                        })
+                        .then(body => {
+                            const code = JSON.parse(body).availableServices
+                                .find(s => s.serviceCategory.code.toLowerCase() == 'sim_plan')
+                                .addedServiceConfig.configParameters.entry
+                                .find(e => e.key =='carrier.service.sku.code.' + arguments[2]).value;
+                            arguments[3](code);
+                        });
+                """;
+        return WebUI.driver.executeAsyncScript(script, c.getAPIEndpoint(), sku, carrier).toString();
+    }
+
     public static List<Map<String, Object>> getWarrantyServices(Context c, String sku) throws Exception {
         String category = "warranty";
         Map<String, Map<String, Object>> serviceData = c.getProfile().getServiceData();
