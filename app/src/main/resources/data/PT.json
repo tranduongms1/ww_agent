@@ -1,0 +1,122 @@
+{
+    "stores": {
+        "smb": "/business",
+        "plsme": "/business"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://p2-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://v2.shop.samsung.com&cart=https://v2.shop.samsung.com/pl/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/prt"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "932132122",
+        "country": "Portugal",
+        "fiscalCode": "199877670",
+        "dateOfBirth_Day": "01",
+        "dateOfBirth_Month": "01",
+        "dateOfBirth_Year": "1999"
+    },
+    "customerAddress": {
+        "searchAddress": "R Irene Lisboa 19",
+        "line1": "R Irene Lisboa 19",
+        "adminLevel2": "Brandoa",
+        "postalCode": "2650-222"
+    },
+    "billingAddress": {
+        "country": "Portugal",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+351",
+        "phoneNumber": "932132122",
+        "searchAddress": "Avenida Marquês Tomar 19",
+        "line1": "Av Marquês de Tomar 19",
+        "adminLevel2": "Lisboa",
+        "postalCode": "1050-055"
+    },
+    "tradeInData": {
+        "category": "SMARTPHONE",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip5",
+        "storage": "512GB",
+        "imei": "301296444933956"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-WORLDBUSINESS-TRADEIN",
+            "addToCartType": "append",
+            "provider": "PT-WORLDBUSINESS",
+            "additionalInfos": {
+                "targetProductCode": "SM-S921BLBGEUB",
+                "provider": "PT-WORLDBUSINESS",
+                "productCode": "T-SAMSUNG-GALAXY-Z-FOLD5-512-GB_WB",
+                "responses": [],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "pt",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "27576B9D-C978-4F54-B8C6-817A265B899A",
+            "type": "TradeIn",
+            "sku": "TQ43QN90DATXXC",
+            "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "smc"
+        },
+        "MCS": {
+            "serviceCode": "L-INST/G0",
+            "additionalInfos": {
+                "districtCode": "PT-07",
+                "lang": "pt_PT",
+                "curr": "EUR"
+            }
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "pt",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "2223 0000 4841 0010",
+        "holderName": "pt",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 000000 00002",
+        "holderName": "pt",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "pt",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    },
+    "klarnaData": {
+        "phoneNumber": "351918038815",
+        "otp": "111111"
+    }
+}
