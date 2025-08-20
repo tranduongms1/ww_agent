@@ -201,6 +201,7 @@ public abstract class TradeIn {
                 case
                         "model",
                         "modelName",
+                        "stockModel",
                         "Device",
                         "Model",
                         "Indtast model:",

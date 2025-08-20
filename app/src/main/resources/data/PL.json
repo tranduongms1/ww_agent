@@ -38,6 +38,13 @@
     "tradeInInfo": {
         "iban": "PL12341234123412341234123412"
     },
+    "tradeInData": {
+        "category": "Telefony Komórkowe",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Fold6 5G 1TB F956B DS",
+        "storage": "512GB",
+        "imei": "301296444933956"
+    },
     "serviceData": {
         "TradeIn": {
             "serviceCode": "T-FOXWAY-TRADEIN",
