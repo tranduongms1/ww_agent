@@ -381,6 +381,39 @@ public class CheckoutProcess {
         });
     }
 
+    public CheckoutProcess selectSavedCustomerAddress(int index) {
+        return onCustomerAddress((c, form) -> {
+            try {
+                String to = "app-customer-address-v2 app-address-list-v2 mat-radio-group > div mat-radio-button";
+                List<WebElement> elms = WebUI.findElements(to).stream()
+                        .filter(WebElement::isDisplayed)
+                        .toList();
+                WebElement elm = elms.get(index);
+                WebUI.scrollToCenter(elm);
+                elm.click();
+            } catch (Exception e) {
+                throw new Exception("Unable to select saved customer address", e);
+            }
+        });
+    }
+
+    public CheckoutProcess selectSavedBillingAddress(int index) {
+        return onBillingAddress((c, form) -> {
+            try {
+                String to = "app-billing-address-v2 app-address-list-v2 mat-radio-group > div mat-radio-button";
+                List<WebElement> elms = WebUI.findElements(to).stream()
+                        .filter(WebElement::isDisplayed)
+                        .toList();
+                WebElement elm = elms.get(index);
+                WebUI.scrollToCenter(elm);
+                WebUI.delay(1);
+                elm.click();
+            } catch (Exception e) {
+                throw new Exception("Unable to select saved billing address", e);
+            }
+        });
+    }
+
     private static WebElement findDeliveryOptionByTitleOrCode(WebElement elm, String option) {
         return (WebElement) WebUI.driver.executeScript("""
                 let s = arguments[1];
