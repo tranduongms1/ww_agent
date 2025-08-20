@@ -1,0 +1,116 @@
+{
+    "stores": {
+        "smb": "/business"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=at&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/at/cart&storeNewHybDomain=https://s2-smn-api-cdn.ecom-stg.samsung.com"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "Österreich",
+        "phoneNumber": "1323132123",
+        "title": "Herr"
+    },
+    "customerAddress": {
+        "line1": "Glocknerstrasse",
+        "line2": "57",
+        "adminLevel2": "Hippach-schwendberg",
+        "postalCode": "6283",
+        "country": "Belgien"
+    },
+    "billingAddress": {},
+    "tradeInInfo": {
+        "iban": "AT326616356957832447"
+    },
+    "tradeInData": {
+        "category": "Handys",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Fold6 5G 1TB F956B DS",
+        "storage": "1TB",
+        "imei": "335201265963736"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-S926BZKDEUE",
+                "provider": "FOXWAY",
+                "productCode": "67185",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "serviceCode": "T-TV-500-EUR-VARIANT_GOOD",
+            "provider": "TV_TradeUp_GW",
+            "additionalInfos": [
+                {
+                    "key": "isTradeInTVEnabled",
+                    "value": true
+                }
+            ]
+        },
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "at",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "2223 0000 4841 0010",
+        "holderName": "at",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "be",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "be",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    },
+    "klarnaData": {
+        "phoneNumber": "06762600456",
+        "otp": "000000"
+    }
+}
