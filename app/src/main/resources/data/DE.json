@@ -1,7 +1,13 @@
 {
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=de&storeDomain=https://s2-smn5-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/de/cart"
+    },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn5-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/deu"
     },
     "customerInfo": {
         "email": "autotestww@gmail.com",
@@ -23,8 +29,64 @@
     "tradeInData": {
         "category": "SMARTPHONE",
         "brand": "Samsung",
-        "model": "Galaxy S22 Ultra 5G",
+        "model": "Galaxy Z Flip5 5G",
         "storage": "512 GB",
         "imei": "301296444933956"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-S928BZTHEUB",
+                "provider": "FOXWAY",
+                "productCode": "T_SMARTPHONE_GALAXYS245G_128",
+                "responses": [],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "de",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "A4B00ED8-489F-450A-A58A-8A2357AB2D91",
+            "type": "TradeIn",
+            "sku": "GQ65QN800DTXZG",
+            "delayed_gratification": false
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "de",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "masterCardData": {
+        "cardNumber": "5454 5454 5454 5454",
+        "holderName": "de",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "amexCardData": {
+        "cardNumber": "3714 4963 5398 431",
+        "holderName": "de",
+        "expiryDate": "03/30",
+        "cvv": "7373",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    },
+    "klarnaData": {
+        "phoneNumber": "1709166309",
+        "otp": "000000"
     }
 }
