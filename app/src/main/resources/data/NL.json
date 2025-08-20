@@ -1,13 +1,13 @@
 {
     "stores": {
-        "besme": "/business",
-        "samsungmembers_be": "/multistore/bm/samsungmembers_be",
-        "amg_be": "/multistore/bp/amg_be",
-        "healthcare_employees_be": "/multistore/bp/healthcare_employees_be",
-        "employee_be": "/multistore/be/employee_be"
+        "nlsme": "/business",
+        "samsungmembers": "/multistore/nm/samsungmembers",
+        "amg": "/multistore/np/amg",
+        "nlkpn": "/multistore/nlkpn/nlkpn",
+        "healthcare_employees": "/multistore/np/healthcare_employees"
     },
     "pointingUrls": {
-        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=be&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/be/cart"
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=nl&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/nl/cart"
     },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
@@ -21,30 +21,30 @@
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
         "lastName": "test",
-        "phoneCode": "+32",
+        "phoneCode": "+31",
         "phoneNumber": "1002764784",
         "dateOfBirth": "01/04/1988"
     },
     "customerAddress": {
-        "searchAddress": "Industriezone Ring 6A 4000 3500 Hasselt",
-        "line1": "Industriezone Ring 4000",
-        "line2": "6",
-        "postalCode": "3500",
-        "adminLevel2": "Hasselt"
+        "adminLevel2": "Schiphol",
+        "postalCode": "1118 CP",
+        "searchAddress": "Evert van de Beekstraat 1118 cp",
+        "line1": "Evert van de Beekstraat",
+        "line2": "209"
     },
     "billingAddress": {
-        "country": "België",
+        "country": "Nederland",
+        "searchAddress": "Meerkoet 1111 VZ",
+        "line1": "Meerkoet",
+        "line2": "59",
+        "postalCode": "1111 VZ",
+        "adminLevel2": "Diemen",
         "firstName": "Diff",
         "lastName": "Bill",
-        "phoneNumber": "1002764784",
-        "searchAddress": "Industriezone Noord 3000 3016 3500 Hasselt",
-        "line1": "Industriezone Noord 3000",
-        "line2": "3016",
-        "postalCode": "3500",
-        "adminLevel2": "Hasselt"
+        "phoneNumber": "1002764784"
     },
     "tradeInData": {
-        "category": "Smartphones",
+        "category": "Mobiele Telefoons",
         "brand": "Samsung",
         "model": "GALAXY S23 ULTRA",
         "storage": "512GB",
@@ -56,20 +56,20 @@
             "addToCartType": "append",
             "provider": "L8P",
             "additionalInfos": {
-                "targetProductCode": "SM-F966BZKBEUB",
+                "targetProductCode": "SM-S921BLBGEUB",
                 "provider": "L8P",
-                "productCode": "deviceType:mobile phone:model:T_MOBILEPHONE_SAMSUNG_GALAXYS24:capacity:L08631",
+                "productCode": "deviceType:tablet:brand:T_TABLET_SAMSUNG:model:T_TABLET_SAMSUNG_GALAXYTABS9ULTRA5G:capacity:L08536",
                 "responses": [
                     {
-                        "name": "screen_working||mobile phone_be",
+                        "name": "data_wiped||tablet_nl",
                         "value": "true"
                     },
                     {
-                        "name": "data_wiped||mobile phone_be",
+                        "name": "device_working||tablet_nl",
                         "value": "true"
                     },
                     {
-                        "name": "device_working||mobile phone_be",
+                        "name": "screen_working||tablet_nl",
                         "value": "true"
                     }
                 ],
@@ -78,39 +78,39 @@
             }
         },
         "TradeUp": {
-            "store_id": "be",
+            "store_id": "nl",
             "device_info": {
                 "state": {
                     "BROKEN": "NO"
                 }
             },
-            "device_id": "0DD76B7D-4228-4F46-AAE2-E8DA59DCE8D0",
+            "device_id": "E67C1D3E-F6CA-4D72-9153-9E8CACA3DC3A",
             "type": "TradeIn",
-            "sku": "QE65S94DATXXN",
+            "sku": "RB34C605CWW/EF",
             "delayed_gratification": false
         }
     },
     "creditCardData": {
         "cardNumber": "4111 1111 1111 1111",
-        "holderName": "be",
+        "holderName": "nl",
         "expiryDate": "03/30",
         "cvv": "737"
     },
     "masterCardData": {
         "cardNumber": "5555444433331111",
-        "holderName": "be",
+        "holderName": "nl",
         "expiryDate": "03/30",
         "cvv": "737"
     },
     "amexCardData": {
         "cardNumber": "3700 0000 0000 002",
-        "holderName": "be",
+        "holderName": "nl",
         "expiryDate": "03/30",
         "cvv": "7373"
     },
     "threeDSCardData": {
-        "cardNumber": "4917 6100 0000 0000",
-        "holderName": "be",
+        "cardNumber": "5454 5454 5454 5454",
+        "holderName": "nl",
         "expiryDate": "03/30",
         "cvv": "737",
         "password": "password"
@@ -120,7 +120,7 @@
         "password": "Hybris123"
     },
     "klarnaData": {
-        "phoneNumber": "+41762600000",
+        "phoneNumber": "0612345678",
         "otp": "000000"
     }
 }
