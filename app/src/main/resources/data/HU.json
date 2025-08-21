@@ -1,0 +1,82 @@
+{
+    "stores": {
+        "smb": "/business",
+        "husme": "/business"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=hu&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://s2-smn-api-cdn.ecom-stg.samsung.com&storeNewHybDomain=https://s2-smn-api-cdn.ecom-stg.samsung.com&cart=https://stg2.shop.samsung.com/hu/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/hun"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "06301234567"
+    },
+    "customerAddress": {
+        "line1": "Dayka Gábor u. 58.",
+        "adminLevel2": "Szentes",
+        "postalCode": "6600"
+    },
+    "billingAddress": {},
+    "tradeInInfo": {
+        "iban": "HU42117730161111101800000000",
+        "bankName": "6111110180000000",
+        "swiftCode": "BACXHUHBXXX"
+    },
+    "tradeInData": {
+        "category": "Mobile",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip5 5G 512GB F731",
+        "imei": "301296444933956"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": null
+        },
+        "TradeUp": {
+            "store_id": "hu",
+            "device_info": {
+                "state": {
+                    "BROKEN": "YES"
+                }
+            },
+            "device_id": "82192C10-3EB7-4F87-8B60-61F6F4549DB9",
+            "type": "TradeIn",
+            "sku": "QE65QN85CATXXH",
+            "delayed_gratification": false
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "hu",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "2223 0000 4841 0010",
+        "holderName": "hu",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "hu",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "hungary.paypal@nagarro.com",
+        "password": "Nagarro@123"
+    }
+}
