@@ -1,14 +1,25 @@
 {
+    "stores": {
+        "trsme": "/business",
+        "tr_internal_epp": "/multistore/trepp/tr_internal_epp",
+        "tr_egitim": "/multistore/trepp/tr_egitim"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=tr&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/tr/cart"
+    },
     "apiEndpoints": {
-        "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
-        "lastName": "Test",
+        "lastName": "test",
         "phoneNumber": "5498773829",
-        "vatNumber": "32785648542"
+        "vatNumber": "45821056966",
+        "companyName": "company",
+        "taxBranch": "ANTALYA-ALANYA VERGİ DAİRESİ",
+        "dateOfBirth": "17.02.1981"
     },
     "customerAddress": {
         "line1": "line1",
@@ -17,8 +28,6 @@
         "adminLevel4": "BURGAZADA MAH"
     },
     "billingAddress": {
-        "firstName": "Test",
-        "lastName": "Auto",
         "line1": "line1bill",
         "adminLevel2": "ANKARA",
         "adminLevel3": "AKYURT",
@@ -27,7 +36,42 @@
     "tradeInData": {
         "category": "mobile",
         "brand": "Apple",
-        "model": "iPhone 11",
+        "device": "iPhone 11",
         "imei": "109243004159964"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-EASYCEP-TRADEIN",
+            "addToCartType": "append",
+            "provider": "EASYCEP",
+            "additionalInfos": [
+                {
+                    "productCode": "4569",
+                    "provider": "EASYCEP",
+                    "targetProductCode": "SM-S926BZVBTUR",
+                    "selectionResponses": [
+                        {
+                            "key": "questionsAndAnswers",
+                            "value": "{\"31468\":79264,\"31471\":79276,\"31474\":79282,\"31477\":79291,\"31480\":79305,\"31483\":79312,\"31972\":80369}"
+                        },
+                        {
+                            "key": "model",
+                            "value": "4569"
+                        }
+                    ],
+                    "responses": []
+                }
+            ]
+        },
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "5504720000000003",
+        "holderName": "tr",
+        "expiryDate": "12/26",
+        "cvv": "000",
+        "password": "283126"
     }
 }
