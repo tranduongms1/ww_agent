@@ -10,6 +10,7 @@ public class SCPPopup {
     static Logger logger = LoggerFactory.getLogger(SCPPopup.class);
 
     static String MODAL_LOCATOR = """
+            .hubble-care-popup,
             .hubble-care-popup-new,
             .smc-modal,
             app-samsung-care-v2.modal,
@@ -20,6 +21,7 @@ public class SCPPopup {
     static void acceptTermAndConditions() throws Exception {
         try {
             String to = """
+                    .hubble-care-popup__check-list .checkbox-radio,
                     .hubble-care-popup-new__check-list .checkbox-radio,
                     .smc-modal .tandc__item,
                     .js-added-services-container .added-services-terms .checkbox-square,
