@@ -8,7 +8,7 @@
     },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
-        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2"
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "exchangeEndpoints": {
         "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/hun"
@@ -41,7 +41,31 @@
             "serviceCode": "T-FOXWAY-TRADEIN",
             "addToCartType": "append",
             "provider": "FOXWAY",
-            "additionalInfos": null
+            "additionalInfos": {
+                "targetProductCode": "SM-A256BZYDEUE",
+                "provider": "FOXWAY",
+                "productCode": "67185",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
         },
         "TradeUp": {
             "store_id": "hu",
