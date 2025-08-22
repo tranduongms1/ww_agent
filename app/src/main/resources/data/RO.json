@@ -1,0 +1,118 @@
+{
+    "stores": {
+        "smb": "/multistore/program_reduceri/smb",
+        "studenti": "/multistore/program_reduceri/studenti"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ro&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ro/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoint": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/rou"
+    },
+    "servicesV2Endpoint": "https://stg2.shop.samsung.com/ro",
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "phoneNumber": "0987654321",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "Samsung Tower",
+        "postalCode": "111111",
+        "adminLevel2": "Adea",
+        "adminLevel1": "Arad",
+        "phoneNumber": "0987654321"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "Test",
+        "line1": "Samsung Tower",
+        "postalCode": "123456",
+        "adminLevel2": "Abrud",
+        "adminLevel1": "Alba",
+        "phoneNumber": "0987654321"
+    },
+    "tradeInData": {
+        "category": "Telefoane",
+        "brand": "Apple",
+        "model": "Apple iPhone 15 128GB",
+        "imei": "351444725177930"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "orderEntryNumber": 0,
+                "productCode": "26006",
+                "provider": "FOXWAY",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "selectionResponses": [],
+                "targetProductCode": "SM-F936BZKBEUB"
+            }
+        },
+        "SMC": {
+            "categoryCode": "SMC"
+        },
+        "TradeUp": {
+            "store_id": "ro",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "C8D93CBB-FE75-427E-AF7A-27322102CBD9",
+            "type": "TradeIn",
+            "sku": "QE55S90DAEXXH",
+            "delayed_gratification": false
+        }
+    },
+    "deliveryData": {
+        "HOME": {},
+        "PICKUP": {
+            "phoneNumber": "0987654321"
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "RO",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "RO",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "threeDSCardData": {
+        "cardNumber": "5454 5454 5454 5454",
+        "holderName": "RO",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    }
+}
