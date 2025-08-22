@@ -1,0 +1,112 @@
+{
+    "stores": {
+        "benify": "/multistore/fib2b/benifyfi",
+        "corporate": "/multistore/fib2b/corporatefi",
+        "vipepp": "/multistore/fib2b/vipeppfi",
+        "smb": "/business"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=fi&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/fi/cart&storeNewHybDomain=https://s2-smn-api-cdn.ecom-stg.samsung.com"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+358 (Finland)",
+        "phoneNumber": "1002764784",
+        "dateOfBirth_Day": "01",
+        "dateOfBirth_Month": "01",
+        "dateOfBirth_Year": "1999"
+    },
+    "customerAddress": {
+        "line1": "Varsinais-Suomi",
+        "postalCode": "24280",
+        "adminLevel2": "Varsinais"
+    },
+    "billingAddress": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+358 (Finland)",
+        "phoneNumber": "1002764784",
+        "line1": "Lapland",
+        "postalCode": "98500",
+        "adminLevel2": "Lapland"
+    },
+    "tradeInData": {
+        "category": "Mobiles",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip4 5G 128GB F721B",
+        "imei": "353185442215903"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-F721B7EHEUB",
+                "provider": "FOXWAY",
+                "productCode": "56051",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "fi",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "fi",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "fi",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "fi",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "klarnaData": {
+        "phoneNumber": "401234567",
+        "otp": "111111",
+        "dateOfBirth": "11111999",
+        "IDNumber": "190122-829F"
+    }
+}
