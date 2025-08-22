@@ -19,6 +19,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.warrenstrange.googleauth.GoogleAuthenticator;
+
 @FunctionalInterface
 interface WebElementSelector {
     void apply(List<WebElement> elms) throws Exception;
@@ -82,19 +84,60 @@ public abstract class WebUI {
     }
 
     static void getPointing(Context c) throws Exception {
-        String url = c.getPointingUrl();
-        openBrowser(url);
-        delay(1);
-        wait(30).withMessage("AEM login").until(d -> {
-            WebElement elm = findElement("#login.coral-Form");
-            if (elm != null) {
-                fill("input[name='j_username']", "qauser01");
-                fill("input[name='j_password']", "samsungqa");
-                click("#submit-button");
-            }
-            return !driver.getCurrentUrl().contains("login.html");
-        });
-        driver.get(url);
+        String pointingUrl = c.getPointingUrl();
+        openBrowser(pointingUrl);
+        if (waitElement("[class*='coral'] #login-box", 3) != null) {
+            driver.get("https://wds.samsung.com");
+            waitElement(".employees [alt='login']", 10);
+            click(".employees [alt='login']");
+            String loginUrl = wait(10).until(d -> {
+                for (String h : d.getWindowHandles()) {
+                    d.switchTo().window(h);
+                    String url = d.getCurrentUrl();
+                    if (url.startsWith("https://sts.secsso.net/")) {
+                        d.close();
+                        return url;
+                    }
+                }
+                return null;
+            });
+            switchToWindow(0);
+            driver.get(loginUrl);
+            waitElement("#userNameInput", 10);
+            fill("#userNameInput", "co_tonydo.id");
+            fill("#passwordInput", "Saohoa05$");
+            click("#submitButton");
+            logger.info("AD SSO submitted");
+            waitForUrlContains("/adSsoSuccess.do", 10);
+            delay(1);
+            driver.get("https://wds.samsung.com");
+            waitElement(".employees [alt='login']", 10);
+            click(".employees [alt='login']");
+            waitForUrlContains("/login/otp.do", 5);
+            String otp = String.format("%06d", new GoogleAuthenticator().getTotpPassword("QMKQDWUTNPCQJDKQ"));
+            fill("input#otpCode", otp);
+            click("button#btnVerify");
+            waitElement("[href*=\"goLink('p6-preqa2')\"]", 10);
+            click("[href*=\"goLink('p6-preqa2')\"]");
+            String handle = driver.getWindowHandle();
+            wait(10).until(d -> {
+                for (String h : d.getWindowHandles()) {
+                    d.switchTo().window(h);
+                    String url = d.getCurrentUrl();
+                    if (url.startsWith("https://p6-pre-qa2.samsung.com/sites/")) {
+                        d.switchTo().window(handle);
+                        d.close();
+                        d.switchTo().window(h);
+                        delay(1);
+                        return true;
+                    }
+                }
+                return false;
+            });
+        } else {
+            logger.info("Already login with AD SSO");
+        }
+        driver.get(pointingUrl);
         delay(1);
     }
 
