@@ -1,4 +1,12 @@
 {
+    "stores": {
+        "corporate": "/multistore/dkb2b/corporatedk/registrationdetails",
+        "benify": "/multistore/dkb2b/benifydk",
+        "smb": "/business"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=dk&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/dk/cart&storeNewHybDomain=https://s2-smn-api-cdn.ecom-stg.samsung.com"
+    },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
@@ -9,8 +17,7 @@
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
-        "lastName": "Test",
-        "phoneCode": "+45 (Denmark)",
+        "lastName": "test",
         "phoneNumber": "01234567",
         "dateOfBirth_Day": "01",
         "dateOfBirth_Month": "01",
@@ -24,7 +31,7 @@
     "billingAddress": {
         "firstName": "Test",
         "lastName": "Auto",
-        "phoneNumber": "07654321",
+        "phoneNumber": "01234567",
         "line1": "Møllebakken 82",
         "postalCode": "5240",
         "adminLevel2": "Odense NØ"
@@ -35,7 +42,53 @@
         "model": "Samsung Galaxy Z Flip4 5G 128GB F721B",
         "imei": "353185442215903"
     },
-    "serviceData": {},
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-S921BZKDEUB",
+                "provider": "FOXWAY",
+                "productCode": "56051",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "dk",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "E766D07F-94A7-4FAC-A48A-2B6BA4C3C115",
+            "type": "TradeIn",
+            "sku": "TQ50QN90DATXXC",
+            "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
     "creditCardData": {
         "cardNumber": "4111 1111 1111 1111",
         "holderName": "dk",
@@ -53,5 +106,16 @@
         "holderName": "dk",
         "expiryDate": "03/30",
         "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "dk",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "klarnaData": {
+        "phoneNumber": "80828282",
+        "otp": "000000"
     }
 }
