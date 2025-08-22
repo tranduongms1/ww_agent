@@ -1,0 +1,91 @@
+{
+    "apiEndpoints": {
+        "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=za&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/za/cart"
+    },
+    "sites": {
+        "zasme": "/business",
+        "acn_za_epp": "/multistore/zaepp/acn_za_epp",
+        "b2b": "/multistore/zaepp/b2b",
+        "rhq_epp": "/multistore/zaepp/rhq_epp"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "title": "Mr.",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "0123456789",
+        "dateOfBirth": "01/04/1988",
+        "tvLicenseNumber": "123965972",
+        "tvLicenseType": "ACCOUNT NUMBER",
+        "idType": "I have a Foreign Passport",
+        "foreignPassport": "TEST1234"
+    },
+    "customerAddress": {
+        "searchAddress": "Gauteng",
+        "line1": "Samsung Tower",
+        "line2": "Langaville",
+        "adminLevel2": "Brakpan",
+        "adminLevel1": "Gauteng",
+        "postalCode": "1550",
+        "adminLevel3": "City of Ekurhuleni Metropolitan Municipality",
+        "phoneNumber": "0123456789"
+    },
+    "billingAddress": {
+        "title": "Miss",
+        "firstName": "Auto",
+        "lastName": "Billing",
+        "phoneNumber": "+276666666666",
+        "line1": "Main Street",
+        "adminLevel3": "Sandton",
+        "adminLevel2": "Johannesburg",
+        "adminLevel1": "North-West",
+        "postalCode": "2196"
+    },
+    "serviceData": {
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
+    "redeemRewardsTitle": "Samsung Rewards",
+    "bankTransferTitle": "Bank Transfer / Direct Deposit",
+    "payOnAccountTitle": "Charge to Account",
+    "sidEFTTitle": "SiD Secure EFT",
+    "creditCardTitle": "Credit Card or Debit Card",
+    "creditCardData": {
+        "cardNumber": "4000000000000002",
+        "holderName": "first last",
+        "expiryMonth": "12",
+        "expiryYear": "2030",
+        "cvv": "737",
+        "password": "1234"
+    },
+    "masterCardData": {
+        "cardNumber": "5200000000000015",
+        "holderName": "first last",
+        "expiryMonth": "12",
+        "expiryYear": "2030",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "378282246310005",
+        "holderName": "first last",
+        "expiryMonth": "12",
+        "expiryYear": "2030",
+        "cvv": "1234"
+    },
+    "floatTitle": "Float",
+    "floatData": {
+        "cardNumber": "4111111111111111",
+        "holderName": "first last",
+        "expiryDate": "03/30",
+        "cvv": "123"
+    },
+    "payJustNowTitle": ".za-PJNPaymentMode ",
+    "payJustNowData": {
+        "email": "aastha.bali@nagarro.com"
+    }
+}

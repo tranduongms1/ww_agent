@@ -1,0 +1,69 @@
+{
+    "apiEndpoints": {
+        "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoint": {
+        "prod": "https://p1.ecom.samsung.com/v1/exchange/api/mar",
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/mar"
+    },
+    "sites": {
+        "ma_students": "/multistore/maepp/ma_students"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=n_africa&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ma/cart"
+    },"customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "+212321321321",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "123",
+        "adminLevel1": "Béni Mellal-Khénifra",
+        "adminLevel2": "Ait ishak"
+    },
+    "billingAddress": {
+        "firstName": "Auto billing",
+        "lastName": "test",
+        "phoneNumber": "+212321321111",
+        "line1": "135",
+        "adminLevel1": "Casablanca-Settat",
+        "adminLevel2": "Aïn Chock"
+    },
+    "serviceData": {
+        "TradeUp": {
+            "store_id": "ma",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "BACAD12A-698C-4B18-A25A-A1E3A39C8271",
+            "type": "TradeIn",
+            "sku": "QA65QN80FAUXMV",
+            "delayed_gratification": false
+        },
+        "Warranty": {
+            "categoryCode": "warranty"
+        }
+    },
+    "redeemRewardsTitle": "Samsung Rewards",
+    "codTitle": "Paiement à la livraison",
+    "creditCardTitle": "Carte bancaire de Crédit ou Débit",
+    "creditCardData": {
+        "cardNumber": "4000 0000 0000 0010",
+        "holderName": "ma",
+        "expiryDate": "12/28",
+        "cvv": "000"
+    },
+    "masterCardData": {
+        "cardNumber": "9876 0118 0771 2004",
+        "holderName": "ma",
+        "expiryDate": "12/25",
+        "cvv": "000",
+        "password": "123"
+    }
+
+}
