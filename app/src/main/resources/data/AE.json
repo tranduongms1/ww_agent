@@ -1,0 +1,134 @@
+{
+    "apiEndpoints": {
+        "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "sites": {
+        "aesme": "/business",
+        "samsung_employee": "/multistore/aeepp/samsung_employee"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
+    },
+    "customerInfo": {
+        "email": "ellatest97@gmail.com",
+        "firstName": "first guest",
+        "lastName": "last guest",
+        "phoneCode": "",
+        "phoneNumber": "+971541234567",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "apartment": "86",
+        "landmark": "Near Safa Park",
+        "line1": "Samsung Tower",
+        "line2": "Klein Bennebek",
+        "adminLevel2": "Abu Dhabi",
+        "adminLevel3": "Abu Al Abyad Island"
+    },
+    "billingAddress": {
+        "firstName": "billing",
+        "lastName": "last guest",
+        "phoneNumber": "+971541234589",
+        "apartment": "60",
+        "landmark": "Near Safa Park",
+        "line1": "Samsung Tower",
+        "line2": "Klein Bennebek",
+        "adminLevel2": "Abu Dhabi",
+        "adminLevel3": "Abu Dhabi Mall"
+    },
+    "tradeInData": {
+        "category": "Mobile Phone",
+        "brand": "Samsung",
+        "model": "Z Series",
+        "subseries": "Fold Series",
+        "divice": "Z Fold 4 (5G)",
+        "storage": "512GB"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-NORTHLADDER-TRADEIN",
+            "addToCartType": "append",
+            "provider": "NORTHLADDER",
+            "additionalInfos": {
+                "targetProductCode": "SM-F966BDBGMEA",
+                "provider": "NORTHLADDER",
+                "productCode": "deviceType:Mobile Phone:brandName:Samsung Mobile Phone:modelName:A Series Samsung Mobile Phone:Subseries:A55 Series A Series Samsung Mobile Phone:Model:A55 A55 Series A Series Samsung Mobile Phone:Storage:256 GB A55 A55 Series A Series Samsung Mobile Phone",
+                "responses": [],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+    "SMC": {
+        "categoryCode": "insurance"
+    }
+    
+},
+"redeemRewardsTitle": "Samsung Rewards",
+    "codTitle": "Cash on Delivery",
+    "cardOnDeliveryTitle": "card on delivery",
+    "bankTransferTitle": "bank transfer",
+    "webCardTitle": "Pay and collect at Aramex Outlet",
+    "creditCardTitle": ".ae-CheckoutDotComPaymentMode",
+    "creditCardNewTitle": ".ae-CheckoutDotComFlowPaymentMode",
+    "creditCardData": {
+        "cardNumber": "4242 4242 4242 4242",
+        "holderName": "ae",
+        "expiryDate": "03/30",
+        "cvv": "123",
+        "password": "Checkout1!"
+    },
+    "amexCardData": {
+        "cardNumber": "3411 1111 1111 111",
+        "holderName": "ae",
+        "expiryDate": "03/30",
+        "cvv": "1234"
+    },
+    "masterCardData": {
+        "cardNumber": "5123450000000008",
+        "holderName": "ae",
+        "expiryDate": "01/35",
+        "cvv": "123"
+    },
+    "payFortTitle": ".ae-payfortservicePaymentMode",
+    "payFortData": {
+        "country": "United Arab Emirates",
+        "bank": "Emirates NBD UAE",
+        "cardNumber": "4188870000000002",
+        "holderName": "ae",
+        "expiryMonth": "3",
+        "expiryYear": "30",
+        "cvv": "737"
+    },
+    "installmentPlanTitle": ".ae-payfortSeamlessInstallmentPaymentMode",
+    "installmentPlanData": {
+        "cardType": "Visa",
+        "cardNumber": "4111111111111111",
+        "holderName": "ae",
+        "expiryMonth": "03",
+        "expiryYear": "2030",
+        "cvv": "737"
+    },
+    "tabbyTitle": "Tabby: Split in up to 6 payments, interest-free",
+    "tabbyData": {
+        "email": "card.success@tabby.ai",
+        "phone": "500000001",
+        "otp": "8888"
+    },
+    "etihadGuestPayTitle": "Etihad GuestPay",
+    "etihadGuestPayData": {
+        "memberID": "420000021814",
+        "password": "Pointspay@123",
+        "cardNumber": "4242424242424242",
+        "expiryDate": "0330",
+        "cvv": "123"
+    },
+    "tamaraTitle": "Split in up to 4 payments with Tamara",
+    "tamaraData": {
+        "phone": "544337866",
+        "cardNumber": "4242424242424242",
+        "expiryDate": "0330",
+        "cvv": "123",
+        "password": "Checkout1!"
+    }
+}

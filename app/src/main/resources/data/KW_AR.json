@@ -1,0 +1,91 @@
+{
+    "apiEndpoints": {
+        "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae_ar&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/kw_ar/cart"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "+96554123457",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "adminLevel3": "عبدالله مبارك الصباح",
+        "line1": "12",
+        "line2": "Klein Bennebek"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "billing",
+        "phoneNumber": "+96554666666",
+        "adminLevel3": "ابرق خيطان",
+        "line1": "line1Bill",
+        "line2": "line2Bill"
+    },
+    "tradeInData": {
+        "category": "الهاتف الذكي",
+        "brand": "سامسونج",
+        "model": "سلسلة Z",
+        "subseries": "فولد سلسلة",
+        "divice": "Z فولد 4 (5G)",
+        "storage": "512 جيجابايت"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-NORTHLADDER-TRADEIN",
+            "addToCartType": "append",
+            "provider": "NORTHLADDER",
+            "additionalInfos": {
+                "targetProductCode": "SM-F966BDBGMEA",
+                "provider": "NORTHLADDER",
+                "productCode": "deviceType:Mobile Phone:brandName:Samsung Mobile Phone:modelName:S Series Samsung Mobile Phone:Subseries:S23 Series S Series Samsung Mobile Phone:Model:S23 Ultra S23 Series S Series Samsung Mobile Phone:Storage:512 GB S23 Ultra S23 Series S Series Samsung Mobile Phone",
+                "responses": [],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+    "SMC": {
+        "categoryCode": "insurance"
+    }
+},
+  "redeemRewardsTitle": ".kw-rewardsPaymentMode",
+    "bankTransferTitle": ".kw-bankTransferPaymentMode",
+    "creditCardTitle": ".kw-CheckoutDotComPaymentMode",
+    "creditCardData": {
+        "cardNumber": "3411 1111 1111 111",
+        "holderName": "kw",
+        "expiryDate": "10/25",
+        "cvv": "1234"
+    },
+    "amexCardData": {
+        "cardNumber": "3411 1111 1111 111",
+        "holderName": "kw",
+        "expiryDate": "03/30",
+        "cvv": "1234"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4242 4242 4242 4242",
+        "holderName": "kw",
+        "expiryDate": "03/30",
+        "cvv": "123",
+        "password": "Checkout1!"
+    },
+    "tabbyTitle": ".kw-TabbyPaymentMode",
+    "tabbyData": {
+        "email": "card.success@tabby.ai",
+        "phone": "90000001",
+        "otp": "8888"
+    },
+    "tamaraTitle": ".kw-tamaraPayment",
+    "tamaraData": {
+        "phone": "544337866",
+        "cardNumber": "4242424242424242",
+        "expiryDate": "0330",
+        "cvv": "123",
+        "password": "Checkout1!"
+    }
+}

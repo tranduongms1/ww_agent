@@ -1,0 +1,134 @@
+{
+    "apiEndpoints": {
+        "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "sites": {
+        "aesme": "/business",
+        "samsung_employee": "/multistore/aeepp/samsung_employee"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae_ar&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae_ar/cart"
+    },
+    "customerInfo": {
+        "email": "ellatest97@gmail.com",
+        "firstName": "اسم الشخص",
+        "lastName": "اسم العائلة",
+        "phoneCode": "",
+        "phoneNumber": "+971541234567",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "apartment": "205",
+        "landmark": "علي حسن",
+        "line1": "الإمارات العربية المتحدة",
+        "line2": "بر دبي",
+        "adminLevel2": "أبو ظبي",
+        "adminLevel3": "جزيرة أبو الأبيض"
+    },
+    "billingAddress": {
+        "firstName": "الشخص",
+        "lastName": "اسم العائلة",
+        "phoneNumber": "+971541234589",
+        "apartment": "60",
+        "landmark": "علي حسن",
+        "line1": "بر دبي",
+        "line2": "القيوين",
+        "adminLevel2": "أم القيوين",
+        "adminLevel3": "الدار البيضاء - ب"
+    },
+    "tradeInData": {
+        "category": "الهاتف الذكي",
+        "brand": "سامسونج",
+        "model": "سلسلة Z",
+        "subseries": "فولد سلسلة",
+        "divice": "Z فولد 4 (5G)",
+        "storage": "512 جيجابايت"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-NORTHLADDER-TRADEIN",
+            "addToCartType": "append",
+            "provider": "NORTHLADDER",
+            "additionalInfos": {
+                "targetProductCode": "SM-F966BDBGMEA",
+                "provider": "NORTHLADDER",
+                "productCode": "deviceType:Mobile Phone:brandName:Samsung Mobile Phone:modelName:A Series Samsung Mobile Phone:Subseries:A55 Series A Series Samsung Mobile Phone:Model:A55 A55 Series A Series Samsung Mobile Phone:Storage:256 GB A55 A55 Series A Series Samsung Mobile Phone",
+                "responses": [],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+    "SMC": {
+        "categoryCode": "insurance"
+    }
+    
+},
+"redeemRewardsTitle": "برنامج مكافآت سامسونج",
+    "codTitle": "الدفع نقداً عند الاستلام",
+    "cardOnDeliveryTitle": "الدفع بالبطاقة عند الاستلام",
+    "bankTransferTitle": "الحوالة المصرفية",
+    "webCardTitle": "ادفع واستلم من أحد مراكز أرامكس",
+    "creditCardTitle": ".ae-CheckoutDotComPaymentMode",
+    "creditCardNewTitle": ".ae-CheckoutDotComFlowPaymentMode",
+    "creditCardData": {
+        "cardNumber": "4242 4242 4242 4242",
+        "holderName": "ae",
+        "expiryDate": "03/30",
+        "cvv": "123",
+        "password": "Checkout1!"
+    },
+    "amexCardData": {
+        "cardNumber": "3411 1111 1111 111",
+        "holderName": "ae",
+        "expiryDate": "03/30",
+        "cvv": "1234"
+    },
+    "masterCardData": {
+        "cardNumber": "5123450000000008",
+        "holderName": "ae",
+        "expiryDate": "01/35",
+        "cvv": "123"
+    },
+    "payFortTitle": ".ae-payfortservicePaymentMode",
+    "payFortData": {
+        "country": "الإمارات العربية المتحدة",
+        "bank": "بنك الإمارات دبي الوطني",
+        "cardNumber": "4188870000000002",
+        "holderName": "ae",
+        "expiryMonth": "3",
+        "expiryYear": "30",
+        "cvv": "737"
+    },
+    "installmentPlanTitle": ".ae-payfortSeamlessInstallmentPaymentMode",
+    "installmentPlanData": {
+        "cardType": "Visa",
+        "cardNumber": "4111111111111111",
+        "holderName": "ae",
+        "expiryMonth": "03",
+        "expiryYear": "2030",
+        "cvv": "737"
+    },
+    "tabbyTitle": "تابي - التقسيط لغاية 6 دفعات",
+    "tabbyData": {
+        "email": "card.success@tabby.ai",
+        "phone": "500000001",
+        "otp": "8888"
+    },
+    "etihadGuestPayTitle": "Etihad GuestPay",
+    "etihadGuestPayData": {
+        "memberID": "420000021814",
+        "password": "Pointspay@123",
+        "cardNumber": "4242424242424242",
+        "expiryDate": "0330",
+        "cvv": "123"
+    },
+    "tamaraTitle": "التقسيط لغاية 4 دفعات مع خدمة تمار",
+    "tamaraData": {
+        "phone": "544337866",
+        "cardNumber": "4242424242424242",
+        "expiryDate": "0330",
+        "cvv": "123",
+        "password": "Checkout1!"
+    }
+}
