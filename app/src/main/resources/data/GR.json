@@ -1,0 +1,120 @@
+{
+    "sites": {
+        "employees_partner": "/multistore/grepp/employees_partner",
+        "gr_smb": "/multistore/grepp/gr_smb"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=gr&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/gr/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "phoneNumber": "6123456731",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "any",
+        "line2": "123",
+        "postalCode": "30100",
+        "adminLevel1": "ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ",
+        "adminLevel2": "ΑΓΡΙΝΙΟ",
+        "nameOnRinger": "test",
+        "floor": "1234",
+        "vatNumber": "099368434"
+    },
+    "billingAddress": {
+        "country": "Ελλάδα",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "line1": "any",
+        "line2": "345",
+        "phoneNumber": "6123456731",
+        "postalCode": "59100",
+        "adminLevel1": "ΗΜΑΘΙΑΣ",
+        "adminLevel2": "ΒΕΡΟΙΑ"
+    },
+    "tradeInData": {
+        "category": "Mobiles",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip5 5G 256GB F731",
+        "imei": "302839518192279"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-A556BZKCEUE",
+                "provider": "FOXWAY",
+                "productCode": "64536",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 2,
+                "selectionResponses": []
+            }
+        }
+    },
+    "deliveryData": {
+        "HOME": {}
+    },
+    "deliveryOptions": {},
+    "creditCardTitle": "Πιστωτική / Χρεωστική κάρτα",
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "GR",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555444433331111",
+        "holderName": "gr",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "gr",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "gr",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalTitle": "Paypal",
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    },
+    "codTitle": "Πληρωμή με μετρητά κατά την παράδοση",
+    "codData": {
+        "username": "ligazure@gmail.com",
+        "appPassword": "rlrn mfqz rodg ykzg",
+        "subject": "Επιβεβαίωση παραγγελίας με αντικαταβολή"
+    }
+}
