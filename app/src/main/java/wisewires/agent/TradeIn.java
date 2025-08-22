@@ -205,7 +205,8 @@ public abstract class TradeIn {
                         "Device",
                         "Model",
                         "Indtast model:",
-                        "Modèle":
+                        "Modèle",
+                        "Συσκευή":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -336,7 +337,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("CA", "DK").contains(c.site)) {
+                            if (List.of("CA", "DK","GR").contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
