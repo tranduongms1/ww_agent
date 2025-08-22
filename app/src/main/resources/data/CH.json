@@ -1,0 +1,118 @@
+{
+    "stores": {
+        "smb": "/business"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ch&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ch/cart&storeNewHybDomain=https://s2-smn-api-cdn.ecom-stg.samsung.com"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "+41123456789"
+    },
+    "customerAddress": {
+        "line1": "Via Balcengo",
+        "line2": "12",
+        "adminLevel2": "Faido",
+        "postalCode": "6760"
+    },
+    "billingAddress": {
+        "email": "autotestww@gmail.com",
+        "firstName": "diff",
+        "lastName": "billing",
+        "phoneNumber": "+41123456789",
+        "line1": "Allmenrüti",
+        "line2": "114",
+        "adminLevel2": "Sembrancher",
+        "postalCode": "1933"
+    },
+    "tradeInData": {
+        "category": "MOBILE PHONE",
+        "brand": "APPLE",
+        "model": "Apple iPhone 13",
+        "storage": "256GB",
+        "imei": "355086754092336"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-RECOMMERCE-TRADEIN",
+            "addToCartType": "append",
+            "provider": "RECOMMERCE",
+            "additionalInfos": {
+                "targetProductCode": "SM-S921BZYDEUE",
+                "provider": "RECOMMERCE",
+                "productCode": "T_APPLE_342680",
+                "responses": [
+                    {
+                        "name": "608",
+                        "value": "3026"
+                    },
+                    {
+                        "name": "609",
+                        "value": "3028"
+                    },
+                    {
+                        "name": "610",
+                        "value": "3030"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "imei": "355086754092336",
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "ch",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "39A18A05-CB09-46BA-B021-71E2F4D54735",
+            "type": "TradeIn",
+            "sku": "QE50QN90AATXXN",
+            "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "ch",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "2223 0000 4841 0010",
+        "holderName": "ch",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "ch",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "ch",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    },
+    "klarnaData": {
+        "phoneNumber": "750782631",
+        "otp": "123456"
+    }
+}
