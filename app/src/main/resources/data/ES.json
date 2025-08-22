@@ -1,161 +1,148 @@
 {
-  "sites": {
-    "inspiring_benefits": "/multistore/esepp/inspiring_benefits",
-    "samsung_plus": "/multistore/esepp/samsung_plus",
-    "educacion": "/multistore/esepp/educacion",
-    "samsung_vips": "/multistore/esepp/samsung_vips",
-    "essme": "/business"
-  },
-  "pointingUrls": {
-    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=es&storeDomain=https://s2-smn-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/es/cart"
-  },
-  "apiEndpoints": {
-    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
-    "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
-  },
-  "exchangeEndpoint": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/esp",
-  "servicesV2Endpoint": "https://stg2.shop.samsung.com/es",
-  "customerInfo": {
-    "email": "autotestww@gmail.com",
-    "firstName": "Auto",
-    "lastName": "test",
-    "phoneCode": "+34",
-    "phoneNumber": "700000000",
-    "docType": "NIF/NIE",
-    "fiscalCode": "92687587W",
-    "dateOfBirth_Day": "01",
-    "dateOfBirth_Month": "01",
-    "dateOfBirth_Year": "1999"
-  },
-  "customerAddress": {
-    "searchAddress": "Carretera Nacional N-340, 5, Nerja, España",
-    "line1": "N-340, 5",
-    "postalCode": "29780",
-    "adminLevel2": "Nerja",
-    "adminLevel1": "Malaga"
-  },
-  "customerAddress2": {
-    "searchAddress": "08001",
-    "line1": "N-340, 5",
-    "postalCode": "08001",
-    "adminLevel2": "Barcelona",
-    "adminLevel1": "Barcelona"
-  },
-  "billingAddress": {
-    "country": "España",
-    "searchAddress": "Madrid Etorbidea, San Sebastián, España",
-    "line1": "Madrid Etorb",
-    "postalCode": "20011",
-    "adminLevel2": "Donostia",
-    "adminLevel1": "Guipuzcoa"
-  },
-  "tradeInData": {
-    "category": "Smartphone",
-    "brand": "SAMSUNG",
-    "model": "Samsung Galaxy S23",
-    "storage": "256GB",
-    "imei": "351064274224386"
-  },
-  "serviceData": {
-    "TradeIn": {
-      "serviceCode": "T-WORLDBUSINESS-TRADEIN",
-      "addToCartType": "append",
-      "provider": "WORLDBUSINESS",
-      "additionalInfos": {
-        "targetProductCode": "SM-S938BAKHEUB",
-        "provider": "WORLDBUSINESS",
-        "productCode": "T-SAMSUNG-GALAXY-S23-256-GB_WB",
-        "responses": [],
-        "orderEntryNumber": 0,
-        "selectionResponses": []
-      }
+    "stores": {
+        "inspiring_benefits": "/multistore/esepp/inspiring_benefits",
+        "samsung_plus": "/multistore/esepp/samsung_plus",
+        "educacion": "/multistore/esepp/educacion",
+        "samsung_vips": "/multistore/esepp/samsung_vips",
+        "smb": "/business"
     },
-    "TradeUp": {
-      "store_id": "es",
-      "device_info": {
-        "state": {
-          "BROKEN": "NO"
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=es&storeDomain=https://s2-smn-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/es/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/esp"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+34",
+        "phoneNumber": "700000000",
+        "docType": "NIF/NIE",
+        "fiscalCode": "92687587W",
+        "dateOfBirth_Day": "01",
+        "dateOfBirth_Month": "01",
+        "dateOfBirth_Year": "1999"
+    },
+    "customerAddress": {
+        "searchAddress": "Carretera Nacional N-340, 5, Nerja, España",
+        "line1": "N-340, 5",
+        "postalCode": "29780",
+        "adminLevel2": "Nerja",
+        "adminLevel1": "Malaga"
+    },
+    "customerAddress2": {
+        "searchAddress": "08001",
+        "line1": "N-340, 5",
+        "postalCode": "08001",
+        "adminLevel2": "Barcelona",
+        "adminLevel1": "Barcelona"
+    },
+    "billingAddress": {
+        "country": "España",
+        "searchAddress": "Madrid Etorbidea, San Sebastián, España",
+        "line1": "Madrid Etorb",
+        "postalCode": "20011",
+        "adminLevel2": "Donostia",
+        "adminLevel1": "Guipuzcoa"
+    },
+    "tradeInData": {
+        "category": "Smartphone",
+        "brand": "SAMSUNG",
+        "model": "Samsung Galaxy S23",
+        "storage": "256GB",
+        "imei": "351064274224386"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-WORLDBUSINESS-TRADEIN",
+            "addToCartType": "append",
+            "provider": "WORLDBUSINESS",
+            "additionalInfos": {
+                "targetProductCode": "SM-S938BAKHEUB",
+                "provider": "WORLDBUSINESS",
+                "productCode": "T-SAMSUNG-GALAXY-S23-256-GB_WB",
+                "responses": [],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "es",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "2E16DCAD-127D-4D85-820B-DEE5072ED290",
+            "type": "TradeIn",
+            "sku": "QE75QN95BATXXC",
+            "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "smc"
+        },
+        "Warranty": {
+            "categoryCode": "EW"
+        },
+        "MCS": {
+            "serviceCode": "L-INST/G0",
+            "additionalInfos": {
+                "districtCode": "ES-M",
+                "lang": "es",
+                "curr": "EUR"
+            }
         }
-      },
-      "device_id": "2E16DCAD-127D-4D85-820B-DEE5072ED290",
-      "type": "TradeIn",
-      "sku": "QE75QN95BATXXC",
-      "delayed_gratification": false
     },
-    "SMC": {
-      "categoryCode": "smc"
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "es",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
     },
-    "Warranty": {
-      "categoryCode": "EW"
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "es",
+        "expiryDate": "03/30",
+        "cvv": "737"
     },
-    "MCS": {
-      "serviceCode": "L-INST/G0",
-      "additionalInfos": {
-        "districtCode": "ES-M",
-        "lang": "es",
-        "curr": "EUR"
-      }
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "es",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    },
+    "klarnaData": {
+        "phoneNumber": "603549464",
+        "otp": "000000"
+    },
+    "evollisData": {
+        "pl-pm-cards_4-cardNumber": [
+            "input[name='cardNumber']",
+            "4111 1111 1111 1111"
+        ],
+        "pl-pm-cards_4-expirationDate": "0330",
+        "pl-pm-cards_4-cvv": [
+            "input[name='cvx']",
+            "737"
+        ],
+        "identity.taxNumber": "09384726M",
+        "identity.birthDate": "24/02/1968",
+        "coordinates.locality": "22",
+        "coordinates.phoneNumber": "+34612208119",
+        "coordinates.iban": "ES6812345678061234567890",
+        "situation.dependentChildrenNumber": "0",
+        "budget.netMonthlyIncome": "3599",
+        "budget.rent": "1000"
     }
-  },
-  "deliveryOptions": {
-    "ExpressDelivery": "Entrega gratuita",
-    "ExpressDeliveryWithCal": "Entrega programada",
-    "sesa-parcel-expressIM": "Entrega gratuita",
-    "sesa-parcel-expressIM-calendar": "Entrega programada"
-  },
-  "deliveryData": {
-    "HOME": {},
-    "PICKUP": {
-      "postalCode": "28001"
-    }
-  },
-  "creditCardData": {
-    "cardNumber": "4111 1111 1111 1111",
-    "holderName": "es",
-    "expiryDate": "03/30",
-    "cvv": "737",
-    "password": "password"
-  },
-  "masterCardData": {
-    "cardNumber": "5555 4444 3333 1111",
-    "holderName": "es",
-    "expiryDate": "03/30",
-    "cvv": "737"
-  },
-  "threeDSCardData": {
-    "cardNumber": "4917 6100 0000 0000",
-    "holderName": "es",
-    "expiryDate": "03/30",
-    "cvv": "737",
-    "password": "password"
-  },
-  "paypalData": {
-    "email": "seukpaypaldev_merchant-1@gmail.com",
-    "password": "Hybris123"
-  },
-  "codTitle": "",
-  "redeemRewardsTitle": "Samsung Rewards",
-  "klarnaData": {
-    "phoneNumber": "603549464",
-    "otp": "000000"
-  },
-  "evollisData": {
-    "pl-pm-cards_4-cardNumber": [
-      "input[name='cardNumber']",
-      "4111 1111 1111 1111"
-    ],
-    "pl-pm-cards_4-expirationDate": "0330",
-    "pl-pm-cards_4-cvv": [
-      "input[name='cvx']",
-      "737"
-    ],
-    "identity.taxNumber": "09384726M",
-    "identity.birthDate": "24/02/1968",
-    "coordinates.locality": "22",
-    "coordinates.phoneNumber": "+34612208119",
-    "coordinates.iban": "ES6812345678061234567890",
-    "situation.dependentChildrenNumber": "0",
-    "budget.netMonthlyIncome": "3599",
-    "budget.rent": "1000"
-  }
 }
