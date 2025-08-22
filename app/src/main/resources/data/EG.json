@@ -1,0 +1,43 @@
+{
+  "stores": {
+    "egsme": "/business",
+    "eg_samsung_partner": "/multistore/egepp/eg_samsung_partner",
+    "eg_samsung_employee": "/multistore/egepp/eg_samsung_employee"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=eg&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://s2-smi-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/eg/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "customerInfo": {
+    "email": "autotestww@gmail.com",
+    "firstName": "Auto",
+    "lastName": "test",
+    "phoneNumber": "+201234567890",
+    "dateOfBirth": "01/04/1988"
+  },
+  "customerAddress": {
+    "line1": "Maraqia le",
+    "line2": "1 King",
+    "adminLevel2": "اسوان",
+    "adminLevel1": "ابو سومبو"
+  },
+  "billingAddress": {
+    "firstName": "Auto",
+    "lastName": "testbilling",
+    "phoneNumber": "+201234569999",
+    "line1": "Maraqia le",
+    "line2": "2 King",
+    "adminLevel2": "الاسكندريه",
+    "adminLevel1": "اسكندريه"
+  },
+  "creditCardData": {
+    "cardNumber": "4005 5500 0000 0001",
+    "holderName": "eg",
+    "expiryDate": "12/25",
+    "cvv": "100",
+    "password": "Checkout1!"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "stores": {
+    "vip_members_qa": "/multistore/qaepp/vip_members_qa"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=il&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://s2-smi-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/il/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "customerInfo": {
+    "email": "autotestww@gmail.com",
+    "firstName": "Auto",
+    "lastName": "test",
+    "phoneNumber": "0502020444",
+    "dateOfBirth": "01/04/1988"
+  },
+  "customerAddress": {
+    "line2": "123",
+    "adminLevel2": "אבו גווייעד שבט",
+    "adminLevel4": "אבו גווייעד שבט"
+  },
+  "billingAddress": {
+    "firstName": "Auto",
+    "lastName": "test",
+    "phoneNumber": "0502020444",
+    "line2": "135",
+    "adminLevel2": "אבו גוש",
+    "adminLevel4": "אבו גוש"
+  },
+  "creditCardData": {
+    "cardNumber": "4111 1111 1111 1111",
+    "holderName": "il",
+    "expiryDate": "03/30",
+    "cvv": "737"
+  }
+}

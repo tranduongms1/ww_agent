@@ -3,7 +3,7 @@
     "om_corporate_b2b": "/multistore/omepp/om_corporate_b2b"
   },
   "pointingUrls": {
-    "stg2": "https://p6-pre-qa.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
+    "stg2": "https://p6-pre-qa.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae_ar/cart"
   },
   "apiEndpoints": {
     "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",

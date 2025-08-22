@@ -4,7 +4,7 @@
     "sapartners": "/multistore/saepp/sapartners"
   },
   "pointingUrls": {
-    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=sa&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/sa/cart"
+    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=sa_en&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/sa_en/cart"
   },
   "apiEndpoints": {
     "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",

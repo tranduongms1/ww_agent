@@ -1,0 +1,67 @@
+{
+  "stores": {
+    "josme": "/business",
+    "jo_samsung_employee": "/multistore/joepp/jo_samsung_employee",
+    "jo_samsung_smb_mx": "/multistore/joepp/jo_samsung_smb_mx",
+    "jo_samsung_smb_tv": "/multistore/joepp/jo_samsung_smb_tv",
+    "jo_samsung_smb_da": "/multistore/joepp/jo_samsung_smb_da"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=levant_ar&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/jo_ar/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "exchangeEndpoints": {
+    "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/jor"
+  },
+  "customerInfo": {
+    "email": "autotestww@gmail.com",
+    "firstName": "Auto",
+    "lastName": "test",
+    "phoneNumber": "+962123456789",
+    "dateOfBirth": "01/04/1988"
+  },
+  "customerAddress": {
+    "line1": "123",
+    "line2": "Ajloon",
+    "adminLevel2": "عمان",
+    "adminLevel3": "العبدلي"
+  },
+  "billingAddress": {
+    "firstName": "Auto billing",
+    "lastName": "test",
+    "phoneNumber": "+962123456789",
+    "line1": "125",
+    "line2": "Bjloon",
+    "adminLevel2": "الرمثا",
+    "adminLevel3": "وسط البلد"
+  },
+  "serviceData": {
+    "TradeUp": {
+      "store_id": "jo",
+      "device_info": {
+        "state": {
+          "BROKEN": "NO"
+        }
+      },
+      "device_id": "F5B872A8-5E48-47F4-9285-5937C8A34069",
+      "type": "TradeIn",
+      "sku": "QA85Q60DAUXTW",
+      "delayed_gratification": false
+    },
+    "Warranty": {
+      "categoryCode": "warranty"
+    }
+  },
+  "creditCardTitle": "Credit/Debit Card",
+  "creditCardData": {
+    "cardType": "Visa",
+    "cardNumber": "4111111111111111",
+    "holderName": "jo",
+    "expiryMonth": "03",
+    "expiryYear": "2030",
+    "cvv": "737"
+  }
+}
