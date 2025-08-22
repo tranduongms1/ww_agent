@@ -94,8 +94,16 @@ public abstract class TradeIn {
 
     static void selectCategory(WebElement elm, String category) throws Exception {
         try {
-            String css = ":has(> [value*='%s'i]), [data-an-la$='%s'i]".replaceAll("%s", category);
-            WebElement opt = elm.findElement(By.cssSelector(css));
+            WebElement opt = (WebElement) WebUI.driver.executeScript("""
+                    var opts = arguments[0].querySelectorAll('input, [data-an-la]');
+                    for (let opt of opts) {
+                        if (opt.value && opt.value.toLowerCase() == arguments[1]) return opt.parentElement;
+                        let anla = opt.getAttribute('data-an-la');
+                        if (anla && anla.toLowerCase().endsWith(arguments[1])) return opt;
+                        let label = opt.querySelector('.box__label');
+                        if (label && label.innerText.toLowerCase() == arguments[1]) return opt;
+                    }
+                    return null""", elm, category.toLowerCase());
             boolean checked = WebUI.getDomAttribute(opt, "class").contains("checked") ||
                     !opt.findElements(By.cssSelector(":checked")).isEmpty();
             if (!checked) {
@@ -194,7 +202,9 @@ public abstract class TradeIn {
                         "Brand",
                         "Manufacturer",
                         "Indtast producent:",
-                        "Marque":
+                        "Marque",
+                        "Tuotemerkki",
+                        "Hersteller":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -206,7 +216,9 @@ public abstract class TradeIn {
                         "Model",
                         "Indtast model:",
                         "Modèle",
-                        "Συσκευή":
+                        "Συσκευή",
+                        "Laite",
+                        "Modell":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -215,7 +227,8 @@ public abstract class TradeIn {
                         "capacity",
                         "memory",
                         "Storage",
-                        "Capacité ou carte graphique":
+                        "Capacité ou carte graphique",
+                        "Speichergrösse":
                     selectStorage(elm, data.get("storage"));
                     break;
 
@@ -255,7 +268,7 @@ public abstract class TradeIn {
                 .trade-in-popup-v3__terms .checkbox-v2,
                 .terms-and-conditions-container,
                 .tnc-container,
-                .trade-in__tnc mat-checkbox"""));
+                .trade-in__tnc .mdc-checkbox"""));
         for (WebElement elm : elms) {
             if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
                 WebUI.scrollToCenter(elm);
@@ -271,7 +284,8 @@ public abstract class TradeIn {
             WebElement input = WebUI.waitElement(modal, By.cssSelector("""
                     .trade-in-popup__imei-form input,
                     .trade-in-popup-v3__imei-form input,
-                    .trade-in-summary__imei-input input"""), 5);
+                    .trade-in-summary__imei-input input,
+                    .trade-in-modal [formcontrolname='imei']"""), 5);
             WebUI.scrollToCenter(input);
             input.clear();
             WebUI.delay(1);
@@ -337,7 +351,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("CA", "DK","GR").contains(c.site)) {
+                            if (List.of("CA", "DK", "FI", "GR").contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
