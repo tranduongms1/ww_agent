@@ -1,0 +1,140 @@
+{
+    "sites": {
+        "lvsme": "/business",
+        "lvstaffepp": "/multistore/lvmultistore/lvstaffepp"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=lv&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/lv/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoint": {
+        "prod": "",
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/lva"
+    },
+    "servicesV2Endpoint": "https://stg2.shop.samsung.com/lv",
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "Jasmīnu iela 1 LV-2010 Jūrmala ",
+        "firstName": "Auto",
+        "lastName": "test",
+        "line1": "any1",
+        "line2": "any2",
+        "postalCode": "LV-2010",
+        "adminLevel2": "test2",
+        "phoneNumber": "21234568",
+        "country": "Latvija"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "Test",
+        "searchAddress": "Mažeikių g. 74",
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "91285",
+        "adminLevel2": "any",
+        "country": "Lietuva",
+        "phoneNumber": "61234563"
+    },
+    "tradeInInfo": {
+        "iban": "LV80BANK0000435195001"
+    },
+    "tradeInData": {
+        "category": "Mobilie tālruņi",
+        "brand": "Apple",
+        "model": "Apple iPhone 11 Pro 512GB",
+        "imei": "352604700245957"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "orderEntryNumber": 0,
+                "productCode": "26006",
+                "provider": "FOXWAY",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "selectionResponses": [],
+                "targetProductCode": "SM-F936BZKBEUB"
+            }
+        },
+        "TradeUp": {
+            "store_id": "lv",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "2214EC16-A2CB-4902-B0A3-60A9CBFB7955",
+            "type": "TradeIn",
+            "sku": "LF24T370FWRXEN",
+            "delayed_gratification": false
+        }
+    },
+    "deliveryData": {
+        "HOME": {},
+        "PICKUP": {},
+        "OMNIVA": {
+            "adminLevel2": "Preiļu novads",
+            "pickupPoint": "Aglonas TOP pakomāts"
+        },
+        "DPD": {
+            "adminLevel2": "RĪGA",
+            "pickupPoint": "Paku Skapis DPD Termināls"
+        }
+    },
+    "deliveryOptions": {
+        "STANDARDDELIVERY": "Standartinis pristatymas"
+    },
+    "creditCardTitle": "Kredītkarte",
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "LV",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "mastercard",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "3ds",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "amexCardData": {
+        "cardNumber": "4035 5010 0000 0008",
+        "holderName": "amex",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    }
+}

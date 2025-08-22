@@ -1,0 +1,141 @@
+{
+    "sites": {
+        "ltsme": "/business",
+        "lteppm": "/multistore/lteppm/lteppm",
+        "outletlt": "/multistore/lteppm/outletlt"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=lt&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/lt/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoint": {
+        "prod": "",
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/ltu"
+    },
+    "servicesV2Endpoint": "https://stg2.shop.samsung.com/lt",
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "phoneNumber": "61234567",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "89493",
+        "adminLevel2": "any",
+        "searchAddress": "Mažeikių g. 75",
+        "country": "Lietuva",
+        "phoneNumber": "61234567",
+        "vatNumber": "LT100006806712",
+        "companyName": "UAB \"ORLEN Apsauga\"",
+        "landmark": "Mažeikių g. 75, Juodeikių k., Židikų sen., Mažeikių r. sav."
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "Test",
+        "searchAddress": "Mažeikių g. 74",
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "91285",
+        "adminLevel2": "any",
+        "country": "Lietuva",
+        "phoneNumber": "61234563"
+    },
+    "tradeInInfo": {
+        "iban": "LT326616356957832447"
+    },
+    "tradeInData": {
+        "category": "Mobilieji telefonai",
+        "brand": "Apple",
+        "model": "Apple iPhone 11 128GB",
+        "imei": "352604700245957"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-S921BZYGEUE",
+                "provider": "FOXWAY",
+                "productCode": "65344",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "lt",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "02489054-1E06-4C43-9986-AC95717DF9B1",
+            "type": "TradeIn",
+            "sku": "UE98DU9072UXXH",
+            "delayed_gratification": false
+        }
+    },
+    "deliveryData": {
+        "HOME": {},
+        "PICKUP": {},
+        "OMNIVA": {
+            "adminLevel2": "Šiaulių apskr.",
+            "pickupPoint": "Akmenės NORFA Daukanto paštomatas"
+        },
+        "DPD": {
+            "adminLevel2": "VILNIUS",
+            "pickupPoint": "PC PUPA DPD paštomatas 001"
+        }
+    },
+    "deliveryOptions": {},
+    "creditCardTitle": "kreditine kortele",
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "LT",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "mastercard",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "3ds",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "amexCardData": {
+        "cardNumber": "4035 5010 0000 0008",
+        "holderName": "amex",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    }
+}

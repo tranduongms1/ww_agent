@@ -1,0 +1,134 @@
+{
+    "sites": {
+        "eesme": "/business",
+        "eeeppmulti": "/multistore/eeeppmulti/eeeppmulti"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ee&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ee/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoint": {
+        "prod": "",
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/ltu"
+    },
+    "servicesV2Endpoint": "https://stg2.shop.samsung.com/ee",
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "phoneNumber": "51234567",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "12345",
+        "adminLevel2": "any",
+        "phoneNumber": "51234567",
+        "country": "Eesti",
+        "searchAddress": "Kopli 1111 11712 Tallinn"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "Test",
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "54325",
+        "adminLevel2": "any",
+        "searchAddress": "Energeetiku Aiandusühistu 325 40117 Narva-Jõesuu linn",
+        "phoneNumber": "51234567",
+        "country": "Eesti"
+    },
+    "tradeInData": {
+        "category": "Mobiilid",
+        "brand": "Apple",
+        "model": "Apple iPhone 11 64GB",
+        "imei": "352604700245957"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "orderEntryNumber": 0,
+                "productCode": "26006",
+                "provider": "FOXWAY",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "selectionResponses": [],
+                "targetProductCode": "SM-F936BZKBEUB"
+            }
+        },
+        "TradeUp": {
+            "store_id": "ee",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "01439D0D-878E-4152-9E9A-62F21F71EBF1",
+            "type": "TradeIn",
+            "sku": "UE98DU9072UXXH",
+            "delayed_gratification": false
+        }
+    },
+    "deliveryData": {
+        "HOME": {},
+        "PICKUP": {},
+        "OMNIVA": {
+            "adminLevel2": "Viljandi maakond",
+            "pickupPoint": "Abja Coop Konsumi pakiautomaat"
+        },
+        "DPD": {
+            "adminLevel2": "TALLINN",
+            "pickupPoint": "Automaat Tallinna Õismäe Maxima XX"
+        }
+    },
+    "deliveryOptions": {},
+    "creditCardTitle": "Krediitkaart",
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "visa",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "mastercard",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "3ds",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "amexCardData": {
+        "cardNumber": "4035 5010 0000 0008",
+        "holderName": "amex",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    }
+}
