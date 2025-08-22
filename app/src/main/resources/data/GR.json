@@ -1,7 +1,7 @@
 {
-    "sites": {
+    "stores": {
         "employees_partner": "/multistore/grepp/employees_partner",
-        "gr_smb": "/multistore/grepp/gr_smb"
+        "smb": "/multistore/grepp/gr_smb"
     },
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=gr&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/gr/cart"
@@ -76,11 +76,6 @@
             }
         }
     },
-    "deliveryData": {
-        "HOME": {}
-    },
-    "deliveryOptions": {},
-    "creditCardTitle": "Πιστωτική / Χρεωστική κάρτα",
     "creditCardData": {
         "cardNumber": "4111 1111 1111 1111",
         "holderName": "GR",
@@ -106,12 +101,10 @@
         "cvv": "737",
         "password": "password"
     },
-    "paypalTitle": "Paypal",
     "paypalData": {
         "email": "seukpaypaldev_merchant-1@gmail.com",
         "password": "Hybris123"
     },
-    "codTitle": "Πληρωμή με μετρητά κατά την παράδοση",
     "codData": {
         "username": "ligazure@gmail.com",
         "appPassword": "rlrn mfqz rodg ykzg",

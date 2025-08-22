@@ -10,7 +10,9 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
-    "servicesV2Endpoint": "https://stg2.shop.samsung.com/bg",
+    "servicesV2Endpoints": {
+        "stg2": "https://stg2.shop.samsung.com/bg"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -78,7 +80,6 @@
             }
         }
     },
-    "creditCardTitle": "Банкова карта",
     "creditCardData": {
         "cardNumber": "4111 1111 1111 1111",
         "holderName": "BG",
@@ -97,6 +98,5 @@
         "expiryDate": "03/30",
         "cvv": "737",
         "password": "password"
-    },
-    "codTitle": "Плащане при доставка"
+    }
 }

@@ -1,5 +1,5 @@
 {
-     "apiEndpoints": {
+    "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
@@ -29,11 +29,8 @@
         "adminLevel3": "ابو الخصيب",
         "phoneNumber": "+9643213213333"
     },
-    "redeemRewardsTitle": "Samsung Rewards",
-    "codTitle":"الدفع نقداً عند الاستلام",
-    "creditCardTitle": "بطاقة ائتمان/الخصم المباشر",
     "creditCardData": {
-       "cardNumber": "4242 4242 4242 4242",
+        "cardNumber": "4242 4242 4242 4242",
         "holderName": "iq",
         "expiryDate": "12/25",
         "cvv": "100",

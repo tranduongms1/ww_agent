@@ -48,13 +48,10 @@
                 "selectionResponses": []
             }
         },
-    "SMC": {
-        "categoryCode": "insurance"
-    }
-},
-  "redeemRewardsTitle": ".kw-rewardsPaymentMode",
-    "bankTransferTitle": ".kw-bankTransferPaymentMode",
-    "creditCardTitle": ".kw-CheckoutDotComPaymentMode",
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
     "creditCardData": {
         "cardNumber": "3411 1111 1111 111",
         "holderName": "kw",
@@ -74,13 +71,11 @@
         "cvv": "123",
         "password": "Checkout1!"
     },
-    "tabbyTitle": ".kw-TabbyPaymentMode",
     "tabbyData": {
         "email": "card.success@tabby.ai",
         "phone": "90000001",
         "otp": "8888"
     },
-    "tamaraTitle": ".kw-tamaraPayment",
     "tamaraData": {
         "phone": "544337866",
         "cardNumber": "4242424242424242",

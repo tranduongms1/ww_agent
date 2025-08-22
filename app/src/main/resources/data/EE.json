@@ -10,11 +10,13 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
-    "exchangeEndpoint": {
+    "exchangeEndpoints": {
         "prod": "",
         "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/ltu"
     },
-    "servicesV2Endpoint": "https://stg2.shop.samsung.com/ee",
+    "servicesV2Endpoints": {
+        "stg2": "https://stg2.shop.samsung.com/ee"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -92,20 +94,6 @@
             "delayed_gratification": false
         }
     },
-    "deliveryData": {
-        "HOME": {},
-        "PICKUP": {},
-        "OMNIVA": {
-            "adminLevel2": "Viljandi maakond",
-            "pickupPoint": "Abja Coop Konsumi pakiautomaat"
-        },
-        "DPD": {
-            "adminLevel2": "TALLINN",
-            "pickupPoint": "Automaat Tallinna Õismäe Maxima XX"
-        }
-    },
-    "deliveryOptions": {},
-    "creditCardTitle": "Krediitkaart",
     "creditCardData": {
         "cardNumber": "4111 1111 1111 1111",
         "holderName": "visa",

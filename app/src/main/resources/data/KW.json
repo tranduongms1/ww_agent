@@ -1,10 +1,10 @@
 {
+    "stores": {
+        "corporate": "/multistore/kwepp/kw_corporate_b2b"
+    },
     "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
-    },
-     "sites": {
-        "kw_corporate_b2": "/multistore/kwepp/kw_corporate_b2b"
     },
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/kw/cart"
@@ -51,13 +51,10 @@
                 "selectionResponses": []
             }
         },
-    "SMC": {
-        "categoryCode": "insurance"
-    }
-},
-    "redeemRewardsTitle": ".kw-rewardsPaymentMode",
-    "bankTransferTitle": ".kw-bankTransferPaymentMode",
-    "creditCardTitle": ".kw-CheckoutDotComPaymentMode",
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
     "creditCardData": {
         "cardNumber": "3411 1111 1111 111",
         "holderName": "kw",
@@ -77,13 +74,11 @@
         "cvv": "123",
         "password": "Checkout1!"
     },
-    "tabbyTitle": ".kw-TabbyPaymentMode",
     "tabbyData": {
         "email": "card.success@tabby.ai",
         "phone": "90000001",
         "otp": "8888"
     },
-    "tamaraTitle": ".kw-tamaraPayment",
     "tamaraData": {
         "phone": "544337866",
         "cardNumber": "4242424242424242",

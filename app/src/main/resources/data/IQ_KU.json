@@ -1,5 +1,5 @@
 {
-     "apiEndpoints": {
+    "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
@@ -29,9 +29,6 @@
         "adminLevel3": "ئەبی غەرەق",
         "phoneNumber": "+9643213213333"
     },
-    "redeemRewardsTitle": "Samsung Rewards",
-    "codTitle": "پارەدان لەکاتی وەرگرتنی داواکاریی",
-    "creditCardTitle": "کارتی بانکیی Credit/Debit",
     "creditCardData": {
         "cardNumber": "4242 4242 4242 4242",
         "holderName": "iq",

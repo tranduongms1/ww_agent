@@ -55,7 +55,6 @@
       "categoryCode": "warranty"
     }
   },
-  "creditCardTitle": "Credit/Debit Card",
   "creditCardData": {
     "cardType": "Visa",
     "cardNumber": "4111111111111111",

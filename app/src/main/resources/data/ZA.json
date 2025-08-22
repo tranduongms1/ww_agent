@@ -1,16 +1,16 @@
 {
+    "stores": {
+        "smb": "/business",
+        "acn": "/multistore/zaepp/acn_za_epp",
+        "b2b": "/multistore/zaepp/b2b",
+        "rhq": "/multistore/zaepp/rhq_epp"
+    },
     "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=za&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/za/cart"
-    },
-    "sites": {
-        "zasme": "/business",
-        "acn_za_epp": "/multistore/zaepp/acn_za_epp",
-        "b2b": "/multistore/zaepp/b2b",
-        "rhq_epp": "/multistore/zaepp/rhq_epp"
     },
     "customerInfo": {
         "email": "autotestww@gmail.com",
@@ -50,11 +50,6 @@
             "categoryCode": "insurance"
         }
     },
-    "redeemRewardsTitle": "Samsung Rewards",
-    "bankTransferTitle": "Bank Transfer / Direct Deposit",
-    "payOnAccountTitle": "Charge to Account",
-    "sidEFTTitle": "SiD Secure EFT",
-    "creditCardTitle": "Credit Card or Debit Card",
     "creditCardData": {
         "cardNumber": "4000000000000002",
         "holderName": "first last",
@@ -77,14 +72,12 @@
         "expiryYear": "2030",
         "cvv": "1234"
     },
-    "floatTitle": "Float",
     "floatData": {
         "cardNumber": "4111111111111111",
         "holderName": "first last",
         "expiryDate": "03/30",
         "cvv": "123"
     },
-    "payJustNowTitle": ".za-PJNPaymentMode ",
     "payJustNowData": {
         "email": "aastha.bali@nagarro.com"
     }

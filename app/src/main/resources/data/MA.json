@@ -1,4 +1,7 @@
 {
+    "stores": {
+        "students": "/multistore/maepp/ma_students"
+    },
     "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
@@ -6,9 +9,6 @@
     "exchangeEndpoints": {
         "prod": "https://p1.ecom.samsung.com/v1/exchange/api/mar",
         "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/mar"
-    },
-    "sites": {
-        "ma_students": "/multistore/maepp/ma_students"
     },
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=n_africa&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ma/cart"
@@ -50,9 +50,6 @@
             "categoryCode": "warranty"
         }
     },
-    "redeemRewardsTitle": "Samsung Rewards",
-    "codTitle": "Paiement à la livraison",
-    "creditCardTitle": "Carte bancaire de Crédit ou Débit",
     "creditCardData": {
         "cardNumber": "4000 0000 0000 0010",
         "holderName": "ma",
@@ -66,5 +63,4 @@
         "cvv": "000",
         "password": "123"
     }
-
 }

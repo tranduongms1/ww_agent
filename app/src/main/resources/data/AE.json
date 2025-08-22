@@ -1,11 +1,11 @@
 {
+    "stores": {
+        "smb": "/business",
+        "samsung_employee": "/multistore/aeepp/samsung_employee"
+    },
     "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
-    },
-    "sites": {
-        "aesme": "/business",
-        "samsung_employee": "/multistore/aeepp/samsung_employee"
     },
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
@@ -59,18 +59,10 @@
                 "selectionResponses": []
             }
         },
-    "SMC": {
-        "categoryCode": "insurance"
-    }
-    
-},
-"redeemRewardsTitle": "Samsung Rewards",
-    "codTitle": "Cash on Delivery",
-    "cardOnDeliveryTitle": "card on delivery",
-    "bankTransferTitle": "bank transfer",
-    "webCardTitle": "Pay and collect at Aramex Outlet",
-    "creditCardTitle": ".ae-CheckoutDotComPaymentMode",
-    "creditCardNewTitle": ".ae-CheckoutDotComFlowPaymentMode",
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
     "creditCardData": {
         "cardNumber": "4242 4242 4242 4242",
         "holderName": "ae",
@@ -90,7 +82,6 @@
         "expiryDate": "01/35",
         "cvv": "123"
     },
-    "payFortTitle": ".ae-payfortservicePaymentMode",
     "payFortData": {
         "country": "United Arab Emirates",
         "bank": "Emirates NBD UAE",
@@ -100,7 +91,6 @@
         "expiryYear": "30",
         "cvv": "737"
     },
-    "installmentPlanTitle": ".ae-payfortSeamlessInstallmentPaymentMode",
     "installmentPlanData": {
         "cardType": "Visa",
         "cardNumber": "4111111111111111",
@@ -109,13 +99,11 @@
         "expiryYear": "2030",
         "cvv": "737"
     },
-    "tabbyTitle": "Tabby: Split in up to 6 payments, interest-free",
     "tabbyData": {
         "email": "card.success@tabby.ai",
         "phone": "500000001",
         "otp": "8888"
     },
-    "etihadGuestPayTitle": "Etihad GuestPay",
     "etihadGuestPayData": {
         "memberID": "420000021814",
         "password": "Pointspay@123",
@@ -123,7 +111,6 @@
         "expiryDate": "0330",
         "cvv": "123"
     },
-    "tamaraTitle": "Split in up to 4 payments with Tamara",
     "tamaraData": {
         "phone": "544337866",
         "cardNumber": "4242424242424242",
