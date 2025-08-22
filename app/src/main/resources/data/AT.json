@@ -1,5 +1,6 @@
 {
     "stores": {
+        "atb2b": "/multistore/atb2b/corporate_benefits_at/",
         "smb": "/business"
     },
     "pointingUrls": {
