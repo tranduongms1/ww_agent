@@ -1,5 +1,6 @@
 {
     "stores": {
+        "epp": "/multistore/chepp/samsung_switzerland_epp/",
         "smb": "/business"
     },
     "pointingUrls": {
