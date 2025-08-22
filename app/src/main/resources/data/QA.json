@@ -1,0 +1,44 @@
+{
+  "stores": {
+    "vip_members_qa": "/multistore/qaepp/vip_members_qa"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "customerInfo": {
+    "email": "autotestww@gmail.com",
+    "firstName": "Auto",
+    "lastName": "test",
+    "phoneNumber": "+96812983719",
+    "dateOfBirth": "01/04/1988"
+  },
+  "customerAddress": {
+    "line1": "123",
+    "adminLevel2": "Al Kharaitiyat",
+    "adminLevel3": "Al kharthyat"
+  },
+  "billingAddress": {
+    "firstName": "Auto",
+    "lastName": "billing",
+    "phoneNumber": "+97466666666",
+    "line1": "135",
+    "adminLevel2": "Al Kheesa",
+    "adminLevel3": "Al Khesaa Petrol Station"
+  },
+  "serviceData": {
+    "SMC": {
+      "categoryCode": "insurance"
+    }
+  },
+  "creditCardData": {
+    "cardNumber": "3411 1111 1111 111",
+    "holderName": "qa",
+    "expiryDate": "10/25",
+    "cvv": "1234",
+    "password": "Checkout1!"
+  }
+}

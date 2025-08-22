@@ -1,77 +1,135 @@
 {
-    "stores": {
-        "trsme": "/business",
-        "tr_internal_epp": "/multistore/trepp/tr_internal_epp",
-        "tr_egitim": "/multistore/trepp/tr_egitim"
-    },
-    "pointingUrls": {
-        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=tr&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/tr/cart"
-    },
-    "apiEndpoints": {
-        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
-        "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
-    },
-    "customerInfo": {
-        "email": "autotestww@gmail.com",
-        "firstName": "Auto",
-        "lastName": "test",
-        "phoneNumber": "5498773829",
-        "vatNumber": "45821056966",
-        "companyName": "company",
-        "taxBranch": "ANTALYA-ALANYA VERGİ DAİRESİ",
-        "dateOfBirth": "17.02.1981"
-    },
-    "customerAddress": {
-        "line1": "line1",
-        "adminLevel2": "İSTANBUL",
-        "adminLevel3": "ADALAR",
-        "adminLevel4": "BURGAZADA MAH"
-    },
-    "billingAddress": {
-        "line1": "line1bill",
-        "adminLevel2": "ANKARA",
-        "adminLevel3": "AKYURT",
-        "adminLevel4": "AHMETADİL MAH"
-    },
-    "tradeInData": {
-        "category": "mobile",
-        "brand": "Apple",
-        "device": "iPhone 11",
-        "imei": "109243004159964"
-    },
-    "serviceData": {
-        "TradeIn": {
-            "serviceCode": "T-EASYCEP-TRADEIN",
-            "addToCartType": "append",
-            "provider": "EASYCEP",
-            "additionalInfos": [
-                {
-                    "productCode": "4569",
-                    "provider": "EASYCEP",
-                    "targetProductCode": "SM-S926BZVBTUR",
-                    "selectionResponses": [
-                        {
-                            "key": "questionsAndAnswers",
-                            "value": "{\"31468\":79264,\"31471\":79276,\"31474\":79282,\"31477\":79291,\"31480\":79305,\"31483\":79312,\"31972\":80369}"
-                        },
-                        {
-                            "key": "model",
-                            "value": "4569"
-                        }
-                    ],
-                    "responses": []
-                }
-            ]
+  "stores": {
+    "trsme": "/business",
+    "tr_internal_epp": "/multistore/trepp/tr_internal_epp",
+    "tr_egitim": "/multistore/trepp/tr_egitim"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=tr&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/tr/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "customerInfo": {
+    "email": "autotestww@gmail.com",
+    "firstName": "Auto",
+    "lastName": "test",
+    "phoneNumber": "5498773829",
+    "vatNumber": "45821056966",
+    "companyName": "company",
+    "taxBranch": "ANTALYA-ALANYA VERGİ DAİRESİ",
+    "customerDOB": "17.02.1981"
+  },
+  "customerAddress": {
+    "line1": "line1",
+    "adminLevel2": "İSTANBUL",
+    "adminLevel3": "ADALAR",
+    "adminLevel4": "BURGAZADA MAH"
+  },
+  "billingAddress": {
+    "firstName": "Auto",
+    "lastName": "Bill",
+    "line1": "line1bill",
+    "adminLevel2": "ANKARA",
+    "adminLevel3": "AKYURT",
+    "adminLevel4": "AHMETADİL MAH"
+  },
+  "tradeInData": {
+    "category": "mobile",
+    "brand": "Apple",
+    "model": "iPhone 14 Pro",
+    "imei": "109243004159964"
+  },
+  "serviceData": {
+    "TradeIn": {
+      "serviceCode": "T-EASYCEP-TRADEIN",
+      "addToCartType": "append",
+      "provider": "EASYCEP",
+      "additionalInfos": [
+        {
+          "key": "questionsAndAnswers",
+          "value": "{\"38000\":96072,\"38003\":96084,\"38006\":96090,\"38009\":96099,\"38012\":96113,\"38015\":96120,\"38018\":96129}"
         },
-        "SMC": {
-            "categoryCode": "insurance"
+        {
+          "key": "brandName",
+          "value": "Apple_1_1"
+        },
+        {
+          "key": "displayAdditionDiscount",
+          "value": "Incl. 1.234,00 TL exchange bonus"
+        },
+        {
+          "key": "modelId",
+          "value": "4847"
+        },
+        {
+          "key": "discountAmount",
+          "value": "58663.0"
+        },
+        {
+          "key": "additionalDiscountWithCurrency",
+          "value": "1.234,00 TL"
+        },
+        {
+          "key": "offer",
+          "value": "57429.0"
+        },
+        {
+          "key": "additionalDiscount",
+          "value": "1234.0"
+        },
+        {
+          "key": "modelName",
+          "value": "iPhone 16 Pro"
+        },
+        {
+          "key": "totalTradeinAmount",
+          "value": "58663.0"
+        },
+        {
+          "key": "brandId",
+          "value": "1_1"
+        },
+        {
+          "key": "currency",
+          "value": "TL"
+        },
+        {
+          "key": "tradeinAmount",
+          "value": "57429.0"
+        },
+        {
+          "key": "tradeinAmountWithCurrency",
+          "value": "57.429,00 TL"
+        },
+        {
+          "key": "discountAmount-hash",
+          "value": "1077fdeb796ca8f35b9ad123fc576b83"
+        },
+        {
+          "key": "totalTradeinAmountFormatted",
+          "value": "58.663,00 TL"
+        },
+        {
+          "key": "discountAmountWithCurrency",
+          "value": "58.663,00 TL"
+        },
+        {
+          "key": "imei",
+          "value": "109243004159964"
         }
+      ]
     },
-    "creditCardData": {
-        "cardNumber": "5504720000000003",
-        "holderName": "tr",
-        "expiryDate": "12/26",
-        "cvv": "000",
-        "password": "283126"
+    "SMC": {
+      "categoryCode": "insurance"
     }
+  },
+  "creditCardData": {
+    "cardNumber": "5504720000000003",
+    "holderName": "tr",
+    "expiryDate": "12/26",
+    "cvv": "000",
+    "password": "283126"
+  }
 }

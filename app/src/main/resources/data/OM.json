@@ -1,0 +1,44 @@
+{
+  "stores": {
+    "om_corporate_b2b": "/multistore/omepp/om_corporate_b2b"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "customerInfo": {
+    "email": "autotestww@gmail.com",
+    "firstName": "Auto",
+    "lastName": "test",
+    "phoneNumber": "+96812983719",
+    "dateOfBirth": "01/04/1988"
+  },
+  "customerAddress": {
+    "adminLevel1": "Adam",
+    "line1": "Klein Bennebek",
+    "line2": "12"
+  },
+  "billingAddress": {
+    "firstName": "billing",
+    "lastName": "test",
+    "phoneNumber": "+96899999998",
+    "adminLevel1": "Al Ashkarah",
+    "line1": "Ruwi",
+    "line2": "16"
+  },
+  "serviceData": {
+    "SMC": {
+      "categoryCode": "insurance"
+    }
+  },
+  "creditCardData": {
+    "cardNumber": "4005550000000001",
+    "holderName": "om",
+    "expiryDate": "03/30",
+    "cvv": "100",
+    "password": "Checkout1!"
+  }
+}

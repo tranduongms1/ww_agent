@@ -1,0 +1,72 @@
+{
+  "stores": {
+    "ir_partners": "/multistore/sa_epp/ir_partners",
+    "sapartners": "/multistore/saepp/sapartners"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=sa&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/sa/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "customerInfo": {
+    "email": "autotestww@gmail.com",
+    "firstName": "Auto",
+    "lastName": "test",
+    "phoneNumber": "+966321321321",
+    "dateOfBirth": "01/04/1988"
+  },
+  "customerAddress": {
+    "line1": "line1",
+    "adminLevel2": "Abha",
+    "adminLevel3": "Abha Al Jadidah"
+  },
+  "billingAddress": {
+    "firstName": "Auto billing",
+    "lastName": "test",
+    "phoneNumber": "+966321321321",
+    "line1": "line1bill",
+    "adminLevel2": "Abha",
+    "adminLevel3": "Al Badia"
+  },
+  "tradeInData": {
+    "category": "Mobile Phone",
+    "brand": "Samsung",
+    "model": "Z Series",
+    "subseries": "Flip Series",
+    "device": "Z Flip 4 (5G)",
+    "storage": "256 GB",
+    "imei": "109243004159964"
+  },
+  "serviceData": {
+    "TradeIn": {
+      "serviceCode": "T-NORTHLADDER-TRADEIN",
+      "addToCartType": "append",
+      "provider": "NORTHLADDER",
+      "additionalInfos": {
+        "targetProductCode": "SM-S928BLBQMEA",
+        "provider": "NORTHLADDER",
+        "productCode": "deviceType:Mobile Phone:brandName:Apple Mobile Phone:modelName:iPhone 16 Pro (2024) Apple Mobile Phone:Storage:128 GB iPhone 16 Pro (2024) Apple Mobile Phone",
+        "responses": [
+          {
+            "name": "sa-tradein-5",
+            "value": "67f4e64a5570fa75ba5a8238"
+          }
+        ],
+        "orderEntryNumber": 0,
+        "selectionResponses": []
+      }
+    },
+    "SMC": {
+      "categoryCode": "insurance"
+    }
+  },
+  "creditCardData": {
+    "cardNumber": "4242 4242 4242 4242",
+    "holderName": "sa",
+    "expiryDate": "10/25",
+    "cvv": "100",
+    "password": "Checkout1!"
+  }
+}
