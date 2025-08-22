@@ -49,104 +49,26 @@
     "adminLevel2": "Donostia",
     "adminLevel1": "Guipuzcoa"
   },
+  "tradeInData": {
+    "category": "Smartphone",
+    "brand": "SAMSUNG",
+    "model": "Samsung Galaxy S23",
+    "storage": "256GB",
+    "imei": "351064274224386"
+  },
   "serviceData": {
     "TradeIn": {
       "serviceCode": "T-WORLDBUSINESS-TRADEIN",
       "addToCartType": "append",
       "provider": "WORLDBUSINESS",
-      "additionalInfos": [
-        {
-          "key": "discountAmount",
-          "value": "237.0"
-        },
-        {
-          "key": "providerDiscount",
-          "value": "237.0"
-        },
-        {
-          "key": "discountAmountWithCurrency",
-          "value": "€237.00"
-        },
-        {
-          "key": "tradeinAmount",
-          "value": "237.0"
-        },
-        {
-          "key": "tradeinAmountWithCurrency",
-          "value": "€237.00"
-        },
-        {
-          "key": "evaluationMessage",
-          "value": "Importe que se te <span style=color:#006ff2><b>Reembolso hasta €237.00</b></span>"
-        },
-        {
-          "key": "details",
-          "value": "Reembolso"
-        },
-        {
-          "key": "capacity",
-          "value": "256GB"
-        },
-        {
-          "key": "providerMinExchangeAmount",
-          "value": "0.0"
-        },
-        {
-          "key": "extServiceCashback",
-          "value": "236.70000000000002"
-        },
-        {
-          "key": "serviceProductModelName",
-          "value": "Samsung Galaxy S23 256 GB"
-        },
-        {
-          "key": "discountPromotionAmount",
-          "value": "0.0"
-        },
-        {
-          "key": "serviceProductModel",
-          "value": "Samsung Galaxy S23 | 256GB"
-        },
-        {
-          "key": "tradeinDeviceDisplayInfo",
-          "value": "Samsung Galaxy S23 | 256GB"
-        },
-        {
-          "key": "serviceProductBrand",
-          "value": "SAMSUNG"
-        },
-        {
-          "key": "reference",
-          "value": "SM-F721BLVGEUB"
-        },
-        {
-          "key": "image_url"
-        },
-        {
-          "key": "serviceDeviceType",
-          "value": "Smartphone"
-        },
-        {
-          "key": "deviceSku",
-          "value": "T-SAMSUNG-GALAXY-S23-256-GB_WB"
-        },
-        {
-          "key": "fault_note",
-          "value": ""
-        },
-        {
-          "key": "discountAmount-hash",
-          "value": "3b8729206afc31a3bc8db7b1aa4a42d8"
-        },
-        {
-          "key": "productName",
-          "value": "WORLDBUSINESS trade-in product"
-        },
-        {
-          "key": "IMEI",
-          "value": "351064274224386"
-        }
-      ]
+      "additionalInfos": {
+        "targetProductCode": "SM-S938BAKHEUB",
+        "provider": "WORLDBUSINESS",
+        "productCode": "T-SAMSUNG-GALAXY-S23-256-GB_WB",
+        "responses": [],
+        "orderEntryNumber": 0,
+        "selectionResponses": []
+      }
     },
     "TradeUp": {
       "store_id": "es",
@@ -187,7 +109,6 @@
       "postalCode": "28001"
     }
   },
-  "creditCardTitle": "Tarjeta Bancaria",
   "creditCardData": {
     "cardNumber": "4111 1111 1111 1111",
     "holderName": "es",
@@ -208,19 +129,16 @@
     "cvv": "737",
     "password": "password"
   },
-  "paypalTitle": "PayPal",
   "paypalData": {
     "email": "seukpaypaldev_merchant-1@gmail.com",
     "password": "Hybris123"
   },
   "codTitle": "",
   "redeemRewardsTitle": "Samsung Rewards",
-  "klarnaTitle": "Paga en 3 plazos con Klarna",
   "klarnaData": {
     "phoneNumber": "603549464",
     "otp": "000000"
   },
-  "bankTransferTitle": "Transferencia bancaria",
   "evollisData": {
     "pl-pm-cards_4-cardNumber": [
       "input[name='cardNumber']",
