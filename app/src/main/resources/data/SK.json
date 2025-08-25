@@ -1,0 +1,123 @@
+{
+    "stores": {
+        "skeppstaffsales": "/multistore/skeppmulti/skeppstaffsales"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=sk&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/sk/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/svk"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "phoneNumber": "123456789",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "Československej armády",
+        "postalCode": "04501",
+        "line1": "Československej armády",
+        "adminLevel2": "Moldava nad Bodvou",
+        "phoneNumber": "123456789"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "Test",
+        "searchAddress": "Východná",
+        "postalCode": "35101",
+        "adminLevel2": "Východná",
+        "line1": "Východná",
+        "phoneNumber": "123456789"
+    },
+    "tradeInInfo": {
+        "iban": "SK1482973364859697859743",
+        "bankName": "365.BANK, A. S",
+        "swiftCode": "POBNSKBA"
+    },
+    "tradeInData": {
+        "category": "Mobiles",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip5 5G 256GB F731",
+        "imei": "358908101432492"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-F956BAKBEUE",
+                "provider": "FOXWAY",
+                "productCode": "26005",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "sk",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "3F7D5AB9-DDF6-4591-8201-D6736503C737",
+            "type": "TradeIn",
+            "sku": "QE75QN700CTXXH",
+            "delayed_gratification": false
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "SK",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "SK",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "SK",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "redeemRewardsTitle": "Samsung Rewards",
+    "payUdata": {
+        "cardNumber": "4444 3333 2222 1111",
+        "holderName": "duc pham",
+        "expiryDate": "12/29",
+        "cvv": "123"
+    },
+    "klarnaData": {
+        "phoneNumber": "905123456",
+        "otp": "123456"
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=cz&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/cz/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "123456789",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "postalCode": "69141",
+        "line1": "Čs. armády 1042/42",
+        "adminLevel2": "Břeclav",
+        "country": "Česká republika",
+        "phoneNumber": "123456789"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "test",
+        "line1": "Výsluní 544",
+        "postalCode": "32100",
+        "adminLevel2": "Dobřany",
+        "phoneNumber": "123456789"
+    },
+    "tradeInData": {
+        "category": "Mobiles",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip5 5G 256GB F731",
+        "imei": "358908101432492"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-F956BAKCEUE",
+                "provider": "FOXWAY",
+                "productCode": "62119",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "cz",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555444433331111",
+        "holderName": "cz",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "cz",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "sb-ct4101438108@personal.example.com",
+        "password": "Hybris123"
+    }
+}

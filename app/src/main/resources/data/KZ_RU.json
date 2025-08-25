@@ -1,0 +1,36 @@
+{
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=kz_ru&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/kz_ru/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "phoneNumber": "7777777777",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "123",
+        "adminLevel1": "Акмолинская область",
+        "adminLevel2": "Акколь"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "Test",
+        "line1": "456",
+        "adminLevel1": "Астана",
+        "adminLevel2": "Астана",
+        "adminLevel3": "Астана"
+    },
+    "creditCardData": {
+        "cardNumber": "4405639704015096 ",
+        "holderName": "KZ_KZ",
+        "expiryMonth": "01",
+        "expiryYear": "27",
+        "cvv": "321"
+    }
+}

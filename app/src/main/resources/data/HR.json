@@ -1,0 +1,74 @@
+{
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=hr&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/hr/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "Test",
+        "phoneNumber": "0912345678",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "12345",
+        "adminLevel2": "any"
+    },
+    "billingAddress": {
+        "firstName": "Auto",
+        "lastName": "Test",
+        "line1": "any",
+        "line2": "any",
+        "postalCode": "54321",
+        "adminLevel2": "any"
+    },
+    "tradeInData": {
+        "category": "T_MOBITELI",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip5 5G 256GB F731",
+        "imei": "358908101432492"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                "targetProductCode": "SM-G780FLVDEUE",
+                "provider": "FOXWAY",
+                "productCode": "62119",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "HR",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    }
+}
