@@ -204,7 +204,8 @@ public abstract class TradeIn {
                         "Indtast producent:",
                         "Marque",
                         "Tuotemerkki",
-                        "Hersteller":
+                        "Hersteller",
+                        "Značka":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -218,7 +219,8 @@ public abstract class TradeIn {
                         "Modèle",
                         "Συσκευή",
                         "Laite",
-                        "Modell":
+                        "Modell",
+                        "Typ zařízení":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -351,7 +353,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("CA", "DK", "FI", "GR").contains(c.site)) {
+                            if (List.of("CA", "DK", "FI", "GR","CZ").contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
