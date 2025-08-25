@@ -37,7 +37,8 @@ public abstract class TradeIn {
             [an-la='trade-in:apply discount:apply trade in'],
             [data-an-la='trade-in:apply discount:add to cart'],
             [data-an-la='trade-in:select device:apply discount'],
-            [data-an-la='trade-in:device1:apply discount:add to cart']""";
+            [data-an-la='trade-in:device1:apply discount:add to cart'],
+            app-step-four .modal__footer [type='submit']""";
 
     static String getStepName(WebElement modal) throws Exception {
         WebElement closeBtn = WebUI.waitElement(modal, By.cssSelector("""
@@ -87,6 +88,24 @@ public abstract class TradeIn {
             WebElement opt = elm.findElement(By.xpath(xpath));
             WebUI.scrollToCenter(opt);
             opt.click();
+            return true;
+        }
+        if (className.contains("mat-mdc-form-field")) {
+            if (!className.contains("mat-focused")) {
+                WebElement selected = WebUI.findElement(elm, By.cssSelector(".mat-mdc-select-value"));
+                if (selected != null && selected.getText().trim().equalsIgnoreCase(option.trim())) {
+                    return false;
+                }
+                WebUI.scrollToCenter(elm);
+                elm.click();
+                WebUI.delay(1);
+            }
+            String xpath = "//*[@class='tradein-text' and normalize-space(%s)='%s']".formatted(Util.XPATH_TEXT_LOWER,
+                    option.toLowerCase());
+            WebElement opt = elm.findElement(By.xpath(xpath));
+            WebUI.scrollToCenter(opt);
+            opt.click();
+            WebUI.delay(1);
             return true;
         }
         throw new Exception("Select is not handled");
@@ -169,6 +188,10 @@ public abstract class TradeIn {
             return id.isEmpty() ? "category" : id; // AU site
         }
 
+        if (className.contains("mat-mdc-form-field")) {
+            return elm.findElement(By.cssSelector("[formcontrolname]")).getDomAttribute("formcontrolname");
+        }
+
         if (className.contains("mat-expansion-panel")) {
             return WebUI.driver.executeScript(
                     "return arguments[0].parentNode.parentNode.querySelector('.trade-in__dropdown-header-text').innerText",
@@ -184,7 +207,8 @@ public abstract class TradeIn {
                 .trade-in-popup-v3__tradeIn-category,
                 .trade-in-select,
                 mat-radio-group,
-                mat-expansion-panel"""));
+                mat-expansion-panel,
+                mat-form-field:has([formcontrolname])"""));
         for (WebElement elm : elms) {
             if (!elm.isDisplayed()) {
                 continue;
@@ -199,6 +223,7 @@ public abstract class TradeIn {
                         "brand",
                         "brandName",
                         "manufacturer",
+                        "brandFormControl",
                         "Brand",
                         "Manufacturer",
                         "Indtast producent:",
@@ -215,6 +240,7 @@ public abstract class TradeIn {
                         "model",
                         "modelName",
                         "stockModel",
+                        "modelFormControl",
                         "Device",
                         "Model",
                         "Indtast model:",
@@ -232,6 +258,7 @@ public abstract class TradeIn {
                         "capacity",
                         "Capacidad",
                         "memory",
+                        "storageFormControl",
                         "Storage",
                         "Capacité ou carte graphique",
                         "Taille de l'espace de stockage",
@@ -275,7 +302,8 @@ public abstract class TradeIn {
                 .trade-in-popup-v3__terms .checkbox-v2,
                 .terms-and-conditions-container,
                 .tnc-container,
-                .trade-in__tnc .mdc-checkbox"""));
+                .trade-in__tnc .mdc-checkbox,
+                li:has(.trade-in__tc) mat-checkbox"""));
         for (WebElement elm : elms) {
             if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
                 WebUI.scrollToCenter(elm);
@@ -292,7 +320,8 @@ public abstract class TradeIn {
                     .trade-in-popup__imei-form input,
                     .trade-in-popup-v3__imei-form input,
                     .trade-in-summary__imei-input input,
-                    .trade-in-modal [formcontrolname='imei']"""), 5);
+                    .trade-in-modal [formcontrolname='imei'],
+                    [formcontrolname='imeiFormControl']"""), 5);
             WebUI.scrollToCenter(input);
             input.clear();
             WebUI.delay(1);
@@ -321,6 +350,9 @@ public abstract class TradeIn {
         btn.click();
         logger.info("Next button clicked");
         WebUI.waitForDisappear(btn, 10);
+        if (WebUI.isSite("UK")) {
+            WebUI.delay(2);
+        }
         if (WebUI.findElement(MODAL_LOCATOR) == null) {
             return true;
         }
@@ -358,7 +390,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR").contains(c.site)) {
+                            if (List.of("CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK").contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
