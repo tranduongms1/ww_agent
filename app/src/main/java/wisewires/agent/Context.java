@@ -83,7 +83,7 @@ public class Context {
     }
 
     public String getHomeUrl() {
-        return "https://p6-pre-qa2.samsung.com/%s".formatted(siteUid);
+        return "https://p6-pre-qa2.samsung.com/%s".formatted(getSiteUid());
     }
 
     public String getShopUrl() throws Exception {
