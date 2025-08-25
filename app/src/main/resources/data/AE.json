@@ -39,11 +39,10 @@
     },
     "tradeInData": {
         "category": "Mobile Phone",
-        "brand": "Samsung",
-        "model": "Z Series",
-        "subseries": "Fold Series",
-        "divice": "Z Fold 4 (5G)",
-        "storage": "512GB"
+        "brand": "Apple",
+        "model": "iPhone 16 Pro (2024)",
+        "storage": "512 GB",
+        "imei": "356938035643809"
     },
     "serviceData": {
         "TradeIn": {

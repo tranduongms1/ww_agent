@@ -358,7 +358,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("CA", "DK", "FI", "GR", "CZ").contains(c.site)) {
+                            if (List.of("CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR").contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
