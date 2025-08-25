@@ -6,6 +6,7 @@ public class PostProps {
     private ArrayList<Attachment> attachments;
     private String card;
     private String script;
+    private boolean activate_ai;
 
     private String currentUrl;
 
@@ -34,6 +35,14 @@ public class PostProps {
 
     public void setScript(String script) {
         this.script = script;
+    }
+
+    public boolean getActivateAI() {
+        return activate_ai;
+    }
+
+    public void setActivateAI(boolean activate) {
+        this.activate_ai = activate;
     }
 
     public String getCurrentUrl() {

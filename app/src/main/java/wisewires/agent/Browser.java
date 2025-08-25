@@ -608,6 +608,7 @@ public abstract class Browser {
                 Post p = new Post(c.post.getChannelId(), "✅ " + req);
                 p.setRootId(c.post.getId());
                 p.setType("custom_ai_verify");
+                p.getProps().setActivateAI(true);
                 p.getProps().setCurrentUrl(WebUI.getUrl());
                 Util.captureImageAndCreatePost(c, p);
                 break;
