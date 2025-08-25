@@ -205,7 +205,8 @@ public abstract class TradeIn {
                         "Marque",
                         "Tuotemerkki",
                         "Hersteller",
-                        "Značka":
+                        "Značka",
+                        "Fabricant":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -230,6 +231,7 @@ public abstract class TradeIn {
                         "memory",
                         "Storage",
                         "Capacité ou carte graphique",
+                        "Taille de l'espace de stockage",
                         "Speichergrösse":
                     selectStorage(elm, data.get("storage"));
                     break;
