@@ -12,6 +12,8 @@ public class Profile {
 
     private HashMap<String, String> customerInfo;
     private HashMap<String, String> customerAddress;
+    private HashMap<String, String> customerInfoEdit;
+    private HashMap<String, String> customerAddressEdit;
     private HashMap<String, String> billingAddress;
     private HashMap<String, String> tradeInData;
     private HashMap<String, String> tradeInInfo;
@@ -81,6 +83,10 @@ public class Profile {
 
     public Map<String, String> getShippingAddress() {
         return Util.combined(customerInfo, customerAddress);
+    }
+
+    public Map<String, String> getShippingAddressEdit() {
+        return Util.combined(customerInfoEdit, customerAddressEdit);
     }
 
     public HashMap<String, String> getBillingAddress() {
