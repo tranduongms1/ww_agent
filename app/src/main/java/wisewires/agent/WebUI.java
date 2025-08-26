@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +29,8 @@ interface WebElementSelector {
 
 public abstract class WebUI {
     private static Logger logger = LoggerFactory.getLogger(WebUI.class);
+
+    static String USER_AGENT = "--user-agent=D2CEST-AUTO-70a4cf16 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36.D2CEST-AUTO-70a4cf16";
 
     static String DISPLAY_NONE = "a=document.createElement('style');a.innerHTML='iframe.fpw-view, #spr-live-chat-app, #fw-player {display:none !important}';document.head.appendChild(a)";
 
@@ -53,12 +56,15 @@ public abstract class WebUI {
     static void openBrowser(String url) {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--start-maximized", "--incognito",
-                    "--user-agent=D2CEST-AUTO-70a4cf16 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36.D2CEST-AUTO-70a4cf16");
+            options.addArguments(USER_AGENT, "--incognito");
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-geolocation");
             options.addArguments("--use-fake-ui-for-media-stream");
+            options.addArguments();
             driver = new ChromeDriver(options);
+            long dw = (long) driver.executeScript("return window.outerWidth-window.innerWidth");
+            Dimension wd = driver.manage().window().getSize();
+            driver.manage().window().setSize(new Dimension((int) (1280 + dw), wd.getHeight()));
         }
         driver.get(url);
     }

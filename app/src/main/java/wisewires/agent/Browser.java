@@ -610,7 +610,10 @@ public abstract class Browser {
                 p.setType("custom_ai_verify");
                 p.getProps().setActivateAI(true);
                 p.getProps().setCurrentUrl(WebUI.getUrl());
-                Util.captureImageAndCreatePost(c, p);
+                String path = Util.captureToVerify(c);
+                String fileId = c.client.uploadFile(p.getChannelId(), path);
+                p.setFileIds(List.of(fileId));
+                c.client.createPost(p);
                 break;
             }
 

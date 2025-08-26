@@ -19,6 +19,11 @@ import org.openqa.selenium.devtools.v138.page.Page;
 public abstract class Util {
     static String XPATH_TEXT_LOWER = "translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')";
 
+    static String NO_CAPTURE_LOCATOR = """
+            [position='TokoPaymentBanner'],
+            [position='RecommendationSection'],
+            footer""";
+
     public static boolean isHTTP(String ipOrDomain) {
         if (ipOrDomain.contains(":"))
             return true;
@@ -80,6 +85,37 @@ public abstract class Util {
         out.write(Base64.getDecoder().decode(base64Image));
         out.close();
         return filePath;
+    }
+
+    public static String captureToVerify(Context c) throws IOException {
+        try {
+            WebUI.driver.executeScript("""
+                    for (const e of document.querySelectorAll(arguments[0])) {
+                        e.setAttribute('org-style-display', e.style.display);
+                        e.style.display = 'none';
+                    }""", NO_CAPTURE_LOCATOR);
+            DevTools devTools = WebUI.driver.getDevTools();
+            devTools.createSession();
+            String base64Image = devTools.send(Page.captureScreenshot(
+                    Optional.of(Page.CaptureScreenshotFormat.JPEG),
+                    Optional.empty(),
+                    Optional.empty(),
+                    Optional.empty(),
+                    Optional.of(true),
+                    Optional.empty()));
+            devTools.close();
+            String tempDir = System.getProperty("java.io.tmpdir");
+            String filePath = tempDir + File.separator + UUID.randomUUID() + ".jpg";
+            FileOutputStream out = new FileOutputStream(filePath);
+            out.write(Base64.getDecoder().decode(base64Image));
+            out.close();
+            return filePath;
+        } finally {
+            WebUI.driver.executeScript("""
+                    for (const e of document.querySelectorAll(arguments[0])) {
+                        e.style.display = e.getAttribute('org-style-display');
+                    }""", NO_CAPTURE_LOCATOR);
+        }
     }
 
     public static void captureImageAndCreatePost(Context c, Post post) throws Exception {
