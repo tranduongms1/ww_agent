@@ -25,7 +25,19 @@
         "postalCode": "6283",
         "country": "Belgien"
     },
-    "billingAddress": {},
+    "billingAddress": {
+        "title": "Herr",
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "Österreich",
+        "phoneNumber": "1323132123",
+        "line1": "Innsbruck",
+        "line2": "123",
+        "adminLevel2": "Innsbruck",
+        "postalCode": "5082",
+        "country": "Deutschland"
+    },
     "tradeInInfo": {
         "iban": "AT326616356957832447"
     },
