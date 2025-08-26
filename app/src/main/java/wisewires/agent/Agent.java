@@ -21,7 +21,7 @@ public class Agent extends WebSocketClient {
 
     public Agent(String serverAddress, String token) {
         super(URI.create("wss://%s/api/v4/websocket".formatted(serverAddress)));
-        if (Util.isValidIPv4(serverAddress)) {
+        if (Util.isHTTP(serverAddress)) {
             this.uri = URI.create("ws://%s/api/v4/websocket".formatted(serverAddress));
         }
         this.addHeader("Authorization", "Bearer " + token);

@@ -28,7 +28,7 @@ public class Client {
 
     public Client(String serverAddress, String token) {
         this.serverAddress = serverAddress;
-        if (Util.isValidIPv4(serverAddress)) {
+        if (Util.isHTTP(serverAddress)) {
             this.endpoint = "http://" + serverAddress + "/api/v4";
         } else {
             this.endpoint = "https://" + serverAddress + "/api/v4";
