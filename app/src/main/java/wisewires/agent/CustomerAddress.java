@@ -179,7 +179,8 @@ public class CustomerAddress {
                     "Județ",
                     "Окръг",
                     "Облыс",
-                    "Область":
+                    "Область",
+                    "Νόμος":
                 if (field.getTagName().equals("input")) {
                     field.clear();
                     field.sendKeys(data.get("adminLevel1"));
@@ -214,6 +215,7 @@ public class CustomerAddress {
                     "town",
                     "Πόλη",
                     "Localitate",
+                    "Град",
                     "ГРАД",
                     "Қала",
                     "Город":
@@ -244,7 +246,8 @@ public class CustomerAddress {
                     "المنطقة/المنطقة",
                     "İlçe",
                     "Colonia",
-                    "Huyện":
+                    "Huyện",
+                    "Област":
                 if (field.getTagName().equals("input")) {
                     field.clear();
                     field.sendKeys(data.get("adminLevel3"));
