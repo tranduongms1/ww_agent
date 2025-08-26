@@ -605,7 +605,8 @@ public abstract class Browser {
                 if (c.checkoutProcess != null) {
                     Checkout.process(c);
                 }
-                Post p = new Post(c.post.getChannelId(), "✅ " + req);
+                String message = "V" + req.trim().substring(1);
+                Post p = new Post(c.post.getChannelId(), message);
                 p.setRootId(c.post.getId());
                 p.setType("custom_ai_verify");
                 p.getProps().setActivateAI(true);
