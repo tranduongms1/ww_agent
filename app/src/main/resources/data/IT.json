@@ -1,0 +1,126 @@
+{
+    "stores": {
+        "smb": "/business",
+        "itsme": "/business"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=it&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/it/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/ita"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "Italia",
+        "phoneNumber": "1234556789",
+        "fiscalCode": "MRTMTT91D08F205J",
+        "dateOfBirth_Day": "01",
+        "dateOfBirth_Month": "01",
+        "dateOfBirth_Year": "1999"
+    },
+    "customerAddress": {
+        "searchAddress": "20124",
+        "line1": "Piazza Cincinnato",
+        "line2": "line 2",
+        "adminLevel2": "Milano",
+        "adminLevel1": "Milano",
+        "postalCode": "20124"
+    },
+    "billingAddress": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "Italia",
+        "phoneNumber": "0123457893",
+        "fiscalCode": "MRTMTT91D08F205J",
+        "searchAddress": "Via degli Aldobrandeschi, 76, Roma, RM, Italia",
+        "line1": "Via degli Aldobrandeschi",
+        "line2": "76",
+        "adminLevel2": "Roma",
+        "adminLevel1": "Roma",
+        "postalCode": "00163",
+        "country": "Italia"
+    },
+    "tradeInData": {
+        "iban": "IT60X0542811101000000123456",
+        "fiscalCode": "MRTMTT91D08F205J"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-CTDI-TRADEIN",
+            "addToCartType": "append",
+            "provider": "CTDI",
+            "additionalInfos": {
+                    "targetProductCode": "SM-F966BZKCEUE",
+                    "provider": "CTDI",
+                    "productCode": "deviceType:Smartphone:brand:T_1_SAMSUNG:model:T_SAMSUNG_5830",
+                    "responses": [
+                        {
+                            "name": "18",
+                            "value": "7"
+                        },
+                        {
+                            "name": "19",
+                            "value": "7"
+                        }
+                    ],
+                    "orderEntryNumber": 0,
+                    "discountMode": "instantDiscount",
+                    "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "it",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "44734268-5D66-4E5B-966E-0C9DB69BA578",
+            "type": "TradeIn",
+            "sku": "QE85QN900BTXZT",
+            "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "smc"
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "it",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "it",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 000000 00002",
+        "holderName": "it",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "it",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalTitle": "PayPal",
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    },
+    "codTitle": "",
+    "redeemRewardsTitle": "Samsung Rewards"
+}

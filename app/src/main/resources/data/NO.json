@@ -1,0 +1,112 @@
+{
+    "stores": {
+        "smb": "/business",
+        "nosme": "/business"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=no&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/no/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/nor"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+47 (Norway)",
+        "phoneNumber": "1234567",
+        "dateOfBirth_Day": "01",
+        "dateOfBirth_Month": "01",
+        "dateOfBirth_Year": "1999"
+    },
+    "customerAddress": {
+        "line1": "Eirik Raudes vei 36",
+        "adminLevel2": "Fjellhamar",
+        "postalCode": "1472"
+    },
+    "billingAddress": {},
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-FOXWAY-TRADEIN",
+            "addToCartType": "append",
+            "provider": "FOXWAY",
+            "additionalInfos": {
+                    "targetProductCode": "SM-F966BDBCEUB",
+                    "provider": "FOXWAY",
+                    "productCode": "67185",
+                    "responses": [
+                        {
+                            "name": "0",
+                            "value": "0"
+                        },
+                        {
+                            "name": "1",
+                            "value": "0"
+                        },
+                        {
+                            "name": "2",
+                            "value": "0"
+                        },
+                        {
+                            "name": "3",
+                            "value": "0"
+                        }
+                    ],
+                    "orderEntryNumber": 0,
+                    "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "no",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "DBC566A0-9666-4FC9-8306-48E2388AB5CD",
+            "type": "TradeIn",
+            "sku": "HW-Q995D/XE",
+            "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "insurance"
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4646 4646 4646 4644",
+        "holderName": "no",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555 4444 3333 1111",
+        "holderName": "no",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "no",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "no",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalTitle": "",
+    "paypalData": {},
+    "codTitle": "",
+    "redeemRewardsTitle": "Samsung Rewards",
+    "klarnaTitle": "Kjøp først. Betal senere",
+    "klarnaData": {
+        "bankID": "01029413157"
+    }
+}
