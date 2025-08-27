@@ -41,7 +41,8 @@ public abstract class TradeIn {
             [data-an-la='trade-in:apply discount:add to cart'],
             [data-an-la='trade-in:select device:apply discount'],
             [data-an-la='trade-in:device1:apply discount:add to cart'],
-            app-step-four .modal__footer [type='submit']""";
+            app-step-four .modal__footer [type='submit'],
+            .trade-in-popup-v3__imei-wrap .trade-in-popup-v3__btn-continue""";
 
     static String getStepName(WebElement modal) throws Exception {
         WebElement closeBtn = WebUI.waitElement(modal, By.cssSelector("""

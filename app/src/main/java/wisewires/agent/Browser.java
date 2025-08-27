@@ -61,6 +61,7 @@ public abstract class Browser {
                 } else {
                     WebUI.openBrowser(c, tokens.get(0));
                 }
+                Cart.selecCountryInCart(c);
                 WebUI.mustCloseAllPopup(c);
                 break;
             }
@@ -253,7 +254,11 @@ public abstract class Browser {
                             mustReload = true;
                         }
                     }
-                    Cart.navigateTo(c, mustReload);
+                    if (WebUI.isOneOfSites("AE", "AE_AR", "BH", "BH_AR", "OM", "OM_AR", "QA", "QA_AR")) {
+                        Cart.selecCountryInCart(c);
+                    } else {
+                        Cart.navigateTo(c, mustReload);
+                    }
                     WebUI.mustCloseAllPopup(c);
                 }
                 break;

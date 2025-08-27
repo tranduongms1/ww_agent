@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -411,6 +412,53 @@ public abstract class Cart {
             logger.info("Navigated to checkout page");
         } catch (Exception e) {
             throw new Exception("Unable to checkout as guest", e);
+        }
+    }
+
+    static void selecCountryInCart(Context c) throws Exception {
+        try {
+            String to = """
+                .btn.cancel-btn.ng-binding,
+                .button.pill-btn.pill-btn--white.reset.col""";
+            WebElement elmCancel = WebUI.waitElement(to, 5);
+            if (elmCancel == null) {
+                return;
+            }
+            Map <String, String> countryMap = Map.of(
+                    "kw", "Kuwait",
+                    "kw_ar", "الكويت",
+                    "om", "Oman",
+                    "om_ar", "سلطنة عمان",
+                    "bh", "Bahrain",
+                    "bh_ar", "البحرين",
+                    "qa", "Qatar",
+                    "qa_ar", "دولة قطر"
+            );
+            String countryCode = c.site.toString().toLowerCase();
+            String buttonText = countryMap.getOrDefault(countryCode, null);
+            if (buttonText == null) {
+                elmCancel.click();
+                logger.info("Country selection not required for site %s".formatted(c.site));
+                return;
+            }
+            WebUI.wait(10).withMessage("Select country").until(d -> {
+                String currentUrl = WebUI.driver.getCurrentUrl();
+                if (currentUrl.contains("/cart")) {
+                    String xpathSelectCountry = String.format("//li[contains(@class,'country-item')]/descendant::span[contains(text(), '%s')]", buttonText);
+                    WebElement selectCountry = WebUI.driver.findElement(By.xpath(xpathSelectCountry));
+                    if (selectCountry != null) {
+                        selectCountry.click();
+                    }
+                    WebUI.delay(1);
+                    WebElement btnConfirm = WebUI.findElement("button.country-selector-button");
+                    btnConfirm.click();
+                    logger.info("Country %s selected".formatted(buttonText));
+                    return true;
+                }
+                return currentUrl.contains(countryCode);
+            });
+        } catch (Exception e) {
+            throw new Exception("Unable to select Country in Cart", e);
         }
     }
 

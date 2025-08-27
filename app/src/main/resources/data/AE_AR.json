@@ -39,11 +39,10 @@
     },
     "tradeInData": {
         "category": "الهاتف الذكي",
-        "brand": "سامسونج",
-        "model": "سلسلة Z",
-        "subseries": "فولد سلسلة",
-        "divice": "Z فولد 4 (5G)",
-        "storage": "512 جيجابايت"
+        "brand": "تفاحة",
+        "model": "iPhone 16 Pro (2024)",
+        "storage": "512 جيجابايت",
+        "imei": "356938035643809"
     },
     "serviceData": {
         "TradeIn": {
