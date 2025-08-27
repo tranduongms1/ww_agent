@@ -91,7 +91,7 @@ public abstract class Util {
     public static String captureToVerify(Context c) throws IOException {
         try {
             boolean fullPage = true;
-            if (isPFPage())
+            if (isPDPage() || isPFPage())
                 fullPage = false;
             WebUI.driver.executeScript("""
                     for (const e of document.querySelectorAll(arguments[0])) {
