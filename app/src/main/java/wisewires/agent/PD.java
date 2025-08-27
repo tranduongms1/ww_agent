@@ -17,7 +17,7 @@ public abstract class PD {
             logger.info("Trade-in option 'Yes' clicked");
             WebUI.waitElement(TradeUp.MODAL_LOCATOR, 10);
             logger.info("Trade-in modal opened");
-            TradeUp.process(c);
+            TradeIn.process(c);
             logger.info("Trade-in added success on PD page");
         } catch (Exception e) {
             throw new Exception("Unable to add trade-in on TV PD page");
