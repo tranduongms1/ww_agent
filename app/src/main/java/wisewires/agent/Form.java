@@ -60,6 +60,8 @@ public class Form {
     public static boolean isRequired(WebElement field) {
         if (field.getDomAttribute("required") != null)
             return true;
+        if (WebUI.getDomAttribute(field, "aria-required").equals("true"))
+            return true;
         if (!field.findElements(By.cssSelector("input[required], .mat-mdc-form-field-required-marker")).isEmpty())
             return true;
         return false;

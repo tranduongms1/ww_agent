@@ -15,14 +15,17 @@ public class CustomerAddress {
 
     public static void autoFill(Map<String, String> data, boolean requiredOnly) throws Exception {
         try {
-            String to = "app-customer-address-v2";
+            String to = "app-customer-address-v2, form.address-form";
             for (WebElement field : Form.getFields(to, requiredOnly)) {
                 String nameOrLabel = Form.getNameOrLabel(field);
                 if (!Form.checkEnable(logger, field, nameOrLabel)) {
                     continue;
                 }
                 switch (nameOrLabel) {
-                    case "email":
+                    case
+                            "firstName",
+                            "lastName",
+                            "email":
                     case
                             "Préfixe",
                             "Code postal",
@@ -86,7 +89,7 @@ public class CustomerAddress {
                 field.clear();
                 field.sendKeys(data.get(nameOrLabel));
                 if (!WebUI.isOneOfSites("ch", "ch_fr")) {
-                    field.sendKeys(Keys.ESCAPE);
+                    field.sendKeys(Keys.TAB);
                     Thread.sleep(500);
                 }
                 if (Form.isSearchField(field)) {
@@ -116,7 +119,7 @@ public class CustomerAddress {
                 field.clear();
                 field.sendKeys(data.get(nameOrLabel));
                 if (!WebUI.isOneOfSites("ch", "ch_fr")) {
-                    field.sendKeys(Keys.ESCAPE);
+                    field.sendKeys(Keys.TAB);
                 }
                 if (Form.isSearchField(field)) {
                     if (WebUI.isOneOfSites("ch", "ch_fr")) {
@@ -140,7 +143,7 @@ public class CustomerAddress {
                 field.clear();
                 field.sendKeys(data.get(nameOrLabel));
                 if (!WebUI.isOneOfSites("ch", "ch_fr")) {
-                    field.sendKeys(Keys.ESCAPE);
+                    field.sendKeys(Keys.TAB);
                 }
                 if (Form.isSearchField(field)) {
                     if (WebUI.isOneOfSites("ch", "ch_fr")) {
@@ -164,6 +167,7 @@ public class CustomerAddress {
                 break;
 
             case
+                    "regionIso",
                     "State",
                     "County",
                     "Región",

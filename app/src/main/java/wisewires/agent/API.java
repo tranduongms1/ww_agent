@@ -193,7 +193,7 @@ public abstract class API {
         String script = """
                     const curr = JSON.parse(window.localStorage[`spartacus⚿⚿currency`]);
                     const lang = JSON.parse(window.localStorage[`spartacus⚿⚿language`]);
-                    return fetch(`${arguments[0]}/users/current/carts/current/assessment/TRADE_IN/json?provider=${arguments[1]}&lang=${lang}&curr=${curr}`, {
+                    return fetch(`${arguments[0]}/users/current/carts/current/assessment/TRADE_IN/json?provider=${arguments[1] || ''}&lang=${lang}&curr=${curr}`, {
                         method: "POST",
                         headers: {"Content-Type": "application/json"},
                         body: `${arguments[2]}`,
