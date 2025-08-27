@@ -98,6 +98,7 @@ public abstract class Util {
                         e.setAttribute('org-style-display', e.style.display);
                         e.style.display = 'none';
                     }""", NO_CAPTURE_LOCATOR);
+                    WebUI.delay(1);
             DevTools devTools = WebUI.driver.getDevTools();
             devTools.createSession();
             String base64Image = devTools.send(Page.captureScreenshot(

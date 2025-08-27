@@ -17,6 +17,7 @@ public class Context {
     public Map<String, String> sso;
     public boolean ssoSignedIn = false;
 
+    public HashMap<String, Object> testData;
     public SCPProcess scpProcess;
     public PFProcess pfProcess;
     public CheckoutProcess checkoutProcess;
@@ -30,6 +31,7 @@ public class Context {
         this.siteUid = "";
         this.env = "stg2";
         this.sso = new HashMap<>(Map.of("email", "test4.buivan@gmail.com", "mk", "Heocon12"));
+        this.testData = new HashMap<>();
     }
 
     public String envKey() {

@@ -1,6 +1,7 @@
 package wisewires.agent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PostProps {
     private ArrayList<Attachment> attachments;
@@ -9,6 +10,7 @@ public class PostProps {
     private boolean activate_ai;
 
     private String currentUrl;
+    private HashMap<String, Object> testData;
 
     public ArrayList<Attachment> getAttachments() {
         if (attachments == null) {
@@ -51,5 +53,13 @@ public class PostProps {
 
     public void setCurrentUrl(String currentUrl) {
         this.currentUrl = currentUrl;
+    }
+
+    public HashMap<String, Object> getTestData() {
+        return testData;
+    }
+
+    public void setTestData(HashMap<String, Object> testData) {
+        this.testData = testData;
     }
 }

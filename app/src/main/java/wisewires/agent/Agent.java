@@ -1,6 +1,7 @@
 package wisewires.agent;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -116,6 +117,7 @@ public class Agent extends WebSocketClient {
                         break;
                     }
                     case "custom_test_case": {
+                        ctx.testData = new HashMap<>();
                         post.preRun();
                         Attachment attachment = post.firstAttachment();
                         try {

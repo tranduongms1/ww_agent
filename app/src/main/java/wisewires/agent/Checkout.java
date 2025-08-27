@@ -125,7 +125,9 @@ public abstract class Checkout {
                 if (Arrays.asList("LT", "EE", "LV").contains(c.site.toUpperCase())) {
                     requiredOnly = false;
                 }
-                CustomerAddress.autoFill(profile.getCustomerAddress(), requiredOnly);
+                Map<String, String> data = profile.getCustomerAddress();
+                CustomerAddress.autoFill(data, requiredOnly);
+                c.testData.put("customerAddress", data);
                 locators.remove(formID);
                 if (!locators.contains("app-delivery-info-pickup-first")) {
                     WebUI.waitElement(".shipment-stepper", 10);
@@ -140,7 +142,9 @@ public abstract class Checkout {
                 if (Arrays.asList("LT", "EE", "LV").contains(c.site.toUpperCase())) {
                     requiredOnly = false;
                 }
-                BillingAddress.autoFill(profile.getBillingAddress(), requiredOnly);
+                Map<String, String> data = profile.getBillingAddress();
+                BillingAddress.autoFill(data, requiredOnly);
+                c.testData.put("billingAddress", data);
                 locators.remove(formID);
                 break;
             }
