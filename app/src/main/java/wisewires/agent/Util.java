@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v138.page.Page;
 
@@ -20,6 +19,8 @@ public abstract class Util {
     static String XPATH_TEXT_LOWER = "translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')";
 
     static String NO_CAPTURE_LOCATOR = """
+            .pd-g-product-finder-ux2 .pdd34-product-carousel,
+            .pd-g-product-finder-ux2 .pdd28-reasons-to-buy,
             [position='TokoPaymentBanner'],
             [position='RecommendationSection'],
             footer""";
@@ -89,6 +90,9 @@ public abstract class Util {
 
     public static String captureToVerify(Context c) throws IOException {
         try {
+            boolean fullPage = true;
+            if (isPFPage())
+                fullPage = false;
             WebUI.driver.executeScript("""
                     for (const e of document.querySelectorAll(arguments[0])) {
                         e.setAttribute('org-style-display', e.style.display);
@@ -101,7 +105,7 @@ public abstract class Util {
                     Optional.empty(),
                     Optional.empty(),
                     Optional.empty(),
-                    Optional.of(true),
+                    Optional.of(fullPage),
                     Optional.empty()));
             devTools.close();
             String tempDir = System.getProperty("java.io.tmpdir");
@@ -126,12 +130,11 @@ public abstract class Util {
     }
 
     public static boolean isPDPage() {
-        String pdSelector = "div[class*='pdp-header']";
-        WebElement pdPage = WebUI.findElement(pdSelector);
-        if (pdPage != null) {
-            return true;
-        }
-        return false;
+        return WebUI.findElement("div[class*='pdp-header']") != null;
+    }
+
+    public static boolean isPFPage() {
+        return WebUI.findElement(".pd-g-product-finder-ux2") != null;
     }
 
     public static <K, V> Map<K, V> combined(Map<K, V> m1, Map<K, V> m2) {
