@@ -1,0 +1,182 @@
+{
+    "stores": {
+        "smb": "/business",
+        "thsme": "/multistore/eppsme/"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=my&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://s2-sms-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com/my"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-sms-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://icd1-org.ecom-qa.samsung.com/v1/exchange/api/mys"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "0912345678",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "test",
+        "adminLevel1": "KUALA LUMPUR",
+        "adminLevel2": "Kuala Lumpur",
+        "postalCode": "50000"
+    },
+    "customerAddress2": {
+        "line1": "test",
+        "adminLevel1": "SARAWAK",
+        "adminLevel2": "Serian",
+        "postalCode": "94700"
+    },
+    "billingAddress": {
+        "firstName": "diff",
+        "lastName": "billing",
+        "line1": "test",
+        "adminLevel1": "KEDAH",
+        "adminLevel2": "Alor Setar",
+        "postalCode": "05502",
+        "phoneNumber": "0912345678"
+    },
+    "tradeInData": {
+        "category": "SMARTPHONE",
+        "brand": "Samsung",
+        "model": "Galaxy S21 Ultra 5G",
+        "storage": "16GB / 512GB",
+        "imei": "352731452893955"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T_SAMSUNG_5890",
+            "addToCartType": "append",
+            "provider": "COMPASIA_MY",
+            "additionalInfos": [
+                {
+                    "key": "tradeinAmount",
+                    "value": "2000.00"
+                },
+                {
+                    "key": "tradeinAmountWithCurrency",
+                    "value": "RM 2,000.00"
+                },
+                {
+                    "key": "discountAmount",
+                    "value": "2000.00"
+                },
+                {
+                    "key": "discountAmountWithCurrency",
+                    "value": "RM 2,000.00"
+                },
+                {
+                    "key": "offerAmountBreakdown",
+                    "value": "true"
+                },
+                {
+                    "key": "compasia.pickupCharges",
+                    "value": "3"
+                },
+                {
+                    "key": "compasia.timeStamp",
+                    "value": "2025-08-27 15:54:32"
+                },
+                {
+                    "key": "compasia.estimateId",
+                    "value": "298441"
+                },
+                {
+                    "key": "compasia.imei"
+                },
+                {
+                    "key": "compasia.productCode",
+                    "value": "T_SAMSUNG_5904"
+                },
+                {
+                    "key": "additionalDiscount",
+                    "value": "0.00"
+                },
+                {
+                    "key": "additionalDiscountWithCurrency",
+                    "value": "RM 0.00"
+                },
+                {
+                    "key": "evaluationMessageWithoutTotal",
+                    "value": "</br>(Your old device value: RM 2,000.00)"
+                },
+                {
+                    "key": "additionalDiscountApplied",
+                    "value": "true"
+                },
+                {
+                    "key": "totalTradeinAmount",
+                    "value": "2000.0"
+                },
+                {
+                    "key": "totalTradeinAmountFormatted",
+                    "value": "RM 2,000.00"
+                },
+                {
+                    "key": "evaluationMessage",
+                    "value": "RM 2,000.00"
+                },
+                {
+                    "key": "evaluationMessageWithoutAdditionalMessage",
+                    "value": "</br>(Your old device value: RM 2,000.00)"
+                },
+                {
+                    "key": "evaluationMessageWithoutAdditionalMessagecart",
+                    "value": ""
+                },
+                {
+                    "key": "offerAmountFormatted",
+                    "value": "RM 2,000.00"
+                },
+                {
+                    "key": "questionAndAnswer",
+                    "value": "[{\"name\":\"11225799\",\"value\":\"STCR01\"},{\"name\":\"11225800\",\"value\":\"SBSC01\"},{\"name\":\"11225801\",\"value\":\"SBCR01\"},{\"name\":\"11225802\",\"value\":\"SLOK01\"},{\"name\":\"11225796\",\"value\":\"STON01\"},{\"name\":\"11225797\",\"value\":\"SFUN01\"},{\"name\":\"11225798\",\"value\":\"STSC01\"}]"
+                },
+                {
+                    "key": "fault_note",
+                    "value": "11225799 STCR01|11225800 SBSC01|11225801 SBCR01|11225802 SLOK01|11225796 STON01|11225797 SFUN01|11225798 STSC01"
+                },
+                {
+                    "key": "discountAmount-hash",
+                    "value": "58b70ec525b93a3a657f44b4a98a2be4"
+                },
+                {
+                    "key": "tradeInIdentifier",
+                    "value": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b2tvIiwidHJhZGVJblBheUxvYWQiOiJ7XCJhZGRpdGlvbmFsSW5mb3NcIjpbe1wia2V5XCI6XCJ0cmFkZWluQW1vdW50XCIsXCJ2YWx1ZVwiOlwiMjAwMC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInRyYWRlaW5BbW91bnRXaXRoQ3VycmVuY3lcIixcInZhbHVlXCI6XCJSTSAyLDAwMC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRpc2NvdW50QW1vdW50XCIsXCJ2YWx1ZVwiOlwiMjAwMC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRpc2NvdW50QW1vdW50V2l0aEN1cnJlbmN5XCIsXCJ2YWx1ZVwiOlwiUk0gMiwwMDAuMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJvZmZlckFtb3VudEJyZWFrZG93blwiLFwidmFsdWVcIjpcInRydWVcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJjb21wYXNpYS5waWNrdXBDaGFyZ2VzXCIsXCJ2YWx1ZVwiOlwiM1wiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImNvbXBhc2lhLnRpbWVTdGFtcFwiLFwidmFsdWVcIjpcIjIwMjUtMDgtMjcgMTU6NTQ6MzJcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJjb21wYXNpYS5lc3RpbWF0ZUlkXCIsXCJ2YWx1ZVwiOlwiMjk4NDQxXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiY29tcGFzaWEuaW1laVwiLFwidmFsdWVcIjpudWxsLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImNvbXBhc2lhLnByb2R1Y3RDb2RlXCIsXCJ2YWx1ZVwiOlwiVF9TQU1TVU5HXzU5MDRcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJhZGRpdGlvbmFsRGlzY291bnRcIixcInZhbHVlXCI6XCIwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiYWRkaXRpb25hbERpc2NvdW50V2l0aEN1cnJlbmN5XCIsXCJ2YWx1ZVwiOlwiUk0gMC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImV2YWx1YXRpb25NZXNzYWdlV2l0aG91dFRvdGFsXCIsXCJ2YWx1ZVwiOlwiPC9icj4oWW91ciBvbGQgZGV2aWNlIHZhbHVlOiBSTSAyLDAwMC4wMClcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJhZGRpdGlvbmFsRGlzY291bnRBcHBsaWVkXCIsXCJ2YWx1ZVwiOlwidHJ1ZVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInRvdGFsVHJhZGVpbkFtb3VudFwiLFwidmFsdWVcIjpcIjIwMDAuMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInRvdGFsVHJhZGVpbkFtb3VudEZvcm1hdHRlZFwiLFwidmFsdWVcIjpcIlJNIDIsMDAwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZXZhbHVhdGlvbk1lc3NhZ2VcIixcInZhbHVlXCI6XCJSTSAyLDAwMC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImV2YWx1YXRpb25NZXNzYWdlV2l0aG91dEFkZGl0aW9uYWxNZXNzYWdlXCIsXCJ2YWx1ZVwiOlwiPC9icj4oWW91ciBvbGQgZGV2aWNlIHZhbHVlOiBSTSAyLDAwMC4wMClcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJldmFsdWF0aW9uTWVzc2FnZVdpdGhvdXRBZGRpdGlvbmFsTWVzc2FnZWNhcnRcIixcInZhbHVlXCI6XCJcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJvZmZlckFtb3VudEZvcm1hdHRlZFwiLFwidmFsdWVcIjpcIlJNIDIsMDAwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwicXVlc3Rpb25BbmRBbnN3ZXJcIixcInZhbHVlXCI6XCJbe1xcXCJuYW1lXFxcIjpcXFwiMTEyMjU3OTlcXFwiLFxcXCJ2YWx1ZVxcXCI6XFxcIlNUQ1IwMVxcXCJ9LHtcXFwibmFtZVxcXCI6XFxcIjExMjI1ODAwXFxcIixcXFwidmFsdWVcXFwiOlxcXCJTQlNDMDFcXFwifSx7XFxcIm5hbWVcXFwiOlxcXCIxMTIyNTgwMVxcXCIsXFxcInZhbHVlXFxcIjpcXFwiU0JDUjAxXFxcIn0se1xcXCJuYW1lXFxcIjpcXFwiMTEyMjU4MDJcXFwiLFxcXCJ2YWx1ZVxcXCI6XFxcIlNMT0swMVxcXCJ9LHtcXFwibmFtZVxcXCI6XFxcIjExMjI1Nzk2XFxcIixcXFwidmFsdWVcXFwiOlxcXCJTVE9OMDFcXFwifSx7XFxcIm5hbWVcXFwiOlxcXCIxMTIyNTc5N1xcXCIsXFxcInZhbHVlXFxcIjpcXFwiU0ZVTjAxXFxcIn0se1xcXCJuYW1lXFxcIjpcXFwiMTEyMjU3OThcXFwiLFxcXCJ2YWx1ZVxcXCI6XFxcIlNUU0MwMVxcXCJ9XVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImZhdWx0X25vdGVcIixcInZhbHVlXCI6XCIxMTIyNTc5OSBTVENSMDF8MTEyMjU4MDAgU0JTQzAxfDExMjI1ODAxIFNCQ1IwMXwxMTIyNTgwMiBTTE9LMDF8MTEyMjU3OTYgU1RPTjAxfDExMjI1Nzk3IFNGVU4wMXwxMTIyNTc5OCBTVFNDMDFcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJkaXNjb3VudEFtb3VudC1oYXNoXCIsXCJ2YWx1ZVwiOlwiNThiNzBlYzUyNWI5M2EzYTY1N2Y0NGI0YTk4YTJiZTRcIixcImRlc2NyaXB0aW9uXCI6bnVsbH1dLFwibmV3VHJhZGVJbkN1c3RvbWVyXCI6ZmFsc2V9IiwiaWF0IjoxNzU2MjgxMjcyLCJleHAiOjE3NTYyODQ4NzJ9.knokvuGJEBn3IaJIgyuzjMve80vZnmM8OvGY6JQS8zlwRneM-B_ouUZfiKTzRMOPz-Wdi2NL1lygM-p6TPV14PIpHR4skmc7Z_imCmWYOAm-tKWshmBKFg8Tkjv5P3PgMZPuLDskbo2AKn40hpz0e6aSzSuAgBBW0WPgHeJIu4M0fvkylYqbHKYjfA9IQsYxDqN09SIkLQ4IBoxnKd1ygw6otuZCn5W-dosbn3d3ZiJxezL-YEJIE26RM6jLawjXNs3EnC4Gcbn33Le41z0X0nPusBenfTs6vSPMxZnbO6lzkZ0q7QNo3nz_S3qNBaJFhGrr8SEZBvMyT7YZ6UNq9IOcnhRbAyCsx4j4YbgC3RhfXCuDlDSeCaSWZ7zo468nkrUT1eWj1B9f1ZHag3vhwFhvJDefw7tlk68dDXIniUcQ1Gx02j0c7Aul0p37Ssrc1jSz_0OInZoClUKqacdJ5AG5QB0XOAGp1yMCMrLrDef7wSzMmz5j4ZXh5wL-fqiElFkc302eBsduCGxl8o6Ux80IJDCNx7mrDvp3orHUyml5ZVyIrrzuh-fEgaOk8tV_Z0-tmHdm-A_sbzDAGF7kiCoi1gdIuYLX930R8SBgYExNlXnoVQrfizZYEHKiM0x_kxUY9kg9CNU7oqxboGXK3E-9Z7_rc6LGBkjXxQyNItM"
+                },
+                {
+                    "key": "productName",
+                    "value": "Galaxy S20 Ultra"
+                },
+                {
+                    "key": "IMEI",
+                    "value": "354896110717835"
+                }
+            ]
+        },
+        "TradeUp": {
+            "store_id": "my",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "9F0B45D6-3A9B-4880-B1A1-F82F01E08407",
+            "type": "TradeIn",
+            "sku": "QN85QN85BAFXZX",
+            "delayed_gratification": false
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "5200000000001096",
+        "holderName": "my",
+        "expiryMonth": "12",
+        "expiryYear": "25",
+        "cvv": "123"
+    }
+}

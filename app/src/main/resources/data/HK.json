@@ -1,0 +1,244 @@
+{
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=hk&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/hk/cart&storeNewHybDomain=https://stg2.shop.samsung.com"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-sms-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "phoneCode": "香港特別行政區 sss",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "21234568",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "adminLevel2": "香港特別行政區",
+        "adminLevel3": "中西區",
+        "line1": "test"
+    },
+    "billingAddress": {
+        "phoneCode": "香港特別行政區 sss",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "21234568",
+        "adminLevel2": "澳門特別行政區",
+        "adminLevel3": "氹仔",
+        "line1": "test"
+    },
+    "tradeInData": {
+        "category": "智能手機及平板電腦",
+        "brand": "ASUS",
+        "model": "ASUS ZenFone 9 5G",
+        "storage": "128GB",
+        "color": "任何顏色",
+        "imei": "355884760811842",
+        "purchaseFrom": "0"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "targetProductCode": "SM-S9280ZKPTGY",
+            "serviceCode": "T-MRR-TRADEIN",
+            "addToCartType": "append",
+            "provider": "MRR",
+            "additionalInfos": [
+                {
+                    "key": "resultCode",
+                    "value": "100"
+                },
+                {
+                    "key": "discountAmount",
+                    "value": "8200"
+                },
+                {
+                    "key": "discountAmountWithCurrency",
+                    "value": "HK$8,200.00"
+                },
+                {
+                    "key": "TradeinTotalAmount",
+                    "value": "8200"
+                },
+                {
+                    "key": "tradeinValue",
+                    "value": "7000"
+                },
+                {
+                    "key": "ExtraTradeinOffer",
+                    "value": "1200.00"
+                },
+                {
+                    "key": "ExclusiveTradeinUnitOffer",
+                    "value": "0"
+                },
+                {
+                    "key": "ExclusiveChannelTradeinOffer",
+                    "value": "0"
+                },
+                {
+                    "key": "ExtraTradeinVoucher",
+                    "value": "0"
+                },
+                {
+                    "key": "offerAmountFormatted",
+                    "value": "<span class=\"text-bold\">&#8209;HK$8,200.00&nbsp;&nbsp;(Total Rebate)</span><br/><span class=\"colorBlack\">HK$7,000.00 (Rebate)<br/>HK$1,200.00 (Extra Trade-in Rebate)<br/></span>"
+                },
+                {
+                    "key": "trade_in_mode",
+                    "value": "online"
+                },
+                {
+                    "key": "image",
+                    "value": "/_ui/responsive/common/css/icons/png/phone-device-type.png"
+                },
+                {
+                    "key": "filterSteps",
+                    "value": "\"[\\\"deviceType\\\",\\\"brand\\\",\\\"model\\\",\\\"capacity\\\",\\\"color\\\"]\""
+                },
+                {
+                    "key": "color",
+                    "value": "N.A."
+                },
+                {
+                    "key": "ssd",
+                    "value": "1"
+                },
+                {
+                    "key": "hhd",
+                    "value": "1"
+                },
+                {
+                    "key": "ans",
+                    "value": "[]"
+                },
+                {
+                    "key": "cpu",
+                    "value": "1"
+                },
+                {
+                    "key": "monitor",
+                    "value": "1"
+                },
+                {
+                    "key": "hidePrice",
+                    "value": "false"
+                },
+                {
+                    "key": "model_id",
+                    "value": "SM-F9360"
+                },
+                {
+                    "key": "priority",
+                    "value": "10"
+                },
+                {
+                    "key": "upToPrice",
+                    "value": "7000.0"
+                },
+                {
+                    "key": "brand_id",
+                    "value": "133"
+                },
+                {
+                    "key": "capacity",
+                    "value": "256"
+                },
+                {
+                    "key": "upToPriceFormatted",
+                    "value": "HK$7,000.00"
+                },
+                {
+                    "key": "price",
+                    "value": "7000.00"
+                },
+                {
+                    "key": "name",
+                    "value": "Any color"
+                },
+                {
+                    "key": "imei",
+                    "value": "355862232828529"
+                },
+                {
+                    "key": "support_type",
+                    "value": "1"
+                },
+                {
+                    "key": "test_case_type",
+                    "value": "4"
+                },
+                {
+                    "key": "device_country",
+                    "value": "0"
+                },
+                {
+                    "key": "ram",
+                    "value": "1"
+                },
+                {
+                    "key": "deviceType",
+                    "value": "Smartphone/Tablet"
+                },
+                {
+                    "key": "CUSTOMSKUCODE",
+                    "value": "T-MOBILE"
+                },
+                {
+                    "key": "tradeinProductInfo",
+                    "value": "Samsung,SM-F9360,256"
+                },
+                {
+                    "key": "tradeinDeviceDisplayInfoen_HK",
+                    "value": "Samsung | Galaxy Z Fold4 5G, 256GB, Any color"
+                },
+                {
+                    "key": "tradeinDeviceDisplayInfozh_HK",
+                    "value": "三星 | Galaxy Z Fold4 5G, 256GB, 任何顏色"
+                },
+                {
+                    "key": "serviceDeviceType",
+                    "value": "1"
+                },
+                {
+                    "key": "serviceProductBrand",
+                    "value": "Samsung"
+                },
+                {
+                    "key": "serviceProductModel",
+                    "value": "SM-F9360"
+                },
+                {
+                    "key": "nd_promo_code",
+                    "value": ""
+                },
+                {
+                    "key": "fault_note",
+                    "value": ""
+                },
+                {
+                    "key": "discountAmount-hash",
+                    "value": "03591d2ef21d8f476c15d37ef0634958"
+                },
+                {
+                    "key": "productName",
+                    "value": "Trade-in device"
+                },
+                {
+                    "key": "IMEI",
+                    "value": "355862232828529"
+                }
+            ]
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "hk",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    }
+}

@@ -1,0 +1,186 @@
+{
+    "stores": {
+        "smb": "/business",
+        "nzepp": "/multistore/nzepp/nzepp/"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=nz&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/nz/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-sms-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://icd1.ecom-qa.samsung.com/v1/exchange/api/nzd"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "0912345678",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "0110",
+        "line1": "1 king",
+        "line2": "Whangarei 0110",
+        "adminLevel2": "Whangarei",
+        "postalCode": "0110"
+    },
+    "billingAddress": {
+        "searchAddress": "111",
+        "line1": "111 Cameron Street",
+        "line2": "Whangarei 0110",
+        "adminLevel2": "Whangarei",
+        "postalCode": "0110"
+    },
+    "tradeInData": {
+        "category": "SMARTPHONE",
+        "brand": "Samsung",
+        "model": "Galaxy S20 Ultra 5G",
+        "storage": "128GB",
+        "imei": "354896110717835"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "99760000055182",
+            "addToCartType": "append",
+            "provider": "ASSURANTV2",
+            "additionalInfos": [
+                {
+                    "key": "tradeinAmount",
+                    "value": "770.00"
+                },
+                {
+                    "key": "tradeinAmountWithCurrency",
+                    "value": "$770.00"
+                },
+                {
+                    "key": "discountAmount",
+                    "value": "770.00"
+                },
+                {
+                    "key": "discountAmountWithCurrency",
+                    "value": "$770.00"
+                },
+                {
+                    "key": "assurant.clientRma",
+                    "value": "NZ250429-99023707"
+                },
+                {
+                    "key": "assurant.returnAuth",
+                    "value": "TRI60654706193"
+                },
+                {
+                    "key": "registration.reference",
+                    "value": "TRI60654706193"
+                },
+                {
+                    "key": "assurant.equipmentId",
+                    "value": "99760000055182"
+                },
+                {
+                    "key": "assurant.imei",
+                    "value": "355884760811842"
+                },
+                {
+                    "key": "serviceProductName",
+                    "value": "SM-S908E/DS Galaxy S22 Ultra 5G 128GB Black - Generic"
+                },
+                {
+                    "key": "serviceProductModel",
+                    "value": "GALAXY S22 ULTRA 5G"
+                },
+                {
+                    "key": "serviceProductBrand",
+                    "value": "Samsung"
+                },
+                {
+                    "key": "serviceDeviceType",
+                    "value": "Phone"
+                },
+                {
+                    "key": "enhancedDiscountAmount",
+                    "value": "0.0"
+                },
+                {
+                    "key": "enhancedDiscountAmountWithCurrency",
+                    "value": "$0.00"
+                },
+                {
+                    "key": "additionalDiscount",
+                    "value": "0.00"
+                },
+                {
+                    "key": "additionalDiscountWithCurrency",
+                    "value": "$0.00"
+                },
+                {
+                    "key": "additionalDiscountApplied",
+                    "value": "true"
+                },
+                {
+                    "key": "totalTradeinAmount",
+                    "value": "770.0"
+                },
+                {
+                    "key": "totalTradeinAmountFormatted",
+                    "value": "$770.00"
+                },
+                {
+                    "key": "evaluationMessage",
+                    "value": "</br>(Trade-in estimated value: $770.00)"
+                },
+                {
+                    "key": "evaluationMessageWithoutAdditionalMessage",
+                    "value": "</br>(Trade-in estimated value: $770.00)"
+                },
+                {
+                    "key": "evaluationMessageWithoutAdditionalMessagecart",
+                    "value": ""
+                },
+                {
+                    "key": "offerAmountFormatted",
+                    "value": "<b style=color:DodgerBlue;>Total discount applied: $770.00</b>"
+                },
+                {
+                    "key": "questionAndAnswer",
+                    "value": "[{\"name\":\"LCD_OK_SMNZ\",\"value\":\"LCDOK_YES\"},{\"name\":\"LOCK_OFF_SMNZ\",\"value\":\"LOCK_OFF_YES\"},{\"name\":\"NO_DAMAGE_SMNZ\",\"value\":\"DAMFREE_YES\"},{\"name\":\"NOLIQUID_SMNZ\",\"value\":\"NOLIQUID_YES\"},{\"name\":\"POWER_ON_SMNZ\",\"value\":\"POWER_YES\"}]"
+                },
+                {
+                    "key": "fault_note",
+                    "value": "LCD_OK_SMNZ LCDOK_YES|LOCK_OFF_SMNZ LOCK_OFF_YES|NO_DAMAGE_SMNZ DAMFREE_YES|NOLIQUID_SMNZ NOLIQUID_YES|POWER_ON_SMNZ POWER_YES"
+                },
+                {
+                    "key": "discountAmount-hash",
+                    "value": "9789ad63ef1e37f90b5e282c49157437"
+                },
+                {
+                    "key": "tradeInIdentifier",
+                    "value": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b2tvIiwidHJhZGVJblBheUxvYWQiOiJ7XCJhZGRpdGlvbmFsSW5mb3NcIjpbe1wia2V5XCI6XCJ0cmFkZWluQW1vdW50XCIsXCJ2YWx1ZVwiOlwiNzcwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwidHJhZGVpbkFtb3VudFdpdGhDdXJyZW5jeVwiLFwidmFsdWVcIjpcIiQ3NzAuMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJkaXNjb3VudEFtb3VudFwiLFwidmFsdWVcIjpcIjc3MC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRpc2NvdW50QW1vdW50V2l0aEN1cnJlbmN5XCIsXCJ2YWx1ZVwiOlwiJDc3MC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImFzc3VyYW50LmNsaWVudFJtYVwiLFwidmFsdWVcIjpcIk5aMjUwNDI5LTk5MDIzNzA3XCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiYXNzdXJhbnQucmV0dXJuQXV0aFwiLFwidmFsdWVcIjpcIlRSSTYwNjU0NzA2MTkzXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwicmVnaXN0cmF0aW9uLnJlZmVyZW5jZVwiLFwidmFsdWVcIjpcIlRSSTYwNjU0NzA2MTkzXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiYXNzdXJhbnQuZXF1aXBtZW50SWRcIixcInZhbHVlXCI6XCI5OTc2MDAwMDA1NTE4MlwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImFzc3VyYW50LmltZWlcIixcInZhbHVlXCI6XCIzNTU4ODQ3NjA4MTE4NDJcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJzZXJ2aWNlUHJvZHVjdE5hbWVcIixcInZhbHVlXCI6XCJTTS1TOTA4RS9EUyBHYWxheHkgUzIyIFVsdHJhIDVHIDEyOEdCIEJsYWNrIC0gR2VuZXJpY1wiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInNlcnZpY2VQcm9kdWN0TW9kZWxcIixcInZhbHVlXCI6XCJHQUxBWFkgUzIyIFVMVFJBIDVHXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwic2VydmljZVByb2R1Y3RCcmFuZFwiLFwidmFsdWVcIjpcIlNhbXN1bmdcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJzZXJ2aWNlRGV2aWNlVHlwZVwiLFwidmFsdWVcIjpcIlBob25lXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZW5oYW5jZWREaXNjb3VudEFtb3VudFwiLFwidmFsdWVcIjpcIjAuMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImVuaGFuY2VkRGlzY291bnRBbW91bnRXaXRoQ3VycmVuY3lcIixcInZhbHVlXCI6XCIkMC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImFkZGl0aW9uYWxEaXNjb3VudFwiLFwidmFsdWVcIjpcIjAuMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJhZGRpdGlvbmFsRGlzY291bnRXaXRoQ3VycmVuY3lcIixcInZhbHVlXCI6XCIkMC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImFkZGl0aW9uYWxEaXNjb3VudEFwcGxpZWRcIixcInZhbHVlXCI6XCJ0cnVlXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwidG90YWxUcmFkZWluQW1vdW50XCIsXCJ2YWx1ZVwiOlwiNzcwLjBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJ0b3RhbFRyYWRlaW5BbW91bnRGb3JtYXR0ZWRcIixcInZhbHVlXCI6XCIkNzcwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZXZhbHVhdGlvbk1lc3NhZ2VcIixcInZhbHVlXCI6XCI8L2JyPihUcmFkZS1pbiBlc3RpbWF0ZWQgdmFsdWU6ICQ3NzAuMDApXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZXZhbHVhdGlvbk1lc3NhZ2VXaXRob3V0QWRkaXRpb25hbE1lc3NhZ2VcIixcInZhbHVlXCI6XCI8L2JyPihUcmFkZS1pbiBlc3RpbWF0ZWQgdmFsdWU6ICQ3NzAuMDApXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZXZhbHVhdGlvbk1lc3NhZ2VXaXRob3V0QWRkaXRpb25hbE1lc3NhZ2VjYXJ0XCIsXCJ2YWx1ZVwiOlwiXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwib2ZmZXJBbW91bnRGb3JtYXR0ZWRcIixcInZhbHVlXCI6XCI8YiBzdHlsZT1jb2xvcjpEb2RnZXJCbHVlOz5Ub3RhbCBkaXNjb3VudCBhcHBsaWVkOiAkNzcwLjAwPC9iPlwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInF1ZXN0aW9uQW5kQW5zd2VyXCIsXCJ2YWx1ZVwiOlwiW3tcXFwibmFtZVxcXCI6XFxcIkxDRF9PS19TTU5aXFxcIixcXFwidmFsdWVcXFwiOlxcXCJMQ0RPS19ZRVNcXFwifSx7XFxcIm5hbWVcXFwiOlxcXCJMT0NLX09GRl9TTU5aXFxcIixcXFwidmFsdWVcXFwiOlxcXCJMT0NLX09GRl9ZRVNcXFwifSx7XFxcIm5hbWVcXFwiOlxcXCJOT19EQU1BR0VfU01OWlxcXCIsXFxcInZhbHVlXFxcIjpcXFwiREFNRlJFRV9ZRVNcXFwifSx7XFxcIm5hbWVcXFwiOlxcXCJOT0xJUVVJRF9TTU5aXFxcIixcXFwidmFsdWVcXFwiOlxcXCJOT0xJUVVJRF9ZRVNcXFwifSx7XFxcIm5hbWVcXFwiOlxcXCJQT1dFUl9PTl9TTU5aXFxcIixcXFwidmFsdWVcXFwiOlxcXCJQT1dFUl9ZRVNcXFwifV1cIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJmYXVsdF9ub3RlXCIsXCJ2YWx1ZVwiOlwiTENEX09LX1NNTlogTENET0tfWUVTfExPQ0tfT0ZGX1NNTlogTE9DS19PRkZfWUVTfE5PX0RBTUFHRV9TTU5aIERBTUZSRUVfWUVTfE5PTElRVUlEX1NNTlogTk9MSVFVSURfWUVTfFBPV0VSX09OX1NNTlogUE9XRVJfWUVTXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZGlzY291bnRBbW91bnQtaGFzaFwiLFwidmFsdWVcIjpcIjk3ODlhZDYzZWYxZTM3ZjkwYjVlMjgyYzQ5MTU3NDM3XCIsXCJkZXNjcmlwdGlvblwiOm51bGx9XSxcIm5ld1RyYWRlSW5DdXN0b21lclwiOmZhbHNlfSIsImlhdCI6MTc0NTkxODM3NiwiZXhwIjoxNzQ1OTIxOTc2fQ.WXKASEcONFq0eOvJpWsbDGgEdibK6xk4LHfmIFucDnAIgxh2vZDZ46lEWJaYQTIlrj_gAmGz76E1RZXo14MhvW0q_7NgDeid3Z8ceAv9qWYkSDSlQI_7UjUDAHdfkD9ZWP6Pd-cG08SCBYGWikWZkzHA1V5k1f6rkEaSdS3So1rfG7dL7LMSmloMatY-QSffN_eQekwz14M0stLbK7dpGc_w76ONfbbdr1Qun5_Y2W6KEJzyCbA93t7PgPHuDYHYhg1TO37JVAXZRo1I7EcIAHAPXYXkJUC4ktANfpZuc9ZU7AAe9Grim-nqxUr-j4VWQJM2Koq-yL5eonPOY--XWwzrD6M768uXpSMDY4LQVlzk6k5K1icjM7PqQuD1vCItQuzOUrpO0YCuFv4pITdC4VxFxdYxFutYDJnEUiSTa4qdpu6PcPTCmOwJoPm5r7FdYjgjedlBhN1nkHDcC9RlgwIc5YqVlUdZxzVcEYjVYRaHnY7OSg3BGFxOV2AMd3mIXhVtiJ3tBwAPGfbqcB6EQ8WiuA-6D7O90RxDvM5xJIVNON_pJFPnQLje3-uOCDuyLa7H5FyQha-fpO0TLKEMH5I2JzsQ8fYyawMHQFwTFZB5SLfntPfd10mgu3tRFN0f29tXMNXU2dEmyVaEzaD9G5GTS0L3EZcwWi3Ry6k5GL4"
+                },
+                {
+                    "key": "productName",
+                    "value": "SM-S908E/DS Galaxy S22 Ultra 5G 128GB Black - Generic"
+                },
+                {
+                    "key": "IMEI",
+                    "value": "355884760811842"
+                }
+            ]
+        },
+        "SMC": {
+            "categoryCode": "smc"
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "nz",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    }
+}

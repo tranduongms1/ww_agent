@@ -1,0 +1,82 @@
+{
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=my&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com/sg/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-sms-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://icd1-org.ecom-qa.samsung.com/v1/exchange/api/sgp"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "89756465",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "018926"
+    },
+    "billingAddress": {
+        "searchAddress": "018907"
+    },
+    "tradeInData": {
+        "category": "SMARTPHONE",
+        "brand": "Samsung",
+        "model": "Galaxy S20 Ultra ",
+        "storage": "12GB / 128GB",
+        "imei": "354896110717835"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-COMPASIA_SG-TRADEIN",
+            "addToCartType": "append",
+            "provider": "COMPASIA_SG",
+            "additionalInfos": {
+                "targetProductCode": "SM-S918BZKBXSP",
+                "provider": "COMPASIA_SG",
+                "productCode": "T_SAMSUNG_5904",
+                "responses": [
+                    {
+                        "name": "STON",
+                        "value": "STON01"
+                    },
+                    {
+                        "name": "SFUN",
+                        "value": "SFUN01"
+                    },
+                    {
+                        "name": "STSC",
+                        "value": "STSC01"
+                    },
+                    {
+                        "name": "STCR",
+                        "value": "STCR01"
+                    },
+                    {
+                        "name": "SBSC",
+                        "value": "SBSC01"
+                    },
+                    {
+                        "name": "SBCR",
+                        "value": "SBCR01"
+                    },
+                    {
+                        "name": "SLOK",
+                        "value": "SLOK01"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "sg",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    }
+}

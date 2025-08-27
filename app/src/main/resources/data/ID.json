@@ -1,0 +1,84 @@
+{
+    "stores": {
+        "smb": "/business",
+        "idepp": "/multistore/idepp/samsung_alumni/"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=id&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/id/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-sms-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://icd1-org.ecom-qa.samsung.com/v1/exchange/api/idr"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "812345678",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "line1": "test",
+        "adminLevel1": "Bali",
+        "adminLevel2": "Kab. Badung",
+        "adminLevel3": "Abiansemal",
+        "adminLevel4": "Abiansemal",
+        "email": "autotestww@gmail.com"
+    },
+    "billingAddress": {
+        "line1": "test",
+        "adminLevel1": "Bangka Belitung",
+        "adminLevel2": "Kab. Bangka Selatan",
+        "adminLevel3": "Air Gegas",
+        "adminLevel4": "Air Bara"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T_APPLE_EZTRADEDXGNUZ_256GB_SMARTPHONE",
+            "addToCartType": "append",
+            "provider": "EZTRADE",
+            "additionalInfos": {
+                "selectionResponses": [
+                    [
+                        {
+                            "name": "eztrade_screen_display_condition",
+                            "value": "yes"
+                        },
+                        {
+                            "name": "eztrade_body_condition",
+                            "value": "yes"
+                        },
+                        {
+                            "name": "eztrade_button_sensor_slot_condition",
+                            "value": "yes"
+                        },
+                        {
+                            "name": "eztrade_connectivity_condition",
+                            "value": "yes"
+                        },
+                        {
+                            "name": "eztrade_camera_condition",
+                            "value": "yes"
+                        },
+                        {
+                            "name": "eztrade_screen_shadow_condition",
+                            "value": "yes"
+                        }
+                    ]
+                ]
+            }
+        }
+    },
+    "creditCardData": {
+        "bankCode": "MANDIRI",
+        "cardNumber": "5573381072196900",
+        "holderName": "id",
+        "expiryMonth": "03",
+        "expiryYear": "2030",
+        "cvv": "123",
+        "password": "112233"
+    }
+}

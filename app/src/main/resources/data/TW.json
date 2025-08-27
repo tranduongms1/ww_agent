@@ -1,0 +1,77 @@
+{
+    "stores": {
+        "smb": "/business",
+        "twepp": "/multistore/twepp/twvip/"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=tw&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://s2-sms-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com/tw/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-sms-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://icd1-org.ecom-qa.samsung.com/v1/exchange/api/twn"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "0912345678",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "adminLevel2": "基隆市",
+        "adminLevel3": "仁愛區",
+        "line1": "test",
+        "postalCode": "200"
+    },
+    "billingAddress": {
+        "adminLevel2": "臺北市",
+        "adminLevel3": "松山區",
+        "line1": "14"
+    },
+    "tradeInData": {
+        "category": "手機",
+        "brand": "SAMSUNG",
+        "device": "Galaxy Z Flip5 (512GB，SM-F7310)",
+        "imei": "301296444933956"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-MEIXUN-TRADEIN",
+            "addToCartType": "append",
+            "provider": "MEIXUN",
+            "additionalInfos": {
+                "provider": "MEIXUN",
+                "productCode": "T-SAMSUNG-GALAXYZFOLD4(256GB，SM-F9360)",
+                "responses": [],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "tw",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "0B2017CB-658B-41F8-BBA3-B953214CE566",
+            "type": "TradeIn",
+            "sku": "QA75QN700BWXZW",
+            "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "smc"
+        }
+    },
+    "creditCardData": {
+        "cardNumber1": "4000",
+        "cardNumber2": "2211",
+        "cardNumber3": "1111",
+        "cardNumber4": "1111",
+        "expiryDate": "03/30",
+        "password": "737"
+    }
+}
