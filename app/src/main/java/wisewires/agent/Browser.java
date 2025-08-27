@@ -134,6 +134,8 @@ public abstract class Browser {
                 if (tokens.get(0).equalsIgnoreCase("trade-in")) {
                     if (WebUI.getUrl().contains("/cart")) {
                         Cart.addTradeIn(c);
+                    } else if (Util.isPDPage()) {
+                        PD.addTradeIn(c);
                     } else {
                         BC.addTradeIn(c);
                     }
