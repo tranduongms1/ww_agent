@@ -26,7 +26,9 @@ public abstract class TradeIn {
             [an-la='trade-in:trade-in guide:next'],
             [data-an-la='trade-in:trade-in guide:next'],
             [data-an-la='trade-in:trade-in guide:start'],
+            [an-la='trade in:select brand:next'],
             [an-la='trade-in:select device:next'],
+            .trade-in-popup__step--show [an-la='trade in:select device:next'],
             [data-an-la='trade-in:select device:next'],
             [an-la='trade-in:check device condition:next'],
             [data-an-la='trade-in:check device condition:next'],
@@ -35,6 +37,7 @@ public abstract class TradeIn {
             app-step-one-au .pill-btn--blue.view-more,
             [an-la='trade-in:step2:next'],
             [an-la='trade-in:apply discount:apply trade in'],
+            [an-la='trade in:apply discount:confirm'],
             [data-an-la='trade-in:apply discount:add to cart'],
             [data-an-la='trade-in:select device:apply discount'],
             [data-an-la='trade-in:device1:apply discount:add to cart'],
@@ -299,6 +302,7 @@ public abstract class TradeIn {
     static void acceptTermsAndConditions(WebElement modal) throws Exception {
         List<WebElement> elms = WebUI.findElements(modal, By.cssSelector("""
                 .trade-in-popup__confirm-terms .checkbox-radio,
+                .trade-in-popup__confirm-terms .checkbox-v2,
                 .trade-in-popup-v3__terms .checkbox-v2,
                 .terms-and-conditions-container,
                 .tnc-container,
@@ -375,7 +379,15 @@ public abstract class TradeIn {
                         case "trade-in guide":
                             break;
 
+                        case "select brand":
+                            WebUI.click(".trade-in-popup__brand-item");
+                            break;
+
                         case "select device":
+                            if (WebUI.findElement(".trade-in-popup__model-list") != null) {
+                                WebUI.click(".trade-in-popup__model-item");
+                                break;
+                            }
                             selectDevice(modal, data);
                             break;
 
