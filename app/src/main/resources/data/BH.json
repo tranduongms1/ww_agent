@@ -1,0 +1,67 @@
+{
+  "stores": {
+    "bh_corporate_b2b": "/multistore/bhepp/bh_corporate_b2b"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "+97354123457",
+        "dateOfBirth": "01/04/1988"
+    },
+  "customerAddress": {
+        "adminLevel1": "Capital Governorate",
+        "adminLevel2": "Adliya",
+        "line1": "Klein Bennebek",
+        "line2": "68"
+    },
+  "billingAddress": {
+        "firstName": "billing",
+        "lastName": "lastname",
+        "phoneNumber": "+97354126666",
+        "adminLevel1": "Central Governorate",
+        "adminLevel2": "Isa Town",
+        "line1": "Capital Governorate",
+        "line2": "20"
+    },
+  "serviceData": {
+    "SMC": {
+      "categoryCode": "insurance"
+    }
+  },
+  "redeemRewardsTitle": ".bh-rewardsPaymentMode",
+    "bankTransferTitle": ".bh-bankTransferPaymentMode",
+    "creditCardTitle": ".bh-CheckoutDotComPaymentMode",
+    "creditCardData": {
+        "cardNumber": "3411 1111 1111 111",
+        "holderName": "bh",
+        "expiryDate": "10/25",
+        "cvv": "1234"
+    },
+    "amexCardData": {
+        "cardNumber": "3411 1111 1111 111",
+        "holderName": "bh",
+        "expiryDate": "03/30",
+        "cvv": "1234"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4242 4242 4242 4242",
+        "holderName": "bh",
+        "expiryDate": "03/30",
+        "cvv": "123",
+        "password": "Checkout1!"
+    },
+    "tabbyTitle": ".bh-TabbyPaymentMode",
+    "tabbyData": {
+        "email": "card.success@tabby.ai",
+        "phone": "66900001",
+        "otp": "8888"
+    }
+}
