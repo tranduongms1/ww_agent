@@ -4,6 +4,9 @@
         "uk_employee": "/multistore/ukepp/uk_employee",
         "uk_epp": "/multistore/ukepp/uk_epp"
     },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=uk&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&gpvStoreDomain=https://ewd1.ecom-qa.samsung.com/&cart=https://stg2.shop.samsung.com/uk/cart"
+    },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn4-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
@@ -48,13 +51,13 @@
         "brand": "Other",
         "model": "Any broken phone",
         "storage": "Any GB",
-        "imei": "354360043488204"
+        "imei": "356442052539388"
     },
     "serviceData": {
         "TradeIn": {
             "store_id": "uk",
             "device_info": {
-                "imei": "354360043488204",
+                "imei": "356092053499510",
                 "state": {
                     "BROKEN": "NO"
                 }
@@ -95,5 +98,13 @@
         "expiryDate": "03/30",
         "cvv": "7373",
         "password": "password"
+    },
+    "paypalData": {
+        "email": "wisewires.test.paypal1@gmail.com",
+        "password": "wise1234"
+    },
+    "klarnaData": {
+        "phoneNumber": "+447872882822",
+        "otp": "000000"
     }
 }
