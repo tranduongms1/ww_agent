@@ -44,6 +44,10 @@
     },
     "billingAddress": {
         "country": "España",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+34",
+        "phoneNumber": "700000000",
         "searchAddress": "Madrid Etorbidea, San Sebastián, España",
         "line1": "Madrid Etorb",
         "postalCode": "20011",
