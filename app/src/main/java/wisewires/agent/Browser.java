@@ -627,6 +627,7 @@ public abstract class Browser {
                 p.setType("custom_ai_verify");
                 p.getProps().setActivateAI(true);
                 p.getProps().setCurrentUrl(WebUI.getUrl());
+                p.getProps().setTestData(c.testData);
                 String path = Util.captureToVerify(c);
                 String fileId = c.client.uploadFile(p.getChannelId(), path);
                 p.setFileIds(List.of(fileId));
