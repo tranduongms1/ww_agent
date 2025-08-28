@@ -90,7 +90,7 @@ public class CustomerAddress {
                     Thread.sleep(500);
                 }
                 if (Form.isSearchField(field)) {
-                    if (WebUI.isOneOfSites("fr", "jp")) {
+                    if (WebUI.isOneOfSites("ch", "ch_fr", "fr", "jp")) {
                         WebUI.delay(3);
                     } else {
                         selectFirstSearchResult(field);
@@ -119,7 +119,11 @@ public class CustomerAddress {
                     field.sendKeys(Keys.ESCAPE);
                 }
                 if (Form.isSearchField(field)) {
-                    selectFirstSearchResult(field);
+                    if (WebUI.isOneOfSites("ch", "ch_fr")) {
+                        WebUI.delay(1);
+                    } else {
+                        selectFirstSearchResult(field);
+                    }
                 }
                 break;
 
@@ -139,7 +143,11 @@ public class CustomerAddress {
                     field.sendKeys(Keys.ESCAPE);
                 }
                 if (Form.isSearchField(field)) {
-                    selectFirstSearchResult(field);
+                    if (WebUI.isOneOfSites("ch", "ch_fr")) {
+                        WebUI.delay(1);
+                    } else {
+                        selectFirstSearchResult(field);
+                    }
                 }
                 break;
 
@@ -223,7 +231,11 @@ public class CustomerAddress {
                     field.clear();
                     field.sendKeys(data.get("adminLevel2"));
                     if (Form.isSearchField(field)) {
-                        selectFirstSearchResult(field);
+                        if (WebUI.isOneOfSites("ch", "ch_fr")) {
+                            WebUI.delay(1);
+                        } else {
+                            selectFirstSearchResult(field);
+                        }
                     }
                 } else {
                     Form.select(field, data.get("adminLevel2"));
