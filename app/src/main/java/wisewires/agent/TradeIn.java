@@ -306,7 +306,7 @@ public abstract class TradeIn {
                 .trade-in-popup__confirm-terms .checkbox-v2,
                 .trade-in-popup-v3__terms .checkbox-v2,
                 .terms-and-conditions-container,
-                .tnc-container,
+                .tnc-container .mdc-checkbox,
                 .trade-in__tnc .mdc-checkbox,
                 li:has(.trade-in__tc) mat-checkbox"""));
         for (WebElement elm : elms) {
