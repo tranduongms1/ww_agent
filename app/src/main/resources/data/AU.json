@@ -20,18 +20,18 @@
     },
     "customerAddress": {
         "line1": "3 Murray Rose Ave",
-        "postalCode": "4218",
-        "adminLevel2": "BROADBEACH",
-        "adminLevel1": "Queensland"
+        "postalCode": "2000",
+        "adminLevel2": "BARANGAROO",
+        "adminLevel1": "New South Wales"
     },
     "billingAddress": {
         "firstName": "Auto",
         "lastName": "test",
         "phoneNumber": "0412376678",
         "line1": "3 Murray Rose Ave",
-        "postalCode": "2000",
-        "adminLevel2": "BARANGAROO",
-        "adminLevel1": "New South Wales"
+        "postalCode": "4218",
+        "adminLevel2": "BROADBEACH",
+        "adminLevel1": "Queensland"
     },
     "tradeInData": {
         "category": "Phone",
