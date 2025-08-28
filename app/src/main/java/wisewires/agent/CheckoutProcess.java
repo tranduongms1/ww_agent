@@ -419,7 +419,7 @@ public class CheckoutProcess {
                 let s = arguments[1];
                 return Array.from(arguments[0].querySelectorAll('li')).find(opt => {
                     let e = opt.querySelector('.delivery-mode-name-text');
-                    if (e && e.innerText.trim().toLowerCase().startsWith(s+'\\n')) return true;
+                    if (e && e.innerText.trim().toLowerCase().split('\\n')[0].trim() == s) return true;
                     e = opt.querySelector('input');
                     if (e.id.replace(/group\\d+/, '').toLowerCase() == s) return true;
                     return false;
