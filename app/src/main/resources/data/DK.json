@@ -32,9 +32,9 @@
         "firstName": "Test",
         "lastName": "Auto",
         "phoneNumber": "01234567",
-        "line1": "Møllebakken 82",
-        "postalCode": "5240",
-        "adminLevel2": "Odense NØ"
+        "line1": "Region Syddanmark",
+        "postalCode": "6818",
+        "adminLevel2": "Arre"
     },
     "tradeInData": {
         "category": "Mobiles",
