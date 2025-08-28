@@ -403,6 +403,11 @@ public abstract class Cart {
                     logger.info("Email %s used to checkout".formatted(email));
                     WebUI.delay(3);
                     WebUI.click("[data-an-tr='account-login'][data-an-la='guest'].pill-btn");
+                    WebUI.delay(3);
+                    WebElement popup = WebUI.findElement("[data-an-la$='continue to guest checkout']");
+                    if (popup !=null) {
+                       popup.click();
+                    }
                 }
                 return url.contains("/checkout/one");
             });
