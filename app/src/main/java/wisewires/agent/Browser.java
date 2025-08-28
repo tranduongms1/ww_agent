@@ -98,6 +98,15 @@ public abstract class Browser {
                 break;
             }
 
+            case "hover": {
+                Tokens.removeLeading(tokens, "to");
+                leading = Tokens.removeLeading(tokens, "human","icon");
+                if (leading.contains("human")) {
+                    GNB.hoverHumanIcon();
+                }
+                break;
+            }
+
             case "logout": {
                 leading = Tokens.removeLeading(tokens, "from", "on", "aem", "shop", "cart", "gnb", "page");
                 if (leading.contains("aem")) {
