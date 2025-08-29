@@ -419,7 +419,7 @@ public class CheckoutProcess {
                 let s = arguments[1];
                 return Array.from(arguments[0].querySelectorAll('li')).find(opt => {
                     let e = opt.querySelector('.delivery-mode-name-text');
-                    if (e && e.innerText.trim().toLowerCase().split('\\n')[0].trim() == s) return true;
+                    if (e && e.innerText.split('\\n')[0].trim().replace(/\\u2060/g, '').toLowerCase() == s) return true;
                     e = opt.querySelector('input');
                     if (e.id.replace(/group\\d+/, '').toLowerCase() == s) return true;
                     return false;
@@ -427,6 +427,7 @@ public class CheckoutProcess {
     }
 
     public CheckoutProcess selectDeliveryOption(int consignment, String option) {
+        AtomicBoolean done = new AtomicBoolean(false);
         SelectDeliveryOptionFunction func = selectDeliveryOptionFunc;
         selectDeliveryOptionFunc = (c, line, elm) -> {
             if (line == consignment) {
@@ -435,6 +436,7 @@ public class CheckoutProcess {
                 WebUI.delay(1);
                 item.click();
                 onSelectedDeliveryOption(c, line, item);
+                done.set(true);
                 return false;
             }
             if (func != null) {
@@ -443,6 +445,8 @@ public class CheckoutProcess {
                 return CheckoutProcess.defaultSelectDeliveryOption(c, line, elm);
             }
         };
+        preFillFormFuncs.add((c, formID, form) -> !done.get());
+        untilFuncs.add(c -> done.get());
         return this;
     }
 
@@ -457,6 +461,7 @@ public class CheckoutProcess {
     }
 
     public CheckoutProcess selectDeliveryService(int consignment, String service) {
+        AtomicBoolean done = new AtomicBoolean(false);
         SelectDeliveryServiceFunction func = selectDeliveryServiceFunc;
         selectDeliveryServiceFunc = (c, line, elm) -> {
             if (line == consignment) {
@@ -465,6 +470,7 @@ public class CheckoutProcess {
                 WebUI.delay(1);
                 item.click();
                 onSelectedDeliveryService(c, line, elm);
+                done.set(true);
                 return false;
             }
             if (func != null) {
@@ -473,10 +479,13 @@ public class CheckoutProcess {
                 return CheckoutProcess.defaultSelectDeliveryService(c, line, elm);
             }
         };
+        preFillFormFuncs.add((c, formID, form) -> !done.get());
+        untilFuncs.add(c -> done.get());
         return this;
     }
 
     public CheckoutProcess selectDeliverySlot(int consignment, int index) {
+        AtomicBoolean done = new AtomicBoolean(false);
         SelectDeliverySlotFunction func = selectDeliverySlotFunc;
         selectDeliverySlotFunc = (c, line, elm) -> {
             if (line == consignment) {
@@ -485,6 +494,7 @@ public class CheckoutProcess {
                 WebUI.delay(1);
                 item.click();
                 onSelectedDeliverySlot(c, line, elm);
+                done.set(true);
                 return false;
             }
             if (func != null) {
@@ -493,6 +503,8 @@ public class CheckoutProcess {
                 return CheckoutProcess.defaultSelectDeliverySlot(c, line, elm);
             }
         };
+        preFillFormFuncs.add((c, formID, form) -> !done.get());
+        untilFuncs.add(c -> done.get());
         return this;
     }
 
