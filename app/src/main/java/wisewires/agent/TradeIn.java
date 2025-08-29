@@ -47,12 +47,14 @@ public abstract class TradeIn {
             [data-an-la="trade-in:apply discount:add to cart"]""";
 
     static String getStepName(WebElement modal) throws Exception {
-        WebElement closeBtn = WebUI.waitElement(modal, By.cssSelector("""
+        WebElement elm = WebUI.waitElement(modal, By.cssSelector("""
+                .hubble-tradein-popup__device-choose-wrap,
                 .trade-in-popup__close,
                 .trade-in-popup-v3__close,
                 .modal__close"""), 5);
-        if (closeBtn != null) {
-            return WebUI.getDomAttribute(closeBtn, "an-la", "data-an-la").split(":")[1];
+        if (elm != null) {
+            String attr = WebUI.getDomAttribute(elm, "an-la", "data-an-la", "class");
+            return attr.contains("device-choose-wrap") ? "select device" : attr.split(":")[1];
         }
         return "unknow";
     }
