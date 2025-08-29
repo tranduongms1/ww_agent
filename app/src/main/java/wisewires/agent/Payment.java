@@ -307,7 +307,7 @@ public abstract class Payment {
                     "CCName",
                     "cc_holdername",
                     "cardholder-name":
-                String name = "ABC";
+                String name = "visa test";
                 field.clear();
                 field.sendKeys(name);
                 logger.info("Holder name entered: " + name);
