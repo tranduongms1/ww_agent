@@ -42,7 +42,9 @@ public abstract class TradeIn {
             [data-an-la='trade-in:select device:apply discount'],
             [data-an-la='trade-in:device1:apply discount:add to cart'],
             app-step-four .modal__footer [type='submit'],
-            .trade-in-popup-v3__imei-wrap .trade-in-popup-v3__btn-continue""";
+            .trade-in-popup-v3__imei-wrap .trade-in-popup-v3__btn-continue,
+            [data-an-la="trade-in:check device condition:continue"],
+            [data-an-la="trade-in:apply discount:add to cart"]""";
 
     static String getStepName(WebElement modal) throws Exception {
         WebElement closeBtn = WebUI.waitElement(modal, By.cssSelector("""
@@ -112,11 +114,36 @@ public abstract class TradeIn {
             WebUI.delay(1);
             return true;
         }
+        if (className.contains("manual-search_para")) {
+            WebElement selectElm = elm.findElement(By.cssSelector("mat-select"));
+            if (!selectElm.getAttribute("aria-expanded").equals("true")) {
+                if (selectElm.getText().trim().equalsIgnoreCase(option.trim())) {
+                    return false;
+                }
+                WebUI.scrollToCenter(elm);
+                elm.click();
+                WebUI.delay(1);
+            }
+            String xpath = "//*[@class='mdc-list-item__primary-text' and normalize-space(%s)='%s']/..".formatted(
+                    Util.XPATH_TEXT_LOWER,
+                    option.toLowerCase());
+            WebElement opt = elm.findElement(By.xpath(xpath));
+            WebUI.scrollToCenter(opt);
+            opt.click();
+            WebUI.delay(1);
+            return true;
+        }
         throw new Exception("Select is not handled");
     }
 
     static void selectCategory(WebElement elm, String category) throws Exception {
         try {
+            if (WebUI.getDomAttribute(elm, "class").contains("manual-search_para")) {
+                if (select(elm, category)) {
+                    logger.info("Device category '%s' selected".formatted(category));
+                }
+                return;
+            }
             WebElement opt = (WebElement) WebUI.driver.executeScript("""
                     var opts = arguments[0].querySelectorAll('input, [data-an-la]');
                     for (let opt of opts) {
@@ -201,6 +228,9 @@ public abstract class TradeIn {
                     "return arguments[0].parentNode.parentNode.querySelector('.trade-in__dropdown-header-text').innerText",
                     elm).toString();
         }
+        if (className.contains("manual-search_para")) {
+            return elm.findElement(By.cssSelector(".manual-search_list")).getText().trim();
+        }
 
         throw new Exception("Unknow device select type");
     }
@@ -212,14 +242,17 @@ public abstract class TradeIn {
                 .trade-in-select,
                 mat-radio-group,
                 mat-expansion-panel,
-                mat-form-field:has([formcontrolname])"""));
+                mat-form-field:has([formcontrolname]),
+                .manual-search_para"""));
         for (WebElement elm : elms) {
             if (!elm.isDisplayed()) {
                 continue;
             }
             String selectType = getSelectType(elm);
             switch (selectType) {
-                case "category":
+                case
+                        "category",
+                        "Избери вид на устройството":
                     selectCategory(elm, data.get("category"));
                     break;
 
@@ -236,7 +269,8 @@ public abstract class TradeIn {
                         "Hersteller",
                         "Značka",
                         "Fabricant",
-                        "¿Qué marca es?":
+                        "¿Qué marca es?",
+                        "Избери производител на устройството":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -253,7 +287,8 @@ public abstract class TradeIn {
                         "Laite",
                         "Modell",
                         "Modelo",
-                        "Typ zařízení":
+                        "Typ zařízení",
+                        "Избери модел на устройството":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -341,6 +376,22 @@ public abstract class TradeIn {
                 WebUI.waitForDisappear(loading.get(), 10);
                 logger.info("Device IMEI checking done");
             }
+            Optional<WebElement> manualSelectDevicebtn = modal
+                    .findElements(By.cssSelector("""
+                            .trade-in-popup__imei-result-guide a,
+                            a.manual-cta
+                            """))
+                    .stream()
+                    .filter(WebElement::isDisplayed)
+                    .findAny();
+            manualSelectDevicebtn.ifPresent(el -> {
+                WebUI.scrollToCenter(el);
+                WebUI.delay(1);
+                el.click();
+                WebUI.delay(1);
+                logger.info("Click manual select device");
+            });
+
         } catch (Exception e) {
             throw new Exception("Unable to enter device IMEI '%s'".formatted(imei));
         }
