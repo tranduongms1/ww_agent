@@ -265,9 +265,8 @@ public abstract class Browser {
                     }
                     if (WebUI.isOneOfSites("AE", "AE_AR", "BH", "BH_AR", "OM", "OM_AR", "QA", "QA_AR")) {
                         Cart.selecCountryInCart(c);
-                    } else {
-                        Cart.navigateTo(c, mustReload);
                     }
+                    Cart.navigateTo(c, mustReload);
                     WebUI.mustCloseAllPopup(c);
                 }
                 break;

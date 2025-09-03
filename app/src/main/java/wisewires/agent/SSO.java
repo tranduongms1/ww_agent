@@ -31,7 +31,7 @@ public abstract class SSO {
                     WebUI.click(".MuiButton-colorPrimary");
                     return false;
                 }
-                if (url.contains("/iam/signin/status/terms")) {
+                if (url.contains("/iam/sign-in/status/terms")) {
                     WebElement elm = WebUI.waitElement("span:has([id='all'])", 10);
                     WebUI.scrollToCenter(elm);
                     WebUI.delay(1);
@@ -39,7 +39,7 @@ public abstract class SSO {
                     WebUI.delay(1);
                     WebUI.click(".MuiButton-containedPrimary");
                 }
-                if (url.contains("/iam/signin/status/change-password")) {
+                if (url.contains("/iam/sign-in/status/change-password")) {
                     WebElement elm = WebUI.findElement("button.MuiButton-containedSecondary");
                     if (elm != null) {
                         elm.click();
