@@ -16,7 +16,8 @@
     "customerAddress": {
         "adminLevel3": "عبدالله مبارك الصباح",
         "line1": "12",
-        "line2": "Klein Bennebek"
+        "line2": "Klein Bennebek",
+        "apartment": "69"
     },
     "billingAddress": {
         "firstName": "Auto",
@@ -24,7 +25,8 @@
         "phoneNumber": "+96554666666",
         "adminLevel3": "ابرق خيطان",
         "line1": "line1Bill",
-        "line2": "line2Bill"
+        "line2": "line2Bill",
+        "apartment": "69"
     },
     "tradeInData": {
         "category": "الهاتف الذكي",

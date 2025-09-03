@@ -19,7 +19,8 @@
     "customerAddress": {
         "adminLevel3": "Abdali",
         "line1": "12",
-        "line2": "Klein Bennebek"
+        "line2": "Klein Bennebek",
+        "apartment": "69"
     },
     "billingAddress": {
         "firstName": "Auto",
@@ -27,7 +28,8 @@
         "phoneNumber": "+96554666666",
         "adminLevel3": "Abdulla Al Mubarak Al Sabah",
         "line1": "15",
-        "line2": "Al Sabah"
+        "line2": "Al Sabah",
+        "apartment": "69"
     },
     "tradeInData": {
         "category": "Mobile Phone",

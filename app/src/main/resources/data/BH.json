@@ -20,7 +20,9 @@
         "adminLevel1": "Capital Governorate",
         "adminLevel2": "Adliya",
         "line1": "Klein Bennebek",
-        "line2": "68"
+        "line2": "68",
+        "apartment": "69",
+        "landmark": "landmark 84"
     },
   "billingAddress": {
         "firstName": "billing",
@@ -29,7 +31,9 @@
         "adminLevel1": "Central Governorate",
         "adminLevel2": "Isa Town",
         "line1": "Capital Governorate",
-        "line2": "20"
+        "line2": "20",
+        "apartment": "21",
+        "landmark": "landmark 21"
     },
   "serviceData": {
     "SMC": {

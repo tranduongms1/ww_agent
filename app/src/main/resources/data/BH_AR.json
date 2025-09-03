@@ -20,7 +20,9 @@
         "adminLevel1": "المحافظة الجنوبية",
         "adminLevel2": "الرفاع الشرقي",
         "line1": "صخير",
-        "line2": "12"
+        "line2": "12",
+        "apartment": "69",
+        "landmark": "معلم 84"
     },
   "billingAddress": {
         "firstName": "أحمد",
@@ -29,7 +31,9 @@
         "adminLevel1": "محافظة العاصمة",
         "adminLevel2": "كرباباد",
         "line1": "الشارع الرئيسي، مبنى رقم",
-        "line2": "21"
+        "line2": "21",
+        "apartment": "22",
+        "landmark": "معلم 21"
     },
   "serviceData": {
     "SMC": {

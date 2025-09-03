@@ -19,7 +19,8 @@
   "customerAddress": {
     "line1": "123",
     "adminLevel2": "Al Kharaitiyat",
-    "adminLevel3": "Al kharthyat"
+    "adminLevel3": "Al kharthyat",
+    "apartment": "69"
   },
   "billingAddress": {
     "firstName": "Auto",
@@ -27,7 +28,8 @@
     "phoneNumber": "+97466666666",
     "line1": "135",
     "adminLevel2": "Al Kheesa",
-    "adminLevel3": "Al Khesaa Petrol Station"
+    "adminLevel3": "Al Khesaa Petrol Station",
+    "apartment": "17"
   },
   "serviceData": {
     "SMC": {

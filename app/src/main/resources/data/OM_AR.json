@@ -19,7 +19,8 @@
   "customerAddress": {
     "adminLevel2": "إزكي",
     "line1": "روي",
-    "line2": "12"
+    "line2": "12",
+    "apartment": "69"
   },
   "billingAddress": {
     "firstName": "billing",
@@ -27,7 +28,8 @@
     "phoneNumber": "+96899999998",
     "adminLevel2": "ادم",
     "line1": "روي",
-    "line2": "16"
+    "line2": "16",
+    "apartment": "17"
   },
   "serviceData": {
     "SMC": {
