@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -14,6 +15,8 @@ import org.slf4j.LoggerFactory;
 
 public abstract class Cart {
     static Logger logger = LoggerFactory.getLogger(Cart.class);
+
+    static List<String> CATEGORIES = List.of("mobile", "tv", "washing machine", "refrigerator", "monitor");
 
     static String getCartId(Context c) {
         if (WebUI.driver != null) {
@@ -300,7 +303,10 @@ public abstract class Cart {
         long totalItems = (long) cart.get("totalItems");
         if (totalItems > 0)
             return true;
-        List<Map<String, Object>> variants = API.getProductVariants(endpoint);
+        Stream<Map<String, Object>> prods = API.searchProducts(endpoint).stream().filter(Util.inCategories(CATEGORIES));
+        List<String> codes = prods.filter(API.CAN_ADD_TO_CART).map(v -> v.get("code").toString()).toList();
+        List<Map<String, Object>> products = API.getProductByCodes(endpoint, codes);
+        List<Map<String, Object>> variants = Util.getVariants(products);
         variants = new ArrayList<>(variants.stream().filter(Util::isPurchasable).toList());
         Collections.shuffle(variants);
         for (Map<String, Object> variant : variants) {
@@ -405,8 +411,8 @@ public abstract class Cart {
                     WebUI.click("[data-an-tr='account-login'][data-an-la='guest'].pill-btn");
                     WebUI.delay(3);
                     WebElement popup = WebUI.findElement("[data-an-la$='continue to guest checkout']");
-                    if (popup !=null) {
-                       popup.click();
+                    if (popup != null) {
+                        popup.click();
                     }
                 }
                 return url.contains("/checkout/one");
@@ -423,13 +429,13 @@ public abstract class Cart {
     static void selecCountryInCart(Context c) throws Exception {
         try {
             String to = """
-                .btn.cancel-btn.ng-binding,
-                .button.pill-btn.pill-btn--white.reset.col""";
+                    .btn.cancel-btn.ng-binding,
+                    .button.pill-btn.pill-btn--white.reset.col""";
             WebElement elmCancel = WebUI.waitElement(to, 5);
             if (elmCancel == null) {
                 return;
             }
-            Map <String, String> countryMap = Map.of(
+            Map<String, String> countryMap = Map.of(
                     "kw", "Kuwait",
                     "kw_ar", "الكويت",
                     "om", "Oman",
@@ -437,8 +443,7 @@ public abstract class Cart {
                     "bh", "Bahrain",
                     "bh_ar", "البحرين",
                     "qa", "Qatar",
-                    "qa_ar", "دولة قطر"
-            );
+                    "qa_ar", "دولة قطر");
             String countryCode = c.site.toString().toLowerCase();
             String buttonText = countryMap.getOrDefault(countryCode, null);
             if (buttonText == null) {
@@ -449,7 +454,9 @@ public abstract class Cart {
             WebUI.wait(10).withMessage("Select country").until(d -> {
                 String currentUrl = WebUI.driver.getCurrentUrl();
                 if (currentUrl.contains("/cart")) {
-                    String xpathSelectCountry = String.format("//li[contains(@class,'country-item')]/descendant::span[contains(text(), '%s')]", buttonText);
+                    String xpathSelectCountry = String.format(
+                            "//li[contains(@class,'country-item')]/descendant::span[contains(text(), '%s')]",
+                            buttonText);
                     WebElement selectCountry = WebUI.driver.findElement(By.xpath(xpathSelectCountry));
                     if (selectCountry != null) {
                         selectCountry.click();

@@ -5,12 +5,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v138.page.Page;
@@ -43,8 +45,25 @@ public abstract class Util {
         }
     }
 
+    public static Predicate<Map<String, Object>> inCategories(List<String> categories) {
+        return prod -> categories.contains(prod.get("pviType").toString().toLowerCase());
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Map<String, Object>> getVariants(List<Map<String, Object>> products) {
+        List<Map<String, Object>> variants = new ArrayList<>();
+        for (Map<String, Object> product : products) {
+            for (Map<String, Object> variant : (List<Map<String, Object>>) product.get("variantOptions")) {
+                variants.add(variant);
+            }
+        }
+        return variants;
+    }
+
     @SuppressWarnings("unchecked")
     public static boolean isPurchasable(Map<String, Object> variant) {
+        if (Boolean.TRUE.equals(variant.get("purchasable")))
+            return true;
         Map<String, Object> stock = (Map<String, Object>) variant.get("stock");
         if (stock.get("stockLevel") == null)
             return false;
@@ -98,7 +117,7 @@ public abstract class Util {
                         e.setAttribute('org-style-display', e.style.display);
                         e.style.display = 'none';
                     }""", NO_CAPTURE_LOCATOR);
-                    WebUI.delay(1);
+            WebUI.delay(1);
             DevTools devTools = WebUI.driver.getDevTools();
             devTools.createSession();
             String base64Image = devTools.send(Page.captureScreenshot(

@@ -1,8 +1,8 @@
 package wisewires.agent;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +11,10 @@ import com.google.gson.Gson;
 
 public abstract class API {
     static Logger logger = LoggerFactory.getLogger(API.class);
+
+    static Predicate<Map<String, Object>> CAN_ADD_TO_CART = p -> {
+        return p.get("addToCartOption").toString().equals("CAN_ADD_TO_CART");
+    };
 
     static void addToCart(String apiEndpoint, String sku) throws Exception {
         try {
@@ -94,7 +98,7 @@ public abstract class API {
     }
 
     @SuppressWarnings("unchecked")
-    static List<Map<String, Object>> getProducts(String endpoint) {
+    static List<Map<String, Object>> searchProducts(String endpoint) {
         String script = """
                 return fetch(`${arguments[0]}/products/search?pageSize=100&fields=FULL`, {
                     headers:{'accept':'application/json'},
@@ -109,14 +113,18 @@ public abstract class API {
     }
 
     @SuppressWarnings("unchecked")
-    static List<Map<String, Object>> getProductVariants(String endpoint) {
-        List<Map<String, Object>> variants = new ArrayList<>();
-        for (Map<String, Object> product : getProducts(endpoint)) {
-            if (product.get("variantOptions") != null) {
-                variants.addAll((List<Map<String, Object>>) product.get("variantOptions"));
-            }
-        }
-        return variants;
+    static List<Map<String, Object>> getProductByCodes(String endpoint, List<String> skus) {
+        String script = """
+                return fetch(`${arguments[0]}/products?productCodes=${arguments[1]}&fields=FULL`, {
+                    headers:{'accept':'application/json'},
+                    credentials: "include"
+                })
+                    .then(res => {
+                        if (res.status != 200) throw new Error('Get product info by API error with status code: ' + res.status);
+                        return res.text();
+                    })
+                    .then(data => arguments[2](JSON.parse(data)));""";
+        return (List<Map<String, Object>>) WebUI.driver.executeAsyncScript(script, endpoint, String.join(",", skus));
     }
 
     @SuppressWarnings("unchecked")
