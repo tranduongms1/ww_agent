@@ -273,6 +273,7 @@ public abstract class Payment {
 
     static void payWithCOD(Context c, WebElement elm) throws Exception {
         try {
+            acceptTermAndConditions();
             clickPayNow();
             WebUI.waitForUrlContains("/orderConfirmation", 15);
         } catch (Exception e) {
