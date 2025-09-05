@@ -22,7 +22,8 @@ public abstract class TradeUp {
             [formcontrolname='postCodeControl'],
             .sdf-comp-model-menu,
             .sdf-comp-brand-menu,
-            mat-expansion-panel""";
+            mat-expansion-panel,
+            mat-form-field:has([formcontrolname])""";
 
     static String NEXT_LOCATOR = """
             [an-la='trade-up:select device:next'],
@@ -30,14 +31,17 @@ public abstract class TradeUp {
             [an-la='trade-up:check device condition:next'],
             [data-an-la='trade-up:check device condition:next'],
             [an-la*='apply trade up'],
-            [data-an-la*='apply trade up']""";
+            [data-an-la*='apply trade up'],
+            [data-an-la="tradeup2termswrapper:add to cart"]""";
 
     static String getStepName(WebElement modal) throws Exception {
-        WebElement closeBtn = WebUI.waitElement(modal, By.cssSelector("""
-                .vd-trade-in-popup__close,
-                .modal__close"""), 5);
-        if (closeBtn != null) {
-            return WebUI.getDomAttribute(closeBtn, "an-la", "data-an-la").split(":")[1];
+        WebElement elm = WebUI.waitElement(modal, By.cssSelector("""
+                .step-three-card,
+                    .vd-trade-in-popup__close,
+                    .modal__close"""), 5);
+        if (elm != null) {
+            String attr = WebUI.getDomAttribute(elm, "an-la", "data-an-la", "class");
+            return attr.contains("step-three-card") ? "apply discount" : attr.split(":")[1];
         }
         return "unknow";
     }
@@ -53,15 +57,19 @@ public abstract class TradeUp {
                     "return arguments[0].parentNode.parentNode.querySelector('.trade-up__dropdown-header .device_category').innerText",
                     elm).toString();
         }
+        if (name.contains("mat-mdc-form-field")) {
+            return elm.findElement(By.cssSelector("[formcontrolname]")).getDomAttribute("formcontrolname");
+        }
         return name;
     }
 
     static void select(WebElement elm, String option) throws Exception {
-        if (!WebUI.getDomAttribute(elm, "class").contains("open")) {
+        String className = WebUI.getDomAttribute(elm, "class");
+        if (!className.contains("open") && !className.contains("mat-focused")) {
             elm.click();
             Thread.sleep(200);
         }
-        WebElement opt = WebUI.findElement(elm, "li");
+        WebElement opt = WebUI.findElement(elm, By.xpath(".//li | //*[@class='tradeup-text']"));
         opt.click();
     }
 
@@ -86,7 +94,9 @@ public abstract class TradeUp {
     static void acceptTermsAndConditions(WebElement modal) throws Exception {
         List<WebElement> elms = WebUI.findElements(modal, By.cssSelector("""
                 .vd-trade-in-popup__agree .checkbox-v2,
-                .mdc-checkbox:has(+ label .trade-up__tc)"""));
+                .mdc-checkbox:has(+ label .trade-up__tc),
+                .mdc-checkbox:has(input[type="checkbox"]) >.mdc-checkbox__background
+                """));
         for (WebElement elm : elms) {
             if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
                 if (elm.getDomAttribute("class").contains("checkbox-v2")) {
@@ -110,6 +120,9 @@ public abstract class TradeUp {
         btn.click();
         logger.info("Next button clicked");
         WebUI.waitForDisappear(btn, 10);
+        if (WebUI.isSite("UK")) {
+            WebUI.delay(2);
+        }
         if (WebUI.waitElement(MODAL_LOCATOR, 3) == null) {
             return true;
         }
@@ -143,6 +156,7 @@ public abstract class TradeUp {
 
                                 case
                                         "model",
+                                        "modelFormControl",
                                         "Select Size",
                                         "Selecteer maat":
                                     select(elm, data.get("model"));
@@ -150,6 +164,7 @@ public abstract class TradeUp {
 
                                 case
                                         "brand",
+                                        "brandFormControl",
                                         "Select Brand",
                                         "Selecteer merk":
                                     select(elm, data.get("brand"));
@@ -168,6 +183,7 @@ public abstract class TradeUp {
                 }
                 boolean modalClosed = nextStep(modal);
                 if (modalClosed) {
+                    logger.info("Popup closed");
                     error = null;
                     break;
                 }
