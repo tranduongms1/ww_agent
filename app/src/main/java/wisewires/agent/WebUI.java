@@ -289,7 +289,7 @@ public abstract class WebUI {
     static void hover(String selector) throws Exception {
         try {
             WebElement elm = waitElement(selector, 5);
-            wait(5).until(ExpectedConditions.elementToBeClickable(elm));
+            wait(10).until(ExpectedConditions.elementToBeClickable(elm));
             Actions builder = new Actions(driver);
             builder.moveToElement(elm).perform();
         } catch (Exception e) {
