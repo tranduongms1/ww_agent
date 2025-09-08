@@ -1,0 +1,138 @@
+{
+  "stores": {
+    "smb": "/business"
+  },
+  "pointingUrls": {
+    "v2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=jp&storeDomain=https://p2-sma-api-cdn.ecom-stg.samsung.com&storeNewHybDomain=https://p2-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://v2.shop.samsung.com&cart=https://v2.shop.samsung.com/jp/cart"
+  },
+  "apiEndpoints": {
+    "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+    "v2": "https://p2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "customerInfo": {
+    "email": "autotestww@gmail.com",
+    "firstName": "Auto",
+    "lastName": "Test",
+    "phoneNumber": "7036789000",
+    "dateOfBirth": "01/04/1988"
+  },
+  "customerAddress": {
+    "line1": "南麻布",
+    "postalCode": "1060047",
+    "adminLevel2": "港区",
+    "adminLevel3": "東京都",
+    "adminLevel5": "Tokyo"
+  },
+  "billingAddress": {
+    "line1": "南麻布",
+    "postalCode": "1060047",
+    "adminLevel2": "港区",
+    "adminLevel3": "東京都"
+  },
+  "tradeInData": {
+    "category": "スマートフォン",
+    "brand": "SAMSUNG",
+    "model": "Galaxy Z Fold6 1TB",
+    "storage": "1TB",
+    "imei": "351798061557587"
+  },
+  "serviceData": {
+    "TradeIn": {
+      "serviceCode": "T-AUCNET-TRADEIN",
+      "addToCartType": "append",
+      "provider": "AUCNET",
+      "additionalInfos": [
+        {
+          "key": "IMEI",
+          "value": "351798061557587"
+        },
+        {
+          "key": "discountAmount",
+          "value": "126900.00"
+        },
+        {
+          "key": "discountAmountWithCurrency",
+          "value": "126,900円"
+        },
+        {
+          "key": "additionalDiscount",
+          "value": "0.0"
+        },
+        {
+          "key": "deviceSku",
+          "value": "T_SAMSUNG_GALAXYZFOLD61TB_2437"
+        },
+        {
+          "key": "evaluationMessage",
+          "value": "通常下取り参考価格: 126,900円"
+        },
+        {
+          "key": "offerAmountFormatted",
+          "value": "通常下取り参考価格: 126,900円"
+        },
+        {
+          "key": "serviceProductModel",
+          "value": "T_SAMSUNG_GALAXYZFOLD61TB_2437"
+        },
+        {
+          "key": "discountAmount-hash",
+          "value": "ec07b538d58ba66cb5d24bc9158cba61"
+        },
+        {
+          "key": "grade",
+          "value": "2"
+        },
+        {
+          "key": "tradeinDeviceDisplayInfo",
+          "value": " | SAMSUNG | Galaxy Z Fold6 1TB | 1TB"
+        },
+        {
+          "key": "fault_note",
+          "value": "tradein-Q1 false|tradein-Q2 false|tradein-Q3 false|tradein-Q4 false"
+        },
+        {
+          "key": "IMEI"
+        },
+        {
+          "key": "eventAmount"
+        },
+        {
+          "key": "eventAmountFormatted"
+        },
+        {
+          "key": "eventAmountWithCurrency",
+          "value": "0円"
+        },
+        {
+          "key": "product_id",
+          "value": "2437"
+        },
+        {
+          "key": "productName",
+          "value": "AUCNET"
+        },
+        {
+          "key": "showWarining",
+          "value": "true"
+        },
+        {
+          "key": "additionalInfoForfeitedAmount",
+          "value": "47,100"
+        }
+      ]
+    }
+  },
+  "creditCardData": {
+    "cardNumber": "4111 1111 1111 1111",
+    "holderName": "PL",
+    "expiryDate": "03/30",
+    "cvv": "737"
+  },
+  "masterCardData": {
+    "cardNumber": "5555 4444 3333 1111",
+    "holderName": "PL",
+    "expiryDate": "03/30",
+    "cvv": "737"
+  }
+}

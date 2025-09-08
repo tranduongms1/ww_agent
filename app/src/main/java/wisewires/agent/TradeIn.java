@@ -272,7 +272,8 @@ public abstract class TradeIn {
                         "Značka",
                         "Fabricant",
                         "¿Qué marca es?",
-                        "Избери производител на устройството":
+                        "Избери производител на устройството",
+                        "ブランド名":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -290,7 +291,8 @@ public abstract class TradeIn {
                         "Modell",
                         "Modelo",
                         "Typ zařízení",
-                        "Избери модел на устройството":
+                        "Избери модел на устройството",
+                        "モデル名":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -303,7 +305,8 @@ public abstract class TradeIn {
                         "Storage",
                         "Capacité ou carte graphique",
                         "Taille de l'espace de stockage",
-                        "Speichergrösse":
+                        "Speichergrösse",
+                        "ストレージ":
                     selectStorage(elm, data.get("storage"));
                     break;
 
