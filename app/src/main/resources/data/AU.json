@@ -5,10 +5,12 @@
     },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "v2": "https://p2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "exchangeEndpoints": {
         "prod": "https://aep1-org.ecom.samsung.com/v1/exchange/api/aus",
+        "v2": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus",
         "stg2": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus"
     },
     "customerInfo": {
@@ -36,8 +38,8 @@
     "tradeInData": {
         "category": "Phone",
         "brand": "Samsung",
-        "model": "Samsung Galaxy S22 Ultra 5G / 512GB",
-        "storage": "512"
+        "model": "SAMSUNG GALAXY S20 ULTRA 5G 128GB",
+        "storage": "128"
     },
     "tradeUpData": {
         "postalCode": "5000"
