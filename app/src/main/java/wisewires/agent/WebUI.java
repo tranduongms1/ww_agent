@@ -422,4 +422,23 @@ public abstract class WebUI {
     public static boolean waitForUrlContains(String fraction, int seconds) {
         return wait(seconds).until(ExpectedConditions.urlContains(fraction));
     }
+
+    static void selectFirstOpt(WebElement elm) {
+        if (elm.getTagName().equals("mat-form-field")) {
+            selectFirstOpt(elm.findElement(By.cssSelector("mat-select")));
+            return;
+        } else if (elm.getTagName().equals("mat-select")) {
+            scrollToCenter(elm);
+            WebUI.delay(1);
+            int maxAttempts = 0;
+            while (maxAttempts < 2 && !elm.getAttribute("aria-expanded").equals("true")) {
+                elm.click();
+                WebUI.delay(1);
+                maxAttempts++;
+            }
+            String id = elm.getAttribute("id");
+            WebElement firstOpt = elm.findElement(By.xpath("//*[@id='%s-panel']//mat-option[1]".formatted(id)));
+            firstOpt.click();
+        }
+    }
 }

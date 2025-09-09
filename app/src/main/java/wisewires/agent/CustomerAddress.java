@@ -260,6 +260,10 @@ public class CustomerAddress {
                     "Colonia",
                     "Huyện",
                     "Област":
+                if (WebUI.isOneOfSites("IQ_AR", "IQ_KU")) {
+                    WebUI.selectFirstOpt(field);
+                    break;
+                }
                 if (field.getTagName().equals("input")) {
                     field.clear();
                     field.sendKeys(data.get("adminLevel3"));

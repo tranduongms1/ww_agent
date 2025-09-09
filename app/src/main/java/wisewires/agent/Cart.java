@@ -13,6 +13,8 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.lang.model.util.Elements;
+
 public abstract class Cart {
     static Logger logger = LoggerFactory.getLogger(Cart.class);
 
@@ -383,6 +385,9 @@ public abstract class Cart {
 
     static void guestCheckout(Context c) throws Exception {
         try {
+            if (WebUI.isOneOfSites("IQ_AR", "IQ_KU")) {
+                Cart.selectCityInCart();
+            }
             logger.info("Continue to checkout as guest");
             String to = """
                     [data-an-la='proceed to checkout:guest checkout'],
@@ -471,6 +476,34 @@ public abstract class Cart {
             });
         } catch (Exception e) {
             throw new Exception("Unable to select Country in Cart", e);
+        }
+    }
+
+    static void selectCityInCart() throws Exception {
+        try {
+            String dropDownCity = "#mat-select-serverApp0";
+            if (WebUI.waitElement(dropDownCity, 3) != null) {
+                WebUI.click(dropDownCity);
+            }
+            String cityItem = ".mdc-list-item";
+            List<WebElement> listCity = WebUI.findElements(cityItem);
+            if (listCity.size() > 0) {
+                for (WebElement city : listCity) {
+                    city.click();
+                    WebUI.delay(1);
+                    String btnCheckout = "button.sticky-cta-enabled";
+                    WebElement btnCheckoutElm = WebUI.waitElement(btnCheckout, 3);
+                    if (btnCheckoutElm.isEnabled()) {
+                        break;
+                    } else {
+                        WebUI.click(dropDownCity);
+                    }
+                }
+            } else {
+                throw new Exception("No city available to select");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to select city in Cart", e);
         }
     }
 
