@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 public class TradeInProcess {
     static Logger logger = LoggerFactory.getLogger(TradeInProcess.class);
 
-    static void selectBestDeviceConditions(List<List<WebElement>> questions, Context c) throws Exception {
+    static void selectBestDeviceConditions(Context c, List<List<WebElement>> questions) throws Exception {
         for (List<WebElement> options : questions) {
             WebElement opt = options.get(0);
             if (WebUI.isOneOfSites("CZ", "HK", "HK_EN", "NZ", "TR")) {

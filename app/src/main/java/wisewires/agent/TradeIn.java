@@ -319,7 +319,7 @@ public abstract class TradeIn {
         }
     }
 
-    static void selectDeviceConditions(WebElement modal, Context c) throws Exception {
+    static void selectDeviceConditions(Context c, WebElement modal) throws Exception {
         try {
             List<List<WebElement>> questions = new ArrayList<>();
             List<WebElement> elms = WebUI.waitElements(modal, By.cssSelector("""
@@ -334,7 +334,7 @@ public abstract class TradeIn {
                     questions.add(elm.findElements(by));
                 }
             }
-            TradeInProcess.selectBestDeviceConditions(questions, c);
+            TradeInProcess.selectBestDeviceConditions(c, questions);
         } catch (Exception e) {
             throw new Exception("Unable to select device conditions", e);
         }
@@ -452,7 +452,7 @@ public abstract class TradeIn {
                             break;
 
                         case "check device condition":
-                            selectDeviceConditions(modal, c);
+                            selectDeviceConditions(c, modal);
                             acceptTermsAndConditions(modal);
                             break;
 
