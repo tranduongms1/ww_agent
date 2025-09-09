@@ -56,6 +56,7 @@ public abstract class Cart {
                 PD.addTradeUp(c);
             }
             if (addedServices.contains("EWarranty")) {
+                c.mustEWProcess();
                 PD.addEWarranty(c);
             }
             PD.continueToCart();
@@ -121,6 +122,25 @@ public abstract class Cart {
             logger.info("Popup closed, Samsung Care+ added successfully");
         } catch (Exception e) {
             throw new Exception("Unable to add SC+ on cart page", e);
+        }
+    }
+
+    static void addEWarranty(Context c) throws Exception {
+        EWProcess p = c.ewProcess;
+        try {
+            String to = ".cart-item [data-an-la='add service:warranty']";
+            WebElement btn = WebUI.waitElement(to, 5);
+            WebUI.scrollToCenterAndClick(btn, 1000);
+            logger.info("E-Warranty option 'Yes' clicked");
+            EWPopup.waitForOpen(10);
+            //Handle E-Warranty Popup
+            EWPopup.selectFirstOption(p.selectOption);
+            EWPopup.acceptTermAndConditions();
+            EWPopup.clickConfirm();
+            EWPopup.waitForClose(10);
+            logger.info("E-Warranty added success on Cart page");
+        } catch (Exception e) {
+            throw new Exception("Unable to add e-warranty on Cart page");
         }
     }
 

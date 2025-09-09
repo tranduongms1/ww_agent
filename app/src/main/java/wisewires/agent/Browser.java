@@ -168,6 +168,14 @@ public abstract class Browser {
                     }
                     break;
                 }
+                if (tokens.get(0).equalsIgnoreCase("e-warranty")) {
+                    c.mustEWProcess();
+                    if (WebUI.getUrl().contains("/cart")) {
+                        Cart.addEWarranty(c);
+                    } else {
+                        PD.addEWarranty(c);
+                    }
+                }
                 if (tokens.contains("cart")) {
                     boolean mustReload = false;
                     class Item {

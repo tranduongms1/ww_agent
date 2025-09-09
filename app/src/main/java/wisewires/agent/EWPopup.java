@@ -60,6 +60,18 @@ public abstract class EWPopup {
         }
     }
 
+    static void selectFirstOption(WebElementSelector selector) throws Exception {
+        try {
+            String to = """
+                    .extended-warranty-popup-vd .pd-select-option__item,
+                    .modal__container .mat-mdc-radio-button""";
+            List<WebElement> elms = WebUI.waitElements(to, 5);
+            selector.apply(elms);
+        } catch (Exception e) {
+            throw new Exception("Unable to select E-Warranty option", e);
+        }
+    }
+
     static void clickConfirm() throws Exception {
         try {
             String to = """
