@@ -28,7 +28,7 @@ public abstract class Util {
             footer""";
 
     public static boolean isHTTP(String ipOrDomain) {
-        if (ipOrDomain.contains(":"))
+        if (ipOrDomain.contains(":") || ipOrDomain.contains("wisewires.com.vn"))
             return true;
         try {
             InetAddress address = InetAddress.getByName(ipOrDomain);
