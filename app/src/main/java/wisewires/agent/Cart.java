@@ -467,7 +467,7 @@ public abstract class Cart {
             });
             String email = c.sso.get("email");
             String password = c.sso.get("mk");
-            Object result = WebUI.wait(90, 1).withMessage("navigate to splash page").until(driver -> {
+            Object result = WebUI.wait(60).withMessage("navigate to splash page").until(driver -> {
                 String alert = getCartAlert();
                 if (alert != null) {
                     return new Exception(alert);
@@ -477,7 +477,6 @@ public abstract class Cart {
                     WebElement btn = WebUI.findElement(to);
                     btn.click();
                 }
-                WebUI.waitForUrlContains("https://account.samsung.com/iam/oauth2", 5);
                 try {
                     SSO.signInByEmail(email, password);
                 } catch (Exception e) {
