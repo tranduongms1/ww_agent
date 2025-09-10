@@ -232,7 +232,7 @@ public abstract class Cart {
             String btnApply = "[data-an-la='coupon:apply']";
             WebUI.click(btnApply);
             WebUI.delay(2);
-            WebUI.waitForNotDisplayed("mat-spinner", 10);
+            WebUI.waitForNotDisplayed("mat-spinner", 60);
         } catch (Exception e) {
             throw new Exception("Unable to apply voucher on cart page", e);
         }
@@ -451,6 +451,49 @@ public abstract class Cart {
         }
     }
 
+    static void ssoCheckout(Context c) throws Exception {
+        try {
+            logger.info("Continue to checkout as register");
+            String to = "[data-an-la='samsung account']";
+            WebUI.wait(10).until(d -> {
+                WebElement btn = WebUI.findElement(to);
+                if (btn == null) {
+                    btn = WebUI.findElement("[data-an-la='proceed to checkout']");
+                }
+                WebUI.scrollToCenter(btn);
+                WebUI.delay(1);
+                btn.click();
+                return true;
+            });
+            String email = c.sso.get("email");
+            String password = c.sso.get("mk");
+            Object result = WebUI.wait(90, 1).withMessage("navigate to splash page").until(driver -> {
+                String alert = getCartAlert();
+                if (alert != null) {
+                    return new Exception(alert);
+                }
+                String url = driver.getCurrentUrl();
+                if (url.contains("/guestlogin")) {
+                    WebElement btn = WebUI.findElement(to);
+                    btn.click();
+                }
+                WebUI.waitForUrlContains("https://account.samsung.com/iam/oauth2", 5);
+                try {
+                    SSO.signInByEmail(email, password);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return url.contains("/checkout/one");
+            });
+            if (result instanceof Exception) {
+                throw (Exception) result;
+            }
+            logger.info("Navigated to checkout page");
+        } catch (Exception e) {
+            throw new Exception("Unable to checkout as register", e);
+        }
+    }
+
     static void selecCountryInCart(Context c) throws Exception {
         try {
             String to = """
@@ -525,9 +568,5 @@ public abstract class Cart {
         } catch (Exception e) {
             throw new RuntimeException("Unable to select city in Cart", e);
         }
-    }
-
-    static void ssoCheckout(Context c) throws Exception {
-
     }
 }
