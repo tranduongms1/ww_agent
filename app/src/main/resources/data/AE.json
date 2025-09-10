@@ -1,254 +1,125 @@
 {
-    "stores": {
-        "smb": "/business",
-        "samsung_employee": "/multistore/aeepp/samsung_employee"
+  "stores": {
+    "smb": "/business",
+    "samsung_employee": "/multistore/aeepp/samsung_employee"
+  },
+  "apiEndpoints": {
+    "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+  },
+  "pointingUrls": {
+    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
+  },
+  "customerInfo": {
+    "email": "ellatest97@gmail.com",
+    "firstName": "first guest",
+    "lastName": "last guest",
+    "phoneCode": "",
+    "phoneNumber": "+971541234567",
+    "dateOfBirth": "01/04/1988"
+  },
+  "customerAddress": {
+    "apartment": "86",
+    "landmark": "Near Safa Park",
+    "line1": "Samsung Tower",
+    "line2": "Klein Bennebek",
+    "adminLevel2": "Abu Dhabi",
+    "adminLevel3": "Abu Al Abyad Island"
+  },
+  "billingAddress": {
+    "firstName": "billing",
+    "lastName": "last guest",
+    "phoneNumber": "+971541234589",
+    "apartment": "60",
+    "landmark": "Near Safa Park",
+    "line1": "Samsung Tower",
+    "line2": "Klein Bennebek",
+    "adminLevel2": "Abu Dhabi",
+    "adminLevel3": "Abu Dhabi Mall"
+  },
+  "tradeInData": {
+    "category": "Mobile Phone",
+    "brand": "Apple",
+    "model": "iPhone 16 Pro (2024)",
+    "storage": "512 GB",
+    "imei": "356938035643809"
+  },
+  "serviceData": {
+    "TradeIn": {
+      "serviceCode": "T-NORTHLADDER-TRADEIN",
+      "addToCartType": "append",
+      "provider": "NORTHLADDER",
+      "additionalInfos": {
+        "targetProductCode": "SM-F966BDBGMEA",
+        "provider": "NORTHLADDER",
+        "productCode": "deviceType:Mobile Phone:brandName:Samsung Mobile Phone:modelName:S Series Samsung Mobile Phone:Subseries:S23 Series S Series Samsung Mobile Phone:Model:S23 Ultra S23 Series S Series Samsung Mobile Phone:Storage:256 GB S23 Ultra S23 Series S Series Samsung Mobile Phone",
+        "responses": [
+          {
+            "name": "ae-tradein-1",
+            "value": "6499866b0e001b905543d98a"
+          }
+        ],
+        "orderEntryNumber": 0,
+        "selectionResponses": []
+      }
     },
-    "apiEndpoints": {
-        "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
-        "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
-    },
-    "pointingUrls": {
-        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
-    },
-    "customerInfo": {
-        "email": "ellatest97@gmail.com",
-        "firstName": "first guest",
-        "lastName": "last guest",
-        "phoneCode": "",
-        "phoneNumber": "+971541234567",
-        "dateOfBirth": "01/04/1988"
-    },
-    "customerAddress": {
-        "apartment": "86",
-        "landmark": "Near Safa Park",
-        "line1": "Samsung Tower",
-        "line2": "Klein Bennebek",
-        "adminLevel2": "Abu Dhabi",
-        "adminLevel3": "Abu Al Abyad Island"
-    },
-    "billingAddress": {
-        "firstName": "billing",
-        "lastName": "last guest",
-        "phoneNumber": "+971541234589",
-        "apartment": "60",
-        "landmark": "Near Safa Park",
-        "line1": "Samsung Tower",
-        "line2": "Klein Bennebek",
-        "adminLevel2": "Abu Dhabi",
-        "adminLevel3": "Abu Dhabi Mall"
-    },
-    "tradeInData": {
-        "category": "Mobile Phone",
-        "brand": "Apple",
-        "model": "iPhone 16 Pro (2024)",
-        "storage": "512 GB",
-        "imei": "356938035643809"
-    },
-    "serviceData": {
-        "TradeIn": {
-    "serviceCode": "T-NORTHLADDER-TRADEIN",
-    "addToCartType": "append",
-    "provider": "NORTHLADDER",
-    "additionalInfos": [
-        {
-            "key": "tradeinAmount",
-            "value": "2745.00"
-        },
-        {
-            "key": "tradeinAmountWithCurrency",
-            "value": "2,745.00 AED"
-        },
-        {
-            "key": "discountAmount",
-            "value": "2745.00"
-        },
-        {
-            "key": "discountAmountWithCurrency",
-            "value": "2,745.00 AED"
-        },
-        {
-            "key": "deviceType",
-            "value": "Mobile Phone"
-        },
-        {
-            "key": "brandName",
-            "value": "Samsung Mobile Phone"
-        },
-        {
-            "key": "modelName",
-            "value": "Z Series Samsung Mobile Phone"
-        },
-        {
-            "key": "Subseries",
-            "value": "Fold Series Z Series Samsung Mobile Phone"
-        },
-        {
-            "key": "Model",
-            "value": "Z Fold 6 Fold Series Z Series Samsung Mobile Phone"
-        },
-        {
-            "key": "Storage",
-            "value": "512 GB Z Fold 6 Fold Series Z Series Samsung Mobile Phone"
-        },
-        {
-            "key": "serviceDeviceType",
-            "value": "Mobile Phone"
-        },
-        {
-            "key": "serviceProductBrand",
-            "value": "Samsung Mobile Phone"
-        },
-        {
-            "key": "serviceProductModel",
-            "value": "Z Series Samsung Mobile Phone"
-        },
-        {
-            "key": "manufacturerID",
-            "value": "6687c24634694fcf91cfe668"
-        },
-        {
-            "key": "serviceProductName",
-            "value": "Samsung Z Series Fold Series,Z Fold 6,512 GB"
-        },
-        {
-            "key": "tradeinDeviceDisplayInfo",
-            "value": "Samsung Z Series Fold Series,Z Fold 6,512 GB"
-        },
-        {
-            "key": "PriceGrade",
-            "value": "[ {\n  \"id\" : \"6499866b0e001b905543d98a\",\n  \"label\" : {\n    \"en\" : \"Flawless\",\n    \"ar\" : \"بدون عيوب\"\n  },\n  \"price\" : 2745\n}, {\n  \"id\" : \"6499866b0e001b905543d989\",\n  \"label\" : {\n    \"en\" : \"Average\",\n    \"ar\" : \"متوسط\"\n  },\n  \"price\" : 2435\n}, {\n  \"id\" : \"6499866b0e001b905543d984\",\n  \"label\" : {\n    \"en\" : \"Broken But Working\",\n    \"ar\" : \"تحت المتوسط\"\n  },\n  \"price\" : 955\n} ]"
-        },
-        {
-            "key": "deviceSku",
-            "value": "T_MOBILEPHONE_SAMSUNG_ZSERIES_FOLDSERIES_ZFOLD6_512GB"
-        },
-        {
-            "key": "offerAmountBreakdown",
-            "value": "false"
-        },
-        {
-            "key": "additionalDiscount",
-            "value": "0.00"
-        },
-        {
-            "key": "additionalDiscountWithCurrency",
-            "value": "0.00 AED"
-        },
-        {
-            "key": "evaluationMessage",
-            "value": "<div>(Estimated old device value (cashback): 2,745.00 AED)</div>"
-        },
-        {
-            "key": "evaluationMessageWithoutAdditionalMessage",
-            "value": "<div>(Estimated old device value (cashback): 2,745.00 AED)</div>"
-        },
-        {
-            "key": "evaluationMessageWithoutAdditionalMessagecart",
-            "value": ""
-        },
-        {
-            "key": "offerAmountFormatted",
-            "value": "<div>(Estimated old device value (cashback): 2,745.00 AED)</div>"
-        },
-        {
-            "key": "totalTradeinAmount",
-            "value": "2745.0"
-        },
-        {
-            "key": "totalTradeinAmountFormatted",
-            "value": "2,745.00 AED"
-        },
-        {
-            "key": "questionAndAnswer",
-            "value": "[{\"name\":\"ae-tradein-1\",\"value\":\"6499866b0e001b905543d98a\"}]"
-        },
-        {
-            "key": "fault_note",
-            "value": "What is your device condition 6499866b0e001b905543d98a"
-        },
-        {
-            "key": "discountAmount-hash",
-            "value": "b2413e5b89cff8f12321edfe3199be43"
-        },
-        {
-            "key": "tradeInIdentifier",
-            "value": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b2tvIiwidHJhZGVJblBheUxvYWQiOiJ7XCJhZGRpdGlvbmFsSW5mb3NcIjpbe1wia2V5XCI6XCJ0cmFkZWluQW1vdW50XCIsXCJ2YWx1ZVwiOlwiMjc0NS4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInRyYWRlaW5BbW91bnRXaXRoQ3VycmVuY3lcIixcInZhbHVlXCI6XCIyLDc0NS4wMCBBRURcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJkaXNjb3VudEFtb3VudFwiLFwidmFsdWVcIjpcIjI3NDUuMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJkaXNjb3VudEFtb3VudFdpdGhDdXJyZW5jeVwiLFwidmFsdWVcIjpcIjIsNzQ1LjAwIEFFRFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRldmljZVR5cGVcIixcInZhbHVlXCI6XCJNb2JpbGUgUGhvbmVcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJicmFuZE5hbWVcIixcInZhbHVlXCI6XCJTYW1zdW5nIE1vYmlsZSBQaG9uZVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcIm1vZGVsTmFtZVwiLFwidmFsdWVcIjpcIlogU2VyaWVzIFNhbXN1bmcgTW9iaWxlIFBob25lXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiU3Vic2VyaWVzXCIsXCJ2YWx1ZVwiOlwiRm9sZCBTZXJpZXMgWiBTZXJpZXMgU2Ftc3VuZyBNb2JpbGUgUGhvbmVcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJNb2RlbFwiLFwidmFsdWVcIjpcIlogRm9sZCA2IEZvbGQgU2VyaWVzIFogU2VyaWVzIFNhbXN1bmcgTW9iaWxlIFBob25lXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiU3RvcmFnZVwiLFwidmFsdWVcIjpcIjUxMiBHQiBaIEZvbGQgNiBGb2xkIFNlcmllcyBaIFNlcmllcyBTYW1zdW5nIE1vYmlsZSBQaG9uZVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInNlcnZpY2VEZXZpY2VUeXBlXCIsXCJ2YWx1ZVwiOlwiTW9iaWxlIFBob25lXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwic2VydmljZVByb2R1Y3RCcmFuZFwiLFwidmFsdWVcIjpcIlNhbXN1bmcgTW9iaWxlIFBob25lXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwic2VydmljZVByb2R1Y3RNb2RlbFwiLFwidmFsdWVcIjpcIlogU2VyaWVzIFNhbXN1bmcgTW9iaWxlIFBob25lXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwibWFudWZhY3R1cmVySURcIixcInZhbHVlXCI6XCI2Njg3YzI0NjM0Njk0ZmNmOTFjZmU2NjhcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJzZXJ2aWNlUHJvZHVjdE5hbWVcIixcInZhbHVlXCI6XCJTYW1zdW5nIFogU2VyaWVzIEZvbGQgU2VyaWVzLFogRm9sZCA2LDUxMiBHQlwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInRyYWRlaW5EZXZpY2VEaXNwbGF5SW5mb1wiLFwidmFsdWVcIjpcIlNhbXN1bmcgWiBTZXJpZXMgRm9sZCBTZXJpZXMsWiBGb2xkIDYsNTEyIEdCXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiUHJpY2VHcmFkZVwiLFwidmFsdWVcIjpcIlsge1xcbiAgXFxcImlkXFxcIiA6IFxcXCI2NDk5ODY2YjBlMDAxYjkwNTU0M2Q5OGFcXFwiLFxcbiAgXFxcImxhYmVsXFxcIiA6IHtcXG4gICAgXFxcImVuXFxcIiA6IFxcXCJGbGF3bGVzc1xcXCIsXFxuICAgIFxcXCJhclxcXCIgOiBcXFwi2KjYr9mI2YYg2LnZitmI2KhcXFwiXFxuICB9LFxcbiAgXFxcInByaWNlXFxcIiA6IDI3NDVcXG59LCB7XFxuICBcXFwiaWRcXFwiIDogXFxcIjY0OTk4NjZiMGUwMDFiOTA1NTQzZDk4OVxcXCIsXFxuICBcXFwibGFiZWxcXFwiIDoge1xcbiAgICBcXFwiZW5cXFwiIDogXFxcIkF2ZXJhZ2VcXFwiLFxcbiAgICBcXFwiYXJcXFwiIDogXFxcItmF2KrZiNiz2LdcXFwiXFxuICB9LFxcbiAgXFxcInByaWNlXFxcIiA6IDI0MzVcXG59LCB7XFxuICBcXFwiaWRcXFwiIDogXFxcIjY0OTk4NjZiMGUwMDFiOTA1NTQzZDk4NFxcXCIsXFxuICBcXFwibGFiZWxcXFwiIDoge1xcbiAgICBcXFwiZW5cXFwiIDogXFxcIkJyb2tlbiBCdXQgV29ya2luZ1xcXCIsXFxuICAgIFxcXCJhclxcXCIgOiBcXFwi2KrYrdiqINin2YTZhdiq2YjYs9i3XFxcIlxcbiAgfSxcXG4gIFxcXCJwcmljZVxcXCIgOiA5NTVcXG59IF1cIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJkZXZpY2VTa3VcIixcInZhbHVlXCI6XCJUX01PQklMRVBIT05FX1NBTVNVTkdfWlNFUklFU19GT0xEU0VSSUVTX1pGT0xENl81MTJHQlwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcIm9mZmVyQW1vdW50QnJlYWtkb3duXCIsXCJ2YWx1ZVwiOlwiZmFsc2VcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJhZGRpdGlvbmFsRGlzY291bnRcIixcInZhbHVlXCI6XCIwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiYWRkaXRpb25hbERpc2NvdW50V2l0aEN1cnJlbmN5XCIsXCJ2YWx1ZVwiOlwiMC4wMCBBRURcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJldmFsdWF0aW9uTWVzc2FnZVwiLFwidmFsdWVcIjpcIjxkaXY-KEVzdGltYXRlZCBvbGQgZGV2aWNlIHZhbHVlIChjYXNoYmFjayk6IDIsNzQ1LjAwIEFFRCk8L2Rpdj5cIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJldmFsdWF0aW9uTWVzc2FnZVdpdGhvdXRBZGRpdGlvbmFsTWVzc2FnZVwiLFwidmFsdWVcIjpcIjxkaXY-KEVzdGltYXRlZCBvbGQgZGV2aWNlIHZhbHVlIChjYXNoYmFjayk6IDIsNzQ1LjAwIEFFRCk8L2Rpdj5cIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJldmFsdWF0aW9uTWVzc2FnZVdpdGhvdXRBZGRpdGlvbmFsTWVzc2FnZWNhcnRcIixcInZhbHVlXCI6XCJcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJvZmZlckFtb3VudEZvcm1hdHRlZFwiLFwidmFsdWVcIjpcIjxkaXY-KEVzdGltYXRlZCBvbGQgZGV2aWNlIHZhbHVlIChjYXNoYmFjayk6IDIsNzQ1LjAwIEFFRCk8L2Rpdj5cIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJ0b3RhbFRyYWRlaW5BbW91bnRcIixcInZhbHVlXCI6XCIyNzQ1LjBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJ0b3RhbFRyYWRlaW5BbW91bnRGb3JtYXR0ZWRcIixcInZhbHVlXCI6XCIyLDc0NS4wMCBBRURcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJxdWVzdGlvbkFuZEFuc3dlclwiLFwidmFsdWVcIjpcIlt7XFxcIm5hbWVcXFwiOlxcXCJhZS10cmFkZWluLTFcXFwiLFxcXCJ2YWx1ZVxcXCI6XFxcIjY0OTk4NjZiMGUwMDFiOTA1NTQzZDk4YVxcXCJ9XVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImZhdWx0X25vdGVcIixcInZhbHVlXCI6XCJXaGF0IGlzIHlvdXIgZGV2aWNlIGNvbmRpdGlvbiA2NDk5ODY2YjBlMDAxYjkwNTU0M2Q5OGFcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJkaXNjb3VudEFtb3VudC1oYXNoXCIsXCJ2YWx1ZVwiOlwiYjI0MTNlNWI4OWNmZjhmMTIzMjFlZGZlMzE5OWJlNDNcIixcImRlc2NyaXB0aW9uXCI6bnVsbH1dLFwibmV3VHJhZGVJbkN1c3RvbWVyXCI6ZmFsc2V9IiwiaWF0IjoxNzU2MTk1OTczLCJleHAiOjE3NTYxOTk1NzN9.Rm-sJovjCXu2tQTRpg1cYvFpvElR0KMIPcE_b_nMhc8-sCa7RwoETJyiDo0nyDdubtOzWBr2Be4nsriI9Xu1Ooia47tqzFwSrWcfgxL2m2YYcaEot74id2Q4vc9IlvMrKpzKHQlGUuhtiRick6iSQJ7G4I0apgE6aNquzOId3FpXCL30PppZCRh4yNx2SULAUILqLPtlzQt3ZYKmt4aN7Pt9UTBGvIAdhScSI19hcQXSkaDy5FyIdLrZYJ1EX7t6nvCwtS-3uEgufAEXRmf4JaEgHBDdrl1gYRliHrZbBbP59tp3nslqk5sweQl1m5pdOjdcSiWcusjo6t8qP9xjb2J9Hy-1cWwJ1CQgngqB1H8pO8wVI0vH_8jDT5DdIGXDBTMX_J2Z-VgtE25qgKwo0GATrjzuR42Eku1UmEWR3nro6NfE6DS_Aubed4orUt-C3ea9sk33s5ZEVv1-W9Nw7Fto91-FF6n30xEFxReNRw51shDulPeJp5MQp1M-4Fip2-Fq9-TNO41u7-4zXR6iDrrSD-3TvY1Un4ZyzIllFEodLh2a_Tw_jrB_WlqloOL-0nAjSuFn0Ug_Kb186HqOOcs_REpGB_YlcG0aqUlCAVDI8URdfOwIj1GrbWsfM-vGsimACtbPFwzfMMosLcK7RlK5Tx038Cya5VQKP4DM4D4"
-        },
-        {
-            "key": "productName",
-            "value": "Trade-in device"
-        },
-        {
-            "key": "showWarining",
-            "value": "true"
-        },
-        {
-            "key": "additionalInfoForfeitedAmount",
-            "value": "395"
-        },
-        {
-            "key": "IMEI",
-            "value": ""
-        }
-    ]
-        },
-        "SMC": {
-            "categoryCode": "insurance"
-        }
-    },
-    "creditCardData": {
-        "cardNumber": "4242 4242 4242 4242",
-        "holderName": "ae",
-        "expiryDate": "03/30",
-        "cvv": "123",
-        "password": "Checkout1!"
-    },
-    "amexCardData": {
-        "cardNumber": "3411 1111 1111 111",
-        "holderName": "ae",
-        "expiryDate": "03/30",
-        "cvv": "1234"
-    },
-    "masterCardData": {
-        "cardNumber": "5123450000000008",
-        "holderName": "ae",
-        "expiryDate": "01/35",
-        "cvv": "123"
-    },
-    "payFortData": {
-        "country": "United Arab Emirates",
-        "bank": "Emirates NBD UAE",
-        "cardNumber": "4188870000000002",
-        "holderName": "ae",
-        "expiryMonth": "3",
-        "expiryYear": "30",
-        "cvv": "737"
-    },
-    "installmentPlanData": {
-        "cardType": "Visa",
-        "cardNumber": "4111111111111111",
-        "holderName": "ae",
-        "expiryMonth": "03",
-        "expiryYear": "2030",
-        "cvv": "737"
-    },
-    "tabbyData": {
-        "email": "card.success@tabby.ai",
-        "phone": "500000001",
-        "otp": "8888"
-    },
-    "etihadGuestPayData": {
-        "memberID": "420000021814",
-        "password": "Pointspay@123",
-        "cardNumber": "4242424242424242",
-        "expiryDate": "0330",
-        "cvv": "123"
-    },
-    "tamaraData": {
-        "phone": "544337866",
-        "cardNumber": "4242424242424242",
-        "expiryDate": "0330",
-        "cvv": "123",
-        "password": "Checkout1!"
+    "SMC": {
+      "categoryCode": "insurance"
     }
+  },
+  "creditCardData": {
+    "cardNumber": "4242 4242 4242 4242",
+    "holderName": "ae",
+    "expiryDate": "03/30",
+    "cvv": "123",
+    "password": "Checkout1!"
+  },
+  "amexCardData": {
+    "cardNumber": "3411 1111 1111 111",
+    "holderName": "ae",
+    "expiryDate": "03/30",
+    "cvv": "1234"
+  },
+  "masterCardData": {
+    "cardNumber": "5123450000000008",
+    "holderName": "ae",
+    "expiryDate": "01/35",
+    "cvv": "123"
+  },
+  "payFortData": {
+    "country": "United Arab Emirates",
+    "bank": "Emirates NBD UAE",
+    "cardNumber": "4188870000000002",
+    "holderName": "ae",
+    "expiryMonth": "3",
+    "expiryYear": "30",
+    "cvv": "737"
+  },
+  "installmentPlanData": {
+    "cardType": "Visa",
+    "cardNumber": "4111111111111111",
+    "holderName": "ae",
+    "expiryMonth": "03",
+    "expiryYear": "2030",
+    "cvv": "737"
+  },
+  "tabbyData": {
+    "email": "card.success@tabby.ai",
+    "phone": "500000001",
+    "otp": "8888"
+  },
+  "etihadGuestPayData": {
+    "memberID": "420000021814",
+    "password": "Pointspay@123",
+    "cardNumber": "4242424242424242",
+    "expiryDate": "0330",
+    "cvv": "123"
+  },
+  "tamaraData": {
+    "phone": "544337866",
+    "cardNumber": "4242424242424242",
+    "expiryDate": "0330",
+    "cvv": "123",
+    "password": "Checkout1!"
+  }
 }

@@ -52,8 +52,13 @@
             "additionalInfos": {
                 "targetProductCode": "SM-F966BDBGMEA",
                 "provider": "NORTHLADDER",
-                "productCode": "deviceType:Mobile Phone:brandName:Samsung Mobile Phone:modelName:A Series Samsung Mobile Phone:Subseries:A55 Series A Series Samsung Mobile Phone:Model:A55 A55 Series A Series Samsung Mobile Phone:Storage:256 GB A55 A55 Series A Series Samsung Mobile Phone",
-                "responses": [],
+                "productCode": "deviceType:Mobile Phone:brandName:Samsung Mobile Phone:modelName:S Series Samsung Mobile Phone:Subseries:S23 Series S Series Samsung Mobile Phone:Model:S23 Ultra S23 Series S Series Samsung Mobile Phone:Storage:256 GB S23 Ultra S23 Series S Series Samsung Mobile Phone",
+                "responses": [
+                    {
+                        "name": "ae-tradein-1",
+                        "value": "6499866b0e001b905543d98a"
+                    }
+                ],
                 "orderEntryNumber": 0,
                 "selectionResponses": []
             }
