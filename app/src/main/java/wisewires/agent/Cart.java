@@ -354,7 +354,8 @@ public abstract class Cart {
                     app-cart-item-remove-modal [data-an-tr='cart-product-remove'],
                     app-remove-service-modal [data-an-tr='cart-product-remove'],
                     #removeEntryConfirmationModal button.js-remove-entry,
-                    .modal-remove-service .trade-in-remove-main""";
+                    .modal-remove-service .trade-in-remove-main,
+                    .cart-item-remove [data-an-la="remove-item"]""";
             WebElement btn = WebUI.waitElement(to, 3);
             if (btn != null) {
                 btn.click();
@@ -388,6 +389,20 @@ public abstract class Cart {
             removeConfirmYes();
         } catch (Exception e) {
             throw new Exception("Unable to remove cart item", e);
+        }
+    }
+
+    static void removeService(String service) throws Exception {
+        try {
+            String to = "[data-modelname*='%s'] button[data-an-la='remove item']".formatted(service);
+            WebElement btn = WebUI.waitElement(to, 3);
+            WebUI.scrollToCenter(btn);
+            WebUI.delay(1);
+            btn.click();
+            removeConfirmYes();
+            logger.info("Service %s removed successfully".formatted(service));
+        } catch (Exception e) {
+            throw new Exception("Unable to remove service %s".formatted(service), e);
         }
     }
 

@@ -362,7 +362,7 @@ public abstract class Browser {
 
             case "remove": {
                 leading = Tokens.removeLeading(tokens, "product", "item", "by", "with", "sku",
-                        "at", "line", "from", "cart");
+                        "at", "line", "from", "cart", "for", "service");
                 if (leading.contains("line")) {
                     int line = Integer.parseInt(tokens.remove(0));
                     Cart.removeItemByIndex(line);
@@ -370,6 +370,21 @@ public abstract class Browser {
                 if (leading.contains("sku")) {
                     String sku = tokens.remove(0).toUpperCase();
                     Cart.removeItemBySKU(sku);
+                }
+                if (leading.contains("service")) {
+                    String service = tokens.remove(0).toUpperCase();
+                    if (service.equalsIgnoreCase("SC+")) {
+                        service = "SMC";
+                    } else if (service.equalsIgnoreCase("E-WARRANTY")) {
+                        service = "WARRANTY";
+                    } else if (service.equalsIgnoreCase("TRADE-IN")) {
+                        service = "TRADE-IN";
+                    } else if (service.equalsIgnoreCase("TRADE-UP")) {
+                        service = "TRADE-UP";
+                    } else if (service.equalsIgnoreCase("SIM")) {
+                        service = "SIM";
+                    }
+                    Cart.removeService(service);
                 }
                 break;
             }
