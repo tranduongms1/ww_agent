@@ -78,6 +78,30 @@ public abstract class BC {
         }
     }
 
+    static void addSIM(Context c) throws Exception {
+        SIMProcess p = c.simProcess;
+        try {
+            String to = "[an-la='tariff:apply']";
+            WebElement elm = WebUI.waitElement(to, 10);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            WebUI.click(to);
+            logger.info("Add SIM button clicked");
+            SIMPopup.waitForOpen(10);
+            logger.info("Add SIM popup opened");
+            SIMPopup.selectProvider(p.selectProvider);
+            SIMPopup.selectOption(p.selectOption);
+            SIMPopup.clickContinue();
+            WebUI.delay(3);
+            SIMPopup.acceptTermAndConditions();
+            SIMPopup.clickConfirm();
+            SIMPopup.waitForClose(10);
+            logger.info("Popup closed, SIM added successfully");
+        } catch (Exception e) {
+            throw new Exception("Unable to add SIM on BC page", e);
+        }
+    }
+
     static boolean shouldSelectSCP() {
         String to = """
                 .hubble-product__options-list-wrap:not([style*="hidden"]) .js-smc,

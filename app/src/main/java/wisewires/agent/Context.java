@@ -20,6 +20,7 @@ public class Context {
     public HashMap<String, Object> testData;
     public SCPProcess scpProcess;
     public EWProcess ewProcess;
+    public SIMProcess simProcess;
     public PFProcess pfProcess;
     public CheckoutProcess checkoutProcess;
 
@@ -142,6 +143,13 @@ public class Context {
         return this.ewProcess;
     }
 
+    public SIMProcess mustSIMProcess() {
+        if (this.simProcess == null) {
+            this.simProcess = new SIMProcess();
+        }
+        return this.simProcess;
+    }
+
     public CheckoutProcess mustCheckoutProcess() {
         if (this.checkoutProcess == null) {
             this.checkoutProcess = new CheckoutProcess();
@@ -155,6 +163,7 @@ public class Context {
         scpProcess = null;
         ewProcess = null;
         pfProcess = null;
+        simProcess = null;
         checkoutProcess = null;
 
         cookieReady = false;

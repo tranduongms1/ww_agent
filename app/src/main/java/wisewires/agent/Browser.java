@@ -176,6 +176,11 @@ public abstract class Browser {
                         PD.addEWarranty(c);
                     }
                 }
+                if (tokens.get(0).equalsIgnoreCase("sim")) {
+                    c.mustSIMProcess();
+                    BC.addSIM(c);
+                    break;
+                }
                 if (tokens.contains("cart")) {
                     boolean mustReload = false;
                     class Item {

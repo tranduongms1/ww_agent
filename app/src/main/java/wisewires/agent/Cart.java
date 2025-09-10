@@ -68,6 +68,10 @@ public abstract class Cart {
                 c.mustSCPProcess();
                 BC.addSCPlus(c);
             }
+            if (addedServices.contains("SIM")) {
+                c.mustSIMProcess();
+                BC.addSIM(c);
+            }
             BC.continueToCart();
         }
         // FIX: When close popup on AEM but not on Hybrid
