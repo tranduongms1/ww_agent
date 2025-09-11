@@ -14,6 +14,7 @@
         "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "exchangeEndpoints": {
+        "prod": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/esp",
         "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/esp"
     },
     "customerInfo": {

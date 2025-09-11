@@ -12,6 +12,9 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/fin"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -73,6 +76,18 @@
                 "orderEntryNumber": 0,
                 "selectionResponses": []
             }
+        },
+        "TradeUp": {
+            "store_id": "fi",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "57F29C10-6D7A-4B67-BC44-264DB19C23BB",
+            "type": "TradeIn",
+            "sku": "QE75QN700BTXXC",
+            "delayed_gratification": false
         },
         "SMC": {
             "categoryCode": "insurance"

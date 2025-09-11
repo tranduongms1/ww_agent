@@ -13,6 +13,9 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
+    "exchangeEndpoints": {
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/che"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -77,9 +80,9 @@
                     "BROKEN": "NO"
                 }
             },
-            "device_id": "39A18A05-CB09-46BA-B021-71E2F4D54735",
+            "device_id": "F1504451-D2CE-4002-8A40-4E2E99EB5205",
             "type": "TradeIn",
-            "sku": "QE50QN90AATXXN",
+            "sku": "QE75QN800ATXZU",
             "delayed_gratification": false
         },
         "SMC": {
