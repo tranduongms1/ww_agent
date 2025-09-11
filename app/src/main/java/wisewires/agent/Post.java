@@ -71,7 +71,7 @@ public class Post {
     }
 
     public String getRootId() {
-        return root_id;
+        return root_id != null ? root_id : "";
     }
 
     public void setRootId(String rootId) {

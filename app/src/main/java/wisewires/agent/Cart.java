@@ -13,8 +13,6 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.lang.model.util.Elements;
-
 public abstract class Cart {
     static Logger logger = LoggerFactory.getLogger(Cart.class);
 
