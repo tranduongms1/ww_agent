@@ -431,7 +431,7 @@ public abstract class TradeIn {
     }
 
     static void process(Context c) throws Exception {
-        Map<String, String> data = c.getProfile().getTradeInData();
+        Map<String, String> data = c.tradeInProcess.data;
         Exception error = null;
         int errorCount = 0;
         while (errorCount < 5) {

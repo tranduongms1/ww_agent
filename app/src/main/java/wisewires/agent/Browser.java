@@ -100,7 +100,7 @@ public abstract class Browser {
 
             case "hover": {
                 Tokens.removeLeading(tokens, "to");
-                leading = Tokens.removeLeading(tokens, "human","icon");
+                leading = Tokens.removeLeading(tokens, "human", "icon");
                 if (leading.contains("human")) {
                     GNB.hoverHumanIcon();
                 }
@@ -142,6 +142,7 @@ public abstract class Browser {
 
             case "add": {
                 if (tokens.get(0).equalsIgnoreCase("trade-in")) {
+                    c.mustTradeInProcess();
                     if (WebUI.getUrl().contains("/cart")) {
                         Cart.addTradeIn(c);
                     } else if (Util.isPDPage()) {

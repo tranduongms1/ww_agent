@@ -1,6 +1,7 @@
 package wisewires.agent;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -8,6 +9,12 @@ import org.slf4j.LoggerFactory;
 
 public class TradeInProcess {
     static Logger logger = LoggerFactory.getLogger(TradeInProcess.class);
+
+    public Map<String, String> data;
+
+    TradeInProcess(Map<String, String> data) {
+        this.data = data;
+    }
 
     static void selectBestDeviceConditions(Context c, List<List<WebElement>> questions) throws Exception {
         for (List<WebElement> options : questions) {

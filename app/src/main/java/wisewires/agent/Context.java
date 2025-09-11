@@ -18,6 +18,7 @@ public class Context {
     public boolean ssoSignedIn = false;
 
     public HashMap<String, Object> testData;
+    public TradeInProcess tradeInProcess;
     public SCPProcess scpProcess;
     public EWProcess ewProcess;
     public SIMProcess simProcess;
@@ -127,6 +128,14 @@ public class Context {
     public String getTariffEndpoint() throws Exception {
         Map<String, String> endpoints = getProfile().getTariffEndpoints();
         return endpoints.get(env);
+    }
+
+    public TradeInProcess mustTradeInProcess() throws Exception {
+        if (this.tradeInProcess == null) {
+            Map<String, String> data = getProfile().getTradeInData();
+            this.tradeInProcess = new TradeInProcess(data);
+        }
+        return this.tradeInProcess;
     }
 
     public SCPProcess mustSCPProcess() {

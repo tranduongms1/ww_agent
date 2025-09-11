@@ -48,6 +48,7 @@ public abstract class Cart {
                 PD.addSCPlus(c);
             }
             if (addedServices.contains("TradeIn")) {
+                c.mustTradeInProcess();
                 PD.addTradeIn(c);
             }
             if (addedServices.contains("TradeUp")) {
@@ -60,6 +61,7 @@ public abstract class Cart {
             PD.continueToCart();
         } else {
             if (addedServices.contains("TradeIn")) {
+                c.mustTradeInProcess();
                 BC.addTradeIn(c);
             }
             if (addedServices.contains("SC+")) {
