@@ -158,7 +158,8 @@ public abstract class TradeUp {
                                         "modelFormControl",
                                         "Select Size",
                                         "Selecteer maat",
-                                        "Wähle die Grösse":
+                                        "Wähle die Grösse",
+                                        "Choisis une taille":
                                     select(elm, data.get("model"));
                                     break;
 
@@ -167,7 +168,8 @@ public abstract class TradeUp {
                                         "brandFormControl",
                                         "Select Brand",
                                         "Selecteer merk",
-                                        "Wähle die Marke":
+                                        "Wähle die Marke",
+                                        "Choisis la marque":
                                     select(elm, data.get("brand"));
                                     break;
                             }
