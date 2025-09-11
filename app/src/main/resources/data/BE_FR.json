@@ -1,0 +1,126 @@
+{
+    "stores": {
+        "besme": "/business",
+        "samsungmembers_be": "/multistore/bm/samsungmembers_be",
+        "amg_be": "/multistore/bp/amg_be",
+        "healthcare_employees_be": "/multistore/bp/healthcare_employees_be",
+        "employee_be": "/multistore/be/employee_be"
+    },
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=be&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/be_fr/cart"
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn2-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "prod": "https://p1.ecom.samsung.com/v1/exchange/api/bel",
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/bel"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneCode": "+32",
+        "phoneNumber": "1002764784",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "Industriezone Ring 6A 4000 3500 Hasselt",
+        "line1": "Industriezone Ring 4000",
+        "line2": "6",
+        "postalCode": "3500",
+        "adminLevel2": "Hasselt"
+    },
+    "billingAddress": {
+        "country": "België",
+        "firstName": "Diff",
+        "lastName": "Bill",
+        "phoneNumber": "1002764784",
+        "searchAddress": "Industriezone Noord 3000 3016 3500 Hasselt",
+        "line1": "Industriezone Noord 3000",
+        "line2": "3016",
+        "postalCode": "3500",
+        "adminLevel2": "Hasselt"
+    },
+    "tradeInData": {
+        "category": "Téléphones Portables",
+        "brand": "Samsung",
+        "model": "GALAXY S23 ULTRA",
+        "storage": "512GB",
+        "imei": "301296444933956"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-L8P-TRADEIN",
+            "addToCartType": "append",
+            "provider": "L8P",
+            "additionalInfos": {
+                "targetProductCode": "SM-F966BZKBEUB",
+                "provider": "L8P",
+                "productCode": "deviceType:mobile phone:model:T_MOBILEPHONE_SAMSUNG_GALAXYS24:capacity:L08631",
+                "responses": [
+                    {
+                        "name": "screen_working||mobile phone_be",
+                        "value": "true"
+                    },
+                    {
+                        "name": "data_wiped||mobile phone_be",
+                        "value": "true"
+                    },
+                    {
+                        "name": "device_working||mobile phone_be",
+                        "value": "true"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "be",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "0DD76B7D-4228-4F46-AAE2-E8DA59DCE8D0",
+            "type": "TradeIn",
+            "sku": "QE65S94DATXXN",
+            "delayed_gratification": false
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "be",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555444433331111",
+        "holderName": "be",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "be",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "be",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
+    },
+    "klarnaData": {
+        "phoneNumber": "+41762600000",
+        "otp": "000000"
+    }
+}
