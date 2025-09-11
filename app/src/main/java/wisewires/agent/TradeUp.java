@@ -94,8 +94,7 @@ public abstract class TradeUp {
     static void acceptTermsAndConditions(WebElement modal) throws Exception {
         List<WebElement> elms = WebUI.findElements(modal, By.cssSelector("""
                 .vd-trade-in-popup__agree .checkbox-v2,
-                .mdc-checkbox:has(+ label .trade-up__tc),
-                .mdc-checkbox:has(input[type="checkbox"]) >.mdc-checkbox__background
+                .mdc-checkbox:has(+ label .trade-up__tc)
                 """));
         for (WebElement elm : elms) {
             if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
@@ -158,7 +157,8 @@ public abstract class TradeUp {
                                         "model",
                                         "modelFormControl",
                                         "Select Size",
-                                        "Selecteer maat":
+                                        "Selecteer maat",
+                                        "Wähle die Grösse":
                                     select(elm, data.get("model"));
                                     break;
 
@@ -166,7 +166,8 @@ public abstract class TradeUp {
                                         "brand",
                                         "brandFormControl",
                                         "Select Brand",
-                                        "Selecteer merk":
+                                        "Selecteer merk",
+                                        "Wähle die Marke":
                                     select(elm, data.get("brand"));
                                     break;
                             }
