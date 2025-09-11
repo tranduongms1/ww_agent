@@ -240,6 +240,48 @@ public abstract class Cart {
         }
     }
 
+    static void removeVoucher() throws Exception {
+        try {
+            logger.info("Removing applied voucher code");
+            String btnRemove = """
+                    [data-an-la="promo code:delete"]
+                    """;
+            WebElement elm = WebUI.findElements(btnRemove)
+                    .stream()
+                    .filter(WebElement::isDisplayed)
+                    .findFirst()
+                    .orElse(null);
+            elm.click();
+            WebUI.waitForNotDisplayed(".voucher-applied-code", 15);
+        } catch (Exception e) {
+            throw new Exception("Unable to remove voucher code" + e);
+        }
+    }
+
+    static void removeAllVoucher() throws Exception {
+        try {
+            logger.info("Removing all applied voucher code");
+            String btnRemoves = """
+                    [data-an-la="promo code:delete"]
+                    """;
+            List<WebElement> elms = WebUI.findElements(btnRemoves)
+                    .stream()
+                    .filter(WebElement::isDisplayed)
+                    .toList();
+            for (WebElement elm : elms) {
+                elm.click();
+                WebUI.delay(2);
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to remove all voucher code" + e);
+        }
+
+    }
+
+    static String getVoucher() {
+        return "";
+    }
+
     static int getItemQty(int line) {
         String to = ".cart-item-list:nth-child(%s) input.input-qty".formatted(line);
         WebElement input = WebUI.waitElement(to, 3);

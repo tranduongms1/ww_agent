@@ -391,6 +391,18 @@ public abstract class Browser {
                         Cart.removeService(service);
                     }
                 }
+                if (tokens.size() >= 1 && tokens.get(0).equalsIgnoreCase("voucher")) {
+                    Cart.removeVoucher();
+                    Tokens.removeLeading(tokens, "voucher");
+                    break;
+                }
+                if (tokens.size() >= 2
+                        && tokens.get(0).equalsIgnoreCase("all")
+                        && tokens.get(1).equalsIgnoreCase("voucher")) {
+                    Cart.removeAllVoucher();
+                    Tokens.removeLeading(tokens, "all", "voucher");
+                    break;
+                }
                 break;
             }
 
