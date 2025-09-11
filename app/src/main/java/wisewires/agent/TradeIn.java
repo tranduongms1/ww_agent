@@ -50,7 +50,8 @@ public abstract class TradeIn {
         WebElement elm = WebUI.waitElement(modal, By.cssSelector("""
                 .hubble-tradein-popup__device-choose-wrap,
                 .trade-in-popup__close,
-                .trade-in-popup-v3__close,
+                .trade-in-popup-v3__btn-continue,
+                .trade-in-popup-v3__btn-apply,
                 .modal__close"""), 5);
         if (elm != null) {
             String attr = WebUI.getDomAttribute(elm, "an-la", "data-an-la", "class");
@@ -276,6 +277,7 @@ public abstract class TradeIn {
                         "Избери производител на устройството",
                         "ブランド名",
                         "Merk",
+                        "Marke",
                         "แบรนด์":
                     selectBrand(elm, data.get("brand"));
                     break;
