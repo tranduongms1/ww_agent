@@ -245,7 +245,8 @@ public abstract class TradeIn {
                 mat-radio-group,
                 mat-expansion-panel,
                 mat-form-field:has([formcontrolname]),
-                .manual-search_para"""));
+                .manual-search_para,
+                .hubble-tradein-popup__device-choose"""));
         for (WebElement elm : elms) {
             if (!elm.isDisplayed()) {
                 continue;
@@ -274,7 +275,8 @@ public abstract class TradeIn {
                         "¿Qué marca es?",
                         "Избери производител на устройството",
                         "ブランド名",
-                        "Merk":
+                        "Merk",
+                        "แบรนด์":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -295,7 +297,8 @@ public abstract class TradeIn {
                         "Избери модел на устройството",
                         "モデル名",
                         "Fashion Model",
-                        "Le modèle":
+                        "Le modèle",
+                        "รุ่น":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -310,7 +313,8 @@ public abstract class TradeIn {
                         "Taille de l'espace de stockage",
                         "Speichergrösse",
                         "ストレージ",
-                        "Geheugen":
+                        "Geheugen",
+                        "ความจุ":
                     selectStorage(elm, data.get("storage"));
                     break;
 
