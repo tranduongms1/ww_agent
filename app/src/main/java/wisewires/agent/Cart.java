@@ -135,7 +135,7 @@ public abstract class Cart {
             WebUI.scrollToCenterAndClick(btn, 1000);
             logger.info("E-Warranty option 'Yes' clicked");
             EWPopup.waitForOpen(10);
-            //Handle E-Warranty Popup
+            // Handle E-Warranty Popup
             EWPopup.selectFirstOption(p.selectOption);
             EWPopup.acceptTermAndConditions();
             EWPopup.clickConfirm();
@@ -231,8 +231,12 @@ public abstract class Cart {
             String input = "[formcontrolname='couponCode']";
             WebUI.fill(input, voucher);
             WebUI.delay(1);
-            String btnApply = "[data-an-la='coupon:apply']";
-            WebUI.click(btnApply);
+            String btnApply = """
+                    [data-an-la='coupon:apply'],
+                    [data-an-la="promo code:apply"]
+                    """;
+            WebElement btn = WebUI.findElement(btnApply);
+            btn.click();
             WebUI.delay(2);
             WebUI.waitForNotDisplayed("mat-spinner", 60);
         } catch (Exception e) {
@@ -448,7 +452,8 @@ public abstract class Cart {
 
     static void removeServiceByIndex(String service, int Line) throws Exception {
         try {
-            String to = ".cart-item-list:nth-child(%s) [data-modelname*='%s'] button[data-an-la='remove item']".formatted(Line, service);
+            String to = ".cart-item-list:nth-child(%s) [data-modelname*='%s'] button[data-an-la='remove item']"
+                    .formatted(Line, service);
             WebElement btn = WebUI.waitElement(to, 3);
             WebUI.scrollToCenter(btn);
             WebUI.delay(1);
