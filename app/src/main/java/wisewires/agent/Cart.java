@@ -518,6 +518,9 @@ public abstract class Cart {
                         popup.click();
                     }
                 }
+                if (url.contains("contactless/login")) {
+                    WebUI.click("[data-an-tr='account-login'][data-an-la='guest']");
+                }
                 return url.contains("/checkout/one");
             });
             if (result instanceof Exception) {

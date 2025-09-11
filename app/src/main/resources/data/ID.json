@@ -1,7 +1,9 @@
 {
     "stores": {
         "smb": "/business",
-        "idepp": "/multistore/idepp/samsung_alumni/"
+        "idepp": "/multistore/idepp/samsung_alumni/",
+        "sein_o2o": "/multistore/idb2c/sein_o2o",
+        "id_ea_oe": "/multistore/idb2c/id_ea_oe"
     },
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=id&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/id/cart"
