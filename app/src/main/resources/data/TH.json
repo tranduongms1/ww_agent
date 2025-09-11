@@ -48,72 +48,40 @@
             "serviceCode": "T-REMOBILE-TRADEIN",
             "addToCartType": "append",
             "provider": "REMOBILE",
-            "additionalInfos": [
-                {
-                    "key": "discountAmount",
-                    "value": "750.00"
-                },
-                {
-                    "key": "discountAmountWithCurrency",
-                    "value": "฿750.00"
-                },
-                {
-                    "key": "additionalDiscount",
-                    "value": "0.0"
-                },
-                {
-                    "key": "deviceSku",
-                    "value": "T-Apple-iPhone-13-512GB"
-                },
-                {
-                    "key": "totalTradeinAmount",
-                    "value": "750.0"
-                },
-                {
-                    "key": "totalTradeinAmountFormatted",
-                    "value": "฿750.00"
-                },
-                {
-                    "key": "evaluationMessage",
-                    "value": "ราคาส่วนลดทั้งหมด: ฿750.00"
-                },
-                {
-                    "key": "offerAmountFormatted",
-                    "value": "ราคาส่วนลดทั้งหมด: ฿750.00"
-                },
-                {
-                    "key": "serviceProductModel",
-                    "value": "T-Apple-iPhone-13-512GB"
-                },
-                {
-                    "key": "discountAmount-hash",
-                    "value": "979006cf50d833bd471e146482a36711"
-                },
-                {
-                    "key": "grade",
-                    "value": "D"
-                },
-                {
-                    "key": "tradeinDeviceDisplayInfo",
-                    "value": "iPhone 13 | 512GB"
-                },
-                {
-                    "key": "fault_note",
-                    "value": "tradein-Q2 false|tradein-Q4 true|tradein-Q3 true|tradein-Q5 true|tradein-Q7 true"
-                },
-                {
-                    "key": "tradeInIdentifier",
-                    "value": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b2tvIiwidHJhZGVJblBheUxvYWQiOiJ7XCJhZGRpdGlvbmFsSW5mb3NcIjpbe1wia2V5XCI6XCJkaXNjb3VudEFtb3VudFwiLFwidmFsdWVcIjpcIjc1MC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRpc2NvdW50QW1vdW50V2l0aEN1cnJlbmN5XCIsXCJ2YWx1ZVwiOlwi4Li_NzUwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiYWRkaXRpb25hbERpc2NvdW50XCIsXCJ2YWx1ZVwiOlwiMC4wXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZGV2aWNlU2t1XCIsXCJ2YWx1ZVwiOlwiVC1BcHBsZS1pUGhvbmUtMTMtNTEyR0JcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJ0b3RhbFRyYWRlaW5BbW91bnRcIixcInZhbHVlXCI6XCI3NTAuMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInRvdGFsVHJhZGVpbkFtb3VudEZvcm1hdHRlZFwiLFwidmFsdWVcIjpcIuC4vzc1MC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImV2YWx1YXRpb25NZXNzYWdlXCIsXCJ2YWx1ZVwiOlwi4Lij4Liy4LiE4Liy4Liq4LmI4Lin4LiZ4Lil4LiU4LiX4Lix4LmJ4LiH4Lir4Lih4LiUOiDguL83NTAuMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJvZmZlckFtb3VudEZvcm1hdHRlZFwiLFwidmFsdWVcIjpcIuC4o-C4suC4hOC4suC4quC5iOC4p-C4meC4peC4lOC4l-C4seC5ieC4h-C4q-C4oeC4lDog4Li_NzUwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwic2VydmljZVByb2R1Y3RNb2RlbFwiLFwidmFsdWVcIjpcIlQtQXBwbGUtaVBob25lLTEzLTUxMkdCXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZGlzY291bnRBbW91bnQtaGFzaFwiLFwidmFsdWVcIjpcIjk3OTAwNmNmNTBkODMzYmQ0NzFlMTQ2NDgyYTM2NzExXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZ3JhZGVcIixcInZhbHVlXCI6XCJEXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwidHJhZGVpbkRldmljZURpc3BsYXlJbmZvXCIsXCJ2YWx1ZVwiOlwiaVBob25lIDEzIHwgNTEyR0JcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJmYXVsdF9ub3RlXCIsXCJ2YWx1ZVwiOlwidHJhZGVpbi1RMiBmYWxzZXx0cmFkZWluLVE0IHRydWV8dHJhZGVpbi1RMyB0cnVlfHRyYWRlaW4tUTUgdHJ1ZXx0cmFkZWluLVE3IHRydWVcIixcImRlc2NyaXB0aW9uXCI6bnVsbH1dLFwibmV3VHJhZGVJbkN1c3RvbWVyXCI6ZmFsc2V9IiwiaWF0IjoxNzQ4ODUxOTgxLCJleHAiOjE3NDg4NTU1ODF9.qYBloFQlNc21IhwBXjMhMfc8eQ_lrkpf9zUwYItVx97BrfLZBLAKZb6CLvMc9xmJ6XDDfWXK-V6xKQd9I1E_ZDf4llyM6iFmiGSyiFohgHOwfpzAJt57v7WpJmcD87GSgCCOdvyaHypkMEnYNv89-7VZ1ugtirhD30A8TFJWt4T9njoKrVdNaOII077PaUm78eRGJpGPAxIRYPjpOCsAIqzCHtoY6HZtPfrHM_tKwFVx44U2TDqkISl1O2zHiPI6ET91H-91doTuaBJvUbVVJt2zFD-sNMjKgo74sbigEC8RCd005qdgrAEuNqJMUo--gKRdQoGSXdMJiHvf6MAKirrF8DEyQVNMh4aDW-MtrPuELvImpNpy2EZmM7SuSuaVtfI4RjLbp8mT2BGZGLWDiUaZRvH-cuuxXm_98jh5NBxUuhDHgPHApSqLYbJpPDi9XADLFJnqFfZ8mNrCZeZaCF8csFMh5LHZew1m39tHXLoXKPyJlQZoO77NhLaBlKhOgVFAcAT4RGUsz2Z0xZdmFKYKwJviczMcdJAQ_m0t0FYef16JkT2XYGvw0PDwWdQFtt9-G4HWj6UqcOlrqz_fPBUHe8fHK6lxH9cqOH8bIgPrVH_qrjM0j247XvibuIIRIngsWTMjDES5DyVYG4DnLE4rYNv8f2k39H62AC_MHLM"
-                },
-                {
-                    "key": "productName",
-                    "value": "Trade-in device"
-                },
-                {
-                    "key": "IMEI",
-                    "value": "441515518323773"
-                }
-            ]
+            "additionalInfos": {
+                "targetProductCode": "SM-F966BDBDTHL",
+                "provider": "REMOBILE",
+                "productCode": "T-Apple-iPhone-13-512GB",
+                "responses": [
+                    {
+                        "name": "th-tradein-Q1",
+                        "value": "true"
+                    },
+                    {
+                        "name": "th-tradein-Q2",
+                        "value": "true"
+                    },
+                    {
+                        "name": "th-tradein-Q4",
+                        "value": "true"
+                    },
+                    {
+                        "name": "th-tradein-Q3",
+                        "value": "true"
+                    },
+                    {
+                        "name": "th-tradein-Q5",
+                        "value": "true"
+                    },
+                    {
+                        "name": "th-tradein-Q7",
+                        "value": "false"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "imei": "321321231312332",
+                "selectionResponses": []
+            }
         },
         "TradeUp": {
             "store_id": "th",
