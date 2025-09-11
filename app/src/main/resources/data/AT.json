@@ -79,7 +79,7 @@
             }
         },
         "TradeUp": {
-            "serviceCode": "T-TV-500-EUR-VARIANT_GOOD",
+            "serviceCode": "T-TV-250-EUR-VARIANT_BAD",
             "provider": "TV_TradeUp_GW",
             "additionalInfos": [
                 {
