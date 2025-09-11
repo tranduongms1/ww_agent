@@ -24,6 +24,7 @@ public class Context {
     public SIMProcess simProcess;
     public PFProcess pfProcess;
     public CheckoutProcess checkoutProcess;
+    public GalaxyClubProcess galaxyClubProcess;
 
     private boolean cookieReady = false;
     private Map<String, Boolean> aemReady = new HashMap<>();
@@ -157,6 +158,13 @@ public class Context {
             this.simProcess = new SIMProcess();
         }
         return this.simProcess;
+    }
+
+    public GalaxyClubProcess mustGalaxyClubProcess() {
+        if (this.galaxyClubProcess == null) {
+            this.galaxyClubProcess = new GalaxyClubProcess();
+        }
+        return this.galaxyClubProcess;
     }
 
     public CheckoutProcess mustCheckoutProcess() {

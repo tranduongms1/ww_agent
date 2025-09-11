@@ -2,6 +2,7 @@ package wisewires.agent;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,38 @@ public abstract class BC {
             logger.info("Trade-in added success on BC page");
         } catch (Exception e) {
             throw new Exception("Unable to add trade-in on BC page");
+        }
+    }
+
+    static boolean isGalaxyClubOptionSelectable() {
+        String to = ".s-option-galaxy-club a[id='gc-yes-btn'i]";
+        WebElement elm = WebUI.findElement(to);
+        if (elm == null || WebUI.getDomAttribute(elm, "aria-disabled").equals("false")) {
+            return false;
+        }
+        return true;
+    }
+
+    static void addGalaxyClub(Context c) throws Exception {
+        GalaxyClubProcess p = c.galaxyClubProcess;
+        try {
+            String to = ".s-option-galaxy-club a[id='gc-yes-btn'i]";
+            // Handle Galaxy Club Popup
+            WebElement elm = WebUI.waitElement(to, 10);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            WebUI.click(to);
+            logger.info("Galaxy Club option 'Join now' clicked");
+            WebUI.waitElement(GalaxyClubPopup.MODAL_LOCATOR, 5);
+            GalaxyClubPopup.waitForOpen(5);
+            logger.info("Galaxy Club popup opened");
+            GalaxyClubPopup.clickContinue();
+            GalaxyClubPopup.selectOption(p.selectOption);
+            GalaxyClubPopup.clickConfirm();
+            GalaxyClubPopup.waitForClose(5);
+            logger.info("Popup closed, Galaxy Club added successfully");
+        } catch (Exception e) {
+            throw new Exception("Unable to add Galaxy Club on BC page", e);
         }
     }
 
@@ -108,7 +141,7 @@ public abstract class BC {
                 .wearable-option.option-care li:not(.depth-two) button:not([an-la*='none']),
                 .smc-list .insurance__item--yes""";
         List<WebElement> elms = WebUI.findElements(to);
-        if (elms.isEmpty()) {
+        if (elms.isEmpty() || !WebUI.findElements(".js-smc-none[aria-disabled='true']").isEmpty()) {
             return false;
         }
         return !elms.stream().anyMatch(e -> WebUI.getDomAttribute(e, "class").contains("is-checked"));
@@ -117,6 +150,13 @@ public abstract class BC {
     static void continueToCart() {
         if (isTradeInOptionSelectable()) {
             String to = ".s-option-trade a[an-la='trade-in:no'i], .wearable-option.trade-in button[an-la='trade-in:no'i]";
+            WebElement elm = WebUI.findElement(to);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            WebUI.click(to);
+        }
+        if (isGalaxyClubOptionSelectable()) {
+            String to = ".s-option-galaxy-club a[id='gc-no-btn']";
             WebElement elm = WebUI.findElement(to);
             WebUI.scrollToCenter(elm);
             WebUI.delay(1);

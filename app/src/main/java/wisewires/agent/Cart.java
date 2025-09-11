@@ -72,6 +72,10 @@ public abstract class Cart {
                 c.mustSIMProcess();
                 BC.addSIM(c);
             }
+            if (addedServices.contains("GalaxyClub")) {
+                c.mustGalaxyClubProcess();
+                BC.addGalaxyClub(c);
+            }
             BC.continueToCart();
         }
         // FIX: When close popup on AEM but not on Hybrid
@@ -147,6 +151,23 @@ public abstract class Cart {
             logger.info("E-Warranty added success on Cart page");
         } catch (Exception e) {
             throw new Exception("Unable to add e-warranty on Cart page");
+        }
+    }
+
+    static void addGalaxyClub(Context c) throws Exception {
+        GalaxyClubProcess p = c.galaxyClubProcess;
+        try {
+            String to = ".cart-item [data-an-la='add service:samsung galaxy club']";
+            WebElement btn = WebUI.waitElement(to, 5);
+            WebUI.scrollToCenterAndClick(btn, 1000);
+            GalaxyClubPopup.waitForOpen(10);
+            GalaxyClubPopup.clickContinue();
+            GalaxyClubPopup.selectOption(p.selectOption);
+            GalaxyClubPopup.clickConfirm();
+            GalaxyClubPopup.waitForClose(10);
+            logger.info("Popup closed, Galaxy Club added successfully");
+        } catch (Exception e) {
+            throw new Exception("Unable to add Galaxy Club on cart page", e);
         }
     }
 

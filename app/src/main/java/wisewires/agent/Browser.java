@@ -169,6 +169,15 @@ public abstract class Browser {
                     }
                     break;
                 }
+                if (tokens.get(0).equalsIgnoreCase("galaxy-club")) {
+                    c.mustGalaxyClubProcess();
+                    if (WebUI.getUrl().contains("/cart")) {
+                        Cart.addGalaxyClub(c);;
+                    } else {
+                        BC.addGalaxyClub(c);
+                    }
+                    break;
+                }
                 if (tokens.get(0).equalsIgnoreCase("e-warranty")) {
                     c.mustEWProcess();
                     if (WebUI.getUrl().contains("/cart")) {
@@ -202,7 +211,8 @@ public abstract class Browser {
                             leading = Tokens.removeLeading(tokens, "with",
                                     "trade-in", "tradein", "trade-up", "tradeup",
                                     "sc+", "smc", "std", "standard", "sub", "subscription",
-                                    "sim", "e-warranty", "ewarranty", "warranty",
+                                    "sim", "e-warranty", "ewarranty", "warranty", 
+                                    "galaxy-club", "galaxy club", "galaxyclub",
                                     "and", "+");
                             if (Tokens.containsAny(leading, "trade-in", "tradein")) {
                                 item.addedServices.add("TradeIn");
@@ -224,6 +234,9 @@ public abstract class Browser {
                             }
                             if (Tokens.containsAny(leading, "e-warranty", "ewarranty", "warranty")) {
                                 item.addedServices.add("EWarranty");
+                            }
+                            if (Tokens.containsAny(leading, "galaxy-club", "galaxy club", "galaxyclub")) {
+                                item.addedServices.add("GalaxyClub");
                             }
                             items.add(item);
                         }
@@ -554,6 +567,10 @@ public abstract class Browser {
                 if (c.pfProcess != null) {
                     if (Tokens.containsAll(tokens, "buy", "now")) {
                         PF.clickBuyNow(c);
+                        WebUI.closeAllPopup(c);
+                    }
+                    if (Tokens.containsAll(tokens, "add", "to", "cart")) {
+                        PF.clickAddToCart(c);
                         WebUI.closeAllPopup(c);
                     }
                 }
