@@ -294,7 +294,8 @@ public abstract class TradeIn {
                         "Typ zařízení",
                         "Избери модел на устройството",
                         "モデル名",
-                        "Fashion Model":
+                        "Fashion Model",
+                        "Le modèle":
                     selectModel(elm, data.get("model"));
                     break;
 
