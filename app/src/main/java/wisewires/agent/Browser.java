@@ -479,10 +479,12 @@ public abstract class Browser {
                     if (Tokens.containsAll(leading, "billing")) {
                         if (idx >= 0) {
                             c.mustCheckoutProcess().selectSavedBillingAddress(idx);
+                            break;
                         }
                     } else if (Tokens.containsAny(leading, "customer")) {
                         if (idx >= 0) {
                             c.mustCheckoutProcess().selectSavedCustomerAddress(idx);
+                            break;
                         }
                     }
                 }
