@@ -384,7 +384,12 @@ public abstract class Browser {
                     } else if (service.equalsIgnoreCase("SIM")) {
                         service = "SIM";
                     }
-                    Cart.removeService(service);
+                    if (leading.contains("line")) {
+                        int line = Integer.parseInt(tokens.remove(0));
+                        Cart.removeServiceByIndex(service, line);
+                    } else {
+                        Cart.removeService(service);
+                    }
                 }
                 break;
             }

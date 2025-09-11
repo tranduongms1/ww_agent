@@ -406,6 +406,20 @@ public abstract class Cart {
         }
     }
 
+    static void removeServiceByIndex(String service, int Line) throws Exception {
+        try {
+            String to = ".cart-item-list:nth-child(%s) [data-modelname*='%s'] button[data-an-la='remove item']".formatted(Line, service);
+            WebElement btn = WebUI.waitElement(to, 3);
+            WebUI.scrollToCenter(btn);
+            WebUI.delay(1);
+            btn.click();
+            removeConfirmYes();
+            logger.info("Service %s line %s removed successfully".formatted(service, Line));
+        } catch (Exception e) {
+            throw new Exception("Unable to remove service %s line %s".formatted(service, Line), e);
+        }
+    }
+
     static String getCartAlert() {
         WebElement alert = WebUI.findElement(".cart-alert");
         return alert != null ? alert.getText() : null;
