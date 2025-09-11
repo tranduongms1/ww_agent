@@ -273,7 +273,8 @@ public abstract class TradeIn {
                         "Fabricant",
                         "¿Qué marca es?",
                         "Избери производител на устройството",
-                        "ブランド名":
+                        "ブランド名",
+                        "Merk":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -292,7 +293,8 @@ public abstract class TradeIn {
                         "Modelo",
                         "Typ zařízení",
                         "Избери модел на устройството",
-                        "モデル名":
+                        "モデル名",
+                        "Fashion Model":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -306,7 +308,8 @@ public abstract class TradeIn {
                         "Capacité ou carte graphique",
                         "Taille de l'espace de stockage",
                         "Speichergrösse",
-                        "ストレージ":
+                        "ストレージ",
+                        "Geheugen":
                     selectStorage(elm, data.get("storage"));
                     break;
 
@@ -462,7 +465,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK").contains(c.site)) {
+                            if (List.of("BE", "BE_FR", "CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK").contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
