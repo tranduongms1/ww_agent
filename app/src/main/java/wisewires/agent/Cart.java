@@ -95,7 +95,9 @@ public abstract class Cart {
 
     static void addTradeUp(Context c) throws Exception {
         try {
-            String to = "cx-cart-item-v2 [data-an-la='add service:trade-up']";
+            String to = """
+                    cx-cart-item-v2 [data-an-la='add service:trade-up'],
+                    cx-cart-item-v2 [data-an-la='add service:tradeinTv']""";
             WebElement elm = WebUI.waitElement(to, 10);
             WebUI.scrollToCenter(elm);
             WebUI.delay(1);
@@ -130,7 +132,7 @@ public abstract class Cart {
     static void addEWarranty(Context c) throws Exception {
         EWProcess p = c.ewProcess;
         try {
-            String to = ".cart-item [data-an-la='add service:warranty']";
+            String to = ".cart-item [data-an-la='add service:warranty'], .cart-item [data-an-la='add service:EW']";
             WebElement btn = WebUI.waitElement(to, 5);
             WebUI.scrollToCenterAndClick(btn, 1000);
             logger.info("E-Warranty option 'Yes' clicked");
