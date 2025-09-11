@@ -32,7 +32,8 @@ public abstract class TradeUp {
             [data-an-la='trade-up:check device condition:next'],
             [an-la*='apply trade up'],
             [data-an-la*='apply trade up'],
-            [data-an-la="tradeup2termswrapper:add to cart"]""";
+            [data-an-la='tradeup2termswrapper:add to cart'],
+            [data-an-la='trade-up:trade-up guide:next']""";
 
     static String getStepName(WebElement modal) throws Exception {
         WebElement elm = WebUI.waitElement(modal, By.cssSelector("""
@@ -141,37 +142,52 @@ public abstract class TradeUp {
                 switch (currentStep) {
                     case "select device":
                         List<WebElement> elms = modal.findElements(By.cssSelector(FIELD_LOCATORS));
-                        for (WebElement elm : elms) {
-                            WebUI.scrollToCenter(elm);
-                            String name = getFieldName(elm);
-                            switch (name) {
-                                case "postal-code", "postCodeControl":
-                                    elm.clear();
-                                    WebUI.delay(1);
-                                    elm.sendKeys(data.get("postalCode"));
-                                    elm.sendKeys(Keys.ENTER);
-                                    WebUI.waitElement(".sdf-comp-postal-code-input-panel.success", 5);
-                                    break;
+                        if (elms.isEmpty()) {
+                            List<WebElement> radios = modal.findElements(By.cssSelector("mat-radio-group li.service__product"));
+                            for (WebElement radio : radios) {
+                                WebUI.scrollToCenter(radio);
+                                WebUI.click(radio);
+                                WebUI.delay(1);
+                            }
+                        } else {
+                            for (WebElement elm : elms) {
+                                WebUI.scrollToCenter(elm);
+                                String name = getFieldName(elm);
+                                switch (name) {
+                                    case "postal-code", "postCodeControl":
+                                        elm.clear();
+                                        WebUI.delay(1);
+                                        elm.sendKeys(data.get("postalCode"));
+                                        elm.sendKeys(Keys.ENTER);
+                                        WebUI.waitElement(".sdf-comp-postal-code-input-panel.success", 5);
+                                        break;
 
-                                case
-                                        "model",
-                                        "modelFormControl",
-                                        "Select Size",
-                                        "Selecteer maat",
-                                        "Wähle die Grösse",
-                                        "Choisis une taille":
-                                    select(elm, data.get("model"));
-                                    break;
+                                    case
+                                            "model",
+                                            "modelFormControl",
+                                            "Select Size",
+                                            "Selecteer maat",
+                                            "Wähle die Grösse",
+                                            "Choisis une taille",
+                                            "¿De que tamaño es?",
+                                            "Tyyppi/malli",
+                                            "Type/model":
+                                        select(elm, data.get("model"));
+                                        break;
 
-                                case
-                                        "brand",
-                                        "brandFormControl",
-                                        "Select Brand",
-                                        "Selecteer merk",
-                                        "Wähle die Marke",
-                                        "Choisis la marque":
-                                    select(elm, data.get("brand"));
-                                    break;
+                                    case
+                                            "brand",
+                                            "brandFormControl",
+                                            "Select Brand",
+                                            "Selecteer merk",
+                                            "Wähle die Marke",
+                                            "Choisis la marque",
+                                            "¿De qué marca es?",
+                                            "Merkki",
+                                            "Mærke":
+                                        select(elm, data.get("brand"));
+                                        break;
+                                }
                             }
                         }
                         break;
