@@ -142,6 +142,29 @@ public abstract class TradeIn {
         throw new Exception("Select is not handled");
     }
 
+    static void enterPostalCode(String postalCode) throws Exception {
+        try {
+            logger.info("Entering trade in postalCode");
+            String to = """
+                    [formcontrolname="postCodeControl"],
+                    input#tradeInZipCode
+                    """;
+            WebElement elm = WebUI.findElement(to);
+            elm.clear();
+            elm.sendKeys(postalCode);
+            WebUI.delay(1);
+            String to1 = """
+                    button.post-code-form__btn
+                    """;
+            WebElement btn = WebUI.findElement(to1);
+            if (btn != null) {
+                btn.click();
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to enter trade in postal code", e);
+        }
+    }
+
     static void selectCategory(WebElement elm, String category) throws Exception {
         try {
             if (WebUI.getDomAttribute(elm, "class").contains("manual-search_para")) {
@@ -216,7 +239,6 @@ public abstract class TradeIn {
         String className = elm.getAttribute("class");
         if (className.contains("category"))
             return "category";
-
         if (className.contains("trade-in-select"))
             return elm.findElement(By.cssSelector("ul")).getAttribute("id");
 
@@ -237,20 +259,20 @@ public abstract class TradeIn {
         if (className.contains("manual-search_para")) {
             return elm.findElement(By.cssSelector(".manual-search_list")).getText().trim();
         }
-
         throw new Exception("Unknow device select type");
     }
 
     static void selectDevice(WebElement modal, Map<String, String> data) throws Exception {
         List<WebElement> elms = modal.findElements(By.cssSelector("""
-                .trade-in-popup__category-device,
-                .trade-in-popup-v3__tradeIn-category,
-                .trade-in-select,
-                mat-radio-group,
-                mat-expansion-panel,
-                mat-form-field:has([formcontrolname]),
-                .manual-search_para,
-                .hubble-tradein-popup__device-choose"""));
+                 .trade-in-popup__category-device,
+                 .trade-in-popup-v3__tradeIn-category,
+                 .trade-in-select,
+                 mat-radio-group,
+                 mat-expansion-panel,
+                 mat-form-field:has([formcontrolname]),
+                 .manual-search_para,
+                 .hubble-tradein-popup__device-choose
+                """));
         for (WebElement elm : elms) {
             if (!elm.isDisplayed()) {
                 continue;
@@ -308,7 +330,8 @@ public abstract class TradeIn {
                         "Le modèle",
                         "รุ่น",
                         "الجهاز",
-                        "Készülék":
+                        "Készülék",
+                        "Model perangkat":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -325,7 +348,8 @@ public abstract class TradeIn {
                         "ストレージ",
                         "Geheugen",
                         "ความจุ",
-                        "سعة التخزين":
+                        "سعة التخزين",
+                        "Kapasitas":
                     selectStorage(elm, data.get("storage"));
                     break;
 
@@ -442,6 +466,10 @@ public abstract class TradeIn {
     }
 
     static void process(Context c) throws Exception {
+        String to = """
+                .trade-in-popup-v3__imei-form-wrap,
+                .post-code-form
+                """;
         Map<String, String> data = c.tradeInProcess.data;
         Exception error = null;
         int errorCount = 0;
@@ -466,6 +494,9 @@ public abstract class TradeIn {
                             if (WebUI.findElement(".trade-in-popup__model-list") != null) {
                                 WebUI.click(".trade-in-popup__model-item");
                                 break;
+                            }
+                            if (WebUI.findElement(to) != null) {
+                                enterPostalCode(c.getProfile().getTradeInData().get("tradeinPostalCode"));
                             }
                             selectDevice(modal, data);
                             break;

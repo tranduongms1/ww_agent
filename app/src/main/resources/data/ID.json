@@ -37,40 +37,53 @@
         "adminLevel3": "Air Gegas",
         "adminLevel4": "Air Bara"
     },
+    "tradeInData": {
+        "tradeinPostalCode": "10130",
+        "category": "Smartphone",
+        "brand": "APPLE",
+        "model": "IPHONE X",
+        "storage": "256GB",
+        "imei": "352931115651143"
+    },
     "serviceData": {
         "TradeIn": {
             "serviceCode": "T_APPLE_EZTRADEDXGNUZ_256GB_SMARTPHONE",
             "addToCartType": "append",
             "provider": "EZTRADE",
             "additionalInfos": {
-                "selectionResponses": [
-                    [
-                        {
-                            "name": "eztrade_screen_display_condition",
-                            "value": "yes"
-                        },
-                        {
-                            "name": "eztrade_body_condition",
-                            "value": "yes"
-                        },
-                        {
-                            "name": "eztrade_button_sensor_slot_condition",
-                            "value": "yes"
-                        },
-                        {
-                            "name": "eztrade_connectivity_condition",
-                            "value": "yes"
-                        },
-                        {
-                            "name": "eztrade_camera_condition",
-                            "value": "yes"
-                        },
-                        {
-                            "name": "eztrade_screen_shadow_condition",
-                            "value": "yes"
-                        }
-                    ]
-                ]
+                "targetProductCode": "SM-A556ELBCXID",
+                "provider": "EZTRADE",
+                "productCode": "T_APPLE_EZTRADEDXGNUZ_256GB_SMARTPHONE",
+                "responses": [
+                    {
+                        "name": "eztrade_screen_display_condition",
+                        "value": "yes"
+                    },
+                    {
+                        "name": "eztrade_body_condition",
+                        "value": "yes"
+                    },
+                    {
+                        "name": "eztrade_button_sensor_slot_condition",
+                        "value": "yes"
+                    },
+                    {
+                        "name": "eztrade_connectivity_condition",
+                        "value": "yes"
+                    },
+                    {
+                        "name": "eztrade_camera_condition",
+                        "value": "yes"
+                    },
+                    {
+                        "name": "eztrade_screen_shadow_condition",
+                        "value": "yes"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "imei": "352931115651143",
+                "postalCode": "10130",
+                "selectionResponses": []
             }
         }
     },
