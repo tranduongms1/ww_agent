@@ -278,7 +278,8 @@ public abstract class TradeIn {
                         "ブランド名",
                         "Merk",
                         "Marke",
-                        "แบรนด์":
+                        "แบรนด์",
+                        "العلامة التجارية":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -300,7 +301,8 @@ public abstract class TradeIn {
                         "モデル名",
                         "Fashion Model",
                         "Le modèle",
-                        "รุ่น":
+                        "รุ่น",
+                        "الجهاز":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -316,7 +318,8 @@ public abstract class TradeIn {
                         "Speichergrösse",
                         "ストレージ",
                         "Geheugen",
-                        "ความจุ":
+                        "ความจุ",
+                        "سعة التخزين":
                     selectStorage(elm, data.get("storage"));
                     break;
 
