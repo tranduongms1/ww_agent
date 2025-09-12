@@ -90,9 +90,6 @@
         },
         "SMC": {
             "categoryCode": "insurance"
-        },
-        "Warranty": {
-            "categoryCode": "warranty"
         }
     },
     "creditCardData": {
