@@ -92,6 +92,9 @@ public abstract class Browser {
                     SSO.signInByEmail(c);
                 }
                 if (!WebUI.getUrl().contains("/checkout/one")) {
+                    if (WebUI.isOneOfSites("TH")) {
+                        WebUI.closeAllPopup(c);
+                    }
                     GNB.hoverHumanIcon();
                 }
                 logger.info("[PASS] %s".formatted(req));
@@ -172,7 +175,8 @@ public abstract class Browser {
                 if (tokens.get(0).equalsIgnoreCase("galaxy-club")) {
                     c.mustGalaxyClubProcess();
                     if (WebUI.getUrl().contains("/cart")) {
-                        Cart.addGalaxyClub(c);;
+                        Cart.addGalaxyClub(c);
+                        ;
                     } else {
                         BC.addGalaxyClub(c);
                     }
@@ -211,7 +215,7 @@ public abstract class Browser {
                             leading = Tokens.removeLeading(tokens, "with",
                                     "trade-in", "tradein", "trade-up", "tradeup",
                                     "sc+", "smc", "std", "standard", "sub", "subscription",
-                                    "sim", "e-warranty", "ewarranty", "warranty", 
+                                    "sim", "e-warranty", "ewarranty", "warranty",
                                     "galaxy-club", "galaxy club", "galaxyclub",
                                     "and", "+");
                             if (Tokens.containsAny(leading, "trade-in", "tradein")) {
