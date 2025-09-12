@@ -147,10 +147,10 @@ public abstract class TradeIn {
                 return;
             }
             WebElement opt = (WebElement) WebUI.driver.executeScript("""
-                    var opts = arguments[0].querySelectorAll('input, [data-an-la]');
+                    var opts = arguments[0].querySelectorAll('input, [data-an-la], [an-la]');
                     for (let opt of opts) {
                         if (opt.value && opt.value.toLowerCase() == arguments[1]) return opt.parentElement;
-                        let anla = opt.getAttribute('data-an-la');
+                        let anla = opt.getAttribute('data-an-la') || opt.getAttribute('an-la');
                         if (anla && anla.toLowerCase().endsWith(arguments[1])) return opt;
                         let label = opt.querySelector('.box__label');
                         if (label && label.innerText.toLowerCase() == arguments[1]) return opt;
@@ -255,7 +255,8 @@ public abstract class TradeIn {
             switch (selectType) {
                 case
                         "category",
-                        "Избери вид на устройството":
+                        "Избери вид на устройството",
+                        "Termékkategória":
                     selectCategory(elm, data.get("category"));
                     break;
 
@@ -278,7 +279,8 @@ public abstract class TradeIn {
                         "Merk",
                         "Marke",
                         "แบรนด์",
-                        "العلامة التجارية":
+                        "العلامة التجارية",
+                        "Gyártó":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -301,7 +303,8 @@ public abstract class TradeIn {
                         "Fashion Model",
                         "Le modèle",
                         "รุ่น",
-                        "الجهاز":
+                        "الجهاز",
+                        "Készülék":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -474,7 +477,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("BE", "BE_FR", "NL", "CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK").contains(c.site)) {
+                            if (List.of("BE", "BE_FR", "CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK", "HU").contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
