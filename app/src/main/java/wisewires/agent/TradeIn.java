@@ -306,7 +306,8 @@ public abstract class TradeIn {
                         "Marke",
                         "แบรนด์",
                         "العلامة التجارية",
-                        "Gyártó":
+                        "Gyártó",
+                        "Seleziona la marca":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -332,7 +333,8 @@ public abstract class TradeIn {
                         "รุ่น",
                         "الجهاز",
                         "Készülék",
-                        "Model perangkat":
+                        "Model perangkat",
+                        "Seleziona il modello del tuo dispositivo usato o inizia a digitare":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -484,6 +486,9 @@ public abstract class TradeIn {
                         case "trade-in guide":
                             if (WebUI.isOneOfSites("JP")) {
                                 WebUI.click("label[for='addconditionCheck0-1']");
+                            } else if (WebUI.isOneOfSites("IT")) {
+                                WebUI.click("label[for='commoninstantcashback1'], div.trade-in-types__galaxy-button");
+                                WebUI.delay(2);
                             }
                             break;
 
