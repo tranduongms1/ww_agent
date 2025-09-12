@@ -285,7 +285,7 @@ public abstract class API {
         String category = "warranty";
         Map<String, Map<String, Object>> serviceData = c.getProfile().getServiceData();
         if (serviceData.get("Warranty") != null) {
-            category = serviceData.get("Warranty").get("serviceCode").toString();
+            category = serviceData.get("Warranty").get("categoryCode").toString();
         }
         return getExternalServices(c.getAPIEndpoint(), sku, category, "");
     }
