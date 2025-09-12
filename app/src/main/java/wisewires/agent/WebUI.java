@@ -156,7 +156,7 @@ public abstract class WebUI {
     }
 
     static void closeAllPopup(Context c) {
-        String to = "#truste-consent-button, #privacyBtn, [data-an-la='cookie bar:accept'], [an-ac='cookie bar:accept'], #preferenceCheckBtn, .ins-element-close-button";
+        String to = "#truste-consent-button, #privacyBtn, [data-an-la='cookie bar:accept'], [an-ac='cookie bar:accept'], #preferenceCheckBtn, .ins-element-close-button, .cta.login-leave-btn";
         WebElement body = WebUI.findElement("body");
         try {
             wait(6, 2).until(d -> {
