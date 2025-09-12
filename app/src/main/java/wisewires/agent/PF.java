@@ -82,4 +82,19 @@ public abstract class PF {
             throw new Exception("Unable to click Buy Now button", e);
         }
     }
+
+    public static void clickAddToCart(Context c) throws Exception {
+        try {
+            WebElement card = c.pfProcess.productCard;
+            WebElement addToCartBtn = card.findElement(By.cssSelector("[an-la='pf product card:add to cart']"));
+            WebUI.scrollToCenterAndClick(addToCartBtn, 500);
+            WebUI.delay(1);
+            logger.info("Clicked add to cart button");
+            WebUI.waitForStaleness(addToCartBtn, 5);
+            c.pfProcess = null;
+        } catch (Exception e) {
+            c.pfProcess = null;
+            throw new Exception("Unable to click add to cart button", e);
+        }
+    }
 }
