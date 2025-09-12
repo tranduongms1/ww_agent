@@ -400,16 +400,19 @@ public abstract class Cart {
             return true;
         Stream<Map<String, Object>> prods = API.searchProducts(endpoint).stream().filter(Util.inCategories(CATEGORIES));
         List<String> codes = prods.filter(API.CAN_ADD_TO_CART).map(v -> v.get("code").toString()).toList();
-        List<Map<String, Object>> products = API.getProductByCodes(endpoint, codes);
-        List<Map<String, Object>> variants = Util.getVariants(products);
-        variants = new ArrayList<>(variants.stream().filter(Util::isPurchasable).toList());
-        Collections.shuffle(variants);
-        for (Map<String, Object> variant : variants) {
-            try {
-                API.addToCart(endpoint, (String) variant.get("code"));
-                logger.info("Cart is NOT empty now");
-                return false;
-            } catch (Exception ignore) {
+        for (int i = 0; i < codes.size(); i += 5) {
+            int end = Math.min(i + 5, codes.size());
+            List<Map<String, Object>> products = API.getProductByCodes(endpoint, codes.subList(i, end));
+            List<Map<String, Object>> variants = Util.getVariants(products);
+            variants = new ArrayList<>(variants.stream().filter(Util::isPurchasable).toList());
+            Collections.shuffle(variants);
+            for (Map<String, Object> variant : variants) {
+                try {
+                    API.addToCart(endpoint, (String) variant.get("code"));
+                    logger.info("Cart is NOT empty now");
+                    return false;
+                } catch (Exception ignore) {
+                }
             }
         }
         throw new Exception("Unable to find product to add to cart");

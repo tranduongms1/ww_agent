@@ -11,16 +11,20 @@ import org.slf4j.LoggerFactory;
 public abstract class Payment {
     static Logger logger = LoggerFactory.getLogger(Payment.class);
 
+    static List<String> MODE_CC = List.of(
+            ".payment-image.adyenCc",
+            ".payment-image.kbank");
+
     static Map<String, List<String>> MODE_LOCATORS = Map.of(
             "amex card", List.of(".payment-image.adyenCc"),
             "blik", List.of(".payment-image.p24-blik"),
-            "credit card", List.of(".payment-image.adyenCc"),
+            "credit card", MODE_CC,
             "cod", List.of(".payment-image.cod"),
             "fbt", List.of(".payment-image.p24-fbt"),
             "fast bank trasfer", List.of(".payment-image.p24-fbt"),
-            "master card", List.of(".payment-image.adyenCc"),
+            "master card", MODE_CC,
             "tbt", List.of(".payment-image.tbt"),
-            "visa card", List.of(".payment-image.adyenCc"));
+            "visa card", MODE_CC);
 
     static String PAYMENT_FORM_LOCATOR = """
             app-card-on-delivery-payment,
@@ -236,7 +240,8 @@ public abstract class Payment {
                 break;
 
             case
-                    "app-payment-mode-credit-card":
+                    "app-payment-mode-credit-card",
+                    "app-payment-mode-kbank-credit-card":
                 payWithCreditCard(c, form);
                 break;
 
