@@ -47,11 +47,15 @@ public abstract class TradeIn {
             [data-an-la="trade-in:apply discount:add to cart"]""";
 
     static String getStepName(WebElement modal) throws Exception {
-        WebElement elm = WebUI.waitElement(modal, By.cssSelector("""
-                .trade-in-popup-v3__close,
+        String to = """
                 .hubble-tradein-popup__device-choose-wrap,
                 .trade-in-popup__close,
-                .modal__close"""), 5);
+                .trade-in-popup-v3__close,
+                .modal__close""";
+        if (WebUI.isSite("AT")) {
+            to = ".trade-in-popup-v3__btn-continue, .trade-in-popup-v3__btn-apply, .modal__close";
+        }
+        WebElement elm = WebUI.waitElement(modal, By.cssSelector(to), 5);
         if (elm != null) {
             String attr = WebUI.getDomAttribute(elm, "an-la", "data-an-la", "class");
             return attr.contains("device-choose-wrap") ? "select device" : attr.split(":")[1];
@@ -477,7 +481,8 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("BE", "BE_FR", "CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK", "HU").contains(c.site)) {
+                            if (List.of("BE", "BE_FR", "CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK", "HU")
+                                    .contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
