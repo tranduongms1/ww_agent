@@ -29,6 +29,12 @@
         "postalCode": "1472"
     },
     "billingAddress": {},
+    "tradeInData": {
+        "category": "Mobiles",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Z Flip5 5G 512GB F731",
+        "imei": "301296444933956"
+    },
     "serviceData": {
         "TradeIn": {
             "serviceCode": "T-FOXWAY-TRADEIN",
