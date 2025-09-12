@@ -33,8 +33,8 @@
   "tradeInData": {
     "category": "スマートフォン",
     "brand": "SAMSUNG",
-    "model": "Galaxy Z Fold6 1TB",
-    "storage": "1TB",
+    "model": "Galaxy S24 Ultra 512GB",
+    "storage": "512GB",
     "imei": "351798061557587"
   },
   "serviceData": {
@@ -42,85 +42,31 @@
       "serviceCode": "T-AUCNET-TRADEIN",
       "addToCartType": "append",
       "provider": "AUCNET",
-      "additionalInfos": [
-        {
-          "key": "IMEI",
-          "value": "351798061557587"
-        },
-        {
-          "key": "discountAmount",
-          "value": "126900.00"
-        },
-        {
-          "key": "discountAmountWithCurrency",
-          "value": "126,900円"
-        },
-        {
-          "key": "additionalDiscount",
-          "value": "0.0"
-        },
-        {
-          "key": "deviceSku",
-          "value": "T_SAMSUNG_GALAXYZFOLD61TB_2437"
-        },
-        {
-          "key": "evaluationMessage",
-          "value": "通常下取り参考価格: 126,900円"
-        },
-        {
-          "key": "offerAmountFormatted",
-          "value": "通常下取り参考価格: 126,900円"
-        },
-        {
-          "key": "serviceProductModel",
-          "value": "T_SAMSUNG_GALAXYZFOLD61TB_2437"
-        },
-        {
-          "key": "discountAmount-hash",
-          "value": "ec07b538d58ba66cb5d24bc9158cba61"
-        },
-        {
-          "key": "grade",
-          "value": "2"
-        },
-        {
-          "key": "tradeinDeviceDisplayInfo",
-          "value": " | SAMSUNG | Galaxy Z Fold6 1TB | 1TB"
-        },
-        {
-          "key": "fault_note",
-          "value": "tradein-Q1 false|tradein-Q2 false|tradein-Q3 false|tradein-Q4 false"
-        },
-        {
-          "key": "IMEI"
-        },
-        {
-          "key": "eventAmount"
-        },
-        {
-          "key": "eventAmountFormatted"
-        },
-        {
-          "key": "eventAmountWithCurrency",
-          "value": "0円"
-        },
-        {
-          "key": "product_id",
-          "value": "2437"
-        },
-        {
-          "key": "productName",
-          "value": "AUCNET"
-        },
-        {
-          "key": "showWarining",
-          "value": "true"
-        },
-        {
-          "key": "additionalInfoForfeitedAmount",
-          "value": "47,100"
-        }
-      ]
+      "additionalInfos": {
+        "targetProductCode": "SM-X910NZAEXJP",
+        "provider": "AUCNET",
+        "productCode": "T_SAMSUNG_GALAXYS24ULTRA512GB_2251",
+        "responses": [
+          {
+            "name": "jp-tradein-Q1",
+            "value": "false"
+          },
+          {
+            "name": "jp-tradein-Q2",
+            "value": "false"
+          },
+          {
+            "name": "jp-tradein-Q3",
+            "value": "false"
+          },
+          {
+            "name": "jp-tradein-Q4",
+            "value": "false"
+          }
+        ],
+        "orderEntryNumber": 0,
+        "selectionResponses": []
+      }
     }
   },
   "creditCardData": {
