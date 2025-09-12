@@ -25,6 +25,14 @@ public class TradeInProcess {
             if (WebUI.isOneOfSites("JP") && !WebUI.isOnSiteCart(c)) {
                 opt = Lists.last(options);
             }
+            if (WebUI.isOneOfSites("VN")) {
+                int idx = questions.indexOf(options);
+                if (idx == 0) {
+                    opt = Lists.first(options);
+                } else {
+                    continue;
+                }
+            }
             WebUI.scrollToCenter(opt);
             opt.click();
             logger.info("Device condition option '%s' checked".formatted(opt.getText()));

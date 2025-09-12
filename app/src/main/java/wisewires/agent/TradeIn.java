@@ -305,6 +305,8 @@ public abstract class TradeIn {
                         "Merk",
                         "Marke",
                         "แบรนด์",
+                        "選擇品牌",
+                        "Nhà sản xuất",
                         "العلامة التجارية",
                         "Gyártó",
                         "Seleziona la marca":
@@ -313,6 +315,7 @@ public abstract class TradeIn {
 
                 case
                         "model",
+                        "Select Model",
                         "modelName",
                         "stockModel",
                         "modelFormControl",
@@ -331,6 +334,8 @@ public abstract class TradeIn {
                         "Fashion Model",
                         "Le modèle",
                         "รุ่น",
+                        "選擇型號",
+                        "Thiết bị",
                         "الجهاز",
                         "Készülék",
                         "Model perangkat",
