@@ -110,7 +110,7 @@ public abstract class Util {
     public static String captureToVerify(Context c) throws IOException {
         try {
             boolean fullPage = true;
-            if (isPDPage() || isPFPage())
+            if (isPDPage() || isPFPage() || isHomePage())
                 fullPage = false;
             WebUI.driver.executeScript("""
                     for (const e of document.querySelectorAll(arguments[0])) {
@@ -155,6 +155,10 @@ public abstract class Util {
 
     public static boolean isPFPage() {
         return WebUI.findElement(".pd-g-product-finder-ux2") != null;
+    }
+
+    public static boolean isHomePage() {
+        return WebUI.findElement(".hd08-hero-kv-home") != null;
     }
 
     public static <K, V> Map<K, V> combined(Map<K, V> m1, Map<K, V> m2) {
