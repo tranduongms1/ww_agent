@@ -339,7 +339,8 @@ public abstract class TradeIn {
                         "الجهاز",
                         "Készülék",
                         "Model perangkat",
-                        "Seleziona il modello del tuo dispositivo usato o inizia a digitare":
+                        "Seleziona il modello del tuo dispositivo usato o inizia a digitare",
+                        "productFormControl":
                     selectModel(elm, data.get("model"));
                     break;
 
@@ -523,7 +524,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("BE", "BE_FR", "CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK", "HU")
+                            if (List.of("BE", "BE_FR", "CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK", "HU", "TR")
                                     .contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }

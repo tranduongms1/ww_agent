@@ -38,86 +38,90 @@
   "tradeInData": {
     "category": "mobile",
     "brand": "Apple",
-    "model": "iPhone 14 Pro",
+    "model": "Apple iPhone 16 Pro 512 GB",
     "imei": "109243004159964"
   },
   "serviceData": {
     "TradeIn": {
-      "serviceCode": "T-EASYCEP-TRADEIN",
+      "serviceCode": "T-GETMOBIL-TRADEIN",
       "addToCartType": "append",
-      "provider": "EASYCEP",
+      "provider": "GETMOBIL",
       "additionalInfos": [
         {
           "key": "questionsAndAnswers",
-          "value": "{\"38000\":96072,\"38003\":96084,\"38006\":96090,\"38009\":96099,\"38012\":96113,\"38015\":96120,\"38018\":96129}"
+          "value": "{\"1\":200116,\"2\":200121,\"3\":200139,\"4\":200164}"
         },
         {
           "key": "brandName",
-          "value": "Apple_1_1"
+          "value": "Samsung_1_2"
         },
         {
           "key": "displayAdditionDiscount",
-          "value": "Incl. 1.234,00 TL exchange bonus"
+          "value": "Incl. 0,00 TL exchange bonus"
         },
         {
           "key": "modelId",
-          "value": "4847"
+          "value": "600"
         },
         {
           "key": "discountAmount",
-          "value": "58663.0"
+          "value": "38610.0"
         },
         {
           "key": "additionalDiscountWithCurrency",
-          "value": "1.234,00 TL"
+          "value": "0,00 TL"
+        },
+        {
+          "key": "offer_id",
+          "value": "2189"
         },
         {
           "key": "offer",
-          "value": "57429.0"
+          "value": "38610"
         },
         {
           "key": "additionalDiscount",
-          "value": "1234.0"
+          "value": "0.0"
         },
         {
           "key": "modelName",
-          "value": "iPhone 16 Pro"
+          "value": "Samsung Galaxy S24 Ultra 512 GB"
         },
         {
           "key": "totalTradeinAmount",
-          "value": "58663.0"
+          "value": "38610.0"
+        },
+        {
+          "key": "price",
+          "value": "38610"
         },
         {
           "key": "brandId",
-          "value": "1_1"
-        },
-        {
-          "key": "currency",
-          "value": "TL"
+          "value": "1_2"
         },
         {
           "key": "tradeinAmount",
-          "value": "57429.0"
+          "value": "38610.0"
         },
         {
           "key": "tradeinAmountWithCurrency",
-          "value": "57.429,00 TL"
+          "value": "38.610,00 TL"
         },
         {
           "key": "discountAmount-hash",
-          "value": "1077fdeb796ca8f35b9ad123fc576b83"
+          "value": "fd28a2ed48fc4002930b9153c69a3c78"
         },
         {
           "key": "totalTradeinAmountFormatted",
-          "value": "58.663,00 TL"
+          "value": "38.610,00 TL"
         },
         {
           "key": "discountAmountWithCurrency",
-          "value": "58.663,00 TL"
+          "value": "38.610,00 TL"
         },
         {
           "key": "imei",
-          "value": "109243004159964"
+          "value": "356938035643809"
         }
       ]
     },
