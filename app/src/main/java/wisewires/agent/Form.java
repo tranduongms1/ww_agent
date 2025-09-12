@@ -94,6 +94,13 @@ public class Form {
         return false;
     }
 
+    static void setText(WebElement elm, String value) {
+        if (value.equals("__AUTO__"))
+            return;
+        elm.clear();
+        elm.sendKeys(value);
+    }
+
     static void select(String to, List<String> withLabels, String value) throws Exception {
         WebElement elm = WebUI.waitElements(to, 5)
                 .stream()
@@ -114,6 +121,8 @@ public class Form {
     }
 
     public static void select(WebElement elm, String value) throws Exception {
+        if (value.equals("__AUTO__"))
+            return;
         if (elm.getTagName().equals("mat-form-field")) {
             select(elm.findElement(By.cssSelector("mat-select")), value);
             return;
