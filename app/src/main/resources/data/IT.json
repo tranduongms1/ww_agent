@@ -48,6 +48,10 @@
         "country": "Italia"
     },
     "tradeInData": {
+        "category": "Smartphone",
+        "brand": "APPLE",
+        "model": "iPhone 15 128GB",
+        "imei": "917975089020437",
         "iban": "IT60X0542811101000000123456",
         "fiscalCode": "MRTMTT91D08F205J"
     },
