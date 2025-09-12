@@ -316,6 +316,7 @@ public abstract class TradeIn {
                         "stockModel",
                         "modelFormControl",
                         "Device",
+                        "device",
                         "Model",
                         "Indtast model:",
                         "Modèle",

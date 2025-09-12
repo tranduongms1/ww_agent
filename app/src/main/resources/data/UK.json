@@ -48,21 +48,21 @@
     },
     "tradeInData": {
         "category": "Mobile Phone",
-        "brand": "Other",
-        "model": "Any broken phone",
-        "storage": "Any GB",
-        "imei": "356442052539388"
+        "brand": "Apple",
+        "model": "iPhone 11 Pro Max",
+        "storage": "512GB",
+        "imei": "353911102890481"
     },
     "serviceData": {
         "TradeIn": {
             "store_id": "uk",
             "device_info": {
-                "imei": "356092053499510",
+                "imei": "356720118460685",
                 "state": {
                     "BROKEN": "NO"
                 }
             },
-            "device_id": "EC7BFB7B-D99E-47A9-9434-8C7E2D371E68",
+            "device_id": "73A71DB0-F7D9-44FE-930B-4A06ABDE6C92",
             "type": "TradeIn",
             "sku": "SM-S921BZYGEUB",
             "delayed_gratification": false
