@@ -48,10 +48,9 @@ public abstract class TradeIn {
 
     static String getStepName(WebElement modal) throws Exception {
         WebElement elm = WebUI.waitElement(modal, By.cssSelector("""
+                .trade-in-popup-v3__close,
                 .hubble-tradein-popup__device-choose-wrap,
                 .trade-in-popup__close,
-                .trade-in-popup-v3__btn-continue,
-                .trade-in-popup-v3__btn-apply,
                 .modal__close"""), 5);
         if (elm != null) {
             String attr = WebUI.getDomAttribute(elm, "an-la", "data-an-la", "class");

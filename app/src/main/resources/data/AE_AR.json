@@ -50,9 +50,9 @@
             "addToCartType": "append",
             "provider": "NORTHLADDER",
             "additionalInfos": {
-                "targetProductCode": "SM-F966BDBGMEA",
+                "targetProductCode": "SM-S928BZTCMEA",
                 "provider": "NORTHLADDER",
-                "productCode": "deviceType:Mobile Phone:brandName:Samsung Mobile Phone:modelName:S Series Samsung Mobile Phone:Subseries:S23 Series S Series Samsung Mobile Phone:Model:S23 Ultra S23 Series S Series Samsung Mobile Phone:Storage:256 GB S23 Ultra S23 Series S Series Samsung Mobile Phone",
+                "productCode": "deviceType:Mobile Phone:brandName:Apple Mobile Phone:modelName:iPhone 16 Pro (2024) Apple Mobile Phone:Storage:256 GB iPhone 16 Pro (2024) Apple Mobile Phone",
                 "responses": [
                     {
                         "name": "ae-tradein-1",
