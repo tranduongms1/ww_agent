@@ -237,7 +237,7 @@ public abstract class Browser {
                                 item.addedServices.add("SIM");
                             }
                             if (Tokens.containsAny(leading, "e-warranty", "ewarranty", "warranty")) {
-                                item.addedServices.add("EWarranty");
+                                item.addedServices.add("Warranty");
                             }
                             if (Tokens.containsAny(leading, "galaxy-club", "galaxy club", "galaxyclub")) {
                                 item.addedServices.add("GalaxyClub");
@@ -289,6 +289,13 @@ public abstract class Browser {
                                         throw new Exception("No SIM plan avaiable for %s".formatted(sku));
                                     Map<String, Object> plan = plans.get(0);
                                     Cart.addSIMViaAPI(c, sku, entryNumber, plan);
+                                }
+                                if (item.addedServices.contains("Warranty")) {
+                                    List<Map<String, Object>> services = API.getWarrantyServices(c, sku);
+                                    if (services.isEmpty())
+                                        throw new Exception("No Warranty services avaiable for %s".formatted(sku));
+                                    String code = (String) services.get(0).get("code");
+                                    Cart.addWarrantyViaAPI(c, sku, entryNumber, code);
                                 }
                             }
                             mustReload = true;

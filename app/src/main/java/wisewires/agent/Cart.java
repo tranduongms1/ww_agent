@@ -250,6 +250,16 @@ public abstract class Cart {
         }
     }
 
+    static void addWarrantyViaAPI(Context c, String sku, long entryNumber, String code) throws Exception {
+        try {
+            Map<String, Object> data = Map.of("serviceCode", code);
+            API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, data);
+            logger.info("Warranty added success for %s at cart entry %d".formatted(sku, entryNumber));
+        } catch (Exception e) {
+            throw new Exception("Unable to add Warranty for %s at cart entry %d".formatted(sku, entryNumber));
+        }
+    }
+
     static void applyVoucher(String voucher) throws Exception {
         try {
             logger.info("applying voucher code %s".formatted(voucher));
