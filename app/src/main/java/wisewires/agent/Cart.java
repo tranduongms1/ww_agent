@@ -615,9 +615,9 @@ public abstract class Cart {
     static void selecCountryInCart(Context c) throws Exception {
         try {
             String to = """
-                    .btn.cancel-btn.ng-binding,
-                    .button.pill-btn.pill-btn--white.reset.col""";
-            WebElement elmCancel = WebUI.waitElement(to, 5);
+                .btn.cancel-btn.ng-binding,
+                .button.pill-btn.pill-btn--white.reset.col""";
+            WebElement elmCancel = WebUI.waitElement(to, 3);
             if (elmCancel == null) {
                 return;
             }
@@ -629,28 +629,27 @@ public abstract class Cart {
                     "bh", "Bahrain",
                     "bh_ar", "البحرين",
                     "qa", "Qatar",
-                    "qa_ar", "دولة قطر");
+                    "qa_ar", "دولة قطر"
+            );
             String countryCode = c.site.toString().toLowerCase();
             String buttonText = countryMap.getOrDefault(countryCode, null);
-            if (buttonText == null) {
-                elmCancel.click();
-                logger.info("Country selection not required for site %s".formatted(c.site));
-                return;
-            }
-            WebUI.wait(10).withMessage("Select country").until(d -> {
+            WebUI.wait(5).withMessage("Select country").until(d -> {
                 String currentUrl = WebUI.driver.getCurrentUrl();
                 if (currentUrl.contains("/cart")) {
-                    String xpathSelectCountry = String.format(
-                            "//li[contains(@class,'country-item')]/descendant::span[contains(text(), '%s')]",
-                            buttonText);
-                    WebElement selectCountry = WebUI.driver.findElement(By.xpath(xpathSelectCountry));
-                    if (selectCountry != null) {
-                        selectCountry.click();
+                    WebElement btnConfirm = WebUI.driver.findElement(By.cssSelector("button.country-selector-button"));
+                    WebElement checkbox = WebUI.driver.findElement(By.cssSelector(".country-selector-modal .mat-mdc-checkbox"));
+                    if (buttonText != null) {
+                        String xpathSelectCountry = String.format("//li[contains(@class,'country-item')]/descendant::span[contains(text(), '%s')]", buttonText);
+                        WebElement selectCountry = WebUI.driver.findElement(By.xpath(xpathSelectCountry));
+                        if (selectCountry != null) {
+                            selectCountry.click();
+                            WebUI.delay(1);
+                        }
                     }
+                    checkbox.click();
                     WebUI.delay(1);
-                    WebElement btnConfirm = WebUI.findElement("button.country-selector-button");
                     btnConfirm.click();
-                    logger.info("Country %s selected".formatted(buttonText));
+                    logger.info("Country %s selected".formatted(buttonText != null ? buttonText : countryCode));
                     return true;
                 }
                 return currentUrl.contains(countryCode);

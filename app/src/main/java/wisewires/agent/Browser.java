@@ -303,6 +303,7 @@ public abstract class Browser {
                     }
                     if (WebUI.isOneOfSites("AE", "AE_AR", "BH", "BH_AR", "OM", "OM_AR", "QA", "QA_AR")) {
                         Cart.selecCountryInCart(c);
+                        WebUI.delay(2);
                     }
                     Cart.navigateTo(c, mustReload);
                     WebUI.mustCloseAllPopup(c);
