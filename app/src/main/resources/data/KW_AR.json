@@ -30,11 +30,10 @@
     },
     "tradeInData": {
         "category": "الهاتف الذكي",
-        "brand": "سامسونج",
-        "model": "سلسلة Z",
-        "subseries": "فولد سلسلة",
-        "divice": "Z فولد 4 (5G)",
-        "storage": "512 جيجابايت"
+        "brand": "تفاحة",
+        "model": "ايفون 11 (2019)",
+        "storage": "256 جيجابايت",
+        "imei": "356938035643809"
     },
     "serviceData": {
         "TradeIn": {
@@ -45,7 +44,12 @@
                 "targetProductCode": "SM-F966BDBGMEA",
                 "provider": "NORTHLADDER",
                 "productCode": "deviceType:Mobile Phone:brandName:Samsung Mobile Phone:modelName:S Series Samsung Mobile Phone:Subseries:S23 Series S Series Samsung Mobile Phone:Model:S23 Ultra S23 Series S Series Samsung Mobile Phone:Storage:512 GB S23 Ultra S23 Series S Series Samsung Mobile Phone",
-                "responses": [],
+                "responses": [
+                    {
+                        "name": "kw-tradein-1",
+                        "value": "6757e4537fa4de5352e24410"
+                    }
+                ],
                 "orderEntryNumber": 0,
                 "selectionResponses": []
             }

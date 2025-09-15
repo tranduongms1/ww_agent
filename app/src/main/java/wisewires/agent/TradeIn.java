@@ -532,8 +532,9 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (WebUI.waitElement(IMEI_LOCATOR, 2) != null) {
+                            if (WebUI.waitElement(IMEI_LOCATOR, 5) != null) {
                                 enterIMEI(modal, data.get("imei"));
+                                WebUI.delay(2);
                             }
                             acceptTermsAndConditions(modal);
                             break;
