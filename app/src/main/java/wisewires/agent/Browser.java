@@ -693,7 +693,7 @@ public abstract class Browser {
                 break;
             }
 
-            case "pay", "payment":
+            case "pay", "payment": {
                 Tokens.removeLeading(tokens, "with", "the");
                 if (!WebUI.getUrl().contains("CHECKOUT_STEP_PAYMENT")) {
                     Checkout.waitForNavigateTo();
@@ -704,7 +704,12 @@ public abstract class Browser {
                 c.paymentProcess.methodName = String.join(" ", tokens);
                 Payment.expandPaymentMethod(c.paymentProcess.methodName);
                 Payment.process(c);
+                String poNumber = Order.getPONumber();
+                Post p = new Post(c.post.getChannelId(), "PO Number: " + poNumber);
+                p.setRootId(c.post.getId());
+                c.client.createPost(p);
                 break;
+            }
 
             case "get": {
                 if (Tokens.containsAll(tokens, "po", "number")) {
