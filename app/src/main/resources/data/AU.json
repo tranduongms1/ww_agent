@@ -1,6 +1,6 @@
 {
     "pointingUrls": {
-        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=de&storeDomain=https://s2-smn5-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/de/cart",
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=de&storeDomain=https://s2-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/au/cart",
         "p2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=au&storeDomain=https://p2.shop.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/au/cart"
     },
     "apiEndpoints": {
@@ -43,6 +43,9 @@
     },
     "tradeUpData": {
         "postalCode": "5000"
+    },
+    "simInfo": {
+        "approvalID": "VA0814143105240"
     },
     "serviceData": {
         "TradeIn": {
