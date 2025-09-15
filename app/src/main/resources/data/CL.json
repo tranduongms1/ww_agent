@@ -55,5 +55,23 @@
             "sku": "QN55QNX1DAGXZS",
             "delayed_gratification": false
         }
+    },
+    "creditCardData": {
+        "cardNumber": "4168 8188 4444 7115",
+        "holderName": "APRO",
+        "expiryDate": "11/25",
+        "cvv": "123"
+    },
+    "masterCardData": {
+        "cardNumber": "5579 0534 6148 2647",
+        "holderName": "APRO",
+        "expiryDate": "11/25",
+        "cvv": "123"
+    },
+    "amexCardData": {
+        "cardNumber": "3753 651535 56885",
+        "holderName": "APRO",
+        "expiryDate": "11/25",
+        "cvv": "1234"
     }
 }
