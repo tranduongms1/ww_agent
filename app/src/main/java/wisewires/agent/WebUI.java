@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,15 +55,12 @@ public abstract class WebUI {
     static void openBrowser(String url) {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments(USER_AGENT, "--incognito");
+            options.addArguments(USER_AGENT, "--incognito", "--start-maximized");
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-geolocation");
             options.addArguments("--use-fake-ui-for-media-stream");
             options.addArguments();
             driver = new ChromeDriver(options);
-            long dw = (long) driver.executeScript("return window.outerWidth-window.innerWidth");
-            Dimension wd = driver.manage().window().getSize();
-            driver.manage().window().setSize(new Dimension((int) (1280 + dw), wd.getHeight()));
         }
         driver.get(url);
     }

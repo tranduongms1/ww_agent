@@ -705,6 +705,16 @@ public abstract class Browser {
                 Payment.process(c);
                 break;
 
+            case "get": {
+                if (Tokens.containsAll(tokens, "po", "number")) {
+                    String poNumber = Order.getPONumber();
+                    Post p = new Post(c.post.getChannelId(), "PO Number: " + poNumber);
+                    p.setRootId(c.post.getId());
+                    c.client.createPost(p);
+                }
+                break;
+            }
+
             case "capture": {
                 if (c.checkoutProcess != null) {
                     Checkout.process(c);
