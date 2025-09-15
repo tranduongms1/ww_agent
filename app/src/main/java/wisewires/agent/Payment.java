@@ -15,17 +15,28 @@ public abstract class Payment {
             ".payment-image.adyenCc",
             ".payment-image.kbank");
 
-    static Map<String, List<String>> MODE_LOCATORS = Map.of(
-            "3ds card", MODE_CC,
-            "amex card", MODE_CC,
-            "blik", List.of(".payment-image.p24-blik"),
-            "credit card", MODE_CC,
-            "cod", List.of(".payment-image.cod"),
-            "fbt", List.of(".payment-image.p24-fbt"),
-            "fast bank trasfer", List.of(".payment-image.p24-fbt"),
-            "master card", MODE_CC,
-            "tbt", List.of(".payment-image.tbt"),
-            "visa card", MODE_CC);
+    static Map<String, List<String>> MODE_LOCATORS = Map.ofEntries(
+            Map.entry("3ds card", MODE_CC),
+            Map.entry("amex card", MODE_CC),
+            Map.entry("khipu", List.of(".payment-image.khipu")),
+            Map.entry("khipu bank transfer", List.of(".payment-image.khipu")),
+            Map.entry("blik", List.of(".payment-image.p24-blik")),
+            Map.entry("credit card", MODE_CC),
+            Map.entry("cod", List.of(".payment-image.cod")),
+            Map.entry("fbt", List.of(".payment-image.p24-fbt")),
+            Map.entry("fast bank trasfer", List.of(".payment-image.p24-fbt")),
+            Map.entry("klap", List.of(".payment-image.klap")),
+            Map.entry("mach", List.of(".payment-image.mach")),
+            Map.entry("master card", MODE_CC),
+            Map.entry("mercado pago", List.of(".payment-image.mercadopago")),
+            Map.entry("mercadopago", List.of(".payment-image.mercadopago")),
+            Map.entry("one pay", List.of(".payment-image.flowOnePay")),
+            Map.entry("onepay", List.of(".payment-image.flowOnePay")),
+            Map.entry("servipag", List.of(".payment-image.servipag")),
+            Map.entry("servipag bank transfer", List.of(".payment-image.servipag")),
+            Map.entry("tbt", List.of(".payment-image.tbt")),
+            Map.entry("visa card", MODE_CC),
+            Map.entry("webpay", List.of(".payment-image.webpay")));
 
     static String PAYMENT_FORM_LOCATOR = """
             app-card-on-delivery-payment,
