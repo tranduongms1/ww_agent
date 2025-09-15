@@ -1,7 +1,6 @@
 {
     "pointingUrls": {
-        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ca&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ca/cart&storeNewHybDomain=https://stg2.shop.samsung.com",
-        "v2": ""
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ca&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ca/cart&storeNewHybDomain=https://stg2.shop.samsung.com"
     },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
