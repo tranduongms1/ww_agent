@@ -16,7 +16,8 @@ public abstract class Payment {
             ".payment-image.kbank");
 
     static Map<String, List<String>> MODE_LOCATORS = Map.of(
-            "amex card", List.of(".payment-image.adyenCc"),
+            "3ds card", MODE_CC,
+            "amex card", MODE_CC,
             "blik", List.of(".payment-image.p24-blik"),
             "credit card", MODE_CC,
             "cod", List.of(".payment-image.cod"),
@@ -226,6 +227,7 @@ public abstract class Payment {
     }
 
     static void process(Context c) throws Exception {
+        PaymentProcess p = c.paymentProcess;
         WebElement form = WebUI.waitElement(PAYMENT_FORM_LOCATOR, 15);
         WebUI.waitForNotPresent(".paymentmode-detail-loading", 15);
         switch (form.getTagName()) {
@@ -242,6 +244,20 @@ public abstract class Payment {
             case
                     "app-payment-mode-credit-card",
                     "app-payment-mode-kbank-credit-card":
+                switch (p.methodName) {
+                    case "amex card":
+                        p.ccData = c.getProfile().getAmexCardData();
+                        break;
+                    case "master card":
+                        p.ccData = c.getProfile().getMasterCardData();
+                        break;
+                    case "3ds card":
+                        p.ccData = c.getProfile().getThreeDSCardData();
+                        break;
+                    default:
+                        p.ccData = c.getProfile().getCreditCardData();
+                        break;
+                }
                 payWithCreditCard(c, form);
                 break;
 
@@ -287,6 +303,7 @@ public abstract class Payment {
     }
 
     private static void handleCreditCardField(WebElement field, Context c) throws Exception {
+        Map<String, String> data = c.paymentProcess.ccData;
         String nameOrId = WebUI.getDomAttribute(field, "name", "formcontrolname", "id", "placeholder", "type");
         switch (nameOrId) {
             case
@@ -298,7 +315,7 @@ public abstract class Payment {
                     "cc_cardNo",
                     "card_num",
                     "encryptedCardNumber":
-                String cardNumber = "4111 1111 1111 1111";
+                String cardNumber = data.get("cardNumber");
                 field.clear();
                 field.sendKeys(cardNumber);
                 logger.info("Card number entered: " + cardNumber);
@@ -313,7 +330,7 @@ public abstract class Payment {
                     "CCName",
                     "cc_holdername",
                     "cardholder-name":
-                String name = "visa test";
+                String name = data.get("holderName");
                 field.clear();
                 field.sendKeys(name);
                 logger.info("Holder name entered: " + name);
@@ -328,7 +345,7 @@ public abstract class Payment {
                     "CCExpdate",
                     "MM ／ YY",
                     "card-expiry-date":
-                String expiryDate = "03/30";
+                String expiryDate = data.get("expiryDate");
                 field.clear();
                 field.sendKeys(expiryDate);
                 logger.info("Expiry date entered: " + expiryDate);
@@ -341,7 +358,7 @@ public abstract class Payment {
                     "expire-m",
                     "card_exp_month",
                     "ccmonth":
-                String expiryMonth = "expiryMonth";
+                String expiryMonth = data.get("expiryMonth");
                 if (field.getTagName().equals("input")) {
                     field.clear();
                     field.sendKeys(expiryMonth);
@@ -358,7 +375,7 @@ public abstract class Payment {
                     "expire-y",
                     "card_exp_year",
                     "ccyear":
-                String expiryYear = "expiryYear";
+                String expiryYear = data.get("expiryYear");
                 if (field.getTagName().equals("input")) {
                     field.clear();
                     field.sendKeys(expiryYear);
@@ -379,7 +396,7 @@ public abstract class Payment {
                     "CVV",
                     "cc_cvv",
                     "cvv2":
-                String cvv = "737";
+                String cvv = data.get("cvv");
                 field.clear();
                 field.sendKeys(cvv);
                 field.sendKeys(Keys.TAB);
@@ -434,7 +451,72 @@ public abstract class Payment {
     }
 
     static void payWithPayPal(Context c, WebElement elm) throws Exception {
+        Map<String, String> data = c.getProfile().getPaypalData();
+        try {
+            acceptTermAndConditions();
+            WebUI.delay(2);
+            String iframeCSS = ".paypal-buttons iframe.component-frame";
+            WebElement iframe = WebUI.findElement(iframeCSS);
+            if (iframe == null) {
+                WebUI.click(WebUI.findElement("""
+                        .paypal-button-row div[role="link"][aria-label="PayPal"],
+                        .paypal-button-row div[aria-label="PayPal Checkout"],
+                        [data-an-la="payment:continue to paypal:paypal"]
+                        """));
+                WebUI.delay(2);
+                WebUI.waitForUrlContains("https://www.sandbox.paypal.com/cgi-bin/webscr?", 30);
+                WebUI.fill(".splitEmail input[name='login_email']", data.get("email"));
+                WebUI.click(".splitEmail button.actionContinue");
+                WebUI.delay(3);
+                WebUI.wait(10);
+                if (WebUI.waitElement("#otpVerification", 5) != null) {
+                    WebUI.click(".tryAnotherWayLink  a");
+                    WebUI.delay(1);
+                    WebUI.click("li:not(.hide) a[aria-label='Login with password']");
+                }
+                WebUI.fill(".splitPassword input[name='login_password']", data.get("password"));
+                WebUI.click(".splitPassword button.actionContinue ");
+                WebUI.click(
+                        ".CheckoutButton_buttonWrapper_2VloF button[data-testid='submit-button-initial'], button[data-testid='consentButton']");
+                WebUI.waitForUrlContains("/orderConfirmation", 30);
+            }
+            WebUI.driver.switchTo().frame(iframe);
+            logger.info("switched to iframe");
+            WebUI.click(
+                    ".paypal-button-row div[role='link'][aria-label='PayPal'], .paypal-button-row div[aria-label='PayPal Checkout'], [data-an-la='payment:continue to paypal:paypal']");
+            WebUI.delay(2);
+            WebUI.switchToWindow(1);
+            try {
+                WebUI.waitForUrlContains("https://www.sandbox.paypal.com/checkoutnow?", 30);
+                if (WebUI.waitElement("[data-testid='basl-login-link-container'] button", 15) != null) {
+                    WebUI.click("[data-testid='basl-login-link-container'] button");
+                }
+                WebUI.waitElement(".splitEmail input[name='login_email']", 5);
+                WebUI.fill(".splitEmail input[name='login_email']", data.get("email"));
+                if (WebUI.waitElement(".splitEmail button.actionContinue", 5) != null) {
+                    WebUI.click(".splitEmail button.actionContinue");
+                }
+                if (WebUI.waitElement("#otpVerification", 5) != null) {
+                    WebUI.click(".tryAnotherWayLink  a");
+                    WebUI.delay(1);
 
+                    WebUI.click("li:not(.hide) a[aria-label='Login with password']");
+                }
+                WebUI.fill("input[name='login_password']", data.get("password"));
+                WebUI.click("button.actionContinue");
+                WebUI.waitForUrlContains("https://www.sandbox.paypal.com/webapps/hermes?", 30);
+                WebUI.click(
+                        ".CheckoutButton_buttonWrapper_2VloF button[data-testid='submit-button-initial'], button[data-testid='consentButton']");
+            } catch (Exception e) {
+                WebUI.driver.close();
+                WebUI.switchToWindow(0);
+                throw e;
+            }
+            WebUI.switchToWindow(0);
+            WebUI.waitForUrlContains("/orderConfirmation", 30);
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with PayPal:", e);
+        }
     }
 
     static void payWithBlik(Context c, WebElement elm) throws Exception {

@@ -25,6 +25,7 @@ public class Context {
     public PFProcess pfProcess;
     public CheckoutProcess checkoutProcess;
     public GalaxyClubProcess galaxyClubProcess;
+    public PaymentProcess paymentProcess;
 
     private boolean cookieReady = false;
     private Map<String, Boolean> aemReady = new HashMap<>();

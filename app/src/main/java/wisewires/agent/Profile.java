@@ -22,6 +22,12 @@ public class Profile {
 
     private Map<String, Map<String, Object>> serviceData;
 
+    private Map<String, String> creditCardData;
+    private Map<String, String> masterCardData;
+    private Map<String, String> amexCardData;
+    private Map<String, String> threeDSCardData;
+    private Map<String, String> paypalData;
+
     public Map<String, String> getPointingUrls() {
         return pointingUrls != null ? pointingUrls : new HashMap<>();
     }
@@ -147,5 +153,45 @@ public class Profile {
 
     public void setServiceData(Map<String, Map<String, Object>> serviceData) {
         this.serviceData = serviceData;
+    }
+
+    public Map<String, String> getCreditCardData() {
+        return creditCardData;
+    }
+
+    public void setCreditCardData(Map<String, String> creditCardData) {
+        this.creditCardData = creditCardData;
+    }
+
+    public Map<String, String> getMasterCardData() {
+        return masterCardData;
+    }
+
+    public void setMasterCardData(Map<String, String> masterCardData) {
+        this.masterCardData = masterCardData;
+    }
+
+    public Map<String, String> getAmexCardData() {
+        return amexCardData;
+    }
+
+    public void setAmexCardData(Map<String, String> amexCardData) {
+        this.amexCardData = amexCardData;
+    }
+
+    public Map<String, String> getThreeDSCardData() {
+        return threeDSCardData;
+    }
+
+    public void setThreeDSCardData(Map<String, String> threeDSCardData) {
+        this.threeDSCardData = threeDSCardData;
+    }
+
+    public Map<String, String> getPaypalData() {
+        return paypalData;
+    }
+
+    public void setPaypalData(Map<String, String> paypalData) {
+        this.paypalData = paypalData;
     }
 }

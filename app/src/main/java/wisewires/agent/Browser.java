@@ -673,13 +673,14 @@ public abstract class Browser {
 
             case "pay", "payment":
                 Tokens.removeLeading(tokens, "with", "the");
-                String methodName = String.join(" ", tokens);
                 if (!WebUI.getUrl().contains("CHECKOUT_STEP_PAYMENT")) {
                     Checkout.waitForNavigateTo();
                     c.mustCheckoutProcess().untilPayment();
                     Checkout.process(c);
                 }
-                Payment.expandPaymentMethod(methodName);
+                c.paymentProcess = new PaymentProcess();
+                c.paymentProcess.methodName = String.join(" ", tokens);
+                Payment.expandPaymentMethod(c.paymentProcess.methodName);
                 Payment.process(c);
                 break;
 
