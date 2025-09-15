@@ -40,7 +40,8 @@ public class Context {
     }
 
     public String envKey() {
-        return "%s_%s_%s".formatted(site.toUpperCase(), siteUid != "" ? siteUid : "estore", env != "" ? env : "prod");
+        return "%s_%s_%s".formatted(site.toUpperCase(),
+                siteUid.isEmpty() ? "estore" : siteUid, env.isEmpty() ? "prod" : env);
     }
 
     public boolean isCookieReady() {
@@ -109,7 +110,7 @@ public class Context {
     }
 
     public String getSiteUid() {
-        return siteUid != "" ? siteUid : site.toLowerCase();
+        return siteUid.isEmpty() ? site.toLowerCase() : siteUid;
     }
 
     public String getPointingUrl() throws Exception {
