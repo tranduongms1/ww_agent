@@ -111,7 +111,7 @@ public abstract class WebUI {
             driver.get(loginUrl);
             waitElement("#userNameInput", 10);
             fill("#userNameInput", "co_tonydo.id");
-            fill("#passwordInput", "Saohoa05$");
+            fill("#passwordInput", "Saohoa05^");
             click("#submitButton");
             logger.info("AD SSO submitted");
             waitForUrlContains("/adSsoSuccess.do", 10);
