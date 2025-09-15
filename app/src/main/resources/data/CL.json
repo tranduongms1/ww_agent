@@ -3,6 +3,9 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smb-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
+    "exchangeEndpoints": {
+        "stg2": "https://ued1.ecom-qa.samsung.com/v1/exchange/api/chl"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -33,5 +36,24 @@
         "model": "Galaxy S23 Ultra",
         "storage": "512 GB",
         "imei": "354721885019565"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-DEFAULT-TRADEIN",
+            "addToCartType": "append",
+            "additionalInfos": null
+        },
+        "TradeUp": {
+            "store_id": "cl",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "4A31BE6B-3F2C-4CDE-BC87-A94B1C5BCDB0",
+            "type": "TradeIn",
+            "sku": "QN55QNX1DAGXZS",
+            "delayed_gratification": false
+        }
     }
 }

@@ -105,6 +105,7 @@ public class CustomerInfo {
 
             case
                     "Tipo de documento",
+                    "Tipo de Documento",
                     "NIF/NIE/Pasaporte",
                     "ขอใบกำกับภาษีในนาม":
                 logger.info("Filling '%s (documentType)'\n".formatted(nameOrLabel));

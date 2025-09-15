@@ -13,7 +13,8 @@ public abstract class Payment {
 
     static List<String> MODE_CC = List.of(
             ".payment-image.adyenCc",
-            ".payment-image.kbank");
+            ".payment-image.kbank",
+            ".payment-image.mercadopago");
 
     static Map<String, List<String>> MODE_LOCATORS = Map.ofEntries(
             Map.entry("3ds card", MODE_CC),
@@ -254,7 +255,8 @@ public abstract class Payment {
 
             case
                     "app-payment-mode-credit-card",
-                    "app-payment-mode-kbank-credit-card":
+                    "app-payment-mode-kbank-credit-card",
+                    "app-payment-mode-mercado-pago-credit":
                 switch (p.methodName) {
                     case "amex card":
                         p.ccData = c.getProfile().getAmexCardData();

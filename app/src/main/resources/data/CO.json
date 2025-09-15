@@ -1,0 +1,74 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smb-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "exchangeEndpoints": {
+        "stg2": "https://ued1.ecom-qa.samsung.com/v1/exchange/api/col"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "3213213211",
+        "dateOfBirth": "01/04/1988",
+        "companyName": "Wisewires",
+        "companyId": "12345",
+        "companyPhoneNumber": "0876546542",
+        "documentType": "Cédula de ciudadanía",
+        "vatNumber": "123456"
+    },
+    "customerAddress": {
+        "departamento": "Bogota, D.C.",
+        "adminLevel2": "BOGOTA, D.C.",
+        "line2Type": "Anillo",
+        "line2_b": "123",
+        "line2_c": "abc",
+        "line2_d": "xyz",
+        "apartment": "apart",
+        "tipoDePropiedad": "Apartamento"
+    },
+    "billingAddress": {
+        "departamento": "Arauca",
+        "adminLevel2": "ARAUCA",
+        "line1": "line1Bill"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-DEFAULT-TRADEIN",
+            "addToCartType": "append",
+            "provider": "PRODUCT-CO",
+            "additionalInfos": null
+        },
+        "TradeUp": {
+            "store_id": "co",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "85F6525F-4E32-4509-954F-A7B709C51918",
+            "type": "TradeIn",
+            "sku": "UN85DU8000KXZL",
+            "delayed_gratification": false
+        }
+    },
+    "creditCardData": {
+        "cardNumber": "4013 5406 8274 6260",
+        "holderName": "APRO",
+        "expiryDate": "11/25",
+        "cvv": "123"
+    },
+    "masterCardData": {
+        "cardNumber": "5254 1336 7440 3564",
+        "holderName": "APRO",
+        "expiryDate": "11/25",
+        "cvv": "123"
+    },
+    "amexCardData": {
+        "cardNumber": "3753 651535 56885",
+        "holderName": "APRO",
+        "expiryDate": "11/25",
+        "cvv": "1234"
+    }
+}

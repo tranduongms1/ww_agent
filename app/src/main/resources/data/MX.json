@@ -1,0 +1,6 @@
+{
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smb-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    }
+}
