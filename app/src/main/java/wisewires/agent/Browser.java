@@ -525,6 +525,17 @@ public abstract class Browser {
                         break;
                     }
                 }
+                if (Tokens.containsAny(tokens, "option")) {
+                    Tokens.removeLeading(tokens, "option");
+                    String option;
+                    if (tokens.size() > 1) {
+                        option = tokens.get(0) + " " + tokens.get(1);
+                    } else {
+                        option = tokens.get(0);
+                    }
+                    c.mustCheckoutProcess().selectOrderOption(option);
+                    break;
+                }
                 if (tokens.contains("delivery")) {
                     String type = null;
                     Object option = null;

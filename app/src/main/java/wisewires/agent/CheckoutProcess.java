@@ -337,6 +337,15 @@ public class CheckoutProcess {
         });
     }
 
+    public CheckoutProcess selectOrderOption(String option) {
+        return onCustomerInfo((c, form) -> {
+            String xpath = "//mat-radio-button//span[normalize-space()='%s']".formatted(option);
+            WebElement radio = WebUI.driver.findElement(By.xpath(xpath));
+            Form.check(radio);
+            logger.info("Selected order option '%s'".formatted(option));
+        });
+    }
+
     public CheckoutProcess selectNewCustomerAddress() {
         return onCustomerAddress((c, form) -> {
             WebElement rb = WebUI.findElement(form, "mat-radio-button:has([value='NEW_ADDRESS'])");
