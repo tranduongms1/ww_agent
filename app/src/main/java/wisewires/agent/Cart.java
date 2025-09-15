@@ -688,4 +688,27 @@ public abstract class Cart {
             throw new RuntimeException("Unable to select city in Cart", e);
         }
     }
+
+    public static void clickContinueShopping(Context c) throws Exception {
+        try {
+            boolean readyEmpty = mustEmpty(c);
+            Cart.navigateTo(c, !readyEmpty);
+            String to = "[data-an-la='empty cart:continue shopping']";
+            WebElement elm = WebUI.findElement(to);
+            WebUI.scrollToCenter(elm);
+            WebUI.delay(1);
+            elm.click();
+            WebUI.waitForUrlContains(String.format("https://%s.shop.samsung.com/%s/", c.env, c.getSiteUid()), 10);
+        } catch (Exception e) {
+            throw new Exception("Unable to click continue to shopping", e);
+        }
+    }
+
+    public static void clickSignInFromCart(Context c) throws Exception {
+        boolean readyEmpty = mustEmpty(c);
+        Cart.navigateTo(c, !readyEmpty);
+        WebUI.mustCloseAllPopup(c);
+        WebUI.click("[data-an-la='empty cart:sign in']");
+        WebUI.waitForUrlContains("https://account.samsung.com/iam/", 15);
+    }
 }

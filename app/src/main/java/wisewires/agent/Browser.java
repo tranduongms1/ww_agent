@@ -601,6 +601,16 @@ public abstract class Browser {
                             break;
                     }
                 }
+                Tokens.removeLeading(tokens, "from");
+                leading = Tokens.removeLeading(tokens, "cart");
+                if (Tokens.containsAll(tokens, "continue", "shopping")) {
+                    Tokens.removeLeading(tokens, "continue", "shopping");
+                    Cart.clickContinueShopping(c);
+                }
+                if (Tokens.containsAll(tokens, "sign", "in")) {
+                    Tokens.removeLeading(tokens, "sign", "in");
+                    Cart.clickSignInFromCart(c);
+                }
                 break;
             }
 
