@@ -15,7 +15,7 @@ public abstract class GNB {
                     .after-login button[an-la="user name"],
                     .before-login [aria-label="Manage Account"]
                     """;
-            WebElement elm = WebUI.findElement(to);
+            WebElement elm = WebUI.waitElement(to, 10);
             Actions builder = new Actions(WebUI.driver);
             builder.moveToElement(elm).perform();
         } catch (Exception e) {

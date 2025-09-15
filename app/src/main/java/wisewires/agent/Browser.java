@@ -95,6 +95,7 @@ public abstract class Browser {
                     if (WebUI.isOneOfSites("TH")) {
                         WebUI.closeAllPopup(c);
                     }
+                    WebUI.waitForPageLoad(30);
                     GNB.hoverHumanIcon();
                 }
                 logger.info("[PASS] %s".formatted(req));
