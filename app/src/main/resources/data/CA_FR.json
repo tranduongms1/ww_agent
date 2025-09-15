@@ -1,0 +1,92 @@
+{
+    "pointingUrls": {
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ca&storeDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ca_fr/cart&storeNewHybDomain=https://stg2.shop.samsung.com",
+        "v2": ""
+    },
+    "apiEndpoints": {
+        "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smc-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    },
+    "customerInfo": {
+        "email": "autotestww@gmail.com",
+        "firstName": "Auto",
+        "lastName": "test",
+        "phoneNumber": "3213213213",
+        "dateOfBirth": "01/04/1988"
+    },
+    "customerAddress": {
+        "searchAddress": "78 O'Connor St Ottawa, ON, K1P 5M7",
+        "line1": "78 O'Connor St",
+        "adminLevel2": "Ottawa",
+        "adminLevel1": "Ontario",
+        "postalCode": "K1P 5M7"
+    },
+    "billingAddress": {
+        "searchAddress": "67 Stanhope Main Rd Lewisporte, NL, A0G 3A0",
+        "line1": "67 Stanhope Main Rd",
+        "adminLevel2": "Klemtu",
+        "adminLevel1": "British Columbia",
+        "postalCode": "V0T 1L0"
+    },
+    "tradeInData": {
+        "category": "PHONE",
+        "brand": "Google",
+        "model": "PIXEL 4A",
+        "storage": "128GB",
+        "color": "Black",
+        "imei": "351787742847020"
+    },
+    "serviceData": {
+        "TradeIn": {
+            "serviceCode": "T-ASSURANT-TRADEIN",
+            "addToCartType": "append",
+            "provider": "ASSURANTV2",
+            "additionalInfos": {
+                "targetProductCode": "SM-S931WZSAXAC",
+                "provider": "ASSURANTV2",
+                "productCode": "99760000036334",
+                "responses": [
+                    {
+                        "name": "08_SCRATCHFREE_SMTI",
+                        "value": "SCRATCHFREE_YES"
+                    },
+                    {
+                        "name": "00_POWERON_SMTI",
+                        "value": "POWERON_YES"
+                    },
+                    {
+                        "name": "02_NETWORKOK_SMTI",
+                        "value": "NETWORKOK_YES"
+                    },
+                    {
+                        "name": "03_ISFUNCTIONAL_SMTI",
+                        "value": "FUNCTIONAL_YES"
+                    },
+                    {
+                        "name": "05_NOLCDDMG_SMTI",
+                        "value": "NOLCDDMG_YES"
+                    },
+                    {
+                        "name": "04_NOPHYSICALDMG_SMTI",
+                        "value": "NOPHYSICALDMG_YES"
+                    },
+                    {
+                        "name": "07_BACKSCREENOK_SMTI",
+                        "value": "BACKSCREENOK_YES"
+                    },
+                    {
+                        "name": "01_LIQUIDDMG_SMTI",
+                        "value": "NOLIQ_YES"
+                    },
+                    {
+                        "name": "06_LCDFUNCTIONAL_SMTI",
+                        "value": "LCDFUNCTIONAL_YES"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "imei": "866278125037973",
+                "selectionResponses": []
+            }
+        }
+    }
+}
