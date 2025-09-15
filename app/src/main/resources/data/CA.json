@@ -87,5 +87,27 @@
                 "selectionResponses": []
             }
         }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "ca",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "2222 4200 0000 1113",
+        "holderName": "ca",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "ca",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
     }
 }
