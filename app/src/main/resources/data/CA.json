@@ -40,44 +40,52 @@
             "serviceCode": "T-ASSURANT-TRADEIN",
             "addToCartType": "append",
             "provider": "ASSURANTV2",
-            "additionalInfos": [
-                {
-                    "name": "08_SCRATCHFREE_SMTI",
-                    "value": "SCRATCHFREE_YES"
-                },
-                {
-                    "name": "00_POWERON_SMTI",
-                    "value": "POWERON_YES"
-                },
-                {
-                    "name": "02_NETWORKOK_SMTI",
-                    "value": "NETWORKOK_YES"
-                },
-                {
-                    "name": "03_ISFUNCTIONAL_SMTI",
-                    "value": "FUNCTIONAL_YES"
-                },
-                {
-                    "name": "05_NOLCDDMG_SMTI",
-                    "value": "NOLCDDMG_YES"
-                },
-                {
-                    "name": "04_NOPHYSICALDMG_SMTI",
-                    "value": "NOPHYSICALDMG_YES"
-                },
-                {
-                    "name": "07_BACKSCREENOK_SMTI",
-                    "value": "BACKSCREENOK_YES"
-                },
-                {
-                    "name": "01_LIQUIDDMG_SMTI",
-                    "value": "NOLIQ_YES"
-                },
-                {
-                    "name": "06_LCDFUNCTIONAL_SMTI",
-                    "value": "LCDFUNCTIONAL_YES"
-                }
-            ]
+            "additionalInfos": {
+                "targetProductCode": "SM-S931WZSAXAC",
+                "provider": "ASSURANTV2",
+                "productCode": "99760000036334",
+                "responses": [
+                    {
+                        "name": "08_SCRATCHFREE_SMTI",
+                        "value": "SCRATCHFREE_YES"
+                    },
+                    {
+                        "name": "00_POWERON_SMTI",
+                        "value": "POWERON_YES"
+                    },
+                    {
+                        "name": "02_NETWORKOK_SMTI",
+                        "value": "NETWORKOK_YES"
+                    },
+                    {
+                        "name": "03_ISFUNCTIONAL_SMTI",
+                        "value": "FUNCTIONAL_YES"
+                    },
+                    {
+                        "name": "05_NOLCDDMG_SMTI",
+                        "value": "NOLCDDMG_YES"
+                    },
+                    {
+                        "name": "04_NOPHYSICALDMG_SMTI",
+                        "value": "NOPHYSICALDMG_YES"
+                    },
+                    {
+                        "name": "07_BACKSCREENOK_SMTI",
+                        "value": "BACKSCREENOK_YES"
+                    },
+                    {
+                        "name": "01_LIQUIDDMG_SMTI",
+                        "value": "NOLIQ_YES"
+                    },
+                    {
+                        "name": "06_LCDFUNCTIONAL_SMTI",
+                        "value": "LCDFUNCTIONAL_YES"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "imei": "866278125037973",
+                "selectionResponses": []
+            }
         }
     }
 }
