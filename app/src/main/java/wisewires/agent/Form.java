@@ -144,6 +144,15 @@ public class Form {
             Select dropdown = new Select(elm);
             dropdown.selectByVisibleText(value);
             return;
+        } else if (elm.getAttribute("class").contains("mat-mdc-form-field")) {
+            WebUI.scrollToCenter(elm);
+            elm.click();
+            WebUI.delay(1);
+            String xpath = "//mat-option//span[text()='%s']".formatted(value);
+            WebElement opt = elm.findElement(By.xpath(xpath));
+            WebUI.scrollToCenter(opt);
+            opt.click();
+            return;
         }
         throw new Exception("Unsupported web element");
     }

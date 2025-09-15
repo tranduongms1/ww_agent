@@ -114,7 +114,8 @@ public class CustomerInfo {
             case
                     "companyName",
                     "companyNameOpt",
-                    "companyName2":
+                    "companyName2",
+                    "companyNameInstitutional":
                 field.clear();
                 field.sendKeys(data.get("companyName"));
                 break;
@@ -122,10 +123,14 @@ public class CustomerInfo {
             case
                     "vatNumber",
                     "vatNumber2",
-                    "companyTaxNumber",
-                    "personalTaxNumber":
+                    "companyTaxNumber":
                 field.clear();
                 field.sendKeys(data.get("vatNumber") + Keys.ENTER);
+                break;
+
+            case "personalTaxNumber":
+                field.clear();
+                field.sendKeys(data.get("personalTaxNumber") + Keys.ENTER);
                 break;
 
             case "companyId":
@@ -133,13 +138,17 @@ public class CustomerInfo {
                 field.sendKeys(data.get("companyId"));
                 break;
 
+            case "taxBranch":
+                field.clear();
+                Form.select(field, data.get("taxBranch"));
+                break;
+
             case "companyPhoneNumber":
                 field.clear();
                 field.sendKeys(data.get("companyPhoneNumber"));
                 break;
 
-            case
-                    "commercializeTxt":
+            case "commercializeTxt":
                 field.clear();
                 field.sendKeys(data.get("commercializeTxt"));
                 break;
@@ -176,6 +185,11 @@ public class CustomerInfo {
                     "Año",
                     "Ano":
                 Form.select(field, data.get("dateOfBirth_Year"));
+                break;
+
+            case "customerDOB":
+                field.clear();
+                field.sendKeys(data.get("customerDOB") + Keys.ENTER);
                 break;
 
             case
