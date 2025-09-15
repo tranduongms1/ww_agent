@@ -309,7 +309,8 @@ public abstract class TradeIn {
                         "Nhà sản xuất",
                         "العلامة التجارية",
                         "Gyártó",
-                        "Seleziona la marca":
+                        "Seleziona la marca",
+                        "Le fabricant":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -358,13 +359,15 @@ public abstract class TradeIn {
                         "Geheugen",
                         "ความจุ",
                         "سعة التخزين",
-                        "Kapasitas":
+                        "Kapasitas",
+                        "Une capacité de stockage":
                     selectStorage(elm, data.get("storage"));
                     break;
 
                 case
                         "color",
-                        "Color":
+                        "Color",
+                        "La couleur":
                     selectColor(elm, data.get("color"));
                     break;
             }
@@ -524,7 +527,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("BE", "BE_FR", "CA", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK", "HU", "TR")
+                            if (List.of("BE", "BE_FR", "CA", "CA_FR", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK", "HU", "TR")
                                     .contains(c.site)) {
                                 enterIMEI(modal, data.get("imei"));
                             }
