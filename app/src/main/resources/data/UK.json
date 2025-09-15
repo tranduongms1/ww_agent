@@ -47,11 +47,10 @@
         "adminLevel2": "Settle"
     },
     "tradeInData": {
-        "category": "Mobile Phone",
-        "brand": "Apple",
-        "model": "iPhone 11 Pro Max",
-        "storage": "512GB",
-        "imei": "353911102890481"
+        "category": "Tablet",
+        "brand": "Samsung",
+        "model": "Galaxy Tab S2 9.7 WiFi - T810",
+        "storage": "32GB"
     },
     "serviceData": {
         "TradeIn": {

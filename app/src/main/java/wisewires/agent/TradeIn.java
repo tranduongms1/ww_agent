@@ -22,6 +22,13 @@ public abstract class TradeIn {
             .trade-in-container,
             .modal-dialog.tradein-cx-flow""";
 
+    static String IMEI_LOCATOR = """
+            .trade-in-popup__imei-form input,
+            .trade-in-popup-v3__imei-form input,
+            .trade-in-summary__imei-input input,
+            .trade-in-modal [formcontrolname='imei'],
+            [formcontrolname='imeiFormControl']""";
+
     static String NEXT_LOCATOR = """
             [an-la='trade-in:trade-in guide:next'],
             [data-an-la='trade-in:trade-in guide:next'],
@@ -174,7 +181,7 @@ public abstract class TradeIn {
                 return;
             }
             WebElement opt = (WebElement) WebUI.driver.executeScript("""
-                    var opts = arguments[0].querySelectorAll('input, [data-an-la], [an-la]');
+                    var opts = arguments[0].querySelectorAll('input, mat-radio-button, [data-an-la], [an-la]');
                     for (let opt of opts) {
                         if (opt.value && opt.value.toLowerCase() == arguments[1]) return opt.parentElement;
                         let anla = opt.getAttribute('data-an-la') || opt.getAttribute('an-la');
@@ -416,12 +423,7 @@ public abstract class TradeIn {
 
     static void enterIMEI(WebElement modal, String imei) throws Exception {
         try {
-            WebElement input = WebUI.waitElement(modal, By.cssSelector("""
-                    .trade-in-popup__imei-form input,
-                    .trade-in-popup-v3__imei-form input,
-                    .trade-in-summary__imei-input input,
-                    .trade-in-modal [formcontrolname='imei'],
-                    [formcontrolname='imeiFormControl']"""), 5);
+            WebElement input = WebUI.waitElement(modal, By.cssSelector(IMEI_LOCATOR), 5);
             WebUI.scrollToCenter(input);
             input.clear();
             WebUI.delay(1);
@@ -451,7 +453,6 @@ public abstract class TradeIn {
                 WebUI.delay(1);
                 logger.info("Click manual select device");
             });
-
         } catch (Exception e) {
             throw new Exception("Unable to enter device IMEI '%s'".formatted(imei));
         }
@@ -527,8 +528,7 @@ public abstract class TradeIn {
                             break;
 
                         case "apply discount":
-                            if (List.of("BE", "BE_FR", "CA", "CA_FR", "DK", "FI", "GR", "CZ", "AE", "AE_AR", "UK", "HU", "TR")
-                                    .contains(c.site)) {
+                            if (WebUI.waitElement(IMEI_LOCATOR, 2) != null) {
                                 enterIMEI(modal, data.get("imei"));
                             }
                             acceptTermsAndConditions(modal);
