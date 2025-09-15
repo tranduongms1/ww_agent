@@ -1,7 +1,7 @@
 {
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=de&storeDomain=https://s2-smn5-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/de/cart",
-        "p2":"https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=au&storeDomain=https://p2.shop.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/au/cart"
+        "p2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=au&storeDomain=https://p2.shop.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/au/cart"
     },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
@@ -68,5 +68,34 @@
             "sku": "QA85LS03DAWXXY",
             "delayed_gratification": false
         }
+    },
+    "creditCardData": {
+        "cardNumber": "4111 1111 1111 1111",
+        "holderName": "au test",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "masterCardData": {
+        "cardNumber": "5555444433331111",
+        "holderName": "au test",
+        "expiryDate": "03/30",
+        "cvv": "737"
+    },
+    "amexCardData": {
+        "cardNumber": "3700 0000 0000 002",
+        "holderName": "au test",
+        "expiryDate": "03/30",
+        "cvv": "7373"
+    },
+    "threeDSCardData": {
+        "cardNumber": "4917 6100 0000 0000",
+        "holderName": "au test",
+        "expiryDate": "03/30",
+        "cvv": "737",
+        "password": "password"
+    },
+    "paypalData": {
+        "email": "sb-ct4101438108@personal.example.com",
+        "password": "Hybris123"
     }
 }
