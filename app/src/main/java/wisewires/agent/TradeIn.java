@@ -317,7 +317,8 @@ public abstract class TradeIn {
                         "العلامة التجارية",
                         "Gyártó",
                         "Seleziona la marca",
-                        "Le fabricant":
+                        "Le fabricant",
+                        "Angi produsent:":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -348,7 +349,8 @@ public abstract class TradeIn {
                         "Készülék",
                         "Model perangkat",
                         "Seleziona il modello del tuo dispositivo usato o inizia a digitare",
-                        "productFormControl":
+                        "productFormControl",
+                        "Skriv inn modell":
                     selectModel(elm, data.get("model"));
                     break;
 
