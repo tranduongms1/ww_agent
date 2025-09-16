@@ -29,6 +29,7 @@ public class Profile {
     private Map<String, String> amexCardData;
     private Map<String, String> threeDSCardData;
     private Map<String, String> paypalData;
+    private Map<String, String> heyLightData;
 
     public Map<String, String> getPointingUrls() {
         return pointingUrls != null ? pointingUrls : new HashMap<>();
@@ -211,5 +212,13 @@ public class Profile {
 
     public void setPaypalData(Map<String, String> paypalData) {
         this.paypalData = paypalData;
+    }
+
+    public Map<String, String> getHeyLightData() {
+        return heyLightData;
+    }
+
+    public void setHeyLightData(Map<String, String> HeyLightData) {
+        this.heyLightData = heyLightData;
     }
 }
