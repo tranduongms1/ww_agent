@@ -1,5 +1,6 @@
 package wisewires.agent;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
@@ -26,6 +27,9 @@ public abstract class Payment {
             Map.entry("cod", List.of(".payment-image.cod")),
             Map.entry("fbt", List.of(".payment-image.p24-fbt")),
             Map.entry("fast bank trasfer", List.of(".payment-image.p24-fbt")),
+            Map.entry("heidi", List.of(".payment-image.HeidiPay")),
+            Map.entry("heidi pay", List.of(".payment-image.HeidiPay")),
+            Map.entry("heylight", List.of(".payment-image.HeidiPay")),
             Map.entry("klap", List.of(".payment-image.klap")),
             Map.entry("mach", List.of(".payment-image.mach")),
             Map.entry("master card", MODE_CC),
@@ -289,6 +293,10 @@ public abstract class Payment {
             case
                     "app-payment-mode-glow":
                 payWithGlow(c, form);
+                break;
+
+            case "app-payment-mode-heidi-pay":
+                payWithHeidi(c, form);
                 break;
 
             case
@@ -575,6 +583,56 @@ public abstract class Payment {
     }
 
     static void payWithKlarna(Context c, WebElement elm) throws Exception {
+
+    }
+
+    static void payWithHeidi(Context c, WebElement elm) throws Exception {
+        Map<String, String> data = c.getProfile().getHeyLightData();
+        try {
+            acceptTermAndConditions();
+            clickPayNow();
+            WebUI.waitForUrlContains("https://sbx-checkout.heidipay.io/select-schedule", 30);
+            WebUI.click(".MuiButtonBase-root:has(input[name='termsAndConditions'])");
+            WebUI.click("#portal-continue-btn");
+            WebUI.waitElement("#mobileNumber", 10);
+            WebUI.fill("#mobileNumber", data.get("phoneNumber"));
+            WebUI.click("#portal-continue-btn");
+            for (WebElement e : WebUI.waitElements("[id*='mobileVerificationCode']", 10)) {
+                int idx = Integer.parseInt(e.getDomAttribute("id").split("-")[1]);
+                e.clear();
+                e.sendKeys(String.valueOf(data.get("otp").charAt(idx)));
+            }
+            WebUI.click("#portal-continue-btn");
+            WebUI.waitElement("#portal-infocert-widget", 10);
+            WebUI.click("#portal-continue-btn");
+            WebUI.waitElement("#portal-infocert-widget", 10);
+            WebUI.delay(3);
+            Map<String, String[]> fields = new LinkedHashMap<>();
+            fields.put("cardNumber",
+                    new String[] { "[title='Secure card number input frame']", "[name='cardnumber']" });
+            fields.put("expiryDate",
+                    new String[] { "[title='Secure expiration date input frame']", "[name='exp-date']" });
+            fields.put("cvv", new String[] { "[title='Secure CVC input frame']", "[name='cvc']" });
+            WebElement iframe = WebUI.findElement("[title='Enter card details']");
+            WebUI.driver.switchTo().frame(iframe);
+            logger.info("switched to outer iframe");
+            // Fill in the fields in the child iframe
+            for (Map.Entry<String, String[]> entry : fields.entrySet()) {
+                String value = data.get(entry.getKey());
+                String iframeSelector = entry.getValue()[0];
+                String fieldSelector = entry.getValue()[1];
+
+                WebUI.driver.switchTo().frame(WebUI.findElement(iframeSelector));
+                WebUI.fill(fieldSelector, value);
+                WebUI.driver.switchTo().parentFrame();
+            }
+            WebUI.fill("#cardholderName", data.get("holderName"));
+            WebUI.delay(2);
+            WebUI.click(".submit-button");
+            WebUI.waitForUrlContains("/orderConfirmation", 60);
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with HeyLight:", e);
+        }
 
     }
 }
