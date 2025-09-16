@@ -42,6 +42,12 @@
     "model": "Apple iPhone 16 Pro 512 GB",
     "imei": "109243004159964"
   },
+  "tradeInData2": {
+    "category": "mobile",
+    "brand": "Samsung",
+    "model": "Samsung Galaxy S24 Ultra 512 GB",
+    "imei": "356986169138054"
+  },
   "serviceData": {
     "TradeIn": {
       "serviceCode": "T-GETMOBIL-TRADEIN",

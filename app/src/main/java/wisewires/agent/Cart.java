@@ -84,13 +84,15 @@ public abstract class Cart {
 
     static void addTradeIn(Context c) throws Exception {
         try {
-            String to = "cx-cart-item-v2 [data-an-la='add service:trade-in']";
-            WebElement elm = WebUI.waitElement(to, 10);
-            WebUI.scrollToCenter(elm);
-            WebUI.delay(1);
-            WebUI.click(to);
-            logger.info("Add trade-in button clicked");
-            WebUI.waitElement(TradeIn.MODAL_LOCATOR, 10);
+            if (!WebUI.isElementDisplayed(TradeIn.MODAL_LOCATOR)) {
+                String to = "cx-cart-item-v2 [data-an-la='add service:trade-in']";
+                WebElement elm = WebUI.waitElement(to, 10);
+                WebUI.scrollToCenter(elm);
+                WebUI.delay(1);
+                WebUI.click(to);
+                logger.info("Add trade-in button clicked");
+                WebUI.waitElement(TradeIn.MODAL_LOCATOR, 10);
+            }
             logger.info("Trade-in popup opened");
             TradeIn.process(c);
             logger.info("Trade-in added success on cart page");

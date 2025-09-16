@@ -259,6 +259,10 @@ public abstract class WebUI {
                 .toList();
     }
 
+    public static boolean isElementDisplayed(String selector) {
+        return findElement(selector) != null;
+    }
+
     public static void fill(String selector, String value) {
         wait(5).until(d -> {
             WebElement elm = findElement(selector);

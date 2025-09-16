@@ -149,9 +149,15 @@ public abstract class Browser {
             }
 
             case "add": {
+                leading = Tokens.removeLeading(tokens, "first", "second", "third");
                 if (tokens.get(0).equalsIgnoreCase("trade-in")) {
                     c.mustTradeInProcess();
                     if (WebUI.getUrl().contains("/cart")) {
+                        if (leading.contains("second")) {
+                            c.tradeInProcess.data = c.getProfile().getTradeInData2();
+                        } else if (leading.contains("third")) {
+                            c.tradeInProcess.data = c.getProfile().getTradeInData3();
+                        }
                         Cart.addTradeIn(c);
                     } else if (Util.isPDPage()) {
                         PD.addTradeIn(c);
