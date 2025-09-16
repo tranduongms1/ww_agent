@@ -1,16 +1,19 @@
 {
     "pointingUrls": {
-        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=de&storeDomain=https://s2-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/au/cart",
+        "stg": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=au&storeDomain=https://s1-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg.shop.samsung.com&cart=https://stg.shop.samsung.com/au/cart",
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=au&storeDomain=https://s2-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/au/cart",
         "p2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=au&storeDomain=https://p2.shop.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/au/cart"
     },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "p2": "https://p2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
+        "stg": "https://s1-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "exchangeEndpoints": {
         "prod": "https://aep1-org.ecom.samsung.com/v1/exchange/api/aus",
         "p2": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus",
+        "stg": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus",
         "stg2": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus"
     },
     "customerInfo": {
