@@ -357,6 +357,7 @@ public abstract class Browser {
                 }
                 break;
             }
+
             case "ensure": {
                 leading = Tokens.removeLeading(tokens, "cart", "page", "is", "not", "empty");
                 if (Tokens.containsAll(leading, "cart", "empty")) {
@@ -421,47 +422,48 @@ public abstract class Browser {
             }
 
             case "remove": {
+                List<String> services = Tokens.removeLeading(tokens, "added", "applied",
+                        "trade-in", "tradein", "trade-up", "tradeup", "sc+", "sim", "warranty", "e-warranty",
+                        "voucher", "for");
                 leading = Tokens.removeLeading(tokens, "product", "item", "by", "with", "sku",
-                        "at", "line", "from", "cart", "for", "service");
+                        "at", "line", "from", "cart");
+                int line = -1;
+                String sku = null;
+                String service = null;
                 if (leading.contains("line")) {
-                    int line = Integer.parseInt(tokens.remove(0));
-                    Cart.removeItemByIndex(line);
+                    line = Integer.parseInt(tokens.remove(0));
                 }
                 if (leading.contains("sku")) {
-                    String sku = tokens.remove(0).toUpperCase();
-                    Cart.removeItemBySKU(sku);
+                    sku = tokens.remove(0).toUpperCase();
                 }
-                if (leading.contains("service")) {
-                    String service = tokens.remove(0).toUpperCase();
-                    if (service.equalsIgnoreCase("SC+")) {
-                        service = "SMC";
-                    } else if (service.equalsIgnoreCase("E-WARRANTY")) {
-                        service = "WARRANTY";
-                    } else if (service.equalsIgnoreCase("TRADE-IN")) {
-                        service = "TRADE-IN";
-                    } else if (service.equalsIgnoreCase("TRADE-UP")) {
-                        service = "TRADE-UP";
-                    } else if (service.equalsIgnoreCase("SIM")) {
-                        service = "SIM";
-                    }
-                    if (leading.contains("line")) {
-                        int line = Integer.parseInt(tokens.remove(0));
+                if (Tokens.containsAny(services, "trade-in", "tradein")) {
+                    service = "TRADE-IN";
+                }
+                if (Tokens.containsAny(services, "trade-up", "tradeup")) {
+                    service = "TRADE-UP";
+                }
+                if (Tokens.containsAny(services, "sc+")) {
+                    service = "SMC";
+                }
+                if (Tokens.containsAny(services, "sim")) {
+                    service = "SIM";
+                }
+                if (Tokens.containsAny(services, "warranty", "e-warranty")) {
+                    service = "WARRANTY";
+                }
+                if (service != null) {
+                    if (line > 0) {
                         Cart.removeServiceByIndex(service, line);
                     } else {
                         Cart.removeService(service);
                     }
-                }
-                if (tokens.size() >= 1 && tokens.get(0).equalsIgnoreCase("voucher")) {
-                    Cart.removeVoucher();
-                    Tokens.removeLeading(tokens, "voucher");
                     break;
                 }
-                if (tokens.size() >= 2
-                        && tokens.get(0).equalsIgnoreCase("all")
-                        && tokens.get(1).equalsIgnoreCase("voucher")) {
-                    Cart.removeAllVoucher();
-                    Tokens.removeLeading(tokens, "all", "voucher");
-                    break;
+                if (line > 0) {
+                    Cart.removeItemByIndex(line);
+                }
+                if (sku != null) {
+                    Cart.removeItemBySKU(sku);
                 }
                 break;
             }
