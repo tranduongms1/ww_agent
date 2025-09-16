@@ -394,13 +394,22 @@ public abstract class TradeIn {
                     .trade-in-popup-v3__condition-list-item,
                     .trade-in-popup-v3__summary-accept-list,
                     .condition-radio"""), 5);
+
             for (WebElement elm : elms) {
-                if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
+                if (WebUI.isOneOfSites("TW")) {
+                    By by = By.cssSelector(":has(> [type='radio'])");
+                    List<WebElement> radios = elm.findElements(by);
+                    if (!radios.isEmpty()) {
+                        questions.add(radios);
+                    }
+                } else if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
                     By by = By.cssSelector(":has(> [type='radio'])");
                     questions.add(elm.findElements(by));
                 }
             }
+
             TradeInProcess.selectBestDeviceConditions(c, questions);
+
         } catch (Exception e) {
             throw new Exception("Unable to select device conditions", e);
         }

@@ -19,11 +19,14 @@ public class TradeInProcess {
     static void selectBestDeviceConditions(Context c, List<List<WebElement>> questions) throws Exception {
         for (List<WebElement> options : questions) {
             WebElement opt = options.get(0);
-            if (WebUI.isOneOfSites("CZ", "HK", "HK_EN", "NZ", "TR", "TH")) {
+            if (WebUI.isOneOfSites("CZ", "HK", "HK_EN", "NZ", "TR", "TH", "MY")) {
                 opt = Lists.last(options);
             }
             if (WebUI.isOneOfSites("JP") && !WebUI.isOnSiteCart(c)) {
                 opt = Lists.last(options);
+            }
+            if (WebUI.isOneOfSites("TW")) {
+                opt = Lists.first(options);
             }
             if (WebUI.isOneOfSites("VN")) {
                 int idx = questions.indexOf(options);

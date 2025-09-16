@@ -1,7 +1,7 @@
 {
     "stores": {
         "smb": "/business",
-        "thsme": "/multistore/eppsme/"
+        "mysme": "/multistore/eppsme/"
     },
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=my&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://s2-sms-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com/my"
