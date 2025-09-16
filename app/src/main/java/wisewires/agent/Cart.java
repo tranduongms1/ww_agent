@@ -202,6 +202,21 @@ public abstract class Cart {
         }
     }
 
+    static void addTradeInByIDViaAPI(Context c, String sku, long entryNumber, String code) throws Exception {
+        try {
+            Profile p = c.getProfile();
+            logger.info("Adding Trade In with ID: " + code);
+            Map<String, Object> serviceData = Map.of("code", code, "serviceProduct", sku, "serviceType", "TRADE_IN");
+            List<Map<String, Object>> serviceParameters = API.checkServiceID(c.getAPIEndpoint(), serviceData);
+            Map<String, Object> data = p.getServiceData().get("TradeIn");
+            data.put("additionalInfos", serviceParameters);
+            API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, data);
+            logger.info("Trade in with ID '%s' added to cart".formatted(code));
+        } catch (Exception e) {
+            throw new Exception("Unable to add Trade-in service with ID '%s' to cart".formatted(code), e);
+        }
+    }
+
     static void addTradeUpViaAPI(Context c, String sku, long entryNumber) throws Exception {
         try {
             Profile p = c.getProfile();
@@ -259,6 +274,16 @@ public abstract class Cart {
             logger.info("Warranty added success for %s at cart entry %d".formatted(sku, entryNumber));
         } catch (Exception e) {
             throw new Exception("Unable to add Warranty for %s at cart entry %d".formatted(sku, entryNumber));
+        }
+    }
+
+    static void addKnoxViaAPI(Context c, String sku, long entryNumber, String code) throws Exception {
+        try {
+            Map<String, Object> data = Map.of("serviceCode", code);
+            API.addServiceToCart(c.getAPIEndpoint(), c.getSiteUid(), entryNumber, data);
+            logger.info("Knox added success for %s at cart entry %d".formatted(sku, entryNumber));
+        } catch (Exception e) {
+            throw new Exception("Unable to add knox for %s at cart entry %d".formatted(sku, entryNumber));
         }
     }
 

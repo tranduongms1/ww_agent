@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -425,8 +426,41 @@ public abstract class Checkout {
         }
     }
 
+    //for AU
+    static void fillSIMForm(String approvalID) throws Exception {
+        try {
+            WebElement elm = WebUI.waitElement("input[name='approvalId']", 3);
+            elm.clear();
+            WebUI.delay(1);
+            elm.sendKeys(approvalID);
+            elm.sendKeys(Keys.ENTER.toString());
+            WebUI.delay(1);
+            WebUI.click("button[data-an-la='sim contract:validate approval id']:not([disabled])");
+            if (!WebUI.waitForUrlContains("CHECKOUT_STEP_DELIVERY", 10)) {
+                throw new Exception("SIM Approval ID is invalid");
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to fill SIM Form", e);
+        }
+
+    }
+
     static void fillSIMForm(Map<String, String> data) throws Exception {
         try {
+            String approvalID = data.get("approvalID");
+            if (approvalID != null) {
+                WebElement elm = WebUI.waitElement("input[name='approvalId']", 3);
+                elm.clear();
+                WebUI.delay(1);
+                elm.sendKeys(approvalID);
+                elm.sendKeys(Keys.ENTER.toString());
+                WebUI.delay(1);
+                WebUI.click("button[data-an-la='sim contract:validate approval id']:not([disabled])");
+                if (!WebUI.waitForUrlContains("CHECKOUT_STEP_DELIVERY", 10)) {
+                    throw new Exception("SIM Approval ID is invalid");
+                }
+                return;
+            }
             WebElement startApplication = WebUI.findElement("button[data-an-la='checkout:sim:start application']");
             if (startApplication != null) {
                 WebUI.scrollToCenter(startApplication);

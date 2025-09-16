@@ -11,4 +11,7 @@ public abstract class Lists {
         return list.get(0);
     }
 
+    public static String firstStartsWith(List<String> list, String prefix) {
+        return list.stream().filter(e -> e.startsWith(prefix)).findFirst().orElse(null);
+    }
 }

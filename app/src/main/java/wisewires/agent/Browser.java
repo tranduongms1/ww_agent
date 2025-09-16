@@ -223,14 +223,22 @@ public abstract class Browser {
                         if (!tokens.isEmpty()) {
                             Item item = new Item();
                             item.urlOrSKU = tokens.remove(0);
-                            leading = Tokens.removeLeading(tokens, "with",
+                            List<String> SERVICE_LEADING = List.of("with",
                                     "trade-in", "tradein", "trade-up", "tradeup",
                                     "sc+", "smc", "std", "standard", "sub", "subscription",
                                     "sim", "e-warranty", "ewarranty", "warranty",
-                                    "galaxy-club", "galaxy club", "galaxyclub",
+                                    "galaxy-club", "galaxyclub", "knox",
                                     "and", "+");
+                            leading = Tokens.removeLeading(tokens, SERVICE_LEADING);
                             if (Tokens.containsAny(leading, "trade-in", "tradein")) {
-                                item.addedServices.add("TradeIn");
+                                List<String> options = Tokens.removeLeading(tokens, "use", "id");
+                                if (Tokens.containsAny(options, "id")) {
+                                    String id = tokens.remove(0);
+                                    item.addedServices.add("TradeIn:" + id);
+                                    leading = Tokens.removeLeading(tokens, SERVICE_LEADING);
+                                } else {
+                                    item.addedServices.add("TradeIn");
+                                }
                             }
                             if (Tokens.containsAny(leading, "trade-up", "tradeup")) {
                                 item.addedServices.add("TradeUp");
@@ -253,6 +261,9 @@ public abstract class Browser {
                             if (Tokens.containsAny(leading, "galaxy-club", "galaxy club", "galaxyclub")) {
                                 item.addedServices.add("GalaxyClub");
                             }
+                            if (Tokens.containsAny(leading, "knox")) {
+                                item.addedServices.add("knox");
+                            }
                             items.add(item);
                         }
                     }
@@ -271,6 +282,10 @@ public abstract class Browser {
                                 long entryNumber = Util.getCartEntryNumber(cartInfo, sku);
                                 if (item.addedServices.contains("TradeIn")) {
                                     Cart.addTradeInViaAPI(c, sku, entryNumber);
+                                }
+                                String tradeInWithID = Lists.firstStartsWith(item.addedServices, "TradeIn:");
+                                if (tradeInWithID != null) {
+                                    Cart.addTradeInByIDViaAPI(c, sku, entryNumber, tradeInWithID.substring(8));
                                 }
                                 if (item.addedServices.contains("TradeUp")) {
                                     Cart.addTradeUpViaAPI(c, sku, entryNumber);
@@ -307,6 +322,14 @@ public abstract class Browser {
                                         throw new Exception("No Warranty services avaiable for %s".formatted(sku));
                                     String code = (String) services.get(0).get("code");
                                     Cart.addWarrantyViaAPI(c, sku, entryNumber, code);
+                                }
+                                if (item.addedServices.contains("Knox")) {
+                                    List<Map<String, Object>> services = API.getKnoxServices(c, sku);
+                                    if (services.isEmpty()) {
+                                        throw new Exception("No knox services avaiable fo %s".formatted(sku));
+                                    }
+                                    String code = (String) services.get(0).get("code");
+                                    Cart.addKnoxViaAPI(c, sku, entryNumber, code);
                                 }
                             }
                             mustReload = true;
@@ -460,6 +483,11 @@ public abstract class Browser {
                     case "billing address":
                         BillingAddress.autoFill(profile.getBillingAddress(), !all);
                         break;
+                }
+                leading = Tokens.removeLeading(tokens, "sim", "info", "with", "approval", "id");
+                if (leading.contains("id")) {
+                    String id = tokens.remove(0).toUpperCase();
+                    Checkout.fillSIMForm(id);
                 }
                 if (Tokens.containsAll(tokens, "and", "continue")
                         || Tokens.containsAll(tokens, "and", "next")) {
@@ -671,7 +699,17 @@ public abstract class Browser {
                             }
                             break;
                         case "delivery":
+                            Checkout.waitForNavigateTo();
                             c.mustCheckoutProcess().untilSeen("app-checkout-step-delivery");
+                            break;
+                        case "sim":
+                            Checkout.waitForNavigateTo();
+                            if (seenOnly) {
+                                c.mustCheckoutProcess().untilSeen("app-checkout-step-sim");
+                            } else {
+                                c.mustCheckoutProcess().untilForm("app-checkout-step-sim");
+                            }
+                            break;
                     }
                 }
                 break;

@@ -48,8 +48,7 @@ public abstract class API {
         }
     }
 
-    public static Object addServiceToCart(String apiEndpoint, String storeID, long entryNumber,
-            Map<String, Object> data) {
+    public static Object addServiceToCart(String apiEndpoint, String storeID, long entryNumber, Map<String, Object> data) {
         String script = """
                     const cardID = window.sessionStorage.ref || JSON.parse(window.localStorage[`spartacus⚿${arguments[0]}⚿cart`]).active;
                     const curr = JSON.parse(window.localStorage[`spartacus⚿⚿currency`]);
@@ -288,6 +287,37 @@ public abstract class API {
             category = serviceData.get("Warranty").get("categoryCode").toString();
         }
         return getExternalServices(c.getAPIEndpoint(), sku, category, "");
+    }
+
+    public static List<Map<String, Object>> getKnoxServices(Context c, String sku) throws Exception {
+        String category = "knox_manage";
+        Map<String, Map<String, Object>> serviceData = c.getProfile().getServiceData();
+        if (serviceData.get("knox_manage") != null) {
+            category = serviceData.get("knox_manage").get("categoryCode").toString();
+        }
+        return getExternalServices(c.getAPIEndpoint(), sku, category, "");
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Map<String, Object>> checkServiceID(String apiEndpoint, Map<String, Object> data) {
+        String script = """
+                    const curr = JSON.parse(window.localStorage[`spartacus⚿⚿currency`]);
+                    const lang = JSON.parse(window.localStorage[`spartacus⚿⚿language`]);
+                    return fetch(`${arguments[0]}/users/current/carts/current/checkServiceID?lang=${lang}&curr=${curr}`, {
+                        method: "POST",
+                        headers:{'content-type':'application/json'},
+                        body: `${arguments[1]}`,
+                        mode: "cors",
+                        credentials: "include"
+                    })
+                        .then(res => {
+                            if (res.status!=200) throw new Error('response status code: ' + res.status);
+                            return res.text();
+                        })
+                        .then(data => arguments[2](JSON.parse(data).serviceParameter));
+                """;
+        return (List<Map<String, Object>>) WebUI.driver.executeAsyncScript(script, apiEndpoint,
+                new Gson().toJson(data));
     }
 
     @SuppressWarnings("unchecked")

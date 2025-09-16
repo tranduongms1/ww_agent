@@ -101,7 +101,8 @@ public abstract class Tokens {
                 "billing address", "billing address",
                 "shipping address", "customer address",
                 "delivery address", "customer address",
-                "delivery", "delivery");
+                "delivery", "delivery",
+                "sim", "sim");
 
         List<String> lowerTokens = tokens.stream().map(String::toLowerCase).collect(Collectors.toList());
 
