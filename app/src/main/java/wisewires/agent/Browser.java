@@ -19,8 +19,12 @@ public abstract class Browser {
                     c.site = tokens.remove(0).toUpperCase();
                     logger.info("Change current site to %s".formatted(c.site));
                 } else if (tokens.contains("store")) {
-                    c.siteUid = tokens.remove(0).toLowerCase();
-                    logger.info("Change current store to %s".formatted(c.siteUid));
+                    if (tokens.contains("estore")) {
+                        c.siteUid = "";
+                    } else {
+                        c.siteUid = tokens.remove(0).toLowerCase();
+                    }
+                    logger.info("Change current store to %s".formatted(c.siteUid.isEmpty() ? "estore" : c.siteUid));
                 } else if (tokens.contains("env")) {
                     c.env = tokens.remove(0).toLowerCase();
                     logger.info("Change current env to %s".formatted(c.env));
