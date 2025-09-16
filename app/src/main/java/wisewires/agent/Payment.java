@@ -587,7 +587,7 @@ public abstract class Payment {
     }
 
     static void payWithHeidi(Context c, WebElement elm) throws Exception {
-        Map<String, String> data = c.getProfile().getHeyLightData();
+        Map<String, String> data = c.getProfile().getHeidiData();
         try {
             acceptTermAndConditions();
             clickPayNow();
