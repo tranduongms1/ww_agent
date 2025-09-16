@@ -218,7 +218,7 @@ public class Profile {
         return heyLightData;
     }
 
-    public void setHeyLightData(Map<String, String> HeyLightData) {
+    public void setHeyLightData(Map<String, String> heyLightData) {
         this.heyLightData = heyLightData;
     }
 }
