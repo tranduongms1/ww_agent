@@ -319,7 +319,8 @@ public abstract class TradeIn {
                         "Seleziona la marca",
                         "Le fabricant",
                         "Angi produsent:",
-                        "Ange tillverkare:":
+                        "Ange tillverkare:",
+                        "Gamintojas":
                     selectBrand(elm, data.get("brand"));
                     break;
 
@@ -352,7 +353,8 @@ public abstract class TradeIn {
                         "Seleziona il modello del tuo dispositivo usato o inizia a digitare",
                         "productFormControl",
                         "Skriv inn modell",
-                        "Ange modell:":
+                        "Ange modell:",
+                        "Įrenginys":
                     selectModel(elm, data.get("model"));
                     break;
 
