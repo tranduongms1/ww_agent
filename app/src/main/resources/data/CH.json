@@ -121,5 +121,13 @@
     "klarnaData": {
         "phoneNumber": "750782631",
         "otp": "123456"
+    },
+    "heyLightData": {
+        "phoneNumber": "750782631",
+        "otp": "777777",
+        "cardNumber": "4242 4242 4242 4242",
+        "holderName": "ch",
+        "expiryDate": "03/30",
+        "cvv": "007"
     }
 }
