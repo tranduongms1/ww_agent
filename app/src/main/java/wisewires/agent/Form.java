@@ -135,6 +135,9 @@ public class Form {
             }
             String id = elm.getDomAttribute("id");
             String xpath = "//*[@id='%s-panel']//mat-option[.//*[normalize-space(text())='%s']]".formatted(id, value);
+            if (value.equals("__ANY__")) {
+                xpath = "//*[@id='%s-panel']//mat-option".formatted(id);
+            }
             WebElement opt = WebUI.waitElement(elm, By.xpath(xpath), 5);
             WebUI.scrollToCenter(opt);
             Thread.sleep(200);

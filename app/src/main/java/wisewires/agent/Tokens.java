@@ -52,7 +52,7 @@ public abstract class Tokens {
     public static boolean containsAny(List<String> tokens, String... values) {
         Set<String> set = new HashSet<>(tokens.stream().map(String::toLowerCase).toList());
         for (String value : values) {
-            if (set.contains(value.toLowerCase()))
+            if (set.contains(value.toLowerCase()) || set.contains(value.toLowerCase() + ":"))
                 return true;
         }
         return false;
@@ -61,7 +61,7 @@ public abstract class Tokens {
     public static boolean containsAll(List<String> tokens, String... values) {
         Set<String> set = new HashSet<>(tokens.stream().map(String::toLowerCase).toList());
         for (String value : values) {
-            if (!set.contains(value.toLowerCase()))
+            if (!set.contains(value.toLowerCase()) && !set.contains(value.toLowerCase() + ":"))
                 return false;
         }
         return true;
@@ -73,8 +73,8 @@ public abstract class Tokens {
 
     static List<String> removeLeading(List<String> tokens, List<String> leadingList) {
         List<String> result = new ArrayList<>();
-        while (!tokens.isEmpty() && leadingList.contains(tokens.get(0).toLowerCase())) {
-            result.add(tokens.remove(0).toLowerCase());
+        while (!tokens.isEmpty() && leadingList.contains(tokens.get(0).toLowerCase().replaceFirst(":$", ""))) {
+            result.add(tokens.remove(0).toLowerCase().replaceFirst(":$", ""));
         }
         return result;
     }

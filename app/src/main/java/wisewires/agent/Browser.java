@@ -32,7 +32,12 @@ public abstract class Browser {
                 break;
             }
 
-            case "set", "use": {
+            case "use": {
+                if (Tokens.contains(tokens, "postalcode") || Tokens.containsAll(tokens, "postal", "code")) {
+                    Tokens.removeLeading(tokens, "postalcode", "postal", "code");
+                    c.usePostalCode(tokens.remove(0));
+                    break;
+                }
                 if (Tokens.containsAny(tokens, "sso", "checkout")) {
                     while (!tokens.isEmpty()) {
                         leading = Tokens.removeLeading(tokens, "sso", "checkout", "email", "and", "password");

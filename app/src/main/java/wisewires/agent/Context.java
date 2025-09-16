@@ -169,6 +169,17 @@ public class Context {
         return this.galaxyClubProcess;
     }
 
+    public void usePostalCode(String code) throws Exception {
+        Map<String, String> data = getProfile().getCustomerAddress();
+        data.put("postalCode", code);
+        switch (site.toUpperCase()) {
+            case "AU":
+                data.put("adminLevel1", "__ANY__");
+                data.put("adminLevel2", "__ANY__");
+                break;
+        }
+    }
+
     public CheckoutProcess mustCheckoutProcess() {
         if (this.checkoutProcess == null) {
             this.checkoutProcess = new CheckoutProcess();
