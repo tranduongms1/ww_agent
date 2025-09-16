@@ -633,6 +633,10 @@ public abstract class Browser {
                     Tokens.removeLeading(tokens, "sign", "in");
                     Cart.clickSignInFromCart(c);
                 }
+                if (Tokens.containsAll(tokens, "view", "orders")) {
+                    WebUI.click(OrderConfirmation.VIEW_ORDERS_LOCATOR);
+                    break;
+                }
                 break;
             }
 
