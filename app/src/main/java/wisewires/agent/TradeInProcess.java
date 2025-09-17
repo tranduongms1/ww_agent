@@ -25,9 +25,6 @@ public class TradeInProcess {
             if (WebUI.isOneOfSites("JP") && !WebUI.isOnSiteCart(c)) {
                 opt = Lists.last(options);
             }
-            if (WebUI.isOneOfSites("TW", "TR")) {
-                opt = Lists.first(options);
-            }
             if (WebUI.isOneOfSites("VN")) {
                 int idx = questions.indexOf(options);
                 if (idx == 0) {
