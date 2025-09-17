@@ -1,14 +1,24 @@
 {
   "stores": {
-    "smb": "/business"
+    "jp_employee": "/multistore/sejepp/jp_employee",
+    "jpkumonepp": "/multistore/jpkumon/jpkumonepp",
+    "jpeducationepp": "/multistore/jpeducation/jpeducationepp",
+    "jp_partnerbk": "/multistore/sejepp/jp_partnerbk",
+    "jp_partnerbk_smbc": "/multistore/sejepp/jp_partnerbk_smbc",
+    "jp_partnerbk_mizuho": "/multistore/sejepp/jp_partnerbk_mizuho"
   },
   "pointingUrls": {
-    "p2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=jp&storeDomain=https://p2-sma-api-cdn.ecom-stg.samsung.com&storeNewHybDomain=https://p2-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/jp/cart"
+    "p2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=jp&storeDomain=https://p2-sma-api-cdn.ecom-stg.samsung.com&storeNewHybDomain=https://p2-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/jp/cart",
+    "stg": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=jp&storeDomain=https://s1-sma-api-cdn.ecom-stg.samsung.com&storeNewHybDomain=https://s1-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg.shop.samsung.com&cart=https://stg.shop.samsung.com/jp/cart",
+    "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=jp&storeDomain=https://s2-sma-api-cdn.ecom-stg.samsung.com&storeNewHybDomain=https://s2-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/jp/cart",
+    "stg3": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=jp&storeDomain=https://s3-sma-api-cdn.ecom-stg.samsung.com&storeNewHybDomain=https://s3-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg3.shop.samsung.com&cart=https://stg3.shop.samsung.com/jp/cart"
   },
   "apiEndpoints": {
     "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
     "p2": "https://p2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
-    "stg2": "https://s2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+    "stg": "https://s1-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
+    "stg2": "https://s2-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
+    "stg3": "https://s3-sma-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
   },
   "customerInfo": {
     "email": "autotestww@gmail.com",
