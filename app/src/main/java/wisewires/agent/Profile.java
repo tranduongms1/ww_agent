@@ -18,6 +18,8 @@ public class Profile {
     private HashMap<String, String> tradeInData;
     private HashMap<String, String> tradeInData2;
     private HashMap<String, String> tradeInData3;
+    private HashMap<String, String> tradeInData4;
+    private HashMap<String, String> tradeInData5;
     private HashMap<String, String> tradeInInfo;
     private HashMap<String, String> tradeUpData;
     private HashMap<String, String> simInfo;
@@ -131,6 +133,22 @@ public class Profile {
 
     public void setTradeInData3(HashMap<String, String> tradeInData) {
         this.tradeInData3 = tradeInData;
+    }
+
+    public HashMap<String, String> getTradeInData4() {
+        return tradeInData4;
+    }
+
+    public void setTradeInData4(HashMap<String, String> tradeInData) {
+        this.tradeInData4 = tradeInData;
+    }
+
+    public HashMap<String, String> getTradeInData5() {
+        return tradeInData5;
+    }
+
+    public void setTradeInData5(HashMap<String, String> tradeInData) {
+        this.tradeInData5 = tradeInData;
     }
 
     public HashMap<String, String> getTradeInInfo() {
