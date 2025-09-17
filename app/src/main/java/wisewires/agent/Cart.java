@@ -546,6 +546,29 @@ public abstract class Cart {
         WebUI.waitElement("cx-cart-details", 15);
     }
 
+    static void mustNavigateTo(Context c, boolean reloadIfReadyOnCart) throws Exception {
+        if (WebUI.isOnSiteCart(c)) {
+            if (reloadIfReadyOnCart) {
+                WebUI.driver.navigate().refresh();
+            }
+        } else {
+            WebUI.openBrowser(c, c.getCartUrl());
+        }
+        String action = WebUI.wait(30).withMessage("cart page loaded").until(d -> {
+            String url = WebUI.getUrl();
+            if (url.contains("/login/business"))
+                return "login_business";
+            return WebUI.isElementDisplayed("cx-cart-details") ? "" : null;
+        });
+        switch (action) {
+            case "login_business":
+                WebUI.closeAllPopup(c);
+                WebUI.click(".member-login-content-wrapper button");
+                SSO.signInByEmail(c);
+                break;
+        }
+    }
+
     static void guestCheckout(Context c) throws Exception {
         try {
             if (WebUI.isOneOfSites("IQ_AR", "IQ_KU")) {

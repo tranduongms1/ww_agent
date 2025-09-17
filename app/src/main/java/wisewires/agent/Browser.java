@@ -154,7 +154,8 @@ public abstract class Browser {
             }
 
             case "add": {
-                leading = Tokens.removeLeading(tokens, "second", "third", "fourth", "fifth", "2nd", "3rd", "4th", "5th");
+                leading = Tokens.removeLeading(tokens, "second", "third", "fourth", "fifth",
+                        "2nd", "3rd", "4th", "5th");
                 if (tokens.get(0).equalsIgnoreCase("trade-in")) {
                     c.mustTradeInProcess();
                     if (WebUI.getUrl().contains("/cart")) {
@@ -283,6 +284,9 @@ public abstract class Browser {
                             mustReload = false;
                         } else {
                             Cart.mustCartId(c);
+                            if (!c.siteUid.isEmpty()) {
+                                Cart.mustNavigateTo(c, false);
+                            }
                             String sku = item.urlOrSKU;
                             API.addToCart(c.getAPIEndpoint(), sku);
                             if (!item.addedServices.isEmpty()) {
