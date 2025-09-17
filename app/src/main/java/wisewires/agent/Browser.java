@@ -156,15 +156,15 @@ public abstract class Browser {
             case "add": {
                 leading = Tokens.removeLeading(tokens, "second", "third", "fourth", "fifth", "2nd", "3rd", "4th", "5th");
                 if (tokens.get(0).equalsIgnoreCase("trade-in")) {
+                    c.mustTradeInProcess();
                     if (WebUI.getUrl().contains("/cart")) {
-                        c.mustTradeInProcess();
-                        if (leading.contains("second") || leading.contains("2nd")) {
+                        if (Tokens.containsAny(leading, "second", "2nd")) {
                             c.tradeInProcess.data = c.getProfile().getTradeInData2();
-                        } else if (leading.contains("third") || leading.contains("3rd")) {
+                        } else if (Tokens.containsAny(leading, "third", "3rd")) {
                             c.tradeInProcess.data = c.getProfile().getTradeInData3();
-                        } else if (leading.contains("fourth") || leading.contains("4th")) {
+                        } else if (Tokens.containsAny(leading, "fourth", "4th")) {
                             c.tradeInProcess.data = c.getProfile().getTradeInData4();
-                        } else if (leading.contains("fifth") || leading.contains("5th")) {
+                        } else if (Tokens.containsAny(leading, "fifth", "5th")) {
                             c.tradeInProcess.data = c.getProfile().getTradeInData5();
                         }
                         Cart.addTradeIn(c);
