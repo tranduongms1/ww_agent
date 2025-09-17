@@ -48,6 +48,24 @@
     "model": "Samsung Galaxy S24 Ultra 512 GB",
     "imei": "356986169138054"
   },
+  "tradeInData3": {
+    "category": "mobile",
+    "brand": "Apple",
+    "model": "Apple iPhone 15 Pro 128 GB",
+    "imei": "356938035643809"
+  },
+  "tradeInData4": {
+    "category": "mobile",
+    "brand": "Samsung",
+    "model": "Samsung Galaxy Z Flip5 512 GB",
+    "imei": "356938069553809"
+  },
+  "tradeInData5": {
+    "category": "mobile",
+    "brand": "Huawei",
+    "model": "Huawei Mate 50 Pro 512 GB",
+    "imei": "356934569233809"
+  },
   "serviceData": {
     "TradeIn": {
       "serviceCode": "T-GETMOBIL-TRADEIN",
