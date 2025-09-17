@@ -25,6 +25,8 @@ public abstract class Util {
             .pd-g-product-finder-ux2 .pdd28-reasons-to-buy,
             [position='TokoPaymentBanner'],
             [position='RecommendationSection'],
+            .hubble-feature-wrapper,
+            .hubble-price-bar__disclaimer,
             footer""";
 
     public static boolean isHTTP(String ipOrDomain) {
