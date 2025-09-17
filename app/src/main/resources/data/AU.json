@@ -1,4 +1,13 @@
 {
+    "stores": {
+        "smb": "/business",
+        "ausme": "/business",
+        "accenture_au": "/multistore/auepp/accenture_au",
+        "samsung_education_au": "/multistore/auepp/samsung_education_au",
+        "accenture_au_bo": "/multistore/auepp/accenture_au_bo",
+        "fnf": "/multistore/auepp/fnf",
+        "family": "/multistore/auepp/family"
+    },
     "pointingUrls": {
         "stg": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=au&storeDomain=https://s1-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg.shop.samsung.com&cart=https://stg.shop.samsung.com/au/cart",
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=au&storeDomain=https://s2-sma-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/au/cart",
@@ -15,6 +24,9 @@
         "p2": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus",
         "stg": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus",
         "stg2": "https://aed1-org.ecom-qa.samsung.com/v1/exchange/api/aus"
+    },
+    "tariffEndpoints": {
+        "stg2": "https://aed1.ecom-qa.samsung.com/v4/carrier/api/aus/au"
     },
     "customerInfo": {
         "email": "autotestww@gmail.com",
@@ -47,9 +59,7 @@
     "tradeUpData": {
         "postalCode": "5000"
     },
-    "simInfo": {
-        "approvalID": "VA0814143105240"
-    },
+    "simInfo": {},
     "serviceData": {
         "TradeIn": {
             "serviceCode": "T_SAMSUNG_SM-G780F_128",
