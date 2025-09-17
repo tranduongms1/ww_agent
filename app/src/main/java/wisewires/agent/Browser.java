@@ -154,12 +154,18 @@ public abstract class Browser {
             }
 
             case "add": {
-                leading = Tokens.removeLeading(tokens, "second", "third", "fourth", "fifth",
-                        "2nd", "3rd", "4th", "5th");
+                leading = Tokens.removeLeading(tokens, "mobile", "tablet",
+                        "second", "2nd", "third", "3rd", "fourth", "4th", "fifth", "5th");
                 if (tokens.get(0).equalsIgnoreCase("trade-in")) {
                     c.mustTradeInProcess();
                     if (WebUI.getUrl().contains("/cart")) {
-                        if (Tokens.containsAny(leading, "second", "2nd")) {
+                        if (Tokens.containsAny(leading, "mobile")) {
+                            String category = c.getProfile().getTradeInData().get("mobileCategory");
+                            c.tradeInProcess.data = Map.of("category", category);
+                        } else if (Tokens.containsAny(leading, "tablet")) {
+                            String category = c.getProfile().getTradeInData().get("tabletCategory");
+                            c.tradeInProcess.data = Map.of("category", category);
+                        } else if (Tokens.containsAny(leading, "second", "2nd")) {
                             c.tradeInProcess.data = c.getProfile().getTradeInData2();
                         } else if (Tokens.containsAny(leading, "third", "3rd")) {
                             c.tradeInProcess.data = c.getProfile().getTradeInData3();

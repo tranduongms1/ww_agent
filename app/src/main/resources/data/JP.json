@@ -41,6 +41,8 @@
     "adminLevel3": "東京都"
   },
   "tradeInData": {
+    "mobileCategory": "スマートフォン",
+    "tabletCategory": "タブレット",
     "category": "スマートフォン",
     "brand": "SAMSUNG",
     "model": "Galaxy S24 Ultra 512GB",
