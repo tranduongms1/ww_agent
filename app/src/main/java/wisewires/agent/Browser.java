@@ -39,6 +39,16 @@ public abstract class Browser {
                     c.usePostalCode(tokens.remove(0));
                     break;
                 }
+                if (Tokens.containsAll(tokens, "sim", "approval", "id")) {
+                    Tokens.removeLeading(tokens, "sim", "approval", "id");
+                    String id = tokens.remove(0);
+                    if (id == null) {
+                        throw new Exception("Approval id is empty");
+                    }
+                    Map<String, String> data = c.getProfile().getSIMInfo();
+                    data.put("approvalID", id);
+                    break;
+                }
                 if (Tokens.containsAny(tokens, "sso", "checkout")) {
                     while (!tokens.isEmpty()) {
                         leading = Tokens.removeLeading(tokens, "sso", "checkout", "email", "and", "password");
@@ -764,6 +774,10 @@ public abstract class Browser {
                     Checkout.waitForNavigateTo();
                     c.mustCheckoutProcess().untilPayment();
                     Checkout.process(c);
+                    Map<String, String> data = c.getProfile().getSIMInfo();
+                    if (WebUI.driver.getCurrentUrl().contains("CHECKOUT_STEP_PAYMENT") && data != null) {
+                        data.remove("approvalID");
+                    }
                 }
                 break;
             }
@@ -774,6 +788,10 @@ public abstract class Browser {
                     Checkout.waitForNavigateTo();
                     c.mustCheckoutProcess().untilPayment();
                     Checkout.process(c);
+                    Map<String, String> data = c.getProfile().getSIMInfo();
+                    if (WebUI.driver.getCurrentUrl().contains("CHECKOUT_STEP_PAYMENT") && data != null) {
+                        data.remove("approvalID");
+                    }
                 }
                 c.paymentProcess = new PaymentProcess();
                 c.paymentProcess.methodName = String.join(" ", tokens);
