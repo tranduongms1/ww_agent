@@ -1,6 +1,7 @@
 package wisewires.agent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -154,17 +155,18 @@ public abstract class Browser {
             }
 
             case "add": {
-                leading = Tokens.removeLeading(tokens, "mobile", "tablet",
+                leading = Tokens.removeLeading(tokens, "any", "mobile", "tablet",
                         "second", "2nd", "third", "3rd", "fourth", "4th", "fifth", "5th");
-                if (tokens.get(0).equalsIgnoreCase("trade-in")) {
+                if (Tokens.containsAny(List.of("trade-in", "tradein"), tokens.get(0))) {
                     c.mustTradeInProcess();
+                    Map<String, String> data = c.getProfile().getTradeInData();
                     if (WebUI.getUrl().contains("/cart")) {
                         if (Tokens.containsAny(leading, "mobile")) {
-                            String category = c.getProfile().getTradeInData().get("mobileCategory");
-                            c.tradeInProcess.data = Map.of("category", category);
+                            c.tradeInProcess.data = new HashMap<>(Map.of(
+                                    "category", data.get("mobileCategory"), "imei", MockData.IMEI()));
                         } else if (Tokens.containsAny(leading, "tablet")) {
-                            String category = c.getProfile().getTradeInData().get("tabletCategory");
-                            c.tradeInProcess.data = Map.of("category", category);
+                            c.tradeInProcess.data = new HashMap<>(Map.of(
+                                    "category", data.get("tabletCategory"), "imei", MockData.IMEI()));
                         } else if (Tokens.containsAny(leading, "second", "2nd")) {
                             c.tradeInProcess.data = c.getProfile().getTradeInData2();
                         } else if (Tokens.containsAny(leading, "third", "3rd")) {

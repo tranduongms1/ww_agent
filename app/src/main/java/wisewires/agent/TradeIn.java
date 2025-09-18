@@ -70,13 +70,13 @@ public abstract class TradeIn {
         return "unknow";
     }
 
-    static boolean select(WebElement elm, String option) throws Exception {
+    static String select(WebElement elm, String option) throws Exception {
         String className = elm.getAttribute("class");
         if (className.contains("trade-in-select")) {
             if (!className.contains("is-opened")) {
                 String selected = elm.findElement(By.cssSelector(".select-txt")).getText().trim();
                 if (selected.equalsIgnoreCase(option.trim())) {
-                    return false;
+                    return null;
                 }
                 WebUI.scrollToCenter(elm);
                 elm.click();
@@ -86,7 +86,7 @@ public abstract class TradeIn {
             WebElement opt = elm.findElement(By.cssSelector(css));
             WebUI.scrollToCenter(opt);
             opt.click();
-            return true;
+            return option;
         }
         if (className.contains("mat-expansion-panel")) {
             if (!className.contains("mat-expanded")) {
@@ -96,24 +96,31 @@ public abstract class TradeIn {
                             .trade-in__search
                         `);
                         return e.value || e.innerText.trim()""", elm).toString();
-                if (selected.equalsIgnoreCase(option.trim())) {
-                    return false;
+                if (option != null && selected.equalsIgnoreCase(option.trim())) {
+                    return null;
                 }
                 WebUI.scrollToCenter(elm);
                 elm.click();
                 WebUI.delay(1);
             }
+            if (option == null) {
+                WebElement opt = elm.findElement(By.cssSelector(".list-option > span:first-child"));
+                String text = opt.getText();
+                WebUI.scrollToCenter(opt);
+                WebUI.driver.executeScript("arguments[0].click()", opt);
+                return text;
+            }
             String xpath = ".//span[%s='%s']".formatted(Util.XPATH_TEXT_LOWER, option.toLowerCase());
             WebElement opt = elm.findElement(By.xpath(xpath));
             WebUI.scrollToCenter(opt);
             opt.click();
-            return true;
+            return option;
         }
         if (className.contains("mat-mdc-form-field")) {
             if (!className.contains("mat-focused")) {
                 WebElement selected = WebUI.findElement(elm, By.cssSelector(".mat-mdc-select-value"));
                 if (selected != null && selected.getText().trim().equalsIgnoreCase(option.trim())) {
-                    return false;
+                    return null;
                 }
                 WebUI.scrollToCenter(elm);
                 elm.click();
@@ -125,13 +132,13 @@ public abstract class TradeIn {
             WebUI.scrollToCenter(opt);
             opt.click();
             WebUI.delay(1);
-            return true;
+            return option;
         }
         if (className.contains("manual-search_para")) {
             WebElement selectElm = elm.findElement(By.cssSelector("mat-select"));
             if (!selectElm.getAttribute("aria-expanded").equals("true")) {
                 if (selectElm.getText().trim().equalsIgnoreCase(option.trim())) {
-                    return false;
+                    return null;
                 }
                 WebUI.scrollToCenter(elm);
                 elm.click();
@@ -144,7 +151,7 @@ public abstract class TradeIn {
             WebUI.scrollToCenter(opt);
             opt.click();
             WebUI.delay(1);
-            return true;
+            return option;
         }
         throw new Exception("Select is not handled");
     }
@@ -172,13 +179,14 @@ public abstract class TradeIn {
         }
     }
 
-    static void selectCategory(WebElement elm, String category) throws Exception {
+    static String selectCategory(WebElement elm, String category) throws Exception {
         try {
             if (WebUI.getDomAttribute(elm, "class").contains("manual-search_para")) {
-                if (select(elm, category)) {
-                    logger.info("Device category '%s' selected".formatted(category));
+                String selected = select(elm, category);
+                if (selected != null) {
+                    logger.info("Device category '%s' selected".formatted(selected));
                 }
-                return;
+                return selected;
             }
             WebElement opt = (WebElement) WebUI.driver.executeScript("""
                     var opts = arguments[0].querySelectorAll('input, mat-radio-button, [data-an-la], [an-la]');
@@ -192,51 +200,60 @@ public abstract class TradeIn {
                     return null""", elm, category.toLowerCase());
             boolean checked = WebUI.getDomAttribute(opt, "class").contains("checked") ||
                     !opt.findElements(By.cssSelector(":checked")).isEmpty();
-            if (!checked) {
-                WebUI.scrollToCenter(opt);
-                opt.click();
-                logger.info("Device category '%s' selected".formatted(category));
-            }
+            if (checked)
+                return null;
+            WebUI.scrollToCenter(opt);
+            opt.click();
+            logger.info("Device category '%s' selected".formatted(category));
+            return category;
         } catch (Exception e) {
             throw new Exception("Unable to select device category '%s'".formatted(category));
         }
     }
 
-    static void selectBrand(WebElement elm, String brand) throws Exception {
+    static String selectBrand(WebElement elm, String brand) throws Exception {
         try {
-            if (select(elm, brand)) {
-                logger.info("Device brand '%s' selected".formatted(brand));
+            String selected = select(elm, brand);
+            if (selected != null) {
+                logger.info("Device brand '%s' selected".formatted(selected));
             }
+            return selected;
         } catch (Exception e) {
             throw new Exception("Unable to select device brand '%s'".formatted(brand));
         }
     }
 
-    static void selectModel(WebElement elm, String model) throws Exception {
+    static String selectModel(WebElement elm, String model) throws Exception {
         try {
-            if (select(elm, model)) {
-                logger.info("Device model '%s' selected".formatted(model));
+            String selected = select(elm, model);
+            if (selected != null) {
+                logger.info("Device model '%s' selected".formatted(selected));
             }
+            return selected;
         } catch (Exception e) {
             throw new Exception("Unable to select device model '%s'".formatted(model));
         }
     }
 
-    static void selectStorage(WebElement elm, String storage) throws Exception {
+    static String selectStorage(WebElement elm, String storage) throws Exception {
         try {
-            if (select(elm, storage)) {
-                logger.info("Device storage '%s' selected".formatted(storage));
+            String selected = select(elm, storage);
+            if (selected != null) {
+                logger.info("Device storage '%s' selected".formatted(selected));
             }
+            return selected;
         } catch (Exception e) {
             throw new Exception("Unable to select device storage '%s'".formatted(storage));
         }
     }
 
-    static void selectColor(WebElement elm, String color) throws Exception {
+    static String selectColor(WebElement elm, String color) throws Exception {
         try {
-            if (select(elm, color)) {
-                logger.info("Device color '%s' selected".formatted(color));
+            String selected = select(elm, color);
+            if (selected != null) {
+                logger.info("Device color '%s' selected".formatted(selected));
             }
+            return selected;
         } catch (Exception e) {
             throw new Exception("Unable to select device color '%s'".formatted(color));
         }
@@ -289,10 +306,12 @@ public abstract class TradeIn {
                 case
                         "category",
                         "Избери вид на устройството",
-                        "Termékkategória":
-                    selectCategory(elm, data.get("category"));
+                        "Termékkategória": {
+                    String selected = selectCategory(elm, data.get("category"));
+                    if (selected != null)
+                        data.put("category", selected);
                     break;
-
+                }
                 case
                         "brand",
                         "brandName",
@@ -322,10 +341,12 @@ public abstract class TradeIn {
                         "Ange tillverkare:",
                         "Gamintojas",
                         "Ražotājs:",
-                        "Bränd":
-                    selectBrand(elm, data.get("brand"));
+                        "Bränd": {
+                    String selected = selectBrand(elm, data.get("brand"));
+                    if (selected != null)
+                        data.put("brand", selected);
                     break;
-
+                }
                 case
                         "model",
                         "Select Model",
@@ -358,10 +379,12 @@ public abstract class TradeIn {
                         "Ange modell:",
                         "Įrenginys",
                         "Ierīce",
-                        "Vali mudel:":
-                    selectModel(elm, data.get("model"));
+                        "Vali mudel:": {
+                    String selected = selectModel(elm, data.get("model"));
+                    if (selected != null)
+                        data.put("model", selected);
                     break;
-
+                }
                 case
                         "storage",
                         "capacity",
@@ -377,16 +400,21 @@ public abstract class TradeIn {
                         "ความจุ",
                         "سعة التخزين",
                         "Kapasitas",
-                        "Une capacité de stockage":
-                    selectStorage(elm, data.get("storage"));
+                        "Une capacité de stockage": {
+                    String selected = selectStorage(elm, data.get("storage"));
+                    if (selected != null)
+                        data.put("storage", selected);
                     break;
-
+                }
                 case
                         "color",
                         "Color",
-                        "La couleur":
-                    selectColor(elm, data.get("color"));
+                        "La couleur": {
+                    String selected = selectColor(elm, data.get("color"));
+                    if (selected != null)
+                        data.put("color", selected);
                     break;
+                }
             }
         }
     }
