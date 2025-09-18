@@ -98,16 +98,7 @@ public abstract class Tokens {
         return -1;
     }
 
-    static TokenSingleMatch getFormName(List<String> tokens) {
-        Map<String, String> canonicalMap = Map.of(
-                "customer info", "customer info",
-                "customer address", "customer address",
-                "billing address", "billing address",
-                "shipping address", "customer address",
-                "delivery address", "customer address",
-                "delivery", "delivery",
-                "sim", "sim");
-
+    static TokenSingleMatch getBestMatch(List<String> tokens, Map<String, String> canonicalMap) {
         List<String> lowerTokens = tokens.stream().map(normalizeFunc).collect(Collectors.toList());
 
         String bestMatch = null;
@@ -128,7 +119,8 @@ public abstract class Tokens {
         if (bestMatch != null) {
             List<String> leading = new ArrayList<>(tokens.subList(0, bestIndex));
             tokens.subList(0, bestIndex + bestLength).clear();
-            return new TokenSingleMatch(canonicalMap.get(bestMatch), leading);
+            String value = canonicalMap.get(bestMatch).isEmpty() ? bestMatch : canonicalMap.get(bestMatch);
+            return new TokenSingleMatch(value, leading);
         }
         return new TokenSingleMatch("", new ArrayList<>());
     }

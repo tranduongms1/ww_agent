@@ -39,7 +39,7 @@ public abstract class Browser {
                     logger.info("Change current env to %s".formatted(c.env));
                     break;
                 }
-                TokenSingleMatch match = Tokens.getFormName(tokens);
+                TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.FORMS);
                 if (!match.value.isEmpty()) {
                     c.onForm = match.value;
                 }
@@ -531,12 +531,12 @@ public abstract class Browser {
             }
 
             case "fill": {
-                TokenSingleMatch match = Tokens.getFormName(tokens);
-                boolean all = Tokens.containsAny(match.leading, "all");
                 if (c.checkoutProcess != null) {
                     Checkout.process(c);
                 }
                 Profile profile = c.getProfile();
+                TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.FORMS);
+                boolean all = Tokens.contains(match.leading, "all");
                 switch (match.value) {
                     case "customer info":
                         CustomerInfo.autoFill(profile.getCustomerInfo(), !all);
@@ -547,29 +547,40 @@ public abstract class Browser {
                     case "billing address":
                         BillingAddress.autoFill(profile.getBillingAddress(), !all);
                         break;
+                    case "sim info": {
+                        leading = Tokens.removeLeading(tokens, "with", "approval", "id");
+                        if (Tokens.contains(tokens, "id")) {
+                            String id = tokens.remove(0);
+                            Checkout.fillSIMForm(id.toUpperCase());
+                        } else {
+                            Checkout.fillSIMForm(profile.getSIMInfo());
+                        }
+                        break;
+                    }
                 }
-                leading = Tokens.removeLeading(tokens, "sim", "info", "with", "approval", "id");
-                if (leading.contains("id")) {
-                    String id = tokens.remove(0).toUpperCase();
-                    Checkout.fillSIMForm(id);
-                }
-                if (Tokens.containsAll(tokens, "and", "continue") ||
-                        Tokens.containsAll(tokens, "and", "next")) {
+                if (Tokens.containsAny(tokens, "and", "then") &&
+                        Tokens.containsAny(tokens, "continue", "next")) {
                     Checkout.nextStep();
                 }
                 break;
             }
 
             case "check": {
-                leading = Tokens.removeLeading(tokens, "save");
-                TokenSingleMatch match = Tokens.getFormName(tokens);
+                TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.CHECKABLES);
                 switch (match.value) {
-                    case "customer address":
+                    case "save customer address":
                         c.mustCheckoutProcess().checkSaveCustomerAddress();
                         break;
-                    case "billing address":
+                    case "save billing address":
                         c.mustCheckoutProcess().checkSaveBillingAddress();
                         break;
+                }
+                break;
+            }
+
+            case "uncheck", "un-check": {
+                TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.CHECKABLES);
+                switch (match.value) {
                 }
                 break;
             }
@@ -609,57 +620,40 @@ public abstract class Browser {
                             break;
                         }
                     }
-                    break;
+                    return;
                 }
-                if (Tokens.containsAll(tokens, "different", "billing", "address")) {
-                    c.mustCheckoutProcess().uncheckSameAsShippingAddress();
-                    break;
+                TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.SELECTABLES);
+                int nth = 0;
+                if (Tokens.containsAny(match.leading, "1st", "first")) {
+                    nth = 1;
+                } else if (Tokens.containsAny(match.leading, "2nd", "second")) {
+                    nth = 2;
+                } else if (Tokens.containsAny(match.leading, "3rd", "third")) {
+                    nth = 3;
                 }
-                if (tokens.get(0).equalsIgnoreCase("new")) {
-                    tokens.remove(0);
-                    TokenSingleMatch match = Tokens.getFormName(tokens);
-                    switch (match.value) {
-                        case "customer address":
-                            c.mustCheckoutProcess().selectNewCustomerAddress();
-                            break;
-                        case "billing address":
-                            c.mustCheckoutProcess().selectNewBillingAddress();
-                            break;
-                    }
-                    break;
-                }
-                if (Tokens.containsAny(tokens, "saved")) {
-                    leading = Tokens.removeLeading(tokens,
-                            "1st", "first", "2nd", "second", "3rd", "third");
-
-                    int idx = -1;
-                    if (Tokens.containsAny(leading, "1st", "first")) {
-                        idx = 0;
-                    } else if (Tokens.containsAny(leading, "2nd", "second")) {
-                        idx = 1;
-                    } else if (Tokens.containsAny(leading, "3rd", "third")) {
-                        idx = 2;
-                    }
-                    leading = Tokens.removeLeading(tokens, "saved", "billing", "customer", "address");
-                    if (idx >= 0) {
-                        if (leading.contains("customer")) {
-                            c.mustCheckoutProcess().selectSavedCustomerAddress(idx);
-                        } else if (leading.contains("billing")) {
-                            c.mustCheckoutProcess().selectSavedBillingAddress(idx);
-                        }
-                        Tokens.removeLeading(tokens, "saved", "billing", "customer", "address");
-                    }
-                    break;
-                }
-                if (Tokens.containsAny(tokens, "order")) {
-                    if (Tokens.containsAny(tokens, "individual", "personal")) {
+                switch (match.value) {
+                    case "different billing address":
+                        c.mustCheckoutProcess().uncheckSameAsShippingAddress();
+                        return;
+                    case "new customer address":
+                        c.mustCheckoutProcess().selectNewCustomerAddress();
+                        return;
+                    case "new billing address":
+                        c.mustCheckoutProcess().selectNewBillingAddress();
+                        return;
+                    case "saved customer address":
+                        c.mustCheckoutProcess().selectSavedCustomerAddress(nth);
+                        return;
+                    case "saved billing address":
+                        c.mustCheckoutProcess().selectSavedBillingAddress(nth);
+                        return;
+                    case "individual order":
+                    case "personal company order":
                         c.mustCheckoutProcess().selectIndividualOrder();
-                        break;
-                    }
-                    if (Tokens.containsAny(tokens, "company")) {
+                        return;
+                    case "company order":
                         c.mustCheckoutProcess().selectCompanyOrder();
-                        break;
-                    }
+                        return;
                 }
                 if (tokens.contains("delivery")) {
                     String type = null;
@@ -724,7 +718,7 @@ public abstract class Browser {
                 }
                 if (tokens.get(0).equalsIgnoreCase("edit")) {
                     tokens.remove(0);
-                    TokenSingleMatch match = Tokens.getFormName(tokens);
+                    TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.EDITABLES);
                     switch (match.value) {
                         case "customer info":
                             Checkout.clickEditCustomerInfo();
@@ -736,20 +730,19 @@ public abstract class Browser {
                             Checkout.clickEditDeliveryInfo();
                             break;
                     }
+                    return;
                 }
-                Tokens.removeLeading(tokens, "from");
-                leading = Tokens.removeLeading(tokens, "cart");
-                if (Tokens.containsAll(tokens, "continue", "shopping")) {
-                    Tokens.removeLeading(tokens, "continue", "shopping");
-                    Cart.clickContinueShopping(c);
-                }
-                if (Tokens.containsAll(tokens, "sign", "in")) {
-                    Tokens.removeLeading(tokens, "sign", "in");
-                    Cart.clickSignInFromCart(c);
-                }
-                if (Tokens.containsAll(tokens, "view", "orders")) {
-                    WebUI.click(OrderConfirmation.VIEW_ORDERS_LOCATOR);
-                    break;
+                TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.CLICKABLES);
+                switch (match.value) {
+                    case "sign-in":
+                        Cart.clickSignInFromCart(c);
+                        return;
+                    case "continue shopping":
+                        Cart.clickContinueShopping(c);
+                        return;
+                    case "view orders":
+                        WebUI.click(OrderConfirmation.VIEW_ORDERS_LOCATOR);
+                        return;
                 }
                 break;
             }
@@ -758,7 +751,7 @@ public abstract class Browser {
                 leading = Tokens.removeLeading(tokens, "until");
                 if (Tokens.containsAny(leading, "until")) {
                     boolean seenOnly = !Tokens.removeLeading(tokens, "seen", "meet").isEmpty();
-                    TokenSingleMatch match = Tokens.getFormName(tokens);
+                    TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.PROCESS_UNTIL);
                     switch (match.value) {
                         case "customer info":
                             Checkout.waitForNavigateTo();
@@ -784,17 +777,17 @@ public abstract class Browser {
                                 c.mustCheckoutProcess().untilForm("app-billing-address-v2");
                             }
                             break;
-                        case "delivery":
-                            Checkout.waitForNavigateTo();
-                            c.mustCheckoutProcess().untilSeen("app-checkout-step-delivery");
-                            break;
-                        case "sim":
+                        case "sim step":
                             Checkout.waitForNavigateTo();
                             if (seenOnly) {
                                 c.mustCheckoutProcess().untilSeen("app-checkout-step-sim");
                             } else {
                                 c.mustCheckoutProcess().untilForm("app-checkout-step-sim");
                             }
+                            break;
+                        case "delivery":
+                            Checkout.waitForNavigateTo();
+                            c.mustCheckoutProcess().untilSeen("app-checkout-step-delivery");
                             break;
                     }
                 }

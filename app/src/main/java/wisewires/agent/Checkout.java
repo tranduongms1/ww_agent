@@ -426,7 +426,7 @@ public abstract class Checkout {
         }
     }
 
-    //for AU
+    // For AU
     static void fillSIMForm(String approvalID) throws Exception {
         try {
             WebElement elm = WebUI.waitElement("input[name='approvalId']", 3);

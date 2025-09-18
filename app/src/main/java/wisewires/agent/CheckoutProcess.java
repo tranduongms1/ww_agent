@@ -390,14 +390,14 @@ public class CheckoutProcess {
         });
     }
 
-    public CheckoutProcess selectSavedCustomerAddress(int index) {
+    public CheckoutProcess selectSavedCustomerAddress(int nth) {
         return onCustomerAddress((c, form) -> {
             try {
                 String to = "app-customer-address-v2 app-address-list-v2 mat-radio-group > div mat-radio-button";
                 List<WebElement> elms = WebUI.findElements(to).stream()
                         .filter(WebElement::isDisplayed)
                         .toList();
-                WebElement elm = elms.get(index);
+                WebElement elm = elms.get(nth - 1);
                 WebUI.scrollToCenter(elm);
                 elm.click();
             } catch (Exception e) {
