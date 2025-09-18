@@ -87,6 +87,9 @@
                 "imei": "866278125037973",
                 "selectionResponses": []
             }
+        },
+        "Warranty": {
+            "categoryCode": "WARRANTY"
         }
     },
     "creditCardData": {

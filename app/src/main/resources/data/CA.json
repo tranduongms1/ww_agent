@@ -6,6 +6,10 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smc-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
+    "exchangeEndpoints": {
+        "prod": "https://p1.ecom.samsung.com/v1/exchange/api/can",
+        "stg2": "https://ued1.ecom-qa.samsung.com/v1/exchange/api/can"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -86,6 +90,21 @@
                 "imei": "866278125037973",
                 "selectionResponses": []
             }
+        },
+        "TradeUp": {
+            "store_id": "ca",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "4098AE78-ED71-4C4B-BEB4-2748CDBE69B7",
+            "type": "TradeIn",
+            "sku": "QN85QN92BAFXZC",
+            "delayed_gratification": false
+        },
+        "Warranty": {
+            "categoryCode": "WARRANTY"
         }
     },
     "creditCardData": {

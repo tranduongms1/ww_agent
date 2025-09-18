@@ -140,7 +140,7 @@ public abstract class Cart {
     static void addEWarranty(Context c) throws Exception {
         EWProcess p = c.ewProcess;
         try {
-            String to = ".cart-item [data-an-la='add service:warranty'], .cart-item [data-an-la='add service:EW']";
+            String to = ".cart-item [data-an-la='add service:warranty'], .cart-item [data-an-la='add service:EW'], .cart-item [data-an-la='add service:WARRANTY']";
             WebElement btn = WebUI.waitElement(to, 5);
             WebUI.scrollToCenterAndClick(btn, 1000);
             logger.info("E-Warranty option 'Yes' clicked");
