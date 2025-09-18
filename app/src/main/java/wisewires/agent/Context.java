@@ -25,6 +25,7 @@ public class Context {
     public PFProcess pfProcess;
     public CheckoutProcess checkoutProcess;
     public GalaxyClubProcess galaxyClubProcess;
+    public DASubscriptionProcess daSubscriptionProcess;
     public PaymentProcess paymentProcess;
 
     private boolean cookieReady = false;
@@ -167,6 +168,13 @@ public class Context {
             this.galaxyClubProcess = new GalaxyClubProcess();
         }
         return this.galaxyClubProcess;
+    }
+
+    public DASubscriptionProcess mustDASubscriptionProcess() {
+        if (this.daSubscriptionProcess == null) {
+            this.daSubscriptionProcess = new DASubscriptionProcess();
+        }
+        return this.daSubscriptionProcess;
     }
 
     public void usePostalCode(String code) throws Exception {

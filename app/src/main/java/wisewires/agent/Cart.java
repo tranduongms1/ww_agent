@@ -173,6 +173,23 @@ public abstract class Cart {
         }
     }
 
+    static void addDASubscription(Context c) throws Exception {
+        try {
+            String to = ".cart-item [data-an-la='add service:replenishment']";
+            WebElement btn = WebUI.waitElement(to, 5);
+            WebUI.scrollToCenterAndClick(btn, 1000);
+            DASubscription.waitForOpen(10);
+            // DASubscription.selectOption(p.selectOption);
+            DASubscription.acceptTermAndConditions();
+            DASubscription.clickContinue();
+            DASubscription.waitForClose(10);
+            logger.info("Popup closed, DA Subscription added successfully");
+
+        } catch (Exception e) {
+            throw new Exception("Unable to add DA Subscription on cart page");
+        }
+    }
+
     @SuppressWarnings("unchecked")
     static void addTradeInViaAPI(Context c, String sku, long entryNumber) throws Exception {
         try {

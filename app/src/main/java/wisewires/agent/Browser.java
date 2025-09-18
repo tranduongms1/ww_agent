@@ -221,6 +221,11 @@ public abstract class Browser {
                     }
                     break;
                 }
+                if (tokens.get(0).equalsIgnoreCase("da-subscription")) {
+                    c.mustDASubscriptionProcess();
+                    Cart.addDASubscription(c);
+                    break;
+                }
                 if (tokens.get(0).equalsIgnoreCase("e-warranty")) {
                     c.mustEWProcess();
                     if (WebUI.getUrl().contains("/cart")) {
@@ -255,7 +260,7 @@ public abstract class Browser {
                                     "trade-in", "tradein", "trade-up", "tradeup",
                                     "sc+", "smc", "std", "standard", "sub", "subscription",
                                     "sim", "e-warranty", "ewarranty", "warranty",
-                                    "galaxy-club", "galaxyclub", "knox",
+                                    "galaxy-club", "galaxyclub", "knox", "da-subscription",
                                     "and", "+");
                             leading = Tokens.removeLeading(tokens, SERVICE_LEADING);
                             if (Tokens.containsAny(leading, "trade-in", "tradein")) {
@@ -291,6 +296,9 @@ public abstract class Browser {
                             }
                             if (Tokens.containsAny(leading, "knox")) {
                                 item.addedServices.add("knox");
+                            }
+                            if (Tokens.containsAny(leading, "da-subscription", "da subscription", "dasubscription")) {
+                                item.addedServices.add("DASubscription");
                             }
                             items.add(item);
                         }
