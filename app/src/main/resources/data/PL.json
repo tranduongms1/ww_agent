@@ -1,15 +1,21 @@
 {
     "stores": {
         "smb": "/business",
-        "plsme": "/business"
+        "plsme": "/business",
+        "pl_epp_pko_bp": "/multistore/epp/pl_epp_pko_bp"
     },
     "pointingUrls": {
-        "p2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://p2-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/pl/cart"
+        "p2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://p2-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/pl/cart",
+        "stg": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://s1-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://s1.shop.samsung.com&cart=https://stg.shop.samsung.com/pl/cart",
+        "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://s2-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://s2.shop.samsung.com&cart=https://stg2.shop.samsung.com/pl/cart",
+        "stg3": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://s3-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://s3.shop.samsung.com&cart=https://stg3.shop.samsung.com/pl/cart"
     },
     "apiEndpoints": {
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "p2": "https://p2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
-        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
+        "stg": "https://s1-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
+        "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/",
+        "stg3": "https://s3-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "customerInfo": {
         "email": "autotestww@gmail.com",
@@ -41,8 +47,7 @@
     "tradeInData": {
         "category": "Telefony Komórkowe",
         "brand": "Samsung",
-        "model": "Samsung Galaxy Z Fold6 5G 1TB F956B DS",
-        "storage": "512GB",
+        "model": "Samsung Galaxy S23 Ultra 5G 256GB S918U",
         "imei": "301296444933956"
     },
     "serviceData": {
@@ -50,7 +55,32 @@
             "serviceCode": "T-FOXWAY-TRADEIN",
             "addToCartType": "append",
             "provider": "FOXWAY",
-            "additionalInfos": null
+            "additionalInfos": {
+                "targetProductCode": "SM-S911BZGDEUE",
+                "provider": "FOXWAY",
+                "productCode": "T_TELEFONY-KOM-RKOWE_SAMSUNG_SAMSUNG-GALAXY-S23-ULTRA-5G-256GB-S918U",
+                "responses": [
+                    {
+                        "name": "0",
+                        "value": "0"
+                    },
+                    {
+                        "name": "1",
+                        "value": "0"
+                    },
+                    {
+                        "name": "2",
+                        "value": "0"
+                    },
+                    {
+                        "name": "3",
+                        "value": "0"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "discountMode": "instantDiscount",
+                "selectionResponses": []
+            }
         },
         "TradeUp": {
             "serviceCode": "T_Sa_RE_1-3",
