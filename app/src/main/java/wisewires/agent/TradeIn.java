@@ -63,6 +63,10 @@ public abstract class TradeIn {
         if (WebUI.isSite("AT")) {
             to = ".trade-in-popup-v3__btn-continue, .trade-in-popup-v3__btn-apply, .modal__close";
         }
+
+        if (WebUI.isSite("PL")) {
+            to = ".trade-in-popup-v3__btn-continue, .trade-in-popup-v3__btn-apply, .modal__footer button:last-child";
+        }
         WebElement elm = WebUI.waitElement(modal, By.cssSelector(to), 5);
         if (elm != null) {
             String attr = WebUI.getDomAttribute(elm, "an-la", "data-an-la", "class");
@@ -305,10 +309,13 @@ public abstract class TradeIn {
             String to = """
                     label[for='addconditionCheck0-1'],
                     label[for='commoninstantcashback1'],
-                    div.trade-in-types__galaxy-button
+                    div.trade-in-types__galaxy-button:not(:has(input)),
+                    input[value="instantDiscount"]
                     """;
             WebElement elm = WebUI.findElement(to);
-            elm.click();
+            if (elm != null) {
+                elm.click();
+            }
         } catch (Exception e) {
             throw new Exception("Unable to process tradein guide", e);
         }
@@ -372,7 +379,8 @@ public abstract class TradeIn {
                         "Gamintojas",
                         "Ražotājs:",
                         "Bränd",
-                        "Proizvajalec": {
+                        "Proizvajalec",
+                        "Marka": {
                     String selected = selectBrand(elm, data.get("brand"));
                     if (selected != null)
                         data.put("brand", selected);
