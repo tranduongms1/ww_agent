@@ -630,8 +630,7 @@ public abstract class Browser {
                 }
                 if (Tokens.containsAny(tokens, "saved")) {
                     leading = Tokens.removeLeading(tokens,
-                            "1st", "first", "2nd", "second", "3rd", "third",
-                            "saved", "billing", "customer", "address");
+                            "1st", "first", "2nd", "second", "3rd", "third");
 
                     int idx = -1;
                     if (Tokens.containsAny(leading, "1st", "first")) {
@@ -641,17 +640,16 @@ public abstract class Browser {
                     } else if (Tokens.containsAny(leading, "3rd", "third")) {
                         idx = 2;
                     }
-                    if (Tokens.containsAll(leading, "billing")) {
-                        if (idx >= 0) {
-                            c.mustCheckoutProcess().selectSavedBillingAddress(idx);
-                            break;
-                        }
-                    } else if (Tokens.containsAny(leading, "customer")) {
-                        if (idx >= 0) {
+                    leading = Tokens.removeLeading(tokens, "saved", "billing", "customer", "address");
+                    if (idx >= 0) {
+                        if (leading.contains("customer")) {
                             c.mustCheckoutProcess().selectSavedCustomerAddress(idx);
-                            break;
+                        } else if (leading.contains("billing")) {
+                            c.mustCheckoutProcess().selectSavedBillingAddress(idx);
                         }
+                        Tokens.removeLeading(tokens, "saved", "billing", "customer", "address");
                     }
+                    break;
                 }
                 if (Tokens.containsAny(tokens, "order")) {
                     if (Tokens.containsAny(tokens, "individual", "personal")) {
