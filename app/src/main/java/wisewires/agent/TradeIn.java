@@ -37,6 +37,7 @@ public abstract class TradeIn {
             [an-la='trade-in:select device:next'],
             .trade-in-popup__step--show [an-la='trade in:select device:next'],
             [data-an-la='trade-in:select device:next'],
+            button[form="tradeInIdForm"],
             [an-la='trade-in:check device condition:next'],
             [data-an-la='trade-in:check device condition:next'],
             [an-la='trade-in:enter imei:next'],
@@ -284,6 +285,34 @@ public abstract class TradeIn {
             return elm.findElement(By.cssSelector(".manual-search_list")).getText().trim();
         }
         throw new Exception("Unknow device select type");
+    }
+
+    static void selectExistingTradein() throws Exception {
+        try {
+            String opt = """
+                    .radio-v2:has(input#tradeIn-check-list-2) label,
+                    mat-radio-button#tradein-model-1
+                     """;
+            WebElement elm = WebUI.findElement(opt);
+            elm.click();
+        } catch (Exception e) {
+            throw new Exception("Unable to select existing tradein", e);
+        }
+    }
+
+    static void processTradeinGuide() throws Exception {
+        try {
+            String to = """
+                    label[for='addconditionCheck0-1'],
+                    label[for='commoninstantcashback1'],
+                    div.trade-in-types__galaxy-button
+                    """;
+            WebElement elm = WebUI.findElement(to);
+            elm.click();
+        } catch (Exception e) {
+            throw new Exception("Unable to process tradein guide", e);
+        }
+
     }
 
     static void selectDevice(WebElement modal, Map<String, String> data) throws Exception {
@@ -541,12 +570,11 @@ public abstract class TradeIn {
                 try {
                     switch (currentStep) {
                         case "trade-in guide":
-                            if (WebUI.isOneOfSites("JP")) {
-                                WebUI.click("label[for='addconditionCheck0-1']");
-                            } else if (WebUI.isOneOfSites("IT")) {
-                                WebUI.click("label[for='commoninstantcashback1'], div.trade-in-types__galaxy-button");
-                                WebUI.delay(2);
+                            if (data.containsKey("tradeID")) {
+                                selectExistingTradein();
+                                break;
                             }
+                            processTradeinGuide();
                             break;
 
                         case "select brand":
@@ -554,6 +582,15 @@ public abstract class TradeIn {
                             break;
 
                         case "select device":
+                            if (data.containsKey("tradeID")) {
+                                String tradeInId = """
+                                            #common-trade-imei,
+                                            [formcontrolname='tradeInId']
+                                        """;
+                                WebElement elm = WebUI.findElement(tradeInId);
+                                elm.sendKeys(data.get("tradeID"));
+                                break;
+                            }
                             if (WebUI.findElement(".trade-in-popup__model-list") != null) {
                                 WebUI.click(".trade-in-popup__model-item");
                                 break;

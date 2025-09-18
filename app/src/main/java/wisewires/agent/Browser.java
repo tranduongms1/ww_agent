@@ -170,22 +170,26 @@ public abstract class Browser {
                 if (Tokens.containsAny(List.of("trade-in", "tradein"), tokens.get(0))) {
                     c.mustTradeInProcess();
                     Map<String, String> data = c.getProfile().getTradeInData();
+                    if (Tokens.containsAny(leading, "mobile")) {
+                        c.tradeInProcess.data = new HashMap<>(Map.of(
+                                "category", data.get("mobileCategory"), "imei", MockData.IMEI()));
+                    } else if (Tokens.containsAny(leading, "tablet")) {
+                        c.tradeInProcess.data = new HashMap<>(Map.of(
+                                "category", data.get("tabletCategory"), "imei", MockData.IMEI()));
+                    } else if (Tokens.containsAny(leading, "second", "2nd")) {
+                        c.tradeInProcess.data = c.getProfile().getTradeInData2();
+                    } else if (Tokens.containsAny(leading, "third", "3rd")) {
+                        c.tradeInProcess.data = c.getProfile().getTradeInData3();
+                    } else if (Tokens.containsAny(leading, "fourth", "4th")) {
+                        c.tradeInProcess.data = c.getProfile().getTradeInData4();
+                    } else if (Tokens.containsAny(leading, "fifth", "5th")) {
+                        c.tradeInProcess.data = c.getProfile().getTradeInData5();
+                    }
+                    leading = Tokens.removeLeading(tokens, "trade-in", "tradein", "use", "with", "id");
+                    if (leading.contains("id") && !tokens.isEmpty()) {
+                        c.tradeInProcess.data.put("tradeID", tokens.remove(0));
+                    }
                     if (WebUI.getUrl().contains("/cart")) {
-                        if (Tokens.containsAny(leading, "mobile")) {
-                            c.tradeInProcess.data = new HashMap<>(Map.of(
-                                    "category", data.get("mobileCategory"), "imei", MockData.IMEI()));
-                        } else if (Tokens.containsAny(leading, "tablet")) {
-                            c.tradeInProcess.data = new HashMap<>(Map.of(
-                                    "category", data.get("tabletCategory"), "imei", MockData.IMEI()));
-                        } else if (Tokens.containsAny(leading, "second", "2nd")) {
-                            c.tradeInProcess.data = c.getProfile().getTradeInData2();
-                        } else if (Tokens.containsAny(leading, "third", "3rd")) {
-                            c.tradeInProcess.data = c.getProfile().getTradeInData3();
-                        } else if (Tokens.containsAny(leading, "fourth", "4th")) {
-                            c.tradeInProcess.data = c.getProfile().getTradeInData4();
-                        } else if (Tokens.containsAny(leading, "fifth", "5th")) {
-                            c.tradeInProcess.data = c.getProfile().getTradeInData5();
-                        }
                         Cart.addTradeIn(c);
                     } else if (Util.isPDPage()) {
                         PD.addTradeIn(c);
