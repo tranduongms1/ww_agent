@@ -17,7 +17,10 @@ public class Context {
     public Map<String, String> sso;
     public boolean ssoSignedIn = false;
 
+    public String command;
     public HashMap<String, Object> testData;
+    public String onForm;
+
     public TradeInProcess tradeInProcess;
     public SCPProcess scpProcess;
     public EWProcess ewProcess;

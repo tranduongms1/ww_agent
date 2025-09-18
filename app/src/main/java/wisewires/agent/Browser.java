@@ -10,8 +10,12 @@ import org.slf4j.LoggerFactory;
 public abstract class Browser {
     private static Logger logger = LoggerFactory.getLogger(Browser.class);
 
-    static void run(Context c, String req) throws Exception {
-        List<String> tokens = Tokens.tokenize(req);
+    static void run(Context c, String command) throws Exception {
+        c.command = command;
+        run(c, Tokens.tokenize(command));
+    }
+
+    static void run(Context c, List<String> tokens) throws Exception {
         String arg = tokens.remove(0);
         List<String> leading;
         switch (arg.toLowerCase()) {
@@ -19,16 +23,25 @@ public abstract class Browser {
                 if (tokens.contains("site")) {
                     c.site = tokens.remove(0).toUpperCase();
                     logger.info("Change current site to %s".formatted(c.site));
-                } else if (tokens.contains("store")) {
+                    break;
+                }
+                if (tokens.contains("store")) {
                     if (tokens.contains("estore")) {
                         c.siteUid = "";
                     } else {
                         c.siteUid = tokens.remove(0).toLowerCase();
                     }
                     logger.info("Change current store to %s".formatted(c.siteUid.isEmpty() ? "estore" : c.siteUid));
-                } else if (tokens.contains("env")) {
+                    break;
+                }
+                if (tokens.contains("env")) {
                     c.env = tokens.remove(0).toLowerCase();
                     logger.info("Change current env to %s".formatted(c.env));
+                    break;
+                }
+                TokenSingleMatch match = Tokens.getFormName(tokens);
+                if (!match.value.isEmpty()) {
+                    c.onForm = match.value;
                 }
                 break;
             }
@@ -118,7 +131,7 @@ public abstract class Browser {
                     WebUI.waitForPageLoad(30);
                     GNB.hoverHumanIcon();
                 }
-                logger.info("[PASS] %s".formatted(req));
+                logger.info("[PASS] %s".formatted(c.command));
                 break;
             }
 
@@ -540,9 +553,45 @@ public abstract class Browser {
                     String id = tokens.remove(0).toUpperCase();
                     Checkout.fillSIMForm(id);
                 }
-                if (Tokens.containsAll(tokens, "and", "continue")
-                        || Tokens.containsAll(tokens, "and", "next")) {
+                if (Tokens.containsAll(tokens, "and", "continue") ||
+                        Tokens.containsAll(tokens, "and", "next")) {
                     Checkout.nextStep();
+                }
+                break;
+            }
+
+            case "check": {
+                leading = Tokens.removeLeading(tokens, "save");
+                TokenSingleMatch match = Tokens.getFormName(tokens);
+                switch (match.value) {
+                    case "customer address":
+                        c.mustCheckoutProcess().checkSaveCustomerAddress();
+                        break;
+                    case "billing address":
+                        c.mustCheckoutProcess().checkSaveBillingAddress();
+                        break;
+                }
+                break;
+            }
+
+            case "enter", "input": {
+                if (c.onForm != null) {
+                    if (c.checkoutProcess != null) {
+                        Checkout.process(c);
+                    }
+                    String name = tokens.remove(0).replaceFirst(":$", "");
+                    String value = tokens.remove(0);
+                    switch (c.onForm) {
+                        case "customer info":
+                            CustomerInfo.enterField(name, value);
+                            break;
+                        case "customer address":
+                            CustomerAddress.enterField(name, value);
+                            break;
+                        case "billing address":
+                            BillingAddress.enterField(name, value);
+                            break;
+                    }
                 }
                 break;
             }
@@ -604,7 +653,6 @@ public abstract class Browser {
                         }
                     }
                 }
-
                 if (Tokens.containsAny(tokens, "order")) {
                     if (Tokens.containsAny(tokens, "individual", "personal")) {
                         c.mustCheckoutProcess().selectIndividualOrder();
@@ -614,17 +662,6 @@ public abstract class Browser {
                         c.mustCheckoutProcess().selectCompanyOrder();
                         break;
                     }
-                }
-                if (Tokens.containsAny(tokens, "option")) {
-                    Tokens.removeLeading(tokens, "option");
-                    String option;
-                    if (tokens.size() > 1) {
-                        option = tokens.get(0) + " " + tokens.get(1);
-                    } else {
-                        option = tokens.get(0);
-                    }
-                    c.mustCheckoutProcess().selectOrderOption(option);
-                    break;
                 }
                 if (tokens.contains("delivery")) {
                     String type = null;
@@ -836,7 +873,7 @@ public abstract class Browser {
                 if (c.checkoutProcess != null) {
                     Checkout.process(c);
                 }
-                Post p = new Post(c.post.getChannelId(), req);
+                Post p = new Post(c.post.getChannelId(), c.command);
                 p.setRootId(c.post.getId());
                 Util.captureImageAndCreatePost(c, p);
                 break;
@@ -846,7 +883,7 @@ public abstract class Browser {
                 if (c.checkoutProcess != null) {
                     Checkout.process(c);
                 }
-                String message = "V" + req.trim().substring(1);
+                String message = "V" + c.command.trim().substring(1);
                 Post p = new Post(c.post.getChannelId(), message);
                 p.setRootId(c.post.getId());
                 p.setType("custom_ai_verify");
@@ -864,20 +901,6 @@ public abstract class Browser {
                 if (tokens.get(0).equalsIgnoreCase("browser")) {
                     WebUI.closeBrower(c);
                     c.reset();
-                }
-                break;
-            }
-
-            case "check": {
-                leading = Tokens.removeLeading(tokens, "save");
-                TokenSingleMatch match = Tokens.getFormName(tokens);
-                switch (match.value) {
-                    case "customer address":
-                        c.mustCheckoutProcess().checkSaveCustomerAddress();
-                        break;
-                    case "billing address":
-                        c.mustCheckoutProcess().checkSaveBillingAddress();
-                        break;
                 }
                 break;
             }

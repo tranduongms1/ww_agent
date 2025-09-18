@@ -1,5 +1,6 @@
 package wisewires.agent;
 
+import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.WebElement;
@@ -17,80 +18,26 @@ public class BillingAddress {
                 if (!Form.checkEnable(logger, field, nameOrLabel)) {
                     continue;
                 }
-                switch (nameOrLabel) {
-                    case "email":
-                    case
-                            "Country",
-                            "Pays",
-                            "Land",
-                            "País",
-                            "Paese",
-                            "Země":
-                    case
-                            "firstName",
-                            "purchaserFirstName",
-                            "lastName",
-                            "purchaserLastName",
-                            "fullName":
-                    case
-                            "Préfixe",
-                            "Code postal",
-                            "Syntymäaika",
-                            "Præfiks",
-                            "Prefix",
-                            "Prefiks",
-                            "Ländervorwahl",
-                            "Landcode",
-                            "電話區號",
-                            "Area Code",
-                            "Prefijo",
-                            "Prefisso",
-                            "Indicativo",
-                            "Fødselsdato",
-                            "Numer kierunkowy",
-                            "Κωδικός κλήσης χώρας",
-                            "Tel. předvolba",
-                            "Tel. predvoľba":
-                    case
-                            "phone",
-                            "telephone",
-                            "purchaserNumber",
-                            "phone2",
-                            "phoneNumber2":
-                    case
-                            "Tipo de documento",
-                            "NIF/NIE/Pasaporte",
-                            "ขอใบกำกับภาษีในนาม":
-                    case
-                            "companyName",
-                            "companyNameOpt",
-                            "companyName2":
-                    case
-                            "vatNumber",
-                            "vatNumber2",
-                            "companyTaxNumber":
-                    case "companyId":
-                    case "commercializeTxt":
-                    case
-                            "Title",
-                            "Titre",
-                            "Anrede":
-                        CustomerInfo.fillField(logger, field, nameOrLabel, data);
-                        break;
-
-                    case "fiscalCode":
-                        field.clear();
-                        field.sendKeys(data.get("fiscalCode"));
-                        break;
-
-                    default:
-                        CustomerAddress.fillField(logger, field, nameOrLabel, data);
-                }
+                CustomerAddress.fillField(logger, field, nameOrLabel, data);
             }
             logger.info("Billing address form filled");
         } catch (Exception e) {
             throw new Exception("Unable to fill billing address", e);
         }
+    }
+
+    static void enterField(String name, String value) throws Exception {
+        List<WebElement> fields = Form.getFields("app-billing-address-v2", false);
+        for (WebElement field : fields) {
+            String nameOrLabel = Form.getNameOrLabel(field);
+            if (nameOrLabel.equals(name) || CustomerAddress.getFieldName(nameOrLabel).equals(name)) {
+                WebUI.scrollToCenter(field);
+                field.clear();
+                field.sendKeys(value);
+                return;
+            }
+        }
+        throw new Exception("Unable to locale field name '%s'".formatted(name));
     }
 
     public static void checkSameAsShipping() throws Exception {

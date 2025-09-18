@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -40,6 +41,8 @@ public abstract class Tokens {
         return tokens;
     }
 
+    public static Function<String, String> normalizeFunc = s -> s.toLowerCase().replaceFirst("[:,;]$", "");
+
     public static boolean contains(List<String> list, String s) {
         for (String item : list) {
             if (item.equalsIgnoreCase(s)) {
@@ -50,18 +53,19 @@ public abstract class Tokens {
     }
 
     public static boolean containsAny(List<String> tokens, String... values) {
-        Set<String> set = new HashSet<>(tokens.stream().map(String::toLowerCase).toList());
+        Set<String> set = new HashSet<>(tokens.stream().map(normalizeFunc).toList());
         for (String value : values) {
-            if (set.contains(value.toLowerCase()) || set.contains(value.toLowerCase() + ":"))
+            if (set.contains(value.toLowerCase())) {
                 return true;
+            }
         }
         return false;
     }
 
     public static boolean containsAll(List<String> tokens, String... values) {
-        Set<String> set = new HashSet<>(tokens.stream().map(String::toLowerCase).toList());
+        Set<String> set = new HashSet<>(tokens.stream().map(normalizeFunc).toList());
         for (String value : values) {
-            if (!set.contains(value.toLowerCase()) && !set.contains(value.toLowerCase() + ":"))
+            if (!set.contains(value.toLowerCase()))
                 return false;
         }
         return true;
@@ -73,8 +77,8 @@ public abstract class Tokens {
 
     static List<String> removeLeading(List<String> tokens, List<String> leadingList) {
         List<String> result = new ArrayList<>();
-        while (!tokens.isEmpty() && leadingList.contains(tokens.get(0).toLowerCase().replaceFirst(":$", ""))) {
-            result.add(tokens.remove(0).toLowerCase().replaceFirst(":$", ""));
+        while (!tokens.isEmpty() && leadingList.contains(normalizeFunc.apply(tokens.get(0)))) {
+            result.add(normalizeFunc.apply(tokens.remove(0)));
         }
         return result;
     }
@@ -104,7 +108,7 @@ public abstract class Tokens {
                 "delivery", "delivery",
                 "sim", "sim");
 
-        List<String> lowerTokens = tokens.stream().map(String::toLowerCase).collect(Collectors.toList());
+        List<String> lowerTokens = tokens.stream().map(normalizeFunc).collect(Collectors.toList());
 
         String bestMatch = null;
         int bestIndex = -1;
