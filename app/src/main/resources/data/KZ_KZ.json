@@ -6,6 +6,12 @@
         "prod": "https://api.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smn3-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
+    "exchangeEndpoints": {
+        "prod": "https://p1.ecom.samsung.com/v1/exchange/api/kaz",
+        "p2": "https://p1.ecom-qa.samsung.com/v1/exchange/api/kaz",
+        "stg": "https://p1.ecom-qa.samsung.com/v1/exchange/api/kaz",
+        "stg2": "https://p1.ecom-qa.samsung.com/v1/exchange/api/kaz"
+    },
     "customerInfo": {
         "email": "autotestww@gmail.com",
         "firstName": "Auto",
@@ -25,6 +31,26 @@
         "adminLevel1": "Астана",
         "adminLevel2": "Астана",
         "adminLevel3": "Астана"
+    },
+    "tradeUpData": {
+        "model": "32”-43”",
+        "brand": "LG"
+    },
+    "serviceData": {
+        "TradeIn": {
+        },
+        "TradeUp": {
+            "store_id": "kz",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "81C99CE1-50A0-440A-A1F8-1B1A1E178DD4",
+            "type": "TradeIn",
+            "sku": "QE65QN1EFAUXCE",
+            "delayed_gratification": false
+        }
     },
     "creditCardData": {
         "cardNumber": "4405639704015096 ",
