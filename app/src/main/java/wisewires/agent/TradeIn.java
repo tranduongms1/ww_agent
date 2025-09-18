@@ -335,7 +335,8 @@ public abstract class TradeIn {
                 case
                         "category",
                         "Избери вид на устройството",
-                        "Termékkategória": {
+                        "Termékkategória",
+                        "Kategorije": {
                     String selected = selectCategory(elm, data.get("category"));
                     if (selected != null)
                         data.put("category", selected);
@@ -370,7 +371,8 @@ public abstract class TradeIn {
                         "Ange tillverkare:",
                         "Gamintojas",
                         "Ražotājs:",
-                        "Bränd": {
+                        "Bränd",
+                        "Proizvajalec": {
                     String selected = selectBrand(elm, data.get("brand"));
                     if (selected != null)
                         data.put("brand", selected);
@@ -408,7 +410,8 @@ public abstract class TradeIn {
                         "Ange modell:",
                         "Įrenginys",
                         "Ierīce",
-                        "Vali mudel:": {
+                        "Vali mudel:",
+                        "Izberite model ali začnite tipkati": {
                     String selected = selectModel(elm, data.get("model"));
                     if (selected != null)
                         data.put("model", selected);
