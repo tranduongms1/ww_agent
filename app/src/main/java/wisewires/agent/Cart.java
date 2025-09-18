@@ -54,7 +54,7 @@ public abstract class Cart {
             if (addedServices.contains("TradeUp")) {
                 PD.addTradeUp(c);
             }
-            if (addedServices.contains("EWarranty")) {
+            if (addedServices.contains("Warranty")) {
                 c.mustEWProcess();
                 PD.addEWarranty(c);
             }

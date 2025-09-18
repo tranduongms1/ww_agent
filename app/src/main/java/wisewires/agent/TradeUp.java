@@ -173,7 +173,8 @@ public abstract class TradeUp {
                                             "Tyyppi/malli",
                                             "Type/model",
                                             "เลือกขนาด/ประเภทสินค้า",
-                                            "Model Size":
+                                            "Model Size",
+                                            "حجم الموديل":
                                         select(elm, data.get("model"));
                                         break;
 
@@ -188,7 +189,8 @@ public abstract class TradeUp {
                                             "Merkki",
                                             "Mærke",
                                             "เลือกยี่ห้อ",
-                                            "Brand":
+                                            "Brand",
+                                            "العلامة التجارية":
                                         select(elm, data.get("brand"));
                                         break;
                                 }
