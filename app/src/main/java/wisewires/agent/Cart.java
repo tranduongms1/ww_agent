@@ -640,40 +640,25 @@ public abstract class Cart {
     static void ssoCheckout(Context c) throws Exception {
         try {
             logger.info("Continue to checkout as register");
-            String to = "[data-an-la='samsung account']";
-            WebUI.wait(10).until(d -> {
-                WebElement btn = WebUI.findElement(to);
-                if (btn == null) {
-                    btn = WebUI.findElement("[data-an-la='proceed to checkout']");
-                }
-                WebUI.scrollToCenter(btn);
-                WebUI.delay(1);
-                btn.click();
-                return true;
-            });
-            String email = c.sso.get("email");
-            String password = c.sso.get("mk");
-            Object result = WebUI.wait(60).withMessage("navigate to splash page").until(driver -> {
-                String alert = getCartAlert();
-                if (alert != null) {
-                    return new Exception(alert);
-                }
+            WebElement btn = WebUI.waitElement("[data-an-la='proceed to checkout']", 15);
+            WebUI.scrollToCenter(btn);
+            WebUI.delay(1);
+            WebUI.click(btn);
+            WebUI.wait(30).until(driver -> {
                 String url = driver.getCurrentUrl();
-                if (url.contains("/guestlogin")) {
-                    WebElement btn = WebUI.findElement(to);
-                    btn.click();
+                if (url.contains("/guestlogin/")) {
+                    WebUI.waitElement(".button[data-an-la='samsung account']", 10);
+                    WebUI.click(".button[data-an-la='samsung account']");
+                    WebUI.delay(2);
                 }
-                try {
-                    SSO.signInByEmail(email, password);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return url.contains("/checkout/one");
+                return url.contains("account.samsung.com") || url.contains("/checkout");
             });
-            if (result instanceof Exception) {
-                throw (Exception) result;
+            if (WebUI.driver.getCurrentUrl().contains("account.samsung.com")) {
+                SSO.signInByEmail(c);
+                WebUI.waitForPageLoad(15);
+            } else {
+                logger.info("Navigated to checkout without login");
             }
-            logger.info("Navigated to checkout page");
         } catch (Exception e) {
             throw new Exception("Unable to checkout as register", e);
         }
