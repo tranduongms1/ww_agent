@@ -453,7 +453,7 @@ public abstract class Browser {
             }
 
             case "remove": {
-                List<String> services = Tokens.removeLeading(tokens, "added", "applied",
+                List<String> services = Tokens.removeLeading(tokens, "added", "applied", "all",
                         "trade-in", "tradein", "trade-up", "tradeup", "sc+", "sim", "warranty", "e-warranty",
                         "voucher", "for");
                 leading = Tokens.removeLeading(tokens, "product", "item", "by", "with", "sku",
@@ -495,6 +495,12 @@ public abstract class Browser {
                 }
                 if (sku != null) {
                     Cart.removeItemBySKU(sku);
+                }
+                if (Tokens.containsAll(services, "applied", "voucher")) {
+                    Cart.removeVoucher();
+                }
+                if (Tokens.containsAll(services, "all", "applied", "voucher")) {
+                    Cart.removeAllVoucher();
                 }
                 break;
             }
