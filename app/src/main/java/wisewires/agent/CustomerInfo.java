@@ -221,6 +221,10 @@ public class CustomerInfo {
             case "personalTaxNumber":
                 field.clear();
                 field.sendKeys(data.get("personalTaxNumber") + Keys.ENTER);
+                Thread.sleep(1000);
+                if (data.get("personalTaxNumber").equals("10339116396")) {
+                    WebUI.waitElement("[name='companyName']", 5);
+                }
                 break;
 
             case "companyId":

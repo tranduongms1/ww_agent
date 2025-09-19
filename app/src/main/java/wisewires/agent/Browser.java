@@ -624,6 +624,7 @@ public abstract class Browser {
             }
 
             case "select": {
+                Profile profile = c.getProfile();
                 if (c.pfProcess != null) {
                     while (!tokens.isEmpty()) {
                         String value = tokens.remove(0);
@@ -656,8 +657,12 @@ public abstract class Browser {
                     case "saved billing address":
                         c.mustCheckoutProcess().selectSavedBillingAddress(nth);
                         return;
-                    case "individual order":
+                    case "personal order":
+                        profile.getCustomerInfo().put("personalTaxNumber", "45821056966");
+                        c.mustCheckoutProcess().selectIndividualOrder();
+                        return;
                     case "personal company order":
+                        profile.getCustomerInfo().put("personalTaxNumber", "10339116396");
                         c.mustCheckoutProcess().selectIndividualOrder();
                         return;
                     case "company order":

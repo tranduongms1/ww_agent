@@ -26,7 +26,8 @@ public abstract class Names {
                         Map.of("different billing address", ""),
                         withPrefix(ADDRESSES, "new "),
                         withPrefix(ADDRESSES, "saved "),
-                        Map.of("individual order", ""),
+                        Map.of("personal order", ""),
+                        Map.of("individual order", "personal order"),
                         Map.of("personal company order", ""),
                         Map.of("company order", ""));
 
