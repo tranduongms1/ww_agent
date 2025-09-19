@@ -37,13 +37,15 @@ public class Agent extends WebSocketClient {
 
     private void withRetry(Attachment attachment) throws Exception {
         attachment.setColor("danger");
-        attachment.setActions(List.of(Map.of(
-                "type", "button",
-                "name", "Retry",
-                "style", "primary",
-                "integration", Map.of(
-                        "url", plugginUrl + "/test/retry",
-                        "context", Map.of("agentId", client.getUserId())))));
+        attachment.setActions(List.of(
+                Map.of("type", "button", "name", "Restart", "style", "primary",
+                        "integration", Map.of(
+                                "url", plugginUrl + "/test/restart",
+                                "context", Map.of("agentId", client.getUserId()))),
+                Map.of("type", "button", "name", "Retry", "style", "primary",
+                        "integration", Map.of(
+                                "url", plugginUrl + "/test/retry",
+                                "context", Map.of("agentId", client.getUserId())))));
     }
 
     @Override
@@ -56,8 +58,15 @@ public class Agent extends WebSocketClient {
     public void onMessage(String message) {
         WebSocketMessage msg = WebSocketMessage.fromJson(message);
         switch (msg.getEvent()) {
-            case "posted", "custom_wisewires-ai_retry": {
+            case "posted", "custom_wisewires-ai_restart": {
                 Post post = Post.fromJson(msg.getString("post"));
+                post.getProps().setRetry(false);
+                posts.add(post);
+                break;
+            }
+            case "custom_wisewires-ai_retry": {
+                Post post = Post.fromJson(msg.getString("post"));
+                post.getProps().setRetry(true);
                 posts.add(post);
                 break;
             }
@@ -108,7 +117,15 @@ public class Agent extends WebSocketClient {
                         } catch (Exception e) {
                             e.printStackTrace();
                             try {
-                                withRetry(attachment);
+                                attachment.setColor("danger");
+                                Attachment errAttachment = new Attachment("danger", e.getMessage());
+                                int index = post.getProps().getLastCommandIndex() + 2;
+                                errAttachment.setTitle(index + ": " + ctx.command);
+                                if (e.getCause() != null) {
+                                    errAttachment.setText(errAttachment.getText() + "\n\n" + e.getCause().getMessage());
+                                }
+                                withRetry(errAttachment);
+                                post.getProps().getAttachments().add(errAttachment);
                                 client.updatePost(post);
                             } catch (Exception e1) {
                                 e1.printStackTrace();
@@ -145,11 +162,19 @@ public class Agent extends WebSocketClient {
         }
 
         public void runPost(Post post) throws Exception {
+            PostProps props = post.getProps();
+            boolean seenLastCommand = false;
             List<String> lines = post.getScript().lines().toList();
-            for (String line : lines) {
-                if (!line.isBlank()) {
-                    Browser.run(ctx, line);
+            for (int i = 0; i < lines.size(); i++) {
+                if (props.getRetry() && !seenLastCommand) {
+                    seenLastCommand = i > props.getLastCommandIndex();
+                    if (!seenLastCommand)
+                        continue;
                 }
+                if (!lines.get(i).isBlank()) {
+                    Browser.run(ctx, lines.get(i));
+                }
+                props.increaseLastCommandIndex();
             }
             if (ctx.checkoutProcess != null) {
                 Checkout.waitForNavigateTo();

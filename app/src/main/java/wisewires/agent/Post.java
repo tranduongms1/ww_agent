@@ -107,5 +107,8 @@ public class Post {
         }
         firstAttachment().setColor("default");
         firstAttachment().setActions(null);
+        if (getProps().getAttachments().size() > 1) {
+            getProps().getAttachments().remove(1);
+        }
     }
 }

@@ -11,6 +11,8 @@ public class PostProps {
 
     private String currentUrl;
     private HashMap<String, Object> testData;
+    private int lastCommandIndex = -1;
+    private boolean retry = false;
 
     public ArrayList<Attachment> getAttachments() {
         if (attachments == null) {
@@ -61,5 +63,25 @@ public class PostProps {
 
     public void setTestData(HashMap<String, Object> testData) {
         this.testData = testData;
+    }
+
+    public int getLastCommandIndex() {
+        return lastCommandIndex;
+    }
+
+    public void setLastCommandIndex(int index) {
+        this.lastCommandIndex = index;
+    }
+
+    public void increaseLastCommandIndex() {
+        this.lastCommandIndex++;
+    }
+
+    public boolean getRetry() {
+        return retry;
+    }
+
+    public void setRetry(boolean retry) {
+        this.retry = retry;
     }
 }
