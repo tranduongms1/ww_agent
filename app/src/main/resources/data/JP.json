@@ -43,6 +43,8 @@
   "tradeInData": {
     "mobileCategory": "スマートフォン",
     "tabletCategory": "タブレット",
+    "watchCategory":"スマートウォッチ",
+    "earphoneCategory":"ワイヤレスイヤホン",
     "category": "スマートフォン",
     "brand": "SAMSUNG",
     "model": "Galaxy S24 Ultra 512GB",

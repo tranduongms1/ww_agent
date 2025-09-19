@@ -188,7 +188,8 @@ public abstract class Browser {
             }
 
             case "add": {
-                leading = Tokens.removeLeading(tokens, "any", "mobile", "tablet", "cashback", "instant");
+                leading = Tokens.removeLeading(tokens, "any", "mobile", "tablet", "watch", "earphone", "cashback",
+                        "instant");
                 int nth = Tokens.getOrdinal(tokens);
                 if (Tokens.containsAny(List.of("trade-in", "tradein"), tokens.get(0))) {
                     c.mustTradeInProcess();
@@ -199,6 +200,12 @@ public abstract class Browser {
                     } else if (Tokens.containsAny(leading, "tablet")) {
                         c.tradeInProcess.data = new HashMap<>(Map.of(
                                 "category", data.get("tabletCategory"), "imei", MockData.IMEI()));
+                    } else if (Tokens.containsAny(leading, "watch")) {
+                        c.tradeInProcess.data = new HashMap<>(Map.of(
+                                "category", data.get("watchCategory"), "imei", MockData.IMEI()));
+                    } else if (Tokens.containsAny(leading, "earphone")) {
+                        c.tradeInProcess.data = new HashMap<>(Map.of(
+                                "category", data.get("earphoneCategory"), "imei", MockData.IMEI()));
                     } else if (nth == 2) {
                         c.tradeInProcess.data = c.getProfile().getTradeInData2();
                     } else if (nth == 3) {
