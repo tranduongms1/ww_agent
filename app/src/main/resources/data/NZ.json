@@ -35,7 +35,10 @@
         "postalCode": "0110"
     },
     "tradeInData": {
-        "category": "SMARTPHONE",
+        "mobileCategory": "SMARTPHONE",
+		"watchCategory":"SMART WATCH",
+		"tabletCategory": "TABLET",
+        "category": "PHONE",
         "brand": "Samsung",
         "model": "Galaxy S20 Ultra 5G",
         "storage": "128GB",

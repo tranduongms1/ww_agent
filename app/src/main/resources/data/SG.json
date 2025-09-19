@@ -23,9 +23,12 @@
         "searchAddress": "018907"
     },
     "tradeInData": {
+        "mobileCategory": "SMARTPHONE",
+        "watchCategory": "WATCH",
+        "tabletCategory": "TABLET",
         "category": "SMARTPHONE",
         "brand": "Samsung",
-        "model": "Galaxy S20 Ultra ",
+        "model": "Galaxy S20 Ultra",
         "storage": "12GB / 128GB",
         "imei": "354896110717835"
     },
