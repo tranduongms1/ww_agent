@@ -1,6 +1,7 @@
 package wisewires.agent;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public abstract class Names {
         static Map<String, String> ADDRESSES = Map.of(
@@ -10,7 +11,7 @@ public abstract class Names {
                         "billing address", "");
 
         static Map<String, String> CHECKABLES = Maps.merge(
-                        Maps.keyPrefix(ADDRESSES, "save "));
+                        withPrefix(ADDRESSES, "save "));
 
         static Map<String, String> CLICKABLES = Maps.merge(
                         Map.of("continue shopping", ""),
@@ -23,8 +24,8 @@ public abstract class Names {
 
         static Map<String, String> SELECTABLES = Maps.merge(
                         Map.of("different billing address", ""),
-                        Maps.keyPrefix(ADDRESSES, "new "),
-                        Maps.keyPrefix(ADDRESSES, "saved "),
+                        withPrefix(ADDRESSES, "new "),
+                        withPrefix(ADDRESSES, "saved "),
                         Map.of("individual order", ""),
                         Map.of("personal company order", ""),
                         Map.of("company order", ""));
@@ -39,4 +40,10 @@ public abstract class Names {
                         ADDRESSES,
                         Map.of("sim step", ""),
                         Map.of("delivery", ""));
+
+        static Map<String, String> withPrefix(Map<String, String> map, String prefix) {
+                return map.entrySet().stream().collect(Collectors.toMap(
+                                e -> prefix + e.getKey(),
+                                e -> e.getValue().isEmpty() ? prefix + e.getKey() : prefix + e.getValue()));
+        }
 }
