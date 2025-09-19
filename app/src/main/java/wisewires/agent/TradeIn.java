@@ -485,7 +485,7 @@ public abstract class TradeIn {
                         questions.add(radios);
                     }
                 } else if (elm.findElements(By.cssSelector("input:checked")).isEmpty()) {
-                    By by = By.cssSelector(":has(> [type='radio'])");
+                    By by = By.cssSelector(":has(> [type='radio']), :has(> [type='checkbox'])");
                     questions.add(elm.findElements(by));
                 }
             }

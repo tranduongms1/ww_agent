@@ -29,13 +29,17 @@
         "line1": "test"
     },
     "tradeInData": {
+        "mobileCategory": "智能手機及平板電腦",
+        "watchCategory": "智能手錶",
+        "tabletCategory": "手提電腦",
+        "earphoneCategory": "耳機",
         "category": "智能手機及平板電腦",
         "brand": "ASUS",
         "model": "ASUS ZenFone 9 5G",
         "storage": "128GB",
         "color": "任何顏色",
         "imei": "355884760811842",
-        "purchaseFrom": "0"
+        "purchaseFrom": "Authorized Dealers"
     },
     "serviceData": {
         "TradeIn": {

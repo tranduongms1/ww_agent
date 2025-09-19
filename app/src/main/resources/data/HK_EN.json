@@ -61,12 +61,17 @@
         "line1": "test"
     },
     "tradeInData": {
+        "mobileCategory": "SMARTPHONE & TABLET",
+		"watchCategory":"SMARTWATCH",
+		"tabletCategory": "NOTEBOOK",
+	    "earphoneCategory":"EARPHONE",
         "category": "SMARTPHONE & TABLET",
         "brand": "Apple",
         "model": "APPLE iPhone 14",
         "storage": "512GB",
         "color": "Any color",
-        "imei": "357709570183249"
+        "imei": "357709570183249",
+        "purchasedFrom": "Authorized Dealers"
     },
     "serviceData": {
         "TradeIn": {
