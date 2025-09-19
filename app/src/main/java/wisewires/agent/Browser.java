@@ -188,7 +188,7 @@ public abstract class Browser {
             }
 
             case "add": {
-                leading = Tokens.removeLeading(tokens, "any", "mobile", "tablet", "cashback");
+                leading = Tokens.removeLeading(tokens, "any", "mobile", "tablet", "cashback", "instant");
                 int nth = Tokens.getOrdinal(tokens);
                 if (Tokens.containsAny(List.of("trade-in", "tradein"), tokens.get(0))) {
                     c.mustTradeInProcess();
@@ -210,6 +210,9 @@ public abstract class Browser {
                     }
                     if (Tokens.contains(leading, "cashback")) {
                         c.tradeInProcess.data.put("type", "cashback");
+                    }
+                    if (Tokens.contains(leading, "instant")) {
+                        c.tradeInProcess.data.put("type", "instant");
                     }
                     leading = Tokens.removeLeading(tokens, "trade-in", "tradein", "use", "with", "id");
                     if (leading.contains("id") && !tokens.isEmpty()) {

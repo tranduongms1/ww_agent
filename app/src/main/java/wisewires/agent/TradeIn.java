@@ -316,6 +316,10 @@ public abstract class TradeIn {
                     div.trade-in-types__galaxy-button:not(:has(input)),
                     input[value="instantDiscount"]
                     """;
+            String type = data.get("type");
+            if (type == "cashback") {
+                to = "input[value='cashback']";
+            }
             WebElement elm = WebUI.findElement(to);
             if (elm != null) {
                 elm.click();
