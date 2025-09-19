@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -122,6 +124,14 @@ public abstract class Browser {
                 } else if (leading.contains("splash")) {
                     Login.fromSplash(c);
                 } else {
+                    WebElement btn = WebUI.waitElement("""
+                            .member-login-content-wrapper button, .btn-business-login,
+                            .MultistoreLogin button[data-an-la='samsung account']""", 5);
+                    if (btn != null) {
+                        WebUI.scrollToCenter(btn);
+                        btn.click();
+                        WebUI.waitForDisappear(btn, 5);
+                    }
                     SSO.signInByEmail(c);
                 }
                 if (!WebUI.getUrl().contains("/checkout/one")) {
