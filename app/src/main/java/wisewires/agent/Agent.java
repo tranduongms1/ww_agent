@@ -119,8 +119,7 @@ public class Agent extends WebSocketClient {
                             try {
                                 attachment.setColor("danger");
                                 Attachment errAttachment = new Attachment("danger", e.getMessage());
-                                int index = post.getProps().getLastCommandIndex() + 2;
-                                errAttachment.setTitle(index + ": " + ctx.command);
+                                errAttachment.setTitle("STEP: " + ctx.command);
                                 if (e.getCause() != null) {
                                     errAttachment.setText(errAttachment.getText() + "\n\n" + e.getCause().getMessage());
                                 }

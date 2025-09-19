@@ -20,6 +20,9 @@ public abstract class Payment {
     static Map<String, List<String>> MODE_LOCATORS = Map.ofEntries(
             Map.entry("3ds card", MODE_CC),
             Map.entry("amex card", MODE_CC),
+            Map.entry("afterpay", List.of(".payment-image.adyenAfterPay")),
+            Map.entry("afterpay installment", List.of(".payment-image.adyenAfterPayInstallment")),
+            Map.entry("alipay", List.of(".payment-image.au-adyenAliPay")),
             Map.entry("khipu", List.of(".payment-image.khipu")),
             Map.entry("khipu bank transfer", List.of(".payment-image.khipu")),
             Map.entry("blik", List.of(".payment-image.p24-blik")),
@@ -37,11 +40,14 @@ public abstract class Payment {
             Map.entry("mercadopago", List.of(".payment-image.mercadopago")),
             Map.entry("one pay", List.of(".payment-image.flowOnePay")),
             Map.entry("onepay", List.of(".payment-image.flowOnePay")),
+            Map.entry("paypal", List.of(".payment-image.adyenPaypal")),
+            Map.entry("paypal express", List.of(".payment-image.adyenPaypalExpress")),
             Map.entry("servipag", List.of(".payment-image.servipag")),
             Map.entry("servipag bank transfer", List.of(".payment-image.servipag")),
             Map.entry("tbt", List.of(".payment-image.tbt")),
             Map.entry("visa card", MODE_CC),
-            Map.entry("webpay", List.of(".payment-image.webpay")));
+            Map.entry("webpay", List.of(".payment-image.webpay")),
+            Map.entry("wechat", List.of(".payment-image.au-adyenWeChat")));
 
     static String PAYMENT_FORM_LOCATOR = """
             app-card-on-delivery-payment,
@@ -181,7 +187,9 @@ public abstract class Payment {
             payment-mode-credit-card-installment,
             payment-mode-cybersource-paypal""";
 
-    static String PAY_NOW_LOCATOR = "[data-an-tr='checkout-payment-detail']";
+    static String PAY_NOW_LOCATOR = """
+            [data-an-tr='checkout-payment-detail'],
+            .adyen-checkout__button--pay""";
 
     static void expandPaymentMethod(String methodName) throws Exception {
         String to = "app-payment-modes mat-expansion-panel-header:has(.payment-title)";
@@ -247,6 +255,17 @@ public abstract class Payment {
         WebElement form = WebUI.waitElement(PAYMENT_FORM_LOCATOR, 15);
         WebUI.waitForNotPresent(".paymentmode-detail-loading", 15);
         switch (form.getTagName()) {
+            case "app-payment-mode-afterpay": {
+                payWithAfterPay(c);
+                break;
+            }
+            case "app-payment-mode-adyen-alipay": {
+                acceptTermAndConditions();
+                clickPayNow();
+                WebElement btn = WebUI.waitElement("#simulatePaymentFormId button[value='authorised']", 10);
+                WebUI.click(btn);
+                break;
+            }
             case "app-payment-mode-p24-blik":
                 payWithBlik(c, form);
                 break;
@@ -303,10 +322,15 @@ public abstract class Payment {
                     "app-payment-mode-adyen-klarna",
                     "app-payment-mode-adyen-klarna-installment",
                     "app-payment-mode-klarna",
-                    "app-payment-mode-klarna-de":
+                    "app-payment-mode-klarna-de": {
                 payWithKlarna(c, form);
                 break;
-
+            }
+            case "app-payment-mode-wechat-pay": {
+                acceptTermAndConditions();
+                clickPayNow();
+                break;
+            }
             default:
                 throw new Exception("Unknow payment mode " + form.getTagName());
         }
@@ -538,6 +562,20 @@ public abstract class Payment {
         } catch (Exception e) {
             throw new Exception("Unable to pay with PayPal:", e);
         }
+    }
+
+    static void payWithAfterPay(Context c) throws Exception {
+        Map<String, String> data = c.getProfile().getAfterPayData();
+        acceptTermAndConditions();
+        clickPayNow();
+        WebUI.waitForUrlContains("afterpay.com", 15);
+        WebUI.waitForPageLoad(15);
+        WebElement elm = WebUI.waitElement("input[name='password']", 10);
+        elm.clear();
+        elm.sendKeys(data.get("password"));
+        WebUI.click("button[type='submit']");
+        WebUI.waitElement("button[data-dd-action-name='Confirm Checkout Button']", 30).click();
+        WebUI.waitForUrlContains("/orderConfirmation", 10);
     }
 
     static void payWithBlik(Context c, WebElement elm) throws Exception {

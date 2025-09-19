@@ -31,6 +31,7 @@ public class Profile {
     private Map<String, String> amexCardData;
     private Map<String, String> threeDSCardData;
     private Map<String, String> paypalData;
+    private Map<String, String> afterPayData;
     private Map<String, String> heidiData;
 
     public Map<String, String> getPointingUrls() {
@@ -230,6 +231,14 @@ public class Profile {
 
     public void setPaypalData(Map<String, String> paypalData) {
         this.paypalData = paypalData;
+    }
+
+    public Map<String, String> getAfterPayData() {
+        return afterPayData;
+    }
+
+    public void setAfterPayData(Map<String, String> afterPayData) {
+        this.afterPayData = afterPayData;
     }
 
     public Map<String, String> getHeidiData() {

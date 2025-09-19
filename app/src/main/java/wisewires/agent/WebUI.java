@@ -356,6 +356,10 @@ public abstract class WebUI {
         }
     }
 
+    public static WebElement waitElement(SearchContext root, String selector, int seconds) {
+        return waitElement(root, By.cssSelector(selector), seconds);
+    }
+
     public static WebElement waitElement(SearchContext root, By by, int seconds) {
         try {
             return wait(seconds).until(d -> findElement(root, by));

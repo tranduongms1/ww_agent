@@ -1,6 +1,5 @@
 {
     "stores": {
-        "smb": "/business",
         "ausme": "/business",
         "accenture_au": "/multistore/auepp/accenture_au",
         "samsung_education_au": "/multistore/auepp/samsung_education_au",
@@ -113,5 +112,12 @@
     "paypalData": {
         "email": "sb-ct4101438108@personal.example.com",
         "password": "Hybris123"
+    },
+    "afterPayData": {
+        "phoneNumber": "0412376678",
+        "email": "testww089@gmail.com",
+        "password": "Sep_2019",
+        "cardNumber": "4111 1111 1111 1111",
+        "verificationCode": "111111"
     }
 }
