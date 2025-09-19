@@ -139,12 +139,21 @@ public class CheckoutProcess {
     }
 
     private static boolean defaultSelectDeliverySlot(Context c, int line, WebElement elm) {
-        List<WebElement> opts = WebUI.waitElements(elm, By.cssSelector(".delivery-dates"), 10);
+        List<WebElement> opts = WebUI.waitElements(elm, By.cssSelector(".delivery-dates, .change-time-slot"), 10);
         for (WebElement opt : opts) {
-            if (opt.getAttribute("class").contains("selected-date")) {
+            String className = opt.getAttribute("class");
+            if (className.contains("change-time-slot")) {
+                c.checkoutProcess.selectedDeliverySlots.get().add(null);
+                return false;
+            }
+            if (className.contains("selected-date")) {
                 onSelectedDeliverySlot(c, line, opt);
                 return false;
             }
+        }
+        if (opts.isEmpty()) {
+            c.checkoutProcess.selectedDeliverySlots.get().add(null);
+            return false;
         }
         WebElement opt = opts.get(0);
         WebUI.scrollToCenter(opt);
