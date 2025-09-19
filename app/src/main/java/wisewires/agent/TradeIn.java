@@ -304,8 +304,12 @@ public abstract class TradeIn {
         }
     }
 
-    static void processTradeinGuide() throws Exception {
+    static void processTradeinGuide(WebElement modal, Map<String, String> data) throws Exception {
         try {
+            if (data.containsKey("tradeID")) {
+                selectExistingTradein();
+                return;
+            }
             String to = """
                     label[for='addconditionCheck0-1'],
                     label[for='commoninstantcashback1'],
@@ -581,11 +585,7 @@ public abstract class TradeIn {
                 try {
                     switch (currentStep) {
                         case "trade-in guide":
-                            if (data.containsKey("tradeID")) {
-                                selectExistingTradein();
-                                break;
-                            }
-                            processTradeinGuide();
+                            processTradeinGuide(modal, data);
                             break;
 
                         case "select brand":
