@@ -2,7 +2,12 @@
     "stores": {
         "smb": "/business",
         "plsme": "/business",
-        "pl_epp_pko_bp": "/multistore/epp/pl_epp_pko_bp"
+        "pl_epp_pko_bp": "/multistore/epp/pl_epp_pko_bp",
+        "eppedu": "/multistore/epp/eppedu",
+        "eppac": "/multistore/epp/eppac",
+        "eppc": "/multistore/eppc/eppc",
+        "employees": "/multistore/epp/employees",
+        "eppd2c": "/multistore/epp/eppd2c"
     },
     "pointingUrls": {
         "p2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pl&storeDomain=https://p2-smn3-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://p2.shop.samsung.com&cart=https://p2.shop.samsung.com/pl/cart",
