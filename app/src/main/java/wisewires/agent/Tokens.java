@@ -83,6 +83,29 @@ public abstract class Tokens {
         return result;
     }
 
+    static int getOrdinal(List<String> tokens) {
+        if (tokens.isEmpty()) {
+            return -1;
+        }
+        Map<String, Integer> map = Map.of(
+                "first", 1,
+                "1st", 1,
+                "second", 2,
+                "2nd", 2,
+                "third", 3,
+                "3rd", 3,
+                "fourth", 4,
+                "4th", 4,
+                "fifth", 5,
+                "5th", 5);
+        String token = tokens.get(0).toLowerCase();
+        if (map.containsKey(token)) {
+            tokens.remove(0);
+            return map.get(token);
+        }
+        return 0;
+    }
+
     private static int indexOfAll(List<String> tokens, List<String> keywords) {
         for (int i = 0; i <= tokens.size() - keywords.size(); i++) {
             boolean match = true;

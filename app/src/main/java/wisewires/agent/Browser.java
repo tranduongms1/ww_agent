@@ -178,8 +178,8 @@ public abstract class Browser {
             }
 
             case "add": {
-                leading = Tokens.removeLeading(tokens, "any", "mobile", "tablet",
-                        "second", "2nd", "third", "3rd", "fourth", "4th", "fifth", "5th");
+                leading = Tokens.removeLeading(tokens, "any", "mobile", "tablet");
+                int nth = Tokens.getOrdinal(tokens);
                 if (Tokens.containsAny(List.of("trade-in", "tradein"), tokens.get(0))) {
                     c.mustTradeInProcess();
                     Map<String, String> data = c.getProfile().getTradeInData();
@@ -189,13 +189,13 @@ public abstract class Browser {
                     } else if (Tokens.containsAny(leading, "tablet")) {
                         c.tradeInProcess.data = new HashMap<>(Map.of(
                                 "category", data.get("tabletCategory"), "imei", MockData.IMEI()));
-                    } else if (Tokens.containsAny(leading, "second", "2nd")) {
+                    } else if (nth == 2) {
                         c.tradeInProcess.data = c.getProfile().getTradeInData2();
-                    } else if (Tokens.containsAny(leading, "third", "3rd")) {
+                    } else if (nth == 3) {
                         c.tradeInProcess.data = c.getProfile().getTradeInData3();
-                    } else if (Tokens.containsAny(leading, "fourth", "4th")) {
+                    } else if (nth == 4) {
                         c.tradeInProcess.data = c.getProfile().getTradeInData4();
-                    } else if (Tokens.containsAny(leading, "fifth", "5th")) {
+                    } else if (nth == 5) {
                         c.tradeInProcess.data = c.getProfile().getTradeInData5();
                     }
                     leading = Tokens.removeLeading(tokens, "trade-in", "tradein", "use", "with", "id");
@@ -623,14 +623,7 @@ public abstract class Browser {
                     return;
                 }
                 TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.SELECTABLES);
-                int nth = 0;
-                if (Tokens.containsAny(match.leading, "1st", "first")) {
-                    nth = 1;
-                } else if (Tokens.containsAny(match.leading, "2nd", "second")) {
-                    nth = 2;
-                } else if (Tokens.containsAny(match.leading, "3rd", "third")) {
-                    nth = 3;
-                }
+                int nth = Tokens.getOrdinal(match.leading);
                 switch (match.value) {
                     case "different billing address":
                         c.mustCheckoutProcess().uncheckSameAsShippingAddress();
@@ -660,35 +653,41 @@ public abstract class Browser {
                     Object option = null;
                     int consignment = 0;
                     while (!tokens.isEmpty()) {
+                        Tokens.removeLeading(tokens, "on", "for");
+                        nth = Tokens.getOrdinal(tokens);
                         leading = Tokens.removeLeading(tokens, "delivery", "type", "option", "mode",
-                                "time", "slot", "service",
-                                "on", "for", "first", "1st", "second", "2nd", "third", "3rd", "fourth", "4th",
-                                "consignment", "line", "and");
+                                "time", "slot", "service", "consignment", "line", "and");
                         if (Tokens.contains(leading, "type")) {
                             type = "type";
                             option = tokens.remove(0);
                             continue;
                         } else if (Tokens.containsAny(leading, "option", "mode")) {
                             type = "option";
-                            option = tokens.remove(0);
+                            if (nth > 0) {
+                                option = nth;
+                            } else if (!tokens.isEmpty()) {
+                                option = tokens.remove(0);
+                            }
                             continue;
                         } else if (Tokens.contains(leading, "slot")) {
                             type = "slot";
-                            option = Integer.parseInt(tokens.remove(0));
+                            if (nth > 0) {
+                                option = nth;
+                            } else if (!tokens.isEmpty()) {
+                                option = tokens.remove(0);
+                            }
                             continue;
                         } else if (Tokens.contains(leading, "service")) {
                             type = "service";
-                            option = tokens.remove(0);
+                            if (nth > 0) {
+                                option = nth;
+                            } else if (!tokens.isEmpty()) {
+                                option = tokens.remove(0);
+                            }
                             continue;
-                        } else if (Tokens.containsAny(leading, "first", "1st")) {
-                            consignment = 1;
-                        } else if (Tokens.containsAny(leading, "second", "2nd")) {
-                            consignment = 2;
-                        } else if (Tokens.containsAny(leading, "third", "3rd")) {
-                            consignment = 3;
-                        } else if (Tokens.containsAny(leading, "fourth", "4th")) {
-                            consignment = 4;
-                        } else if (type != null && option != null && !tokens.isEmpty()) {
+                        } else if (nth > 0) {
+                            consignment = nth;
+                        } else if (type != null && option == null && !tokens.isEmpty()) {
                             option = tokens.remove(0);
                             continue;
                         }

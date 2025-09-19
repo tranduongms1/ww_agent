@@ -680,7 +680,7 @@ public abstract class Checkout {
                 if (next2 != null) {
                     WebUI.delay(1);
                     next2.click();
-                    logger.info("2nd Next button for Pickup:Store is clicked");
+                    logger.info("Second next button for Pickup:Store is clicked");
                 }
             }
             WebElement errorMsg = WebUI.findElement("mat-error.mat-mdc-form-field-error");
