@@ -886,6 +886,7 @@ public abstract class Browser {
                 c.client.createPost(p);
                 break;
             }
+
             case "reload", "refresh": {
                 WebUI.driver.navigate().refresh();
                 WebUI.waitForPageLoad(5);

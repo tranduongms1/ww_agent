@@ -406,14 +406,14 @@ public class CheckoutProcess {
         });
     }
 
-    public CheckoutProcess selectSavedBillingAddress(int index) {
+    public CheckoutProcess selectSavedBillingAddress(int nth) {
         return onBillingAddress((c, form) -> {
             try {
                 String to = "app-billing-address-v2 app-address-list-v2 mat-radio-group > div mat-radio-button";
                 List<WebElement> elms = WebUI.findElements(to).stream()
                         .filter(WebElement::isDisplayed)
                         .toList();
-                WebElement elm = elms.get(index);
+                WebElement elm = elms.get(nth - 1);
                 WebUI.scrollToCenter(elm);
                 WebUI.delay(1);
                 elm.click();
