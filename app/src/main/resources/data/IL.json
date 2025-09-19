@@ -1,6 +1,7 @@
 {
   "stores": {
-    "vip_members_qa": "/multistore/qaepp/vip_members_qa"
+    "vip_members_qa": "/multistore/qaepp/vip_members_qa",
+    "samsung_employees": "/multistore/il_epp/samsung_employees"
   },
   "pointingUrls": {
     "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=il&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://s2-smi-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/il/cart"

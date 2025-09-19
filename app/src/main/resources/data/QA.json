@@ -1,6 +1,8 @@
 {
   "stores": {
-    "vip_members_qa": "/multistore/qaepp/vip_members_qa"
+    "vip_members_qa": "/multistore/qaepp/vip_members_qa",
+    "qa_exclusive_store": "/multistore/qaepp/qa_exclusive_store",
+    "qa_corporate_b2b": "/multistore/qaepp/qa_corporate_b2b"
   },
   "pointingUrls": {
     "stg2": "https://p6-pre-qa.samsung.com/aemapi/v6/storedomain/setdata?siteCode=ae&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://stg2.shop.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/ae/cart"
@@ -13,7 +15,7 @@
     "email": "autotestww@gmail.com",
     "firstName": "Auto",
     "lastName": "test",
-    "phoneNumber": "+96812983719",
+    "phoneNumber": "+97412983719",
     "dateOfBirth": "01/04/1988"
   },
   "customerAddress": {

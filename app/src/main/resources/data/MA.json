@@ -1,6 +1,8 @@
 {
     "stores": {
-        "students": "/multistore/maepp/ma_students"
+        "students": "/multistore/maepp/ma_students",
+        "ma_samsung_employees": "/multistore/maepp/ma_samsung_employees",
+        "acn_ma_epp": "/multistore/maepp/acn_ma_epp"
     },
     "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",

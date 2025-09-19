@@ -1,6 +1,7 @@
 {
   "stores": {
-    "pk_samsung_employee": "/multistore/pkepp/pk_samsung_employee"
+    "pk_samsung_employee": "/multistore/pkepp/pk_samsung_employee",
+    "pkepptest": "/multistore/pkepp/pkepptest"
   },
   "pointingUrls": {
     "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=pk&storeDomain=https://stg2.shop.samsung.com&storeNewHybDomain=https://s2-smi-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/pk/cart"
