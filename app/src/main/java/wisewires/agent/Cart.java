@@ -575,12 +575,19 @@ public abstract class Cart {
             String url = WebUI.getUrl();
             if (url.contains("/login/business"))
                 return "login_business";
+            if (url.contains("/auth/multistore"))
+                return "login_epp";
             return WebUI.isElementDisplayed("cx-cart-details") ? "" : null;
         });
         switch (action) {
             case "login_business":
                 WebUI.closeAllPopup(c);
-                WebUI.click(".member-login-content-wrapper button");
+                WebUI.click(".member-login-content-wrapper button, .btn-business-login");
+                SSO.signInByEmail(c);
+                break;
+            case "login_epp":
+                WebUI.closeAllPopup(c);
+                WebUI.click(".MultistoreLogin button[data-an-la='samsung account']");
                 SSO.signInByEmail(c);
                 break;
         }
