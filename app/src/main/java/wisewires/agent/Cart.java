@@ -530,11 +530,15 @@ public abstract class Cart {
     static void removeService(String service) throws Exception {
         try {
             String to = "[data-modelname*='%s'] button[data-an-la='remove item']".formatted(service);
-            WebElement btn = WebUI.waitElement(to, 3);
-            WebUI.scrollToCenter(btn);
-            WebUI.delay(1);
-            btn.click();
-            removeConfirmYes();
+            List<WebElement> elements = WebUI.findElements(to);
+            for (int i = 0; i < elements.size(); i++) {
+                WebElement btn = WebUI.waitElement(to, 3);
+                WebUI.scrollToCenter(btn);
+                WebUI.delay(1);
+                btn.click();
+                removeConfirmYes();
+                WebUI.delay(1);
+            }
             logger.info("Service %s removed successfully".formatted(service));
         } catch (Exception e) {
             throw new Exception("Unable to remove service %s".formatted(service), e);
@@ -545,11 +549,15 @@ public abstract class Cart {
         try {
             String to = ".cart-item-list:nth-child(%s) [data-modelname*='%s'] button[data-an-la='remove item']"
                     .formatted(Line, service);
-            WebElement btn = WebUI.waitElement(to, 3);
-            WebUI.scrollToCenter(btn);
-            WebUI.delay(1);
-            btn.click();
-            removeConfirmYes();
+            List<WebElement> elements = WebUI.findElements(to);
+            for (int i = 0; i < elements.size(); i++) {
+                WebElement btn = WebUI.waitElement(to, 3);
+                WebUI.scrollToCenter(btn);
+                WebUI.delay(1);
+                btn.click();
+                removeConfirmYes();
+                WebUI.delay(1);
+            }
             logger.info("Service %s line %s removed successfully".formatted(service, Line));
         } catch (Exception e) {
             throw new Exception("Unable to remove service %s line %s".formatted(service, Line), e);
