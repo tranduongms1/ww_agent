@@ -513,9 +513,10 @@ public abstract class Browser {
                 }
                 if (Tokens.containsAny(services, "trade-up", "tradeup")) {
                     service = "TRADE-UP";
+                    service = serviceName.containsKey("tradeup") ? serviceName.get("tradeup") : "TRADE-UP";
                 }
                 if (Tokens.containsAny(services, "sc+")) {
-                    service = "SMC";
+                    service = serviceName.containsKey("smc") ? serviceName.get("smc") : "SMC";
                 }
                 if (Tokens.containsAny(services, "sim")) {
                     service = "SIM";
