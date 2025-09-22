@@ -23,6 +23,7 @@ public abstract class TradeUp {
             .sdf-comp-model-menu,
             .sdf-comp-brand-menu,
             mat-expansion-panel,
+            .modal__container,
             mat-form-field:has([formcontrolname])""";
 
     static String NEXT_LOCATOR = """
@@ -176,6 +177,7 @@ public abstract class TradeUp {
                                             "Model Size",
                                             "حجم الموديل",
                                             "Өлшемді таңдаңыз",
+                                            "Type / Model",
                                             "Выберите размер":
                                         select(elm, data.get("model"));
                                         break;

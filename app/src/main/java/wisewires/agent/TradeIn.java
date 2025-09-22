@@ -614,6 +614,7 @@ public abstract class TradeIn {
                                 enterPostalCode(c.getProfile().getTradeInData().get("tradeinPostalCode"));
                             }
                             selectDevice(modal, data);
+                            acceptTermsAndConditions(modal);
                             break;
 
                         case "check device condition":
