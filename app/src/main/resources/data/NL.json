@@ -14,8 +14,8 @@
         "stg2": "https://s2-smn2-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"
     },
     "exchangeEndpoints": {
-        "prod": "https://p1.ecom.samsung.com/v1/exchange/api/bel",
-        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/bel"
+        "prod": "https://p1.ecom.samsung.com/v1/exchange/api/nld",
+        "stg2": "https://ewd1.ecom-qa.samsung.com/v1/exchange/api/nld"
     },
     "customerInfo": {
         "email": "autotestww@gmail.com",
@@ -84,9 +84,9 @@
                     "BROKEN": "NO"
                 }
             },
-            "device_id": "E67C1D3E-F6CA-4D72-9153-9E8CACA3DC3A",
+            "device_id": "1D47F8FA-8620-4826-9888-4F4E4EFF7AAB",
             "type": "TradeIn",
-            "sku": "RB34C605CWW/EF",
+            "sku": "QE65S90CATXXN",
             "delayed_gratification": false
         }
     },
