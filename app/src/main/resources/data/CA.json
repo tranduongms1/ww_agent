@@ -105,10 +105,10 @@
         },
         "Warranty": {
             "categoryCode": "WARRANTY"
-        },
-        "ServicesModelName": {
-            "Warranty": "EW-CA"
         }
+    },
+    "serviceModelCodes": {
+        "warranty": "EW-CA"
     },
     "creditCardData": {
         "cardNumber": "4111 1111 1111 1111",
