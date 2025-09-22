@@ -52,19 +52,17 @@ public class Form {
     }
 
     public static String getNameOrLabel(WebElement field) {
-        return field.getDomAttribute("name") != null ? field.getDomAttribute("name")
-                : field.getDomAttribute("formcontrolname") != null ? field.getDomAttribute("formcontrolname")
-                        : field.findElement(By.cssSelector("mat-label")).getText();
+        String name = WebUI.getDomAttribute(field, "name", "formcontrolname");
+        return !name.isEmpty() ? name : field.findElement(By.cssSelector("mat-label")).getText();
     }
 
     public static boolean isRequired(WebElement field) {
-        if (field.getDomAttribute("required") != null)
-            return true;
-        if (WebUI.getDomAttribute(field, "aria-required").equals("true"))
-            return true;
-        if (!field.findElements(By.cssSelector("input[required], .mat-mdc-form-field-required-marker")).isEmpty())
-            return true;
-        return false;
+        return (boolean) WebUI.driver.executeScript("""
+                let e = arguments[0];
+                if (e.getAttribute('required') != null) return true;
+                if (e.getAttribute('aria-required') == 'true') return true;
+                if (e.querySelector('input[required], .mat-mdc-form-field-required-marker') != null) return true;
+                return false;""", field);
     }
 
     public static boolean checkEnable(WebElement field, String nameOrLabel) {
@@ -84,14 +82,12 @@ public class Form {
     }
 
     public static boolean isDisabled(WebElement field) {
-        if (field.getDomAttribute("disabled") != null)
-            return true;
-        if (field.getDomAttribute("readonly") != null)
-            return true;
-        String className = field.getDomAttribute("class");
-        if (className.contains("mat-form-field-disabled"))
-            return true;
-        return false;
+        return (boolean) WebUI.driver.executeScript("""
+                let e = arguments[0];
+                if (e.getAttribute('disabled') != null) return true;
+                if (e.getAttribute('readonly') != null) return true;
+                if (e.className.includes('mat-form-field-disabled')) return true;
+                return false;""", field);
     }
 
     static void setText(WebElement elm, String value) {
@@ -105,7 +101,7 @@ public class Form {
         WebElement elm = WebUI.waitElements(to, 5)
                 .stream()
                 .filter(e -> {
-                    if (e.getDomAttribute("name") != null || e.getDomAttribute("formcontrolname") != null)
+                    if (!WebUI.getDomAttribute(e, "name", "formcontrolname").isEmpty())
                         return true;
                     if (e.getTagName().equals("mat-form-field")) {
                         if (withLabels == null)
@@ -165,12 +161,12 @@ public class Form {
     }
 
     static boolean isChecked(WebElement elm) {
-        return elm.isSelected() ||
-                (elm.getDomAttribute("aria-selected") != null
-                        && WebUI.getDomAttribute(elm, "aria-selected").equals("true"))
-                ||
-                WebUI.getDomAttribute(elm, "class").contains("--active") ||
-                !elm.findElements(By.cssSelector("input:checked")).isEmpty();
+        return (boolean) WebUI.driver.executeScript("""
+                let e = arguments[0];
+                if (e.getAttribute('aria-selected') == true) return true;
+                if (e.className.includes('--active')) return true;
+                if (e.querySelector('input:checked') != null) return true;
+                return false;""", elm);
     }
 
     static void check(WebElement elm) {
