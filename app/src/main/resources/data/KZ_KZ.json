@@ -52,6 +52,10 @@
             "delayed_gratification": false
         }
     },
+    "serviceModelName": {
+        "smc": "SMC-KZ",
+        "tradeup": "TRADE-UP"
+    },
     "creditCardData": {
         "cardNumber": "4405639704015096 ",
         "holderName": "KZ_KZ",
