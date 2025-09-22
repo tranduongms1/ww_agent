@@ -55,6 +55,24 @@
         "model": "Samsung Galaxy S23 Ultra 5G 256GB S918U",
         "imei": "301296444933956"
     },
+    "tradeInData2": {
+        "category": "Telefony Komórkowe",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy A01 16GB A015F",
+        "imei": "302258613826253"
+    },
+    "tradeInData3": {
+        "category": "Tablety",
+        "brand": "Samsung",
+        "model": "Samsung Galaxy Note Pro 12.2 3G P901",
+        "imei": "352307465938531"
+    },
+    "tradeInData4": {
+        "category": "Inteligentne zegarki",
+        "brand": "Samsung",
+        "model": "Inteligentne zegarki",
+        "imei": "914547457733728"
+    },
     "serviceData": {
         "TradeIn": {
             "serviceCode": "T-FOXWAY-TRADEIN",
