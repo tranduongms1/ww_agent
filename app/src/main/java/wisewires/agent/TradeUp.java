@@ -182,7 +182,8 @@ public abstract class TradeUp {
                                             "選擇尺寸",
                                             "Выберите размер",
                                             "Wähle dein Altgeräte-Modell",
-                                            "Product":
+                                            "Product",
+                                            "Produit":
                                         select(elm, data.get("model"));
                                         break;
 
@@ -202,7 +203,8 @@ public abstract class TradeUp {
                                             "Өндірушіні таңдаңыз",
                                             "選擇品牌",
                                             "Выберите производителя",
-                                            "Wähle deine Altgeräte-Marke":
+                                            "Wähle deine Altgeräte-Marke",
+                                            "Marque":
                                         select(elm, data.get("brand"));
                                         break;
                                 }
