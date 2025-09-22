@@ -214,6 +214,7 @@ public abstract class Payment {
             logger.info("Payment method '%s' already expanded".formatted(methodName));
         } else {
             WebUI.click(elm);
+            WebUI.delay(1);
             logger.info("Payment method '%s' expanded".formatted(methodName));
         }
     }
@@ -327,8 +328,7 @@ public abstract class Payment {
                 break;
             }
             case "app-payment-mode-wechat-pay": {
-                acceptTermAndConditions();
-                clickPayNow();
+                payWithWeChat();
                 break;
             }
             default:
@@ -672,5 +672,11 @@ public abstract class Payment {
             throw new Exception("Unable to pay with HeyLight:", e);
         }
 
+    }
+
+    static void payWithWeChat() throws Exception {
+        acceptTermAndConditions();
+        clickPayNow();
+        WebUI.waitForUrlContains("/orderConfirmation", 30);
     }
 }
