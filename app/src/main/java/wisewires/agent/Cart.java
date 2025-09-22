@@ -105,7 +105,7 @@ public abstract class Cart {
         try {
             String to = """
                     cx-cart-item-v2 [data-an-la='add service:trade-up'],
-                    cx-cart-item-v2 [data-an-la='add service:tradeinTv']""";
+                    cx-cart-item-v2 [data-an-la='add service:tradeinTv'i]""";
             WebElement elm = WebUI.waitElement(to, 10);
             WebUI.scrollToCenter(elm);
             WebUI.delay(1);
