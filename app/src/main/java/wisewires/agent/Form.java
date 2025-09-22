@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
@@ -95,6 +96,22 @@ public class Form {
             return;
         elm.clear();
         elm.sendKeys(value);
+    }
+
+    static void fillKeyByKey(WebElement elm, String text) {
+        WebUI.wait(5).until(d -> {
+            elm.sendKeys(Keys.CONTROL + "a");
+            elm.sendKeys(Keys.DELETE);
+            for (char c : text.toCharArray()) {
+                elm.sendKeys(Character.toString(c));
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            return true;
+        });
     }
 
     static void select(String to, List<String> withLabels, String value) throws Exception {

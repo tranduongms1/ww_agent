@@ -28,6 +28,8 @@ public abstract class Payment {
             Map.entry("blik", List.of(".payment-image.p24-blik")),
             Map.entry("credit card", MODE_CC),
             Map.entry("cod", List.of(".payment-image.cod")),
+            Map.entry("etihad", List.of(".payment-image.pointsPay")),
+            Map.entry("etihad guestpay", List.of(".payment-image.pointsPay")),
             Map.entry("fbt", List.of(".payment-image.p24-fbt")),
             Map.entry("fast bank trasfer", List.of(".payment-image.p24-fbt")),
             Map.entry("heidi", List.of(".payment-image.HeidiPay")),
@@ -252,6 +254,16 @@ public abstract class Payment {
         }
     }
 
+    static void simplePayment(String name) throws Exception {
+        try {
+            acceptTermAndConditions();
+            clickPayNow();
+            WebUI.waitForUrlContains("/orderConfirmation", 30);
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with %s".formatted(name), e);
+        }
+    }
+
     static void process(Context c) throws Exception {
         PaymentProcess p = c.paymentProcess;
         WebElement form = WebUI.waitElement(PAYMENT_FORM_LOCATOR, 15);
@@ -298,6 +310,10 @@ public abstract class Payment {
                         break;
                 }
                 payWithCreditCard(c, form);
+                break;
+
+            case "app-payment-mode-pointspay":
+                payWithEtihadGuestPay(c);
                 break;
 
             case "app-payment-mode-p24-fast-bank-transfer":
@@ -702,6 +718,61 @@ public abstract class Payment {
             WebUI.waitForUrlContains("/orderConfirmation", 15);
         } catch (Exception e) {
             throw new Exception("Unable to pay with Blik" + e.getMessage());
+        }
+    }
+
+    static void payWithEtihadGuestPay(Context c) throws Exception {
+        try {
+            Payment.clickPayNow();
+            Map<String, String> data = c.getProfile().getEtihadGuestPayData();
+            String to = """
+                    ppc-transaction-flow-selector-page #cash-only,
+                    #modal-pp-payment-checkout input,
+                    .btn-primary:not(.disabled)""";
+            Object result = WebUI.wait(90, 2).withMessage("pay with etihad guest").until(d -> {
+                if (WebUI.driver.getCurrentUrl().contains("/orderConfirmation"))
+                    return true;
+                if (WebUI.findElement(".skeleton-loader") != null)
+                    return false;
+                WebElement msg = WebUI.findElement(".checkout-message:has(.icon-regular-information-error)");
+                if (msg != null) {
+                    return new Exception(msg.getText());
+                }
+                for (WebElement field : WebUI.findElements(to)) {
+                    if (Form.isProcessed(field))
+                        continue;
+                    String name = WebUI.getDomAttribute(field, "name");
+                    switch (name) {
+                        case "membershipNumber":
+                            field.clear();
+                            field.sendKeys((data.get("memberID")));
+                            break;
+                        case "cardNumber":
+                            field.clear();
+                            field.sendKeys((data.get("cardNumber")));
+                            break;
+                        case "expiryDate":
+                            Form.fillKeyByKey(field, data.get("expiryDate"));
+                            break;
+                        case "cvv":
+                            field.clear();
+                            field.sendKeys((data.get("cvv")));
+                            break;
+                        default:
+                            WebUI.scrollToCenter(field);
+                            WebUI.delay(1);
+                            field.click();
+                            break;
+                    }
+                    Form.setProcessed(field);
+                }
+                return false;
+            });
+            if (result instanceof Exception) {
+                throw (Exception) result;
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with Etihad GuestPay", e);
         }
     }
 
