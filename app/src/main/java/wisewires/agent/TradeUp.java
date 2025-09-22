@@ -197,6 +197,7 @@ public abstract class TradeUp {
                                             "Choisis la marque",
                                             "¿De qué marca es?",
                                             "Merkki",
+                                            "Merk",
                                             "Mærke",
                                             "เลือกยี่ห้อ",
                                             "Brand",
