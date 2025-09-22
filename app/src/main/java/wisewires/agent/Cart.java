@@ -144,6 +144,15 @@ public abstract class Cart {
             WebElement btn = WebUI.waitElement(to, 5);
             WebUI.scrollToCenterAndClick(btn, 1000);
             logger.info("E-Warranty option 'Yes' clicked");
+            if (List.of("CA", "CA_FR").contains(c.site.toUpperCase())) {
+                SCPPopup.waitForOpen(10);
+                SCPPopup.selectOption(p.selectOption);
+                SCPPopup.acceptTermAndConditions();
+                SCPPopup.clickConfirm();
+                SCPPopup.waitForClose(10);
+                logger.info("E-Warranty added success on Cart page");
+                return;
+            }
             EWPopup.waitForOpen(10);
             // Handle E-Warranty Popup
             EWPopup.selectFirstOption(p.selectOption);
