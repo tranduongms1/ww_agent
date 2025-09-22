@@ -1,6 +1,5 @@
 package wisewires.agent;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
@@ -645,20 +644,21 @@ public abstract class Payment {
             WebUI.click("#portal-continue-btn");
             WebUI.waitElement("#portal-infocert-widget", 10);
             WebUI.delay(3);
-            Map<String, String[]> fields = new LinkedHashMap<>();
-            fields.put("cardNumber",
-                    new String[] { "[title='Secure card number input frame']", "[name='cardnumber']" });
-            fields.put("expiryDate",
-                    new String[] { "[title='Secure expiration date input frame']", "[name='exp-date']" });
-            fields.put("cvv", new String[] { "[title='Secure CVC input frame']", "[name='cvc']" });
+            Map<String, List<String>> fields = Map.of(
+                    "cardNumber",
+                    List.of("[title='Secure card number input frame']", "[name='cardnumber']"),
+                    "expiryDate",
+                    List.of("[title='Secure expiration date input frame']", "[name='exp-date']"),
+                    "cvv",
+                    List.of("[title='Secure CVC input frame']", "[name='cvc']"));
             WebElement iframe = WebUI.findElement("[title='Enter card details']");
             WebUI.driver.switchTo().frame(iframe);
             logger.info("switched to outer iframe");
             // Fill in the fields in the child iframe
-            for (Map.Entry<String, String[]> entry : fields.entrySet()) {
+            for (Map.Entry<String, List<String>> entry : fields.entrySet()) {
                 String value = data.get(entry.getKey());
-                String iframeSelector = entry.getValue()[0];
-                String fieldSelector = entry.getValue()[1];
+                String iframeSelector = entry.getValue().get(0);
+                String fieldSelector = entry.getValue().get(1);
 
                 WebUI.driver.switchTo().frame(WebUI.findElement(iframeSelector));
                 WebUI.fill(fieldSelector, value);
@@ -667,6 +667,7 @@ public abstract class Payment {
             WebUI.fill("#cardholderName", data.get("holderName"));
             WebUI.delay(2);
             WebUI.click(".submit-button");
+            WebUI.driver.switchTo().defaultContent();
             WebUI.waitForUrlContains("/orderConfirmation", 60);
         } catch (Exception e) {
             throw new Exception("Unable to pay with HeyLight:", e);
