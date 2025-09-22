@@ -493,6 +493,7 @@ public abstract class Browser {
             }
 
             case "remove": {
+                Map<String, String> serviceName = c.getProfile().getServiceModelName();
                 List<String> services = Tokens.removeLeading(tokens, "added", "applied", "all",
                         "trade-in", "tradein", "trade-up", "tradeup", "sc+", "sim", "warranty", "e-warranty",
                         "voucher", "for");
@@ -520,11 +521,7 @@ public abstract class Browser {
                     service = "SIM";
                 }
                 if (Tokens.containsAny(services, "warranty", "e-warranty")) {
-                    service = "WARRANTY";
-                    HashMap<String, String> ServiceModelCodes = c.getProfile().getServiceModelCodes();
-                    if (ServiceModelCodes.get("warranty") != null) {
-                        service = ServiceModelCodes.get("warranty");
-                    }
+                    service = serviceName.containsKey("warranty") ? serviceName.get("warranty") : "WARRANTY";
                 }
                 if (service != null) {
                     if (line > 0) {

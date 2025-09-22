@@ -107,7 +107,7 @@
             "categoryCode": "WARRANTY"
         }
     },
-    "serviceModelCodes": {
+    "serviceModelName": {
         "warranty": "EW-CA"
     },
     "creditCardData": {

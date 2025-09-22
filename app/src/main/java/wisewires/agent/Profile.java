@@ -23,7 +23,7 @@ public class Profile {
     private HashMap<String, String> tradeInInfo;
     private HashMap<String, String> tradeUpData;
     private HashMap<String, String> simInfo;
-    private HashMap<String, String> serviceModelCodes;
+    private HashMap<String, String> serviceModelName;
 
     private Map<String, Map<String, Object>> serviceData;
 
@@ -183,15 +183,15 @@ public class Profile {
         this.simInfo = simInfo;
     }
 
-    public HashMap<String, String> getServiceModelCodes() {
-        if (serviceModelCodes == null) {
+    public HashMap<String, String> getServiceModelName() {
+        if (serviceModelName == null) {
             return new HashMap<>();
         }
-        return serviceModelCodes;
+        return serviceModelName;
     }
 
-    public void setServiceModelCodes(HashMap<String, String> serviceModelCodes) {
-        this.serviceModelCodes = serviceModelCodes;
+    public void setServiceModelName(HashMap<String, String> serviceModelName) {
+        this.serviceModelName = serviceModelName;
     }
 
     public Map<String, Map<String, Object>> getServiceData() {
