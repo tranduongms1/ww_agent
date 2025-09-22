@@ -521,6 +521,10 @@ public abstract class Browser {
                 }
                 if (Tokens.containsAny(services, "warranty", "e-warranty")) {
                     service = "WARRANTY";
+                    Map<String, Map<String, Object>> servicesModelName = c.getProfile().getServiceData();
+                    if (servicesModelName.get("ServicesModelName") != null) {
+                        service = servicesModelName.get("ServicesModelName").get("Warranty").toString();
+                    }
                 }
                 if (service != null) {
                     if (line > 0) {
