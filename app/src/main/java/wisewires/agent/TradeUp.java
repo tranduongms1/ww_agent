@@ -181,7 +181,8 @@ public abstract class TradeUp {
                                             "Type / Model",
                                             "選擇尺寸",
                                             "Выберите размер",
-                                            "Wähle dein Altgeräte-Modell":
+                                            "Wähle dein Altgeräte-Modell",
+                                            "Product":
                                         select(elm, data.get("model"));
                                         break;
 
