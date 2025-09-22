@@ -24,6 +24,7 @@ public abstract class TradeUp {
             .sdf-comp-brand-menu,
             mat-expansion-panel,
             .modal__container,
+            .trade-up-device-selection-container,
             mat-form-field:has([formcontrolname])""";
 
     static String NEXT_LOCATOR = """
@@ -178,6 +179,7 @@ public abstract class TradeUp {
                                             "حجم الموديل",
                                             "Өлшемді таңдаңыз",
                                             "Type / Model",
+                                            "選擇尺寸",
                                             "Выберите размер":
                                         select(elm, data.get("model"));
                                         break;
@@ -196,6 +198,7 @@ public abstract class TradeUp {
                                             "Brand",
                                             "العلامة التجارية",
                                             "Өндірушіні таңдаңыз",
+                                            "選擇品牌",
                                             "Выберите производителя":
                                         select(elm, data.get("brand"));
                                         break;
