@@ -67,11 +67,8 @@
         }
     },
     "creditCardData": {
-        "cardNumber1": "4000",
-        "cardNumber2": "2211",
-        "cardNumber3": "1111",
-        "cardNumber4": "1111",
+        "cardNumber": "4000221111111111",
         "expiryDate": "03/30",
-        "password": "737"
+        "cvv": "737"
     }
 }

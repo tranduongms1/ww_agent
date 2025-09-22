@@ -252,6 +252,10 @@ public abstract class WebUI {
                 .toList();
     }
 
+    public static List<WebElement> findElements(SearchContext root, String selector) {
+        return findElements(root, By.cssSelector(selector));
+    }
+
     public static List<WebElement> findElements(SearchContext root, By by) {
         return root.findElements(by)
                 .stream()

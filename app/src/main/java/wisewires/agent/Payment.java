@@ -14,7 +14,8 @@ public abstract class Payment {
     static List<String> MODE_CC = List.of(
             ".payment-image.adyenCc",
             ".payment-image.kbank",
-            ".payment-image.mercadopago");
+            ".payment-image.mercadopago",
+            ".payment-image.tw-newebPayOneTime");
 
     static Map<String, List<String>> MODE_LOCATORS = Map.ofEntries(
             Map.entry("3ds card", MODE_CC),
@@ -139,6 +140,7 @@ public abstract class Payment {
             app-payment-mode-moyasar-samsung-pay,
             app-payment-mode-multibanco,
             app-payment-mode-neweb-pay,
+            app-payment-mode-newebpay-credit-card-tw,
             app-payment-mode-ngenius-samsung-pay,
             app-payment-mode-oney,
             app-payment-mode-p24-blik,
@@ -279,8 +281,9 @@ public abstract class Payment {
             case
                     "app-payment-mode-credit-card",
                     "app-payment-mode-kbank-credit-card",
+                    "app-payment-mode-newebpay-credit-card-tw",
                     "app-payment-mode-mercado-pago-credit":
-                switch (p.methodName) {
+                switch (p.methodName.toLowerCase()) {
                     case "amex card":
                         p.ccData = c.getProfile().getAmexCardData();
                         break;
@@ -346,106 +349,158 @@ public abstract class Payment {
         }
     }
 
-    private static void handleCreditCardField(WebElement field, Context c) throws Exception {
+    private static void handleCreditCardField(WebElement field, Context c) {
         Map<String, String> data = c.paymentProcess.ccData;
         String nameOrId = WebUI.getDomAttribute(field, "name", "formcontrolname", "id", "placeholder", "type");
-        switch (nameOrId) {
-            case
-                    "cardNumber",
-                    "cardnumber",
-                    "card-number",
-                    "ccNumber",
-                    "CCNo",
-                    "cc_cardNo",
-                    "card_num",
-                    "encryptedCardNumber":
-                String cardNumber = data.get("cardNumber");
-                field.clear();
-                field.sendKeys(cardNumber);
-                logger.info("Card number entered: " + cardNumber);
-                break;
-            case
-                    "holderNameInput",
-                    "input-checkout__cardholderName",
-                    "cardHolderName",
-                    "cardName",
-                    "card-name",
-                    "ccName",
-                    "CCName",
-                    "cc_holdername",
-                    "cardholder-name":
-                String name = data.get("holderName");
-                field.clear();
-                field.sendKeys(name);
-                logger.info("Holder name entered: " + name);
-                break;
-            case
-                    "encryptedExpiryDate",
-                    "expirationDate",
-                    "exp-date",
-                    "cardExpiry",
-                    "expiryDate",
-                    "card-expiry",
-                    "CCExpdate",
-                    "MM ／ YY",
-                    "card-expiry-date":
-                String expiryDate = data.get("expiryDate");
-                field.clear();
-                field.sendKeys(expiryDate);
-                logger.info("Expiry date entered: " + expiryDate);
-                break;
-            case
-                    "mm",
-                    "cardExpMonth",
-                    "month",
-                    "ccOpMonth",
-                    "expire-m",
-                    "card_exp_month",
-                    "ccmonth":
-                String expiryMonth = data.get("expiryMonth");
-                if (field.getTagName().equals("input")) {
+        try {
+            switch (nameOrId) {
+                case "cardType":
+                    String cardType = data.get("cardType");
+                    Form.select(field, cardType);
+                    logger.info("Card type entered: " + cardType);
+                    break;
+
+                case "bank", "bankCode":
+                    String bankCode = data.get("bankCode");
+                    Form.select(field, bankCode);
+                    logger.info("bank Code entered: " + bankCode);
+                    break;
+
+                case
+                        "cardNumber",
+                        "cardnumber",
+                        "card-number",
+                        "ccNumber",
+                        "CCNo",
+                        "cc_cardNo",
+                        "card_num",
+                        "encryptedCardNumber",
+                        "Track2CardNo":
+                    String cardNumber = data.get("cardNumber");
                     field.clear();
-                    field.sendKeys(expiryMonth);
-                } else {
-                    Form.select(field, expiryMonth);
-                }
-                logger.info("Expiry month entered: " + expiryMonth);
-                break;
-            case
-                    "yy",
-                    "cardExpYear",
-                    "year",
-                    "ccOpYear",
-                    "expire-y",
-                    "card_exp_year",
-                    "ccyear":
-                String expiryYear = data.get("expiryYear");
-                if (field.getTagName().equals("input")) {
+                    field.sendKeys(cardNumber);
+                    logger.info("Card number entered: " + cardNumber);
+                    break;
+
+                case "card1", "card2", "card3", "card4":
+                    int idx = Integer.parseInt(nameOrId.substring(4));
                     field.clear();
-                    field.sendKeys(expiryYear);
-                } else {
-                    Form.select(field, expiryYear);
-                }
-                logger.info("Expiry year entered: " + expiryYear);
-                break;
-            case
-                    "encryptedSecurityCode",
-                    "securityCode",
-                    "cvc",
-                    "cardCVV",
-                    "cardCvv",
-                    "card-cvv",
-                    "cvv",
-                    "ccCvv",
-                    "CVV",
-                    "cc_cvv",
-                    "cvv2":
-                String cvv = data.get("cvv");
-                field.clear();
-                field.sendKeys(cvv);
-                field.sendKeys(Keys.TAB);
-                logger.info("CVV code entered: " + cvv);
-                break;
+                    field.sendKeys(data.get("cardNumber").substring(4 * (idx - 1), 4 * idx));
+                    break;
+
+                case
+                        "holderNameInput",
+                        "input-checkout__cardholderName",
+                        "cardHolderName",
+                        "cardName",
+                        "card-name",
+                        "ccName",
+                        "CCName",
+                        "cc_holdername",
+                        "cardholder-name":
+                    String name = data.get("holderName");
+                    field.clear();
+                    field.sendKeys(name);
+                    logger.info("Holder name entered: " + name);
+                    break;
+
+                case
+                        "personalId":
+                    String personalId = data.get("personalId");
+                    field.clear();
+                    field.sendKeys(personalId);
+                    logger.info("Personal ID entered: " + personalId);
+                    break;
+
+                case
+                        "encryptedExpiryDate",
+                        "expirationDate",
+                        "exp-date",
+                        "cardExpiry",
+                        "expiryDate",
+                        "expireDateInput",
+                        "card-expiry",
+                        "CCExpdate",
+                        "MM ／ YY",
+                        "card-expiry-date":
+                    String expiryDate = data.get("expiryDate");
+                    field.clear();
+                    field.sendKeys(expiryDate);
+                    logger.info("Expiry date entered: " + expiryDate);
+                    break;
+
+                case
+                        "mm",
+                        "cardExpMonth",
+                        "month",
+                        "ccOpMonth",
+                        "expire-m",
+                        "card_exp_month",
+                        "ccmonth":
+                    String expiryMonth = data.get("expiryMonth");
+                    if (field.getTagName().equals("input")) {
+                        field.clear();
+                        field.sendKeys(expiryMonth);
+                    } else {
+                        Form.select(field, expiryMonth);
+                    }
+                    logger.info("Expiry month entered: " + expiryMonth);
+                    break;
+
+                case
+                        "yy",
+                        "cardExpYear",
+                        "year",
+                        "ccOpYear",
+                        "expire-y",
+                        "card_exp_year",
+                        "ccyear":
+                    String expiryYear = data.get("expiryYear");
+                    if (field.getTagName().equals("input")) {
+                        field.clear();
+                        field.sendKeys(expiryYear);
+                    } else {
+                        Form.select(field, expiryYear);
+                    }
+                    logger.info("Expiry year entered: " + expiryYear);
+                    break;
+
+                case
+                        "encryptedSecurityCode",
+                        "securityCode",
+                        "cvcNumberInput",
+                        "cvc",
+                        "cardCVV",
+                        "cardCvv",
+                        "card-cvv",
+                        "cvv",
+                        "ccCvv",
+                        "CVV",
+                        "cc_cvv",
+                        "cvv2":
+                    String cvv = data.get("cvv");
+                    field.clear();
+                    field.sendKeys(cvv);
+                    field.sendKeys(Keys.TAB);
+                    logger.info("CVV code entered: " + cvv);
+                    break;
+
+                case
+                        "otp",
+                        "password",
+                        "smsCode",
+                        "external.field.password",
+                        "answer",
+                        "Secure3dsForm[password]":
+                    String password = data.get("password");
+                    field.clear();
+                    field.sendKeys(password);
+                    logger.info("password entered: " + password);
+                    break;
+
+            }
+        } catch (Exception e) {
+            logger.debug("Unable to fill '%s': %s".formatted(nameOrId, e.getMessage()));
         }
     }
 
@@ -454,9 +509,13 @@ public abstract class Payment {
         String IN_FRAME_LOCATOR = "input:not([type='hidden']):not([aria-hidden])";
 
         WebUI.scrollToCenter(form);
+        String name = form.getTagName();
         WebUI.wait(300, 1).withMessage("form filled").until(d -> {
             try {
-                List<WebElement> elms = form.findElements(By.cssSelector(IN_PAGE_LOCATOR));
+                List<WebElement> elms = WebUI.findElements(form, IN_PAGE_LOCATOR);
+                // Pay now button is enabled even through field not filled
+                if (List.of("app-payment-mode-newebpay-credit-card-tw").contains(name) && elms.isEmpty())
+                    return false;
                 for (WebElement elm : elms) {
                     if (!elm.isDisplayed() || Form.isProcessed(elm))
                         continue;
@@ -486,10 +545,67 @@ public abstract class Payment {
 
         clickPayNow();
 
-        WebUI.wait(30).withMessage("order confirmation").until(d -> {
+        WebUI.wait(30, 2).withMessage("navigated to order confirmation").until(d -> {
             if (d.getCurrentUrl().contains("/orderConfirmation"))
                 return true;
-
+            if (WebUI.getUrl().contains("/checkout/one")) {
+                String to = """
+                        .payment-modal iframe,
+                        .modal__container iframe""";
+                WebElement elm = WebUI.findElement(to);
+                boolean isFrameInFrame = WebUI.getDomAttribute(elm, "id").equals("threeDS-modal-iframe");
+                try {
+                    WebUI.driver.switchTo().frame(elm);
+                    if (isFrameInFrame)
+                        return false;
+                    String selector = "input:not([type='hidden']):not([aria-hidden]), #buttonSubmit, [type='submit']";
+                    for (WebElement field : WebUI.findElements(selector)) {
+                        if (!field.isEnabled())
+                            continue;
+                        if (field.getTagName().equals("button") || field.getDomAttribute("type").equals("submit")) {
+                            field.click();
+                            break;
+                        }
+                        handleCreditCardField(field, c);
+                    }
+                } finally {
+                    if (!isFrameInFrame) {
+                        WebUI.driver.switchTo().defaultContent();
+                    }
+                }
+            } else {
+                String to = """
+                        input:not([type='hidden']):not([aria-hidden]):not([type='radio']):not([type='button']),
+                        select,
+                        #submitBtn,
+                        #nextBtn,
+                        #pay-btn,
+                        #submit_pay,
+                        #mpg_info .items-center .justify-center,
+                        [name='transId']~:has(button) button,
+                        a[data-bind*='payByCard'],
+                        a[data-bind*='closeButton'],
+                        [type='submit'],
+                        [value='Submit']""";
+                for (WebElement field : WebUI.findElements(to)) {
+                    if (!field.isEnabled() || Form.isProcessed(field))
+                        continue;
+                    String tagName = field.getTagName();
+                    if (List.of("button", "a", "div").contains(tagName)) {
+                        field.click();
+                        continue;
+                    }
+                    if (WebUI.getDomAttribute(field, "type", "value").equalsIgnoreCase("submit")) {
+                        field.click();
+                        continue;
+                    }
+                    handleCreditCardField(field, c);
+                    Form.setProcessed(field);
+                }
+            }
+            WebElement msg = WebUI.findElement(".checkout-message:has(.icon-regular-information-error)");
+            if (msg != null)
+                return new Exception(msg.getText());
             return false;
         });
     }
