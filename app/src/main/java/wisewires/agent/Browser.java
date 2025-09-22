@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,8 +103,8 @@ public abstract class Browser {
             case "login": {
                 SSO.mustSignedOut(c);
                 Tokens.removeLeading(tokens, "from", "on");
-                leading = Tokens.removeLeading(tokens, "aem", "shop", "empty", "cart", "gnb", "splash",
-                        "page", "multistore", "epp", "smb");
+                leading = Tokens.removeLeading(tokens, "aem", "shop", "epp", "smb", "store",
+                        "empty", "cart", "gnb", "splash", "page");
                 if (leading.contains("aem")) {
                     Login.fromAEMGNB(c);
                 } else if (leading.contains("shop")) {
@@ -124,7 +123,7 @@ public abstract class Browser {
                     }
                 } else if (leading.contains("splash")) {
                     Login.fromSplash(c);
-                } else if (Tokens.containsAny(leading, "multistore", "epp", "smb")) {
+                } else if (Tokens.containsAny(leading, "epp", "smb")) {
                     Login.fromMultistore(c);
                 }
                 if (!WebUI.getUrl().contains("/checkout/one")) {
