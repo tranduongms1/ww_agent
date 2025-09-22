@@ -1,9 +1,9 @@
 {
     "stores": {
         "smb": "/business",
-        "acn": "/multistore/zaepp/acn_za_epp",
+        "acn_za_epp": "/multistore/zaepp/acn_za_epp",
         "b2b": "/multistore/zaepp/b2b",
-        "rhq": "/multistore/zaepp/rhq_epp"
+        "rhq_epp": "/multistore/zaepp/rhq_epp"
     },
     "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",

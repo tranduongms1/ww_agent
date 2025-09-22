@@ -1,5 +1,7 @@
 package wisewires.agent;
 
+import org.openqa.selenium.WebElement;
+
 public abstract class Login {
     static void fromAEM(Context c) throws Exception {
         fromAEMGNB(c);
@@ -57,6 +59,22 @@ public abstract class Login {
             }
             return url.contains("account.samsung.com");
         });
+        SSO.signInByEmail(c);
+    }
+
+    static void fromMultistore(Context c) throws Exception {
+        if (WebUI.driver == null || !WebUI.getUrl().contains("shop.samsung.com")) {
+            WebUI.openBrowser(c, c.getShopUrl());
+        }
+        WebElement btn = WebUI.waitElement("""
+                .member-login-content-wrapper button, .btn-business-login,
+                .MultistoreLogin button[data-an-la='samsung account']""", 5);
+        if (btn != null) {
+            WebUI.scrollToCenter(btn);
+            btn.click();
+            WebUI.waitForDisappear(btn, 5);
+        }
+        WebUI.mustCloseAllPopup(c);
         SSO.signInByEmail(c);
     }
 }

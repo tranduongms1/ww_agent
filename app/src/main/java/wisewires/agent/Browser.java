@@ -104,7 +104,8 @@ public abstract class Browser {
             case "login": {
                 SSO.mustSignedOut(c);
                 Tokens.removeLeading(tokens, "from", "on");
-                leading = Tokens.removeLeading(tokens, "aem", "shop", "empty", "cart", "gnb", "splash", "page");
+                leading = Tokens.removeLeading(tokens, "aem", "shop", "empty", "cart", "gnb", "splash",
+                        "page", "multistore", "epp", "smb");
                 if (leading.contains("aem")) {
                     Login.fromAEMGNB(c);
                 } else if (leading.contains("shop")) {
@@ -123,16 +124,8 @@ public abstract class Browser {
                     }
                 } else if (leading.contains("splash")) {
                     Login.fromSplash(c);
-                } else {
-                    WebElement btn = WebUI.waitElement("""
-                            .member-login-content-wrapper button, .btn-business-login,
-                            .MultistoreLogin button[data-an-la='samsung account']""", 5);
-                    if (btn != null) {
-                        WebUI.scrollToCenter(btn);
-                        btn.click();
-                        WebUI.waitForDisappear(btn, 5);
-                    }
-                    SSO.signInByEmail(c);
+                } else if (Tokens.containsAny(leading, "multistore", "epp", "smb")) {
+                    Login.fromMultistore(c);
                 }
                 if (!WebUI.getUrl().contains("/checkout/one")) {
                     if (WebUI.isOneOfSites("TH")) {

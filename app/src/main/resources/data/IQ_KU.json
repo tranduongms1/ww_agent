@@ -1,4 +1,8 @@
 {
+    "stores": {
+        "iqepp": "multistore/iqepp/iqepp",
+        "iq_samsung_partner": "multistore/iqepp/iq_samsung_partner"
+    },
     "apiEndpoints": {
         "prod": "https://p1-smi-api-cdn.shop.samsung.com/tokocommercewebservices/v2/",
         "stg2": "https://s2-smi-api-cdn.ecom-stg.samsung.com/tokocommercewebservices/v2/"

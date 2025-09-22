@@ -1,6 +1,6 @@
 {
     "stores": {
-        "corporate": "/multistore/kwepp/kw_corporate_b2b"
+        "kw_corporate_b2b": "/multistore/kwepp/kw_corporate_b2b"
     },
     
     "apiEndpoints": {

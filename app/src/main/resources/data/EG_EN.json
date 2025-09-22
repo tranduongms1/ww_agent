@@ -1,6 +1,6 @@
 {
   "stores": {
-    "egsme": "/business",
+    "smb": "/business",
     "eg_samsung_partner": "/multistore/egepp/eg_samsung_partner",
     "eg_samsung_employee": "/multistore/egepp/eg_samsung_employee"
   },
