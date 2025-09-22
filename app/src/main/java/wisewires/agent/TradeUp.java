@@ -150,6 +150,7 @@ public abstract class TradeUp {
                                 WebUI.scrollToCenter(radio);
                                 WebUI.click(radio);
                                 WebUI.delay(1);
+                                break;
                             }
                         } else {
                             for (WebElement elm : elms) {
