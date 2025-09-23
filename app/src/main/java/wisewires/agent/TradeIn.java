@@ -427,7 +427,8 @@ public abstract class TradeIn {
                         "Įrenginys",
                         "Ierīce",
                         "Vali mudel:",
-                        "Izberite model ali začnite tipkati": {
+                        "Izberite model ali začnite tipkati",
+                        "Typ zariadenia": {
                     String selected = selectModel(elm, data.get("model"));
                     if (selected != null)
                         data.put("model", selected);
