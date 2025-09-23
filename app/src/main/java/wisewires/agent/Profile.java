@@ -35,6 +35,8 @@ public class Profile {
     private Map<String, String> afterPayData;
     private Map<String, String> etihadGuestPayData;
     private Map<String, String> heidiData;
+    private Map<String, String> tabbyData;
+    private Map<String, String> tamaraData;
 
     public Map<String, String> getPointingUrls() {
         return pointingUrls != null ? pointingUrls : new HashMap<>();
@@ -268,5 +270,21 @@ public class Profile {
 
     public void setHeidiData(Map<String, String> heidiData) {
         this.heidiData = heidiData;
+    }
+
+    public Map<String, String> getTabbyData() {
+        return tabbyData;
+    }
+
+    public void setTabbyData(Map<String, String> tabbyData) {
+        this.tabbyData = tabbyData;
+    }
+
+    public Map<String, String> getTamaraData() {
+        return tamaraData;
+    }
+
+    public void setTamaraData(Map<String, String> tamaraData) {
+        this.tamaraData = tamaraData;
     }
 }

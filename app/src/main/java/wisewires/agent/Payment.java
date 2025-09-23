@@ -5,6 +5,8 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +48,8 @@ public abstract class Payment {
             Map.entry("paypal express", List.of(".payment-image.adyenPaypalExpress")),
             Map.entry("servipag", List.of(".payment-image.servipag")),
             Map.entry("servipag bank transfer", List.of(".payment-image.servipag")),
+            Map.entry("tabby", List.of(".payment-image.TabbyPaymentMode")),
+            Map.entry("tamara", List.of(".payment-image.tamaraPayment")),
             Map.entry("tbt", List.of(".payment-image.tbt")),
             Map.entry("visa card", MODE_CC),
             Map.entry("webpay", List.of(".payment-image.webpay")),
@@ -345,6 +349,14 @@ public abstract class Payment {
                 payWithKlarna(c, form);
                 break;
             }
+            case "app-payment-mode-tabby-pay":
+                payWithTabby(c);
+                break;
+
+            case "app-payment-mode-tamara":
+                payWithTamara(c);
+                break;
+
             case "app-payment-mode-wechat-pay": {
                 payWithWeChat();
                 break;
@@ -860,6 +872,125 @@ public abstract class Payment {
             throw new Exception("Unable to pay with HeyLight:", e);
         }
 
+    }
+
+    public static void payWithTabby(Context c) throws Exception {
+        try {
+            Map<String, String> data = c.getProfile().getTabbyData();
+            Payment.clickPayNow();
+            String to = """
+                    #tabby-checkout input[data-test="input"],
+                    [data-test="installments-plan-preview"]:first-of-type,
+                    #tabby-checkout button[data-test*="continue"],
+                    #tabby-checkout button[data-test*="button"],
+                    [data-test="terms-and-conditions"] > label""";
+            Object result = WebUI.wait(60).withMessage("pay with tabby").until(d -> {
+                if (WebUI.driver.getCurrentUrl().contains("/orderConfirmation"))
+                    return true;
+                WebElement msg = WebUI.findElement(".checkout-message:has(.icon-regular-information-error)");
+                if (msg != null) {
+                    return new Exception(msg.getText());
+                }
+                for (WebElement field : WebUI.findElements(to)) {
+                    if (!field.isDisplayed())
+                        continue;
+                    String name = WebUI.getDomAttribute(field, "name");
+                    switch (name) {
+                        case "email":
+                            field.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+                            field.sendKeys(Keys.BACK_SPACE);
+                            field.sendKeys((data.get("email")));
+                            break;
+                        case "phone":
+                            field.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+                            field.sendKeys(Keys.BACK_SPACE);
+                            field.sendKeys((data.get("phone")));
+                            break;
+                        case "otp-code":
+                            field.clear();
+                            field.sendKeys((data.get("otp")));
+                            break;
+                        case "expiresYear":
+                            new Select(field).selectByValue(data.get("expiryYear"));
+                            break;
+                        case "card_security_code":
+                            field.clear();
+                            field.sendKeys((data.get("cvv")));
+                            break;
+                        default:
+                            WebUI.scrollToCenter(field);
+                            WebUI.delay(1);
+                            field.click();
+                            WebUI.delay(2);
+                            break;
+                    }
+                }
+                return false;
+            });
+            if (result instanceof Exception) {
+                throw (Exception) result;
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with Tabby", e);
+        }
+    }
+
+    public static void payWithTamara(Context c) throws Exception {
+        try {
+            Map<String, String> data = c.getProfile().getTamaraData();
+            Payment.clickPayNow();
+            String to = """
+                    #btn-send-verification-code,
+                    .tamara-base-button,
+                    .simple-otp-input,
+                    .tamara-input-phone-number input,
+                    .payment-option-cvv-input-field input""";
+            Object result = WebUI.wait(60).withMessage("pay with tamara").until(d -> {
+                if (WebUI.driver.getCurrentUrl().contains("/orderConfirmation"))
+                    return true;
+                String message = Checkout.getErrorMessage();
+                if (message != null)
+                    return new Exception(message);
+                for (WebElement field : WebUI.findElements(to)) {
+                    String className = WebUI.getDomAttribute(field, "class");
+                    if (className.contains("simple-otp-input")) {
+                        WebElement otp = WebUI.findElement(".mt-9");
+                        String otpText = otp.getText();
+                        String otpCode = otpText.substring(otpText.length() - 6);
+                        List<WebElement> inputs = WebUI.findElements(".otp-single-input");
+                        for (int i = 0; i < otpCode.length() && i < inputs.size(); i++) {
+                            inputs.get(i).sendKeys(String.valueOf(otpCode.charAt(i)));
+                        }
+                        continue;
+                    }
+                    String idOrName = WebUI.getDomAttribute(field, "id", "name");
+                    switch (idOrName) {
+                        case "input-phone-number":
+                            field.sendKeys((data.get("phone")));
+                            field.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+                            field.sendKeys(Keys.BACK_SPACE);
+                            field.sendKeys((data.get("phone")));
+                            break;
+                        case "cvv2", "input-field-element":
+                            field.clear();
+                            field.sendKeys((data.get("cvv")));
+                            break;
+                        default:
+                            WebUI.scrollToCenter(field);
+                            WebUI.delay(1);
+                            field.click();
+                            WebUI.wait(5).until(ExpectedConditions.stalenessOf(field));
+                            break;
+                    }
+                }
+                return false;
+            });
+            if (result instanceof Exception) {
+                throw (Exception) result;
+            }
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with Tamara" + e.getMessage());
+        }
     }
 
     static void payWithWeChat() throws Exception {

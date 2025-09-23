@@ -72,6 +72,14 @@ public abstract class Checkout {
             button.sim-plan--continue-btn,
             button[data-an-la="sim:continue to payment"]""";
 
+    static String getErrorMessage() {
+        WebElement elm = WebUI.findElement(".checkout-message:has(.icon-regular-information-error)");
+        if (elm != null) {
+            return elm.getText();
+        }
+        return null;
+    }
+
     static String getFormId(WebElement form) {
         String tagName = form.getTagName();
         if (List.of("ul", "div").contains(tagName)) {

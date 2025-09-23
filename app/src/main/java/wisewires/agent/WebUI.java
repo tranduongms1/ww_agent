@@ -208,7 +208,7 @@ public abstract class WebUI {
     }
 
     public static void click(WebElement elm) {
-        wait(5).until(d -> {
+        wait(5, 1).until(d -> {
             elm.click();
             return true;
         });
