@@ -857,6 +857,7 @@ public abstract class Payment {
                         #account-credit-agreement-sign-button,
                         [data-testid='pick-plan'],
                         #mandatory-checkbox__box,
+                        #mandatory_terms-checkbox__box,
                         #account-credit-agreement__scrollable-area,
                         [role="radiogroup"]:has([id='global_invoice_kp.2__label'])
                         """;
