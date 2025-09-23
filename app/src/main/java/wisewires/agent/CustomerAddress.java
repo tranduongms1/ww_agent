@@ -49,6 +49,7 @@ public class CustomerAddress {
 
             Map.entry("Tipo de propiedad", "tipoDePropiedad"),
             Map.entry("Departamento", "departamento"),
+            Map.entry("fiscalCode", "fiscalCode"),
 
             Map.entry("regionIso", "adminLevel1"),
             Map.entry("State", "adminLevel1"),
@@ -317,6 +318,10 @@ public class CustomerAddress {
                     Form.select(field, data.get(name));
                 }
                 break;
+            case "fiscalCode":
+            field.clear();
+            field.sendKeys(data.get(name));
+            break;
 
             default:
                 if (Form.isRequired(field)) {
