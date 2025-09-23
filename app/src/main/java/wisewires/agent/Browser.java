@@ -643,6 +643,9 @@ public abstract class Browser {
                 TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.SELECTABLES);
                 int nth = Tokens.getOrdinal(match.leading);
                 switch (match.value) {
+                    case "same shipping address":
+                        c.mustCheckoutProcess().checkSameAsShippingAddress();
+                        return;
                     case "different billing address":
                         c.mustCheckoutProcess().uncheckSameAsShippingAddress();
                         return;

@@ -23,6 +23,7 @@ public abstract class Names {
                         Map.of("delivery", ""));
 
         static Map<String, String> SELECTABLES = Maps.merge(
+                        Map.of("same shipping address", ""),
                         Map.of("different billing address", ""),
                         withPrefix(ADDRESSES, "new "),
                         withPrefix(ADDRESSES, "saved "),
