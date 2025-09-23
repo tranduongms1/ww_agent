@@ -18,6 +18,10 @@ public class BillingAddress {
                 if (!Form.checkEnable(logger, field, nameOrLabel)) {
                     continue;
                 }
+                if (CustomerInfo.FIELD_NAME.containsKey(nameOrLabel)) {
+                    CustomerInfo.fillField(logger, field, nameOrLabel, data);
+                    continue;
+                }
                 CustomerAddress.fillField(logger, field, nameOrLabel, data);
             }
             logger.info("Billing address form filled");

@@ -136,10 +136,6 @@ public class CustomerAddress {
                 if (!Form.checkEnable(logger, field, nameOrLabel)) {
                     continue;
                 }
-                if (CustomerInfo.FIELD_NAME.containsKey(nameOrLabel)) {
-                    CustomerInfo.fillField(logger, field, nameOrLabel, data);
-                    continue;
-                }
                 fillField(logger, field, nameOrLabel, data);
             }
             logger.info("Customer address form filled");
