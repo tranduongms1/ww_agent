@@ -1,6 +1,6 @@
 {
     "stores": {
-        "smb": "/business",
+        "aesme": "/business",
         "samsung_employee": "/multistore/aeepp/samsung_employee"
     },
     "apiEndpoints": {

@@ -1,5 +1,6 @@
 {
     "stores": {
+        "kwsme": "/business",
         "kw_corporate_b2b": "/multistore/kwepp/kw_corporate_b2b"
     },
     

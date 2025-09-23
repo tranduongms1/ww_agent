@@ -1,6 +1,6 @@
 {
     "stores": {
-        "smb": "/business",
+        "zasme": "/business",
         "acn_za_epp": "/multistore/zaepp/acn_za_epp",
         "b2b": "/multistore/zaepp/b2b",
         "rhq_epp": "/multistore/zaepp/rhq_epp"

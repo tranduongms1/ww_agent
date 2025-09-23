@@ -1,5 +1,6 @@
 {
   "stores": {
+    "sasme": "/business",
     "ir_partners": "/multistore/sa_epp/ir_partners",
     "sapartners": "/multistore/saepp/sapartners"
   },

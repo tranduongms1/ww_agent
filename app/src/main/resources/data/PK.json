@@ -1,5 +1,6 @@
 {
   "stores": {
+    "pksme": "/business",
     "pk_samsung_employee": "/multistore/pkepp/pk_samsung_employee",
     "pkepptest": "/multistore/pkepp/pkepptest"
   },

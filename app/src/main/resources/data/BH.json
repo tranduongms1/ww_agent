@@ -1,5 +1,6 @@
 {
   "stores": {
+    "bhsme": "/business",
     "bh_corporate_b2b": "/multistore/bhepp/bh_corporate_b2b"
   },
   "pointingUrls": {

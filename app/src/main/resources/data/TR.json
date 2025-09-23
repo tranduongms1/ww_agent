@@ -1,6 +1,6 @@
 {
   "stores": {
-    "smb": "/business",
+    "trsme": "/business",
     "tr_internal_epp": "/multistore/trepp/tr_internal_epp",
     "tr_egitim": "/multistore/trepp/tr_egitim"
   },

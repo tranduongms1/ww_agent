@@ -1,5 +1,6 @@
 {
     "stores": {
+        "kwsme": "/business",
         "kw_corporate_b2b": "/multistore/kwepp/kw_corporate_b2b"
     },
     "apiEndpoints": {
@@ -27,6 +28,7 @@
         "lastName": "billing",
         "phoneNumber": "+96554666666",
         "adminLevel3": "Abdulla Al Mubarak Al Sabah",
+        "adminLevel2": "Abdulla Al Mubarak Al Sabah",
         "line1": "15",
         "line2": "Al Sabah",
         "apartment": "69"

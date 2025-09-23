@@ -1,5 +1,6 @@
 {
   "stores": {
+    "omsme": "/business",
     "om_corporate_b2b": "/multistore/omepp/om_corporate_b2b"
   },
   "pointingUrls": {
