@@ -32,6 +32,9 @@
         "line1": "14"
     },
     "tradeInData": {
+        "mobileCategory": "手機",
+        "watchCategory": "穿戴裝置",
+        "tabletCategory": "平板",
         "category": "手機",
         "brand": "SAMSUNG",
         "model": "Galaxy Z Flip5 (512GB，SM-F7310)",
@@ -45,30 +48,71 @@
             "additionalInfos": {
                 "provider": "MEIXUN",
                 "productCode": "T-SAMSUNG-GALAXYZFOLD4(256GB，SM-F9360)",
-                "responses": [],
-                "orderEntryNumber": 0,
-                "selectionResponses": []
-            }
-        },
-        "TradeUp": {
-            "store_id": "tw",
-            "device_info": {
-                "state": {
-                    "BROKEN": "NO"
-                }
-            },
-            "device_id": "0B2017CB-658B-41F8-BBA3-B953214CE566",
-            "type": "TradeIn",
-            "sku": "QA75QN700BWXZW",
-            "delayed_gratification": false
-        },
-        "SMC": {
-            "categoryCode": "smc"
+                "responses": [
+                    {
+                        "name": "tw-tradein-Q1",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q2",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q3",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q4",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q5",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q6",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q7",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q8",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q9",
+                        "value": "true"
+                    },
+                    {
+                        "name": "tw-tradein-Q10",
+                        "value": "true"
+                    }
+            ],
+            "orderEntryNumber": 0,
+            "selectionResponses": []
         }
     },
-    "creditCardData": {
-        "cardNumber": "4000221111111111",
-        "expiryDate": "03/30",
-        "cvv": "737"
+    "TradeUp": {
+        "store_id": "tw",
+        "device_info": {
+            "state": {
+                "BROKEN": "NO"
+            }
+        },
+        "device_id": "0B2017CB-658B-41F8-BBA3-B953214CE566",
+        "type": "TradeIn",
+        "sku": "QA75QN700BWXZW",
+        "delayed_gratification": false
+    },
+    "SMC": {
+        "categoryCode": "smc"
     }
+},
+"creditCardData": {
+    "cardNumber": "4000221111111111",
+    "expiryDate": "03/30",
+    "cvv": "737"
+}
 }

@@ -28,6 +28,9 @@
   },
   "billingAddress": {},
   "tradeInData": {
+    "mobileCategory": "Điện thoại thông minh",
+    "watchCategory": "Đồng hồ thông minh",
+    "tabletCategory": "Máy tính bảng",
     "category": "Điện thoại thông minh",
     "brand": "SAMSUNG",
     "model": "Galaxy S23 Ultra 5G 1T",
@@ -36,74 +39,30 @@
   },
   "serviceData": {
     "TradeIn": {
-      "serviceCode": "T_SAMSUNG_GALAXYS23Ultra5G512G",
+      "serviceCode": "T_SAMSUNG_GALAXYS23Ultra5G1T",
       "addToCartType": "append",
       "provider": "TCV",
-      "additionalInfos": [
-        {
-          "key": "tradeinToken"
-        },
-        {
-          "key": "additionalDiscountTemp",
-          "value": "0"
-        },
-        {
-          "key": "discountAmount",
-          "value": "7446000"
-        },
-        {
-          "key": "discountAmountWithCurrency",
-          "value": "7.446.000 VND"
-        },
-        {
-          "key": "additionalDiscountMessage",
-          "value": ""
-        },
-        {
-          "key": "serviceProductModel",
-          "value": "T_SAMSUNG_GALAXYS23Ultra5G512G"
-        },
-        {
-          "key": "evaluationMessage",
-          "value": "Tổng giá trị ưu đãi: 7.446.000 VND"
-        },
-        {
-          "key": "offerAmountFormatted",
-          "value": "Tổng giá trị ưu đãi: 7.446.000 VND"
-        },
-        {
-          "key": "trade_in_mode",
-          "value": "online"
-        },
-        {
-          "key": "resultMessage",
-          "value": "true"
-        },
-        {
-          "key": "resultCode",
-          "value": "100"
-        },
-        {
-          "key": "fault_note",
-          "value": "screen0 no|screen1 yes|screen2 no"
-        },
-        {
-          "key": "discountAmount-hash",
-          "value": "da3931c27035b1000a27252cdbc7ce97"
-        },
-        {
-          "key": "tradeInIdentifier",
-          "value": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b2tvIiwidHJhZGVJblBheUxvYWQiOiJ7XCJhZGRpdGlvbmFsSW5mb3NcIjpbe1wia2V5XCI6XCJ0cmFkZWluVG9rZW5cIixcInZhbHVlXCI6bnVsbCxcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJhZGRpdGlvbmFsRGlzY291bnRUZW1wXCIsXCJ2YWx1ZVwiOlwiMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRpc2NvdW50QW1vdW50XCIsXCJ2YWx1ZVwiOlwiNzQ0NjAwMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRpc2NvdW50QW1vdW50V2l0aEN1cnJlbmN5XCIsXCJ2YWx1ZVwiOlwiNy40NDYuMDAwIFZORFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImFkZGl0aW9uYWxEaXNjb3VudE1lc3NhZ2VcIixcInZhbHVlXCI6XCJcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJzZXJ2aWNlUHJvZHVjdE1vZGVsXCIsXCJ2YWx1ZVwiOlwiVF9TQU1TVU5HX0dBTEFYWVMyM1VsdHJhNUc1MTJHXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZXZhbHVhdGlvbk1lc3NhZ2VcIixcInZhbHVlXCI6XCJU4buVbmcgZ2nDoSB0cuG7iyDGsHUgxJHDo2k6IDcuNDQ2LjAwMCBWTkRcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJvZmZlckFtb3VudEZvcm1hdHRlZFwiLFwidmFsdWVcIjpcIlThu5VuZyBnacOhIHRy4buLIMawdSDEkcOjaTogNy40NDYuMDAwIFZORFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInRyYWRlX2luX21vZGVcIixcInZhbHVlXCI6XCJvbmxpbmVcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJyZXN1bHRNZXNzYWdlXCIsXCJ2YWx1ZVwiOlwidHJ1ZVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInJlc3VsdENvZGVcIixcInZhbHVlXCI6XCIxMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJmYXVsdF9ub3RlXCIsXCJ2YWx1ZVwiOlwic2NyZWVuMCBub3xzY3JlZW4xIHllc3xzY3JlZW4yIG5vXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZGlzY291bnRBbW91bnQtaGFzaFwiLFwidmFsdWVcIjpcImRhMzkzMWMyNzAzNWIxMDAwYTI3MjUyY2RiYzdjZTk3XCIsXCJkZXNjcmlwdGlvblwiOm51bGx9XSxcIm5ld1RyYWRlSW5DdXN0b21lclwiOmZhbHNlfSIsImlhdCI6MTc0NTkxNDU2NywiZXhwIjoxNzQ1OTE4MTY3fQ.ISnPt4DkMN516H9Itqb-GpZlYdKxixyv7VS72hZ0BbZja6Cm280kCWfemN-lGviwOqMAxy6BjcZQ0yQkwj7S3nfCaG4hau4pbLlWmFthvk3EiVhE-weFbsnXRbt2Bsf5eXFOmm9Uy2MrzieKd1PvdTYStV8llAcgyRAutG2V_64ImQHfTKhEH-8v38woDntDVFTWgog5WmHhqbJybCxdgNzgbrAZKXV24-kYseCeMmdcpQ1jQdGcdrG9ZgbWrllRT-GbQObT5oZq8zwswfxomRVtduxzuhmx5pqUnj7Ym5_W1AB-OcVbni5WOANKp2KM0laNDtatQ3eT7J7eqmX4zJRop7lCssc2VggYKaA-n8hT6IRBSz91adJVT_ddEhv4iKrwx_p2kzsyRHnrA__GBIOhO3ziPcvqMPiQ-Ic9IZLV3a8qZsCfF5P-tq1S1rradaUhLM0xLLHRjhUsBssn4SxtcSWEJ7XyOsqc1z5OUF0AScbvxm9q6PpaaYv7V2KW09DQdZJrdZxAPmcYYPi9goF8arxm_dbz8oGw_nNW6xqrlFwB35rUkScdUZFT3E4x6sxj192nM6UZtWaW3Tm7Vu7NUjciQFyBElel4RKESp3yiKzxtvDMtmROhQHQ3j1yrcyTBnY6rTdKbTeuls8852xIqpgtz9uhUusY8rNwWsc"
-        },
-        {
-          "key": "productName",
-          "value": "Galaxy S23 Ultra 5G 512G"
-        },
-        {
-          "key": "IMEI",
-          "value": "355884760811842"
-        }
-      ]
+      "additionalInfos": {
+        "provider": "TCV",
+        "productCode": "T_SAMSUNG_GALAXYS23Ultra5G1T",
+        "responses": [
+          {
+            "name": "Q1-MX",
+            "value": "yes"
+          },
+          {
+            "name": "Q2-MX",
+            "value": "no"
+          },
+          {
+            "name": "Q3-MX",
+            "value": "no"
+          }
+        ],
+        "imei": "355884760811842",
+        "orderEntryNumber": 0,
+        "targetProductCode": "SM-F731BLGAXXV"
+      }
     },
     "SMC": {
       "categoryCode": "smc"
