@@ -818,8 +818,132 @@ public abstract class Payment {
 
     }
 
-    static void payWithKlarna(Context c, WebElement elm) throws Exception {
+    static void payWithKlarna(Context c, WebElement form) throws Exception {
+        try {
+            Map<String, String> data = c.getProfile().getKlarnaData();
+            acceptTermAndConditions();
+            clickPayNow();
+            boolean openNewWindow = WebUI.driver.getWindowHandles().size() > 1;
+            if (openNewWindow) {
+                WebUI.switchToWindow(1);
+            }
+            WebUI.wait(60, 1).ignoring(Exception.class).withMessage("pay with Klarna").until(d -> {
+                if (openNewWindow && WebUI.driver.getWindowHandles().size() == 1)
+                    WebUI.switchToWindow(0);
+                if (WebUI.getUrl().contains("/orderConfirmation"))
+                    return true;
 
+                String to = """
+                        [name='prefill_nin'],
+                        [name='phonePasskey'],
+                        [name='phone'],
+                        [name='otp_field'],
+                        [name='email'],
+                        [name='nationalIdentificationNumber'],
+                        [name="employmentStatus"],
+                        [name="annualIncomeBeforeTax"],
+                        [name="monthlyRentMortgagePayment"],
+                        [name="numberOfDependents"],
+                        #date_of_birth,
+                        #onContinue,
+                        #continueBtn,
+                        #buy_button:not([aria-disabled="true"]),
+                        #affordability-check-continue-button,
+                        #signInWithBankIdButton,
+                        #account-credit-agreement-sign-button,
+                        [data-testid='pick-plan'],
+                        #mandatory-checkbox__box,
+                        #account-credit-agreement__scrollable-area,
+                        [role="radiogroup"]:has([id='global_invoice_kp.2__label'])
+                        """;
+                List<WebElement> elms = WebUI.driver.findElements(By.cssSelector(to));
+                for (WebElement elm : elms) {
+                    if (!elm.isDisplayed() && !List.of("true").contains(WebUI.getDomAttribute(elm, "aria-required")))
+                        continue;
+                    String idOrName = WebUI.getDomAttribute(elm, "name", "id", "aria-labelledby");
+                    switch (idOrName) {
+                        case "phonePasskey", "phone":
+                            elm.clear();
+                            elm.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE.toString());
+                            elm.sendKeys(idOrName, data.get("phoneNumber"));
+                            logger.info("Phone number entered: " + data.get("phoneNumber"));
+                            break;
+                        case "prefill_nin":
+                            elm.sendKeys(Keys.chord(Keys.CONTROL, "a"), data.get("bankID"));
+                            logger.info("bankID entered: " + data.get("bankID"));
+                            break;
+                        case "otp_field":
+                            elm.clear();
+                            elm.sendKeys(Keys.chord(Keys.CONTROL, "a"), data.get("otp"));
+                            logger.info("OTP entered: " + data.get("otp"));
+                            break;
+                        case "email":
+                            break;
+                        case "date_of_birth":
+                            elm.clear();
+                            elm.sendKeys(idOrName, data.get("dateOfBirth"));
+                            logger.info("dateOfBirth entered: " + data.get("dateOfBirth"));
+                            break;
+                        case "nationalIdentificationNumber":
+                            elm.clear();
+                            elm.sendKeys(idOrName, data.get("IDNumber"));
+                            logger.info("NationalIdentificationNumber entered: " + data.get("IDNumber"));
+                            break;
+                        case "onContinue", "buy_button", "signInWithBankIdButton", "mandatory-checkbox__box",
+                                "affordability-check-continue-button":
+                            elm.click();
+                            logger.info("Continue button clicked");
+                            break;
+                        case "employmentStatus":
+                            try {
+                                Form.select(elm, "Employed full time");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case "annualIncomeBeforeTax":
+                            elm.sendKeys(Keys.chord(Keys.CONTROL, "a"), "890");
+                            break;
+                        case "monthlyRentMortgagePayment":
+                            elm.sendKeys(Keys.chord(Keys.CONTROL, "a"), "100");
+                            break;
+                        case "numberOfDependents":
+                            try {
+                                Form.select(elm, "1");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case "account-credit-agreement__scrollable-area":
+                            WebUI.driver.executeScript(
+                                    "var el = document.getElementById('account-credit-agreement__scrollable-area'); if(el) el.scrollTop = el.scrollHeight;");
+                            break;
+                        case "stacked-selection-title": // Select payment method for DE only
+                            switch (c.paymentProcess.methodName) {
+                                case "klarna paylater":
+                                    WebUI.click(":has(> [id='global_invoice_kp.2__label'])");
+                                    WebUI.delay(1);
+                                    break;
+                                case "klarna slice it":
+                                    WebUI.click(":has(> [id='fixedsumcredit_kp.3__label'])");
+                                    WebUI.delay(1);
+                                    break;
+                                default:
+                                    WebUI.click(":has(> [id='pay_now__label'])");
+                                    WebUI.delay(1);
+                                    break;
+                            }
+                            break;
+                        default:
+                            WebUI.scrollToCenter(elm);
+                            elm.click();
+                    }
+                }
+                return false;
+            });
+        } catch (Exception e) {
+            throw new Exception("Unable to pay with Klarna", e);
+        }
     }
 
     static void payWithHeidi(Context c, WebElement elm) throws Exception {

@@ -35,6 +35,7 @@ public class Profile {
     private Map<String, String> afterPayData;
     private Map<String, String> etihadGuestPayData;
     private Map<String, String> heidiData;
+    private Map<String, String> klarnaData;
     private Map<String, String> tabbyData;
     private Map<String, String> tamaraData;
 
@@ -270,6 +271,14 @@ public class Profile {
 
     public void setHeidiData(Map<String, String> heidiData) {
         this.heidiData = heidiData;
+    }
+
+    public Map<String, String> getKlarnaData() {
+        return klarnaData;
+    }
+
+    public void setKlarnaData(Map<String, String> klarnaData) {
+        this.klarnaData = klarnaData;
     }
 
     public Map<String, String> getTabbyData() {
