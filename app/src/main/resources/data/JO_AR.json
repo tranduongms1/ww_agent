@@ -55,6 +55,9 @@
       "categoryCode": "warranty"
     }
   },
+  "serviceModelName": {
+        "warranty": "P-UH"
+  },
   "creditCardData": {
     "cardType": "Visa",
     "cardNumber": "4111111111111111",
