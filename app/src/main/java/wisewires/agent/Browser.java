@@ -767,6 +767,9 @@ public abstract class Browser {
                     case "view orders":
                         WebUI.click(OrderConfirmation.VIEW_ORDERS_LOCATOR);
                         return;
+                    case "samsung logo":
+                        WebUI.click("a[data-an-la='logo']");
+                        return;
                 }
                 break;
             }

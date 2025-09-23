@@ -15,7 +15,8 @@ public abstract class Names {
 
         static Map<String, String> CLICKABLES = Maps.merge(
                         Map.of("continue shopping", ""),
-                        Map.of("view orders", ""));
+                        Map.of("view orders", ""),
+                        Map.of("samsung logo", ""));
 
         static Map<String, String> EDITABLES = Maps.merge(
                         Map.of("customer info", ""),
