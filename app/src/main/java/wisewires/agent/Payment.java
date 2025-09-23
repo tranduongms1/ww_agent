@@ -358,7 +358,7 @@ public abstract class Payment {
                 break;
 
             case "app-payment-mode-wechat-pay": {
-                payWithWeChat();
+                simplePayment("WeChat");
                 break;
             }
             default:
@@ -991,11 +991,5 @@ public abstract class Payment {
         } catch (Exception e) {
             throw new Exception("Unable to pay with Tamara" + e.getMessage());
         }
-    }
-
-    static void payWithWeChat() throws Exception {
-        acceptTermAndConditions();
-        clickPayNow();
-        WebUI.waitForUrlContains("/orderConfirmation", 30);
     }
 }
