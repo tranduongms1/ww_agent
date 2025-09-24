@@ -32,11 +32,35 @@
         "postalCode": "A0G 3A0"
     },
     "tradeInData": {
+        "category": "PHONE",
+        "brand": "Google",
+        "model": "PIXEL 4A",
+        "storage": "128GB",
+        "color": "Black",
+        "imei": "351787742847020"
+    },
+    "tradeInData2": {
         "category": "Phone",
         "brand": "Samsung",
         "model": "GALAXY Z FOLD 4 5G",
         "storage": "512GB",
         "color": "Black",
+        "imei": "351787742847020"
+    },
+    "tradeInData3": {
+        "category": "Phone",
+        "brand": "Huawei",
+        "model": "P10 LITE",
+        "storage": "32GB",
+        "color": "Black",
+        "imei": "356860111266927"
+    },
+    "tradeInData4": {
+        "category": "Tablet",
+        "brand": "Google",
+        "model": "PIXEL TABLET",
+        "storage": "256GB",
+        "color": "White",
         "imei": "351787742847020"
     },
     "serviceData": {

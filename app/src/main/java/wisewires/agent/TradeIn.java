@@ -563,7 +563,7 @@ public abstract class TradeIn {
         btn.click();
         logger.info("Next button clicked");
         WebUI.waitForDisappear(btn, 10);
-        if (WebUI.isSite("UK")) {
+        if (WebUI.isOneOfSites("CA", "CA_FR", "UK")) {
             WebUI.delay(2);
         }
         if (WebUI.findElement(MODAL_LOCATOR) == null) {
