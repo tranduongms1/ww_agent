@@ -35,6 +35,9 @@
     },
     "tradeInData": {
         "tradeinPostalCode": "1400",
+        "mobileCategory": "SMARTPHONE",
+        "watchCategory": "WATCH",
+        "tabletCategory": "TABLET",
         "category": "SMARTPHONE",
         "brand": "Samsung",
         "model": "Galaxy S23 Ultra 5G",
@@ -43,99 +46,55 @@
     },
     "serviceData": {
         "TradeIn": {
-            "serviceCode": "T_SMARTPHONE_204238",
+            "serviceCode": "T_SMARTPHONE_202848",
             "addToCartType": "append",
             "provider": "BOLTECH_PH",
-            "additionalInfos": [
-                {
-                    "key": "tradeinAmount",
-                    "value": "8040.00"
-                },
-                {
-                    "key": "tradeinAmountWithCurrency",
-                    "value": "₱8,040.00"
-                },
-                {
-                    "key": "discountAmount",
-                    "value": "8040.00"
-                },
-                {
-                    "key": "discountAmountWithCurrency",
-                    "value": "₱8,040.00"
-                },
-                {
-                    "key": "tradeInIdph",
-                    "value": "6810831dc8195c5543e3c936"
-                },
-                {
-                    "key": "offerAmountBreakdown",
-                    "value": "true"
-                },
-                {
-                    "key": "deviceSku",
-                    "value": "T_SMARTPHONE_204238"
-                },
-                {
-                    "key": "additionalDiscount",
-                    "value": "0.00"
-                },
-                {
-                    "key": "additionalDiscountWithCurrency",
-                    "value": "₱0.00"
-                },
-                {
-                    "key": "additionalDiscountApplied",
-                    "value": "true"
-                },
-                {
-                    "key": "totalTradeinAmount",
-                    "value": "8040.0"
-                },
-                {
-                    "key": "totalTradeinAmountFormatted",
-                    "value": "₱8,040.00"
-                },
-                {
-                    "key": "evaluationMessage",
-                    "value": "Total Instant Discount: ₱8,040.00"
-                },
-                {
-                    "key": "evaluationMessageWithoutAdditionalMessage",
-                    "value": "</br>(Your old device value: ₱8,040.00)"
-                },
-                {
-                    "key": "evaluationMessageWithoutAdditionalMessagecart",
-                    "value": ""
-                },
-                {
-                    "key": "offerAmountFormatted",
-                    "value": "Total Instant Discount: ₱8,040.00"
-                },
-                {
-                    "key": "questionAndAnswer",
-                    "value": "[{\"name\":\"switchedOn\",\"value\":\"Yes\"},{\"name\":\"lcdScreen\",\"value\":\"Yes\"},{\"name\":\"sideNback\",\"value\":\"Yes\"},{\"name\":\"screenBurn\",\"value\":\"Yes\"},{\"name\":\"speaker\",\"value\":\"Yes\"},{\"name\":\"sideButtons\",\"value\":\"Yes\"},{\"name\":\"camera\",\"value\":\"Yes\"},{\"name\":\"batterySwollen\",\"value\":\"Yes\"},{\"name\":\"network\",\"value\":\"Yes\"}]"
-                },
-                {
-                    "key": "fault_note",
-                    "value": "switchedOn Yes|lcdScreen Yes|sideNback Yes|screenBurn Yes|speaker Yes|sideButtons Yes|camera Yes|batterySwollen Yes|network Yes"
-                },
-                {
-                    "key": "discountAmount-hash",
-                    "value": "ea31f4ac95f676f6be583270f024d37b"
-                },
-                {
-                    "key": "tradeInIdentifier",
-                    "value": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b2tvIiwidHJhZGVJblBheUxvYWQiOiJ7XCJhZGRpdGlvbmFsSW5mb3NcIjpbe1wia2V5XCI6XCJ0cmFkZWluQW1vdW50XCIsXCJ2YWx1ZVwiOlwiODA0MC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcInRyYWRlaW5BbW91bnRXaXRoQ3VycmVuY3lcIixcInZhbHVlXCI6XCLigrE4LDA0MC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRpc2NvdW50QW1vdW50XCIsXCJ2YWx1ZVwiOlwiODA0MC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRpc2NvdW50QW1vdW50V2l0aEN1cnJlbmN5XCIsXCJ2YWx1ZVwiOlwi4oKxOCwwNDAuMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJ0cmFkZUluSWRwaFwiLFwidmFsdWVcIjpcIjY4MTA4MzFkYzgxOTVjNTU0M2UzYzkzNlwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcIm9mZmVyQW1vdW50QnJlYWtkb3duXCIsXCJ2YWx1ZVwiOlwidHJ1ZVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImRldmljZVNrdVwiLFwidmFsdWVcIjpcIlRfU01BUlRQSE9ORV8yMDQyMzhcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJhZGRpdGlvbmFsRGlzY291bnRcIixcInZhbHVlXCI6XCIwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiYWRkaXRpb25hbERpc2NvdW50V2l0aEN1cnJlbmN5XCIsXCJ2YWx1ZVwiOlwi4oKxMC4wMFwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImFkZGl0aW9uYWxEaXNjb3VudEFwcGxpZWRcIixcInZhbHVlXCI6XCJ0cnVlXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwidG90YWxUcmFkZWluQW1vdW50XCIsXCJ2YWx1ZVwiOlwiODA0MC4wXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwidG90YWxUcmFkZWluQW1vdW50Rm9ybWF0dGVkXCIsXCJ2YWx1ZVwiOlwi4oKxOCwwNDAuMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJldmFsdWF0aW9uTWVzc2FnZVwiLFwidmFsdWVcIjpcIlRvdGFsIEluc3RhbnQgRGlzY291bnQ6IOKCsTgsMDQwLjAwXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZXZhbHVhdGlvbk1lc3NhZ2VXaXRob3V0QWRkaXRpb25hbE1lc3NhZ2VcIixcInZhbHVlXCI6XCI8L2JyPihZb3VyIG9sZCBkZXZpY2UgdmFsdWU6IOKCsTgsMDQwLjAwKVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImV2YWx1YXRpb25NZXNzYWdlV2l0aG91dEFkZGl0aW9uYWxNZXNzYWdlY2FydFwiLFwidmFsdWVcIjpcIlwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcIm9mZmVyQW1vdW50Rm9ybWF0dGVkXCIsXCJ2YWx1ZVwiOlwiVG90YWwgSW5zdGFudCBEaXNjb3VudDog4oKxOCwwNDAuMDBcIixcImRlc2NyaXB0aW9uXCI6bnVsbH0se1wia2V5XCI6XCJxdWVzdGlvbkFuZEFuc3dlclwiLFwidmFsdWVcIjpcIlt7XFxcIm5hbWVcXFwiOlxcXCJzd2l0Y2hlZE9uXFxcIixcXFwidmFsdWVcXFwiOlxcXCJZZXNcXFwifSx7XFxcIm5hbWVcXFwiOlxcXCJsY2RTY3JlZW5cXFwiLFxcXCJ2YWx1ZVxcXCI6XFxcIlllc1xcXCJ9LHtcXFwibmFtZVxcXCI6XFxcInNpZGVOYmFja1xcXCIsXFxcInZhbHVlXFxcIjpcXFwiWWVzXFxcIn0se1xcXCJuYW1lXFxcIjpcXFwic2NyZWVuQnVyblxcXCIsXFxcInZhbHVlXFxcIjpcXFwiWWVzXFxcIn0se1xcXCJuYW1lXFxcIjpcXFwic3BlYWtlclxcXCIsXFxcInZhbHVlXFxcIjpcXFwiWWVzXFxcIn0se1xcXCJuYW1lXFxcIjpcXFwic2lkZUJ1dHRvbnNcXFwiLFxcXCJ2YWx1ZVxcXCI6XFxcIlllc1xcXCJ9LHtcXFwibmFtZVxcXCI6XFxcImNhbWVyYVxcXCIsXFxcInZhbHVlXFxcIjpcXFwiWWVzXFxcIn0se1xcXCJuYW1lXFxcIjpcXFwiYmF0dGVyeVN3b2xsZW5cXFwiLFxcXCJ2YWx1ZVxcXCI6XFxcIlllc1xcXCJ9LHtcXFwibmFtZVxcXCI6XFxcIm5ldHdvcmtcXFwiLFxcXCJ2YWx1ZVxcXCI6XFxcIlllc1xcXCJ9XVwiLFwiZGVzY3JpcHRpb25cIjpudWxsfSx7XCJrZXlcIjpcImZhdWx0X25vdGVcIixcInZhbHVlXCI6XCJzd2l0Y2hlZE9uIFllc3xsY2RTY3JlZW4gWWVzfHNpZGVOYmFjayBZZXN8c2NyZWVuQnVybiBZZXN8c3BlYWtlciBZZXN8c2lkZUJ1dHRvbnMgWWVzfGNhbWVyYSBZZXN8YmF0dGVyeVN3b2xsZW4gWWVzfG5ldHdvcmsgWWVzXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9LHtcImtleVwiOlwiZGlzY291bnRBbW91bnQtaGFzaFwiLFwidmFsdWVcIjpcImVhMzFmNGFjOTVmNjc2ZjZiZTU4MzI3MGYwMjRkMzdiXCIsXCJkZXNjcmlwdGlvblwiOm51bGx9XSxcIm5ld1RyYWRlSW5DdXN0b21lclwiOmZhbHNlfSIsImlhdCI6MTc0NTkxMjYwNSwiZXhwIjoxNzQ1OTE2MjA1fQ.lfzYjbVrtvcUTZ6WaxRAm7LEsP0matZ6qXBn3Rd90vPsWYFnRff0ESjn2Ac1cyqglL6-JX6JQCdpi1jDDqHwHqNXJzs8BY3rs0-RWeYzu6nohcgFZx4g9NXVqHiltxerYf6CXj4qbxOm1UmYG_eAZGgK7B-o5YV7fhij4naTWJNThbvP8ViUf_tcGHppgLMosREUMpkCqz0Z2HNPdjSOO8WtJ2ywml2RW_w0vALbdDUYAtB5XOxTuSCBcuQgeP52aQk5QFbKF5TXTkKjXLkp5egbwv6o0rDUYmvzV-Il7XGcP9xuIbE3ACeVPvRuiOTv8MDKVEnwx9z-nQUq-zPW-vHdtjiFuhf2tQbOaERa1Z3wLDmr2aUQC-bo8Dw8jE4jXYuw86bnRm5Tp-1wYBT3z3atboHfOGeaV2fbZwgdlWXjb6lfjHzMe_viKJOK7fUIJa2Mzt01h4Xg4HvIl26nE3Hl2NuntgP_gQYgWuJ92Ok3Y6lc8uDxjBG6sTF3_6-VbGjurUW0I5DtVy5c6W7eoiTzJFVb7CqkqTFmkywleK-Pol0KcidXpuK03qWg9zBETq7KKqxSykyhrulu-Cq-eMwZLecMGMF1NaLmVrmL6IRTiuNqxjfKeBfIUWIRCY5-Pc3JoMvIwQdGR-DvECV4zqUmq4mzB_w4w4vR6jqkRho"
-                },
-                {
-                    "key": "productName",
-                    "value": "Samsung Galaxy S23 Ultra 5G 12GB+128GB Null"
-                },
-                {
-                    "key": "IMEI",
-                    "value": "355884760811842"
-                }
-            ]
+            "additionalInfos": {
+                "targetProductCode": "SM-S928BLBCPHL",
+                "provider": "BOLTECH_PH",
+                "productCode": "T_SMARTPHONE_202848",
+                "responses": [
+                    {
+                        "name": "switchedOn",
+                        "value": "Yes"
+                    },
+                    {
+                        "name": "lcdScreen",
+                        "value": "Yes"
+                    },
+                    {
+                        "name": "sideNback",
+                        "value": "Yes"
+                    },
+                    {
+                        "name": "screenBurn",
+                        "value": "Yes"
+                    },
+                    {
+                        "name": "speaker",
+                        "value": "Yes"
+                    },
+                    {
+                        "name": "sideButtons",
+                        "value": "Yes"
+                    },
+                    {
+                        "name": "camera",
+                        "value": "Yes"
+                    },
+                    {
+                        "name": "batterySwollen",
+                        "value": "Yes"
+                    },
+                    {
+                        "name": "network",
+                        "value": "Yes"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "imei": "354896110717835",
+                "selectionResponses": []
+            }
         },
         "TradeUp": {
             "store_id": "ph",
