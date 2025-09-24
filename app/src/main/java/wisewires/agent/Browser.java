@@ -629,7 +629,7 @@ public abstract class Browser {
                 if (c.pfProcess != null) {
                     while (!tokens.isEmpty()) {
                         String value = tokens.remove(0);
-                        leading = Tokens.removeLeading(tokens, "color", "and", "storage","size");
+                        leading = Tokens.removeLeading(tokens, "color", "and", "storage", "size");
                         if (leading.contains("color")) {
                             PF.selectColor(c, value);
                         } else if (leading.contains("storage")) {
@@ -746,6 +746,9 @@ public abstract class Browser {
                     tokens.remove(0);
                     TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.EDITABLES);
                     switch (match.value) {
+                        case "cart":
+                            Checkout.clickEditCart();
+                            break;
                         case "customer info":
                             Checkout.clickEditCustomerInfo();
                             break;
