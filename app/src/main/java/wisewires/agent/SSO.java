@@ -25,7 +25,7 @@ public abstract class SSO {
 
             WebUI.click("button#signInButton, button.MuiButton-containedPrimary");
 
-            WebUI.wait(30, 2).until(driver -> {
+            WebUI.wait(60, 2).until(driver -> {
                 String url = driver.getCurrentUrl();
                 if (url.contains("/stay-signed-in")) {
                     WebUI.click(".MuiButton-colorPrimary");
