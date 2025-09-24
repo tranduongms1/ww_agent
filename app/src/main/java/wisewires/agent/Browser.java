@@ -634,7 +634,7 @@ public abstract class Browser {
                             PF.selectColor(c, value);
                         } else if (leading.contains("storage")) {
                             PF.selectStorage(c, value);
-                        }else if (leading.contains("size")) {
+                        } else if (leading.contains("size")) {
                             PF.selectSize(c, value);
                         } else {
                             break;
@@ -774,6 +774,9 @@ public abstract class Browser {
                         return;
                     case "samsung logo":
                         WebUI.click("a[data-an-la='logo']");
+                        return;
+                    case "remove icon":
+                        WebUI.click("[data-an-la='remove item']");
                         return;
                 }
                 break;

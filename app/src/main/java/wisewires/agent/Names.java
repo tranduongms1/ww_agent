@@ -16,12 +16,14 @@ public abstract class Names {
         static Map<String, String> CLICKABLES = Maps.merge(
                         Map.of("continue shopping", ""),
                         Map.of("view orders", ""),
-                        Map.of("samsung logo", ""));
+                        Map.of("samsung logo", ""),
+                        Map.of("remove icon", ""));
 
         static Map<String, String> EDITABLES = Maps.merge(
                         Map.of("customer info", ""),
                         ADDRESSES,
-                        Map.of("delivery", ""));
+                        Map.of("delivery", ""),
+                        Map.of("cart", ""));
 
         static Map<String, String> SELECTABLES = Maps.merge(
                         Map.of("same shipping address", ""),
