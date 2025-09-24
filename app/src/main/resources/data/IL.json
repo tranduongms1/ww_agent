@@ -32,8 +32,9 @@
   },
   "creditCardData": {
     "cardNumber": "4111 1111 1111 1111",
-    "holderName": "il",
-    "expiryDate": "03/30",
+    "personalId": "00000000",
+    "expiryMonth": "03",
+    "expiryYear": "2030",
     "cvv": "737"
   }
 }
