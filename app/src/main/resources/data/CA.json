@@ -108,7 +108,8 @@
         }
     },
     "serviceModelName": {
-        "warranty": "EW-CA"
+        "warranty": "EW-CA",
+        "tradeup": "TRADE-IN"
     },
     "creditCardData": {
         "cardNumber": "4111 1111 1111 1111",
