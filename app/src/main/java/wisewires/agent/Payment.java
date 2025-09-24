@@ -17,7 +17,8 @@ public abstract class Payment {
             ".payment-image.adyenCc",
             ".payment-image.kbank",
             ".payment-image.mercadopago",
-            ".payment-image.tw-newebPayOneTime");
+            ".payment-image.tw-newebPayOneTime",
+            ".payment-image.halykePay");
 
     static Map<String, List<String>> MODE_LOCATORS = Map.ofEntries(
             Map.entry("3ds card", MODE_CC),
@@ -305,7 +306,8 @@ public abstract class Payment {
                     "app-payment-mode-credit-card",
                     "app-payment-mode-kbank-credit-card",
                     "app-payment-mode-newebpay-credit-card-tw",
-                    "app-payment-mode-mercado-pago-credit":
+                    "app-payment-mode-mercado-pago-credit",
+                    "app-payment-mode-halyke-pay":
                 switch (p.methodName.toLowerCase()) {
                     case "amex card":
                         p.ccData = c.getProfile().getAmexCardData();
