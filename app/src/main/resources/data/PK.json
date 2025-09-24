@@ -33,6 +33,16 @@
     "adminLevel1": "Balochistan",
     "adminLevel2": "Chaman"
   },
+  "tradeInData": {
+    "category": "Phone",
+    "brand": "Xiaomi",
+    "model": "Redmi Series",
+    "subSeries": "Redmi Series",
+    "device": "Redmi 12C",
+    "storage": "4GB/128GB",
+    "color": "Graphite Gray",
+    "imei": "867457062476845"
+  },
   "creditCardData": {
     "cardNumber": "5200000000000114",
     "holderName": "pk",

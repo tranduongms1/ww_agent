@@ -625,7 +625,7 @@ public abstract class TradeIn {
         Map<String, String> data = c.tradeInProcess.data;
         Exception error = null;
         int errorCount = 0;
-        while (errorCount < 5) {
+        while (errorCount < 8) {
             try {
                 WebUI.waitForNotDisplayed(".circular-progress", 5);
                 WebElement modal = WebUI.findElement(MODAL_LOCATOR);
