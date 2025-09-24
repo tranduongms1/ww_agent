@@ -629,11 +629,13 @@ public abstract class Browser {
                 if (c.pfProcess != null) {
                     while (!tokens.isEmpty()) {
                         String value = tokens.remove(0);
-                        leading = Tokens.removeLeading(tokens, "color", "and", "storage");
+                        leading = Tokens.removeLeading(tokens, "color", "and", "storage","size");
                         if (leading.contains("color")) {
                             PF.selectColor(c, value);
                         } else if (leading.contains("storage")) {
                             PF.selectStorage(c, value);
+                        }else if (leading.contains("size")) {
+                            PF.selectSize(c, value);
                         } else {
                             break;
                         }
