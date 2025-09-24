@@ -264,6 +264,30 @@ public abstract class TradeIn {
         }
     }
 
+    static String selectSubseries(WebElement elm, String subseries) throws Exception {
+        try {
+            String selected = select(elm, subseries);
+            if (selected != null) {
+                logger.info("Device subseries '%s' selected".formatted(selected));
+            }
+            return selected;
+        } catch (Exception e) {
+            throw new Exception("Unable to select device subseries '%s'".formatted(subseries));
+        }
+    }
+
+    static String selectDevice(WebElement elm, String device) throws Exception {
+        try {
+            String selected = select(elm, device);
+            if (selected != null) {
+                logger.info("Device '%s' selected".formatted(selected));
+            }
+            return selected;
+        } catch (Exception e) {
+            throw new Exception("Unable to select device '%s'".formatted(device));
+        }
+    }
+
     static String getSelectType(WebElement elm) throws Exception {
         String className = elm.getAttribute("class");
         if (className.contains("category"))
@@ -428,10 +452,20 @@ public abstract class TradeIn {
                         "Ierīce",
                         "Vali mudel:",
                         "Izberite model ali začnite tipkati",
-                        "Typ zariadenia": {
-                    String selected = selectModel(elm, data.get("model"));
+                        "Typ zariadenia",
+                        "الطراز": {
+                    String selected;
+                    String dataInput;
+                    List<String> selectTypeList = List.of("Device", "device", "الطراز");
+                    if (selectTypeList.contains(selectType) && WebUI.isOneOfSites("PK", "AE", "AE_AR")) {
+                        selected = selectDevice(elm, data.get("device"));
+                        dataInput = "device";
+                    } else {
+                        selected = selectModel(elm, data.get("model"));
+                        dataInput = "model";
+                    }
                     if (selected != null)
-                        data.put("model", selected);
+                        data.put(dataInput, selected);
                     break;
                 }
                 case
@@ -462,6 +496,15 @@ public abstract class TradeIn {
                     String selected = selectColor(elm, data.get("color"));
                     if (selected != null)
                         data.put("color", selected);
+                    break;
+                }
+                case
+                        "subseries",
+                        "Subseries",
+                        "سلسلة": {
+                    String selected = selectSubseries(elm, data.get("subseries"));
+                    if (selected != null)
+                        data.put("subseries", selected);
                     break;
                 }
             }
