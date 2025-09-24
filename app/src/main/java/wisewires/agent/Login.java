@@ -12,6 +12,7 @@ public abstract class Login {
         WebUI.mustCloseAllPopup(c);
         GNB.navigateToSignIn();
         SSO.signInByEmail(c);
+        WebUI.closeAllPopup(c);
     }
 
     static void fromShop(Context c) throws Exception {
