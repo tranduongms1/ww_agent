@@ -35,7 +35,8 @@
         "phoneNumber": "61234567",
         "vatNumber": "LT100006806712",
         "companyName": "UAB \"ORLEN Apsauga\"",
-        "landmark": "Mažeikių g. 75, Juodeikių k., Židikų sen., Mažeikių r. sav."
+        "landmark": "Mažeikių g. 75, Juodeikių k., Židikų sen., Mažeikių r. sav.",
+        "additionalNotes": "note abc"
     },
     "billingAddress": {
         "firstName": "Auto",

@@ -127,7 +127,11 @@ public class CustomerAddress {
             Map.entry("Barangay", "adminLevel4"),
             Map.entry("רחוב", "adminLevel4"),
             Map.entry("Mahalle", "adminLevel4"),
-            Map.entry("Phường", "adminLevel4"));
+            Map.entry("Phường", "adminLevel4"),
+
+            Map.entry("additionalNotes", "additionalNotes"),
+
+            Map.entry("phone", "phoneNumber"));
 
     public static void autoFill(Map<String, String> data, boolean requiredOnly) throws Exception {
         try {
@@ -322,6 +326,18 @@ public class CustomerAddress {
             field.clear();
             field.sendKeys(data.get(name));
             break;
+
+            case "phoneNumber":
+                if (data.get(name) != null) {
+                    field.sendKeys(data.get(name));
+                }
+                break;
+
+            case "additionalNotes":
+                if (data.get(name) != null) {
+                    field.sendKeys(data.get(name));
+                }
+                break;
 
             default:
                 if (Form.isRequired(field)) {
