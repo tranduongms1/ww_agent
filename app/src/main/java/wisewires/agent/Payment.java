@@ -25,9 +25,8 @@ public abstract class Payment {
             Map.entry("afterpay", List.of(".payment-image.adyenAfterPay")),
             Map.entry("afterpay installment", List.of(".payment-image.adyenAfterPayInstallment")),
             Map.entry("alipay", List.of(".payment-image.au-adyenAliPay")),
-            Map.entry("khipu", List.of(".payment-image.khipu")),
-            Map.entry("khipu bank transfer", List.of(".payment-image.khipu")),
             Map.entry("blik", List.of(".payment-image.p24-blik")),
+            Map.entry("card on delivery", List.of(".payment-image.cardOnDelivery")),
             Map.entry("credit card", MODE_CC),
             Map.entry("cod", List.of(".payment-image.cod")),
             Map.entry("etihad", List.of(".payment-image.pointsPay")),
@@ -37,6 +36,8 @@ public abstract class Payment {
             Map.entry("heidi", List.of(".payment-image.HeidiPay")),
             Map.entry("heidi pay", List.of(".payment-image.HeidiPay")),
             Map.entry("heylight", List.of(".payment-image.HeidiPay")),
+            Map.entry("khipu", List.of(".payment-image.khipu")),
+            Map.entry("khipu bank transfer", List.of(".payment-image.khipu")),
             Map.entry("klap", List.of(".payment-image.klap")),
             Map.entry("klarna", List.of(".payment-image.adyenKlarnaSliceIt")),
             Map.entry("klarna installment", List.of()),
@@ -292,9 +293,11 @@ public abstract class Payment {
                 payWithBlik(c, form);
                 break;
 
-            case
-                    "app-card-on-delivery-payment",
-                    "app-cod-payment":
+            case "app-card-on-delivery-payment":
+                simplePayment("Card On Delivery");
+                break;
+
+            case "app-cod-payment":
                 payWithCOD(c, form);
                 break;
 
