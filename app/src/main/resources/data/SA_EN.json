@@ -61,6 +61,9 @@
     },
     "SMC": {
       "categoryCode": "insurance"
+    },
+    "E-Warranty": {
+      "categoryCode": "WARRANTY"
     }
   },
   "creditCardData": {
