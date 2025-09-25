@@ -1,4 +1,8 @@
 {
+    "stores": {
+        "corporatebenefits": "/multistore/deepp/corporatebenefits",
+        "desme": "/business"
+    },
     "pointingUrls": {
         "stg2": "https://p6-pre-qa2.samsung.com/aemapi/v6/storedomain/setdata?siteCode=de&storeDomain=https://s2-smn5-api-cdn.ecom-stg.samsung.com&storeWebDomain=https://stg2.shop.samsung.com&cart=https://stg2.shop.samsung.com/de/cart"
     },
