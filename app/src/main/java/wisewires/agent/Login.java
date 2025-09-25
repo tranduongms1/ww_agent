@@ -69,7 +69,8 @@ public abstract class Login {
         }
         WebElement btn = WebUI.waitElement("""
                 .member-login-content-wrapper button, .btn-business-login,
-                .MultistoreLogin button[data-an-la='samsung account']""", 5);
+                .MultistoreLogin button[data-an-la='samsung account']
+                .pill-btn--blue""", 5);
         if (btn != null) {
             WebUI.scrollToCenter(btn);
             btn.click();
