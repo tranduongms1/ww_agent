@@ -208,14 +208,8 @@ public abstract class Browser {
                         c.tradeInProcess.data = c.getProfile().getTradeInData5();
                     } else if (Tokens.contains(leading, "cashback")) {
                         c.tradeInProcess.data.put("type", "cashback");
-                        if (WebUI.isOneOfSites("AE", "AE_AR")) {
-                            c.tradeInProcess.data = c.getProfile().getTradeInData2();
-                        }
                     } else if (Tokens.contains(leading, "instant")) {
                         c.tradeInProcess.data.put("type", "instant");
-                        if (WebUI.isOneOfSites("AE", "AE_AR")) {
-                            c.tradeInProcess.data = c.getProfile().getTradeInData2();
-                        }
                     }
                     leading = Tokens.removeLeading(tokens, "trade-in", "tradein", "use", "with", "id");
                     if (leading.contains("id") && !tokens.isEmpty()) {
