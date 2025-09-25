@@ -412,7 +412,8 @@ public abstract class TradeIn {
                         "Ražotājs:",
                         "Bränd",
                         "Proizvajalec",
-                        "Marka": {
+                        "Marka",
+                        "品牌": {
                     String selected = selectBrand(elm, data.get("brand"));
                     if (selected != null)
                         data.put("brand", selected);
@@ -453,7 +454,8 @@ public abstract class TradeIn {
                         "Vali mudel:",
                         "Izberite model ali začnite tipkati",
                         "Typ zariadenia",
-                        "الطراز": {
+                        "الطراز",
+                        "裝置": {
                     String selected;
                     String dataInput;
                     List<String> selectTypeList = List.of("Device", "device", "الطراز");
@@ -483,7 +485,8 @@ public abstract class TradeIn {
                         "ความจุ",
                         "سعة التخزين",
                         "Kapasitas",
-                        "Une capacité de stockage": {
+                        "Une capacité de stockage",
+                        "儲存容量": {
                     String selected = selectStorage(elm, data.get("storage"));
                     if (selected != null)
                         data.put("storage", selected);
@@ -492,7 +495,8 @@ public abstract class TradeIn {
                 case
                         "color",
                         "Color",
-                        "La couleur": {
+                        "La couleur",
+                        "選擇顏色": {
                     String selected = selectColor(elm, data.get("color"));
                     if (selected != null)
                         data.put("color", selected);
@@ -533,7 +537,6 @@ public abstract class TradeIn {
                     questions.add(elm.findElements(by));
                 }
             }
-
             TradeInProcess.selectBestDeviceConditions(c, questions);
 
         } catch (Exception e) {

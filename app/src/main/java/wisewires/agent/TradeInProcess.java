@@ -17,6 +17,12 @@ public class TradeInProcess {
     }
 
     static void selectBestDeviceConditions(Context c, List<List<WebElement>> questions) throws Exception {
+        WebElement elm = WebUI.findElement(".trade-in__purchase-from mat-form-field");
+        if (elm != null) {
+            String purchaseFrom = c.getProfile().getTradeInData().get("purchaseFrom");
+            Form.select(elm, purchaseFrom);
+            logger.info("Selected purchase from :\s" + purchaseFrom);
+        }
         for (List<WebElement> options : questions) {
             WebElement opt = options.get(0);
             if (WebUI.isOneOfSites("CZ", "HK", "HK_EN", "NZ", "TR", "TH", "MY")) {
