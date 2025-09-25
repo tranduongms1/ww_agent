@@ -15,6 +15,7 @@ public abstract class Names {
 
         static Map<String, String> CLICKABLES = Maps.merge(
                         Map.of("continue shopping", ""),
+                        Map.of("continue to checkout", ""),
                         Map.of("view orders", ""),
                         Map.of("samsung logo", ""),
                         Map.of("remove icon", ""));

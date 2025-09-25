@@ -767,6 +767,9 @@ public abstract class Browser {
                     case "continue shopping":
                         Cart.clickContinueShopping(c);
                         return;
+                    case "continue to checkout":
+                        Cart.clickCheckoutButton();
+                        return;
                     case "view orders":
                         WebUI.click(OrderConfirmation.VIEW_ORDERS_LOCATOR);
                         return;
