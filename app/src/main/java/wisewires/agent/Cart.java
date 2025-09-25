@@ -663,6 +663,9 @@ public abstract class Cart {
 
     static void ssoCheckout(Context c) throws Exception {
         try {
+            if (WebUI.isOneOfSites("IQ_AR", "IQ_KU")) {
+                Cart.selectCityInCart();
+            }
             logger.info("Continue to checkout as register");
             WebElement btn = WebUI.waitElement("[data-an-la='proceed to checkout']", 15);
             WebUI.scrollToCenter(btn);
