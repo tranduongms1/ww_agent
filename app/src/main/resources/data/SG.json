@@ -74,6 +74,21 @@
                 "orderEntryNumber": 0,
                 "selectionResponses": []
             }
+        },
+        "TradeUp": {
+            "store_id": "sg",
+            "device_info": {
+                "state": {
+                    "BROKEN": "NO"
+                }
+            },
+            "device_id": "2CB56354-E8C9-457F-A44F-4332F8E8442B",
+            "type": "TradeIn",
+            "sku": "QA75LS03BAKXXS",
+            "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "smc"
         }
     },
     "creditCardData": {

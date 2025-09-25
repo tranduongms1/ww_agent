@@ -107,6 +107,9 @@
             "type": "TradeIn",
             "sku": "UA75CU7000GXXP",
             "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "insurance"
         }
     },
     "creditCardData": {

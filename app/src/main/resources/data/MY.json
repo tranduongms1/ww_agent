@@ -120,6 +120,9 @@
             "type": "TradeIn",
             "sku": "QN85QN85BAFXZX",
             "delayed_gratification": false
+        },
+        "SMC": {
+            "categoryCode": "smc"
         }
     },
     "creditCardData": {

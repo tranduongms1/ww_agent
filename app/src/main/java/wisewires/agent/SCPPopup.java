@@ -25,7 +25,8 @@ public class SCPPopup {
                     .hubble-care-popup-new__check-list .checkbox-radio,
                     .smc-modal .tandc__item,
                     .js-added-services-container .added-services-terms .checkbox-square,
-                    app-samsung-care-v2 mat-checkbox div[class="mdc-checkbox"]""";
+                    app-samsung-care-v2 mat-checkbox div[class="mdc-checkbox"],
+                    .modal__checkbox-wrapper .mdc-checkbox""";
             List<WebElement> elms = WebUI.waitElements(to, 2);
             for (WebElement elm : elms) {
                 WebUI.scrollIntoView(elm);

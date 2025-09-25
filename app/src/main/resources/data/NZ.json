@@ -50,35 +50,47 @@
             "addToCartType": "append",
             "provider": "ASSURANTV2",
             "additionalInfos": {
-                    "targetProductCode": "SM-S928BLBQXNZ",
-                    "provider": "ASSURANTV2",
-                    "productCode": "99760000042710",
-                    "responses": [
-                        {
-                            "name": "LCD_OK_SMNZ",
-                            "value": "LCDOK_YES"
-                        },
-                        {
-                            "name": "LOCK_OFF_SMNZ",
-                            "value": "LOCK_OFF_YES"
-                        },
-                        {
-                            "name": "NO_DAMAGE_SMNZ",
-                            "value": "DAMFREE_YES"
-                        },
-                        {
-                            "name": "NOLIQUID_SMNZ",
-                            "value": "NOLIQUID_YES"
-                        },
-                        {
-                            "name": "POWER_ON_SMNZ",
-                            "value": "POWER_YES"
-                        }
-                    ],
-                    "orderEntryNumber": 0,
-                    "imei": "212324444566666",
-                    "selectionResponses": []
+                "targetProductCode": "SM-S928BLBQXNZ",
+                "provider": "ASSURANTV2",
+                "productCode": "99760000042710",
+                "responses": [
+                    {
+                        "name": "LCD_OK_SMNZ",
+                        "value": "LCDOK_YES"
+                    },
+                    {
+                        "name": "LOCK_OFF_SMNZ",
+                        "value": "LOCK_OFF_YES"
+                    },
+                    {
+                        "name": "NO_DAMAGE_SMNZ",
+                        "value": "DAMFREE_YES"
+                    },
+                    {
+                        "name": "NOLIQUID_SMNZ",
+                        "value": "NOLIQUID_YES"
+                    },
+                    {
+                        "name": "POWER_ON_SMNZ",
+                        "value": "POWER_YES"
+                    }
+                ],
+                "orderEntryNumber": 0,
+                "imei": "212324444566666",
+                "selectionResponses": []
+            }
+        },
+        "TradeUp": {
+            "store_id": "nz",
+            "device_info": {
+                "state": {
+                    "BROKEN": "YES"
                 }
+            },
+            "device_id": "76A2E35F-ABBC-441D-9371-1FEE7CAE6008",
+            "type": "TradeIn",
+            "sku": "QA55Q7FAMSXNZ",
+            "delayed_gratification": false
         },
         "SMC": {
             "categoryCode": "smc"

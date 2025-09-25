@@ -123,7 +123,9 @@ public abstract class Cart {
     static void addSCPlus(Context c) throws Exception {
         SCPProcess p = c.scpProcess;
         try {
-            String to = ".cart-item [data-an-la='add service:samsung care']";
+            String to = """
+                    .cart-item [data-an-la='add service:samsung care'],
+                    .cart-item [data-an-la='add service:SC']""";
             WebElement btn = WebUI.waitElement(to, 5);
             WebUI.scrollToCenterAndClick(btn, 1000);
             SCPPopup.waitForOpen(10);
