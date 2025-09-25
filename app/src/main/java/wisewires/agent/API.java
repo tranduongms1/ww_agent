@@ -1,5 +1,6 @@
 package wisewires.agent;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -19,17 +20,37 @@ public abstract class API {
     static void addToCart(String apiEndpoint, String sku) throws Exception {
         try {
             int quantity = 1;
+            List<Map<String, Object>> childProducts = null;
             if (sku.contains(":")) {
                 String[] tokens = sku.split(":");
                 sku = tokens[0];
                 quantity = Integer.parseInt(tokens[1]);
             }
-            Map<String, Object> data = Map.of("product", Map.of("code", sku), "quantity", quantity);
+            if (sku.contains("(")) {
+                List<String> tokens = new ArrayList<>();
+                for (String s : sku.split("[\\s\\(\\),]")) {
+                    if (!s.isBlank()) {
+                        tokens.add(s);
+                    }
+                }
+                sku = tokens.remove(0);
+                childProducts = tokens.stream().map(s -> Map.of("product", Map.of("code", s), "quantity", 1)).toList();
+            }
+            String url = "%s/users/current/carts/current/entries".formatted(apiEndpoint);
+            Object data = Map.of("product", Map.of("code", sku), "quantity", quantity);
+            if (childProducts != null) {
+                url = "%s/addToCart/multi/?fields=BASIC".formatted(apiEndpoint);
+                data = List.of(Map.of("productCode", sku, "qty", quantity, "childProducts", childProducts));
+            }
             String script = """
-                        return fetch(`${arguments[0]}/users/current/carts/current/entries`, {
+                        return fetch(arguments[0], {
                             method: "POST",
-                            headers:{'content-type':'application/json'},
+                            headers: {
+                                'accept': 'application/json',
+                                'content-type':'application/json'
+                            },
                             body: `${arguments[1]}`,
+                            mode: "cors",
                             credentials: "include"
                         })
                             .then(async res => {
@@ -39,16 +60,16 @@ public abstract class API {
                                 }
                                 return res.text();
                             })
-                            .then(data => arguments[2](JSON.parse(data).id));
+                            .then(data => arguments[2](JSON.parse(data)));
                     """;
-            WebUI.driver.executeAsyncScript(script, apiEndpoint, new Gson().toJson(data));
-            logger.info("Product %s added to cart".formatted(sku));
+            WebUI.driver.executeAsyncScript(script, url, new Gson().toJson(data));
         } catch (Exception e) {
             throw new Exception("Unable to add %s to cart".formatted(sku));
         }
     }
 
-    public static Object addServiceToCart(String apiEndpoint, String storeID, long entryNumber, Map<String, Object> data) {
+    public static Object addServiceToCart(String apiEndpoint, String storeID, long entryNumber,
+            Map<String, Object> data) {
         String script = """
                     const cardID = window.sessionStorage.ref || JSON.parse(window.localStorage[`spartacus⚿${arguments[0]}⚿cart`]).active;
                     const curr = JSON.parse(window.localStorage[`spartacus⚿⚿currency`]);
