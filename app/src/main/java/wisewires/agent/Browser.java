@@ -839,8 +839,10 @@ public abstract class Browser {
                 if (leading.contains("cart")) {
                     if (Util.isPDPage()) {
                         PD.continueToCart();
+                        Cart.selecCountryInCart(c);
                     } else {
                         BC.continueToCart();
+                        Cart.selecCountryInCart(c);
                     }
                 }
                 if (leading.contains("checkout")) {
