@@ -48,11 +48,11 @@
       "additionalInfos": {
         "targetProductCode": "SM-S928BLBQMEA",
         "provider": "NORTHLADDER",
-        "productCode": "deviceType:Mobile Phone:brandName:Apple Mobile Phone:modelName:iPhone 16 Pro (2024) Apple Mobile Phone:Storage:128 GB iPhone 16 Pro (2024) Apple Mobile Phone",
+        "productCode": "deviceType:Mobile Phone:brandName:Apple Mobile Phone:modelName:iPhone 11 Pro Max (2019) Apple Mobile Phone:Storage:512 GB iPhone 11 Pro Max (2019) Apple Mobile Phone",
         "responses": [
           {
-            "name": "sa-tradein-5",
-            "value": "67f4e64a5570fa75ba5a8238"
+            "name": "sa-tradein-1",
+            "value": "66bae24e5772740ff1d3f649"
           }
         ],
         "orderEntryNumber": 0,
