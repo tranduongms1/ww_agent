@@ -11,10 +11,10 @@ public abstract class PF {
 
     public static WebElement findProductCard(Context c, String productName) throws Exception {
         try {
-            String to = ".js-pfv2-product-card:has([data-displayname*='%s'])".formatted(productName);
+            String xpath = "//div[contains(@class,'js-pfv2-product-card')][.//text()[normalize-space(.)='%s']]".formatted(productName);
             WebUI.findElement("body").sendKeys(Keys.PAGE_DOWN);
             WebElement card = WebUI.wait(30).until(d -> {
-                WebElement elm = WebUI.findElement(to);
+                WebElement elm = WebUI.driver.findElement(By.xpath(xpath));
                 if (elm != null) {
                     return elm;
                 }
