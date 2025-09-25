@@ -158,6 +158,17 @@ public abstract class TradeIn {
             WebUI.delay(1);
             return option;
         }
+        if (className.contains("hubble-tradein-popup__device-choose")) {
+            WebElement selectElm = elm.findElement(By.cssSelector(".hubble-pd-select"));
+            if (!selectElm.getAttribute("class").contains("is-opened")) {
+                selectElm.click();
+            }
+            String css = ".hubble-pd-select__options [an-la='%s'i], [value='%s'i]".replaceAll("%s", option);
+            WebElement opt = elm.findElement(By.cssSelector(css));
+            WebUI.scrollToCenter(opt);
+            opt.click();
+            return option;
+        }
         throw new Exception("Select is not handled");
     }
 
@@ -193,6 +204,13 @@ public abstract class TradeIn {
                 }
                 return selected;
             }
+            if (WebUI.getDomAttribute(elm, "class").contains("hubble-tradein-popup__device-choose")) {
+                String selected = select(elm, category);
+                if (selected != null) {
+                    logger.info("Device category '%s' selected".formatted(selected));
+                }
+                return selected;
+            }
             WebElement opt = (WebElement) WebUI.driver.executeScript("""
                     var opts = arguments[0].querySelectorAll('input, mat-radio-button, [data-an-la], [an-la]');
                     for (let opt of opts) {
@@ -218,6 +236,13 @@ public abstract class TradeIn {
 
     static String selectBrand(WebElement elm, String brand) throws Exception {
         try {
+            if (WebUI.getDomAttribute(elm, "class").contains("hubble-tradein-popup__device-choose")) {
+                String selected = select(elm, brand);
+                if (selected != null) {
+                    logger.info("Brand '%s' selected".formatted(selected));
+                }
+                return selected;
+            }
             String selected = select(elm, brand);
             if (selected != null) {
                 logger.info("Device brand '%s' selected".formatted(selected));
@@ -290,7 +315,7 @@ public abstract class TradeIn {
 
     static String getSelectType(WebElement elm) throws Exception {
         String className = elm.getAttribute("class");
-        if (className.contains("category"))
+        if (className.contains("category") || className.contains("deviceType"))
             return "category";
         if (className.contains("trade-in-select"))
             return elm.findElement(By.cssSelector("ul")).getAttribute("id");
@@ -312,6 +337,14 @@ public abstract class TradeIn {
         if (className.contains("manual-search_para")) {
             return elm.findElement(By.cssSelector(".manual-search_list")).getText().trim();
         }
+        if (className.contains("brand"))
+            return "brand";
+        if (className.contains("model"))
+            return "model";
+        if (className.contains("capacity"))
+            return "capacity";
+        if (className.contains("color"))
+            return "color";
         throw new Exception("Unknow device select type");
     }
 
@@ -365,6 +398,7 @@ public abstract class TradeIn {
                  .manual-search_para,
                  .hubble-tradein-popup__device-choose
                 """));
+        List<String> alreadySelected = new ArrayList<>();
         for (WebElement elm : elms) {
             if (!elm.isDisplayed()) {
                 continue;
@@ -375,10 +409,13 @@ public abstract class TradeIn {
                         "category",
                         "Избери вид на устройството",
                         "Termékkategória",
-                        "Kategorije": {
+                        "Kategorije",
+                        "Оберіть тип пристрою": {
+                    if ((alreadySelected).contains(data.get("category"))) return;
                     String selected = selectCategory(elm, data.get("category"));
                     if (selected != null)
                         data.put("category", selected);
+                        alreadySelected.add(selected);
                     break;
                 }
                 case
@@ -413,10 +450,14 @@ public abstract class TradeIn {
                         "Bränd",
                         "Proizvajalec",
                         "Marka",
-                        "品牌": {
+                        "品牌",
+                        "Бренд",
+                        "Оберіть бренд": {
+                    if ((alreadySelected).contains(data.get("category"))) return;
                     String selected = selectBrand(elm, data.get("brand"));
                     if (selected != null)
                         data.put("brand", selected);
+                        alreadySelected.add(selected);
                     break;
                 }
                 case
@@ -455,7 +496,9 @@ public abstract class TradeIn {
                         "Izberite model ali začnite tipkati",
                         "Typ zariadenia",
                         "الطراز",
-                        "裝置": {
+                        "裝置",
+                        "Модель",
+                        "Оберіть модель": {
                     String selected;
                     String dataInput;
                     List<String> selectTypeList = List.of("Device", "device", "الطراز");
@@ -486,7 +529,9 @@ public abstract class TradeIn {
                         "سعة التخزين",
                         "Kapasitas",
                         "Une capacité de stockage",
-                        "儲存容量": {
+                        "儲存容量",
+                        "Пам'ять",
+                        "Оберіть об'єм пам'яті": {
                     String selected = selectStorage(elm, data.get("storage"));
                     if (selected != null)
                         data.put("storage", selected);
@@ -496,7 +541,9 @@ public abstract class TradeIn {
                         "color",
                         "Color",
                         "La couleur",
-                        "選擇顏色": {
+                        "選擇顏色",
+                        "колір",
+                        "Оберіть колір": {
                     String selected = selectColor(elm, data.get("color"));
                     if (selected != null)
                         data.put("color", selected);
@@ -628,7 +675,7 @@ public abstract class TradeIn {
         Map<String, String> data = c.tradeInProcess.data;
         Exception error = null;
         int errorCount = 0;
-        while (errorCount < 8) {
+        while (errorCount < 15) {
             try {
                 WebUI.waitForNotDisplayed(".circular-progress", 5);
                 WebElement modal = WebUI.findElement(MODAL_LOCATOR);
