@@ -656,7 +656,7 @@ public abstract class Payment {
         try {
             acceptTermAndConditions();
             WebUI.delay(2);
-            String iframeCSS = ".paypal-buttons iframe.component-frame";
+            String iframeCSS = ".paypal-buttons iframe.component-frame:not([title='PayPal-paylater'])";
             WebElement iframe = WebUI.findElement(iframeCSS);
             if (iframe == null) {
                 WebUI.click(WebUI.findElement("""
