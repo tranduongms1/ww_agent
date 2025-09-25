@@ -49,6 +49,7 @@ public class CustomerAddress {
 
             Map.entry("Tipo de propiedad", "tipoDePropiedad"),
             Map.entry("Departamento", "departamento"),
+            Map.entry("fiscalCode", "fiscalCode"),
 
             Map.entry("regionIso", "adminLevel1"),
             Map.entry("State", "adminLevel1"),
@@ -126,7 +127,11 @@ public class CustomerAddress {
             Map.entry("Barangay", "adminLevel4"),
             Map.entry("רחוב", "adminLevel4"),
             Map.entry("Mahalle", "adminLevel4"),
-            Map.entry("Phường", "adminLevel4"));
+            Map.entry("Phường", "adminLevel4"),
+
+            Map.entry("additionalNotes", "additionalNotes"),
+
+            Map.entry("phone", "phoneNumber"));
 
     public static void autoFill(Map<String, String> data, boolean requiredOnly) throws Exception {
         try {
@@ -315,6 +320,22 @@ public class CustomerAddress {
                     field.sendKeys(data.get(name));
                 } else {
                     Form.select(field, data.get(name));
+                }
+                break;
+            case "fiscalCode":
+            field.clear();
+            field.sendKeys(data.get(name));
+            break;
+
+            case "phoneNumber":
+                if (data.get(name) != null) {
+                    field.sendKeys(data.get(name));
+                }
+                break;
+
+            case "additionalNotes":
+                if (data.get(name) != null) {
+                    field.sendKeys(data.get(name));
                 }
                 break;
 

@@ -11,10 +11,10 @@ public abstract class PF {
 
     public static WebElement findProductCard(Context c, String productName) throws Exception {
         try {
-            String to = ".js-pfv2-product-card:has([data-displayname='%s'])".formatted(productName);
+            String xpath = "//div[contains(@class,'js-pfv2-product-card')][.//text()[normalize-space(.)='%s']]".formatted(productName);
             WebUI.findElement("body").sendKeys(Keys.PAGE_DOWN);
             WebElement card = WebUI.wait(30).until(d -> {
-                WebElement elm = WebUI.findElement(to);
+                WebElement elm = WebUI.driver.findElement(By.xpath(xpath));
                 if (elm != null) {
                     return elm;
                 }
@@ -65,6 +65,19 @@ public abstract class PF {
         } catch (Exception e) {
             c.pfProcess = null;
             throw new Exception("Unable to select storage: " + storage, e);
+        }
+    }
+    public static void selectSize(Context c, String size) throws Exception {
+        try {
+            WebElement card = c.pfProcess.productCard;
+            String to = "[an-la*='size:%s'i]".formatted(size);
+            WebElement elm = card.findElement(By.cssSelector(to));
+            WebUI.scrollToCenterAndClick(elm, 500);
+            WebUI.delay(1);
+            logger.info("Selected size: " + size);
+        } catch (Exception e) {
+            c.pfProcess = null;
+            throw new Exception("Unable to select size: " + size, e);
         }
     }
 

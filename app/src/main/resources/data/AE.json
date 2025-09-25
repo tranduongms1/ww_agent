@@ -39,10 +39,28 @@
   },
   "tradeInData": {
     "category": "Mobile Phone",
+    "brand": "Samsung",
+    "model": "S Series",
+    "subseries": "S23 Series",
+    "device": "S23 Ultra",
+    "storage": "256 GB",
+    "imei": "356663760849583"
+  },
+  "tradeInData2": {
+    "category": "Mobile Phone",
     "brand": "Apple",
-    "model": "iPhone 16 Pro (2024)",
-    "storage": "512 GB",
-    "imei": "356938035643809"
+    "model": "iPhone 13 Pro Max (2021)",
+    "storage": "256 GB",
+    "imei": "356955700375699"
+  },
+  "tradeInData3": {
+    "category": "Mobile Phone",
+    "brand": "Samsung",
+    "model": "S Series",
+    "subseries": "S24 Series",
+    "device": "S24 Plus",
+    "storage": "256 GB",
+    "imei": "353472171094372"
   },
   "serviceData": {
     "TradeIn": {

@@ -72,5 +72,9 @@
         "holderName": "SI",
         "expiryDate": "03/30",
         "cvv": "737"
+    },
+    "paypalData": {
+        "email": "seukpaypaldev_merchant-1@gmail.com",
+        "password": "Hybris123"
     }
 }

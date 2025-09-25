@@ -39,10 +39,28 @@
     },
     "tradeInData": {
         "category": "الهاتف الذكي",
-        "brand": "تفاحة",
-        "model": "iPhone 16 Pro (2024)",
-        "storage": "512 جيجابايت",
-        "imei": "356938035643809"
+        "brand": "سامسونج",
+        "model": "سلسلة اس",
+        "subseries": "S23 سلسلة",
+        "device": "S23 الترا",
+        "storage": "256 جيجابايت",
+        "imei": "356663760849583"
+    },
+    "tradeInData2": {
+        "category": "الهاتف الذكي",
+        "brand": "أبل",
+        "model": "ايفون 13 برو ماكس (2021)",
+        "storage": "256 جيجابايت",
+        "imei": "356955700375699"
+    },
+    "tradeInData3": {
+        "category": "الهاتف الذكي",
+        "brand": "سامسونج",
+        "model": "سلسلة اس",
+        "subseries": "S24 سلسلة",
+        "device": "S24بلس",
+        "storage": "256 جيجابايت",
+        "imei": "353472171094372"
     },
     "serviceData": {
         "TradeIn": {

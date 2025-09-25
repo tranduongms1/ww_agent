@@ -206,12 +206,16 @@ public abstract class Browser {
                         c.tradeInProcess.data = c.getProfile().getTradeInData4();
                     } else if (nth == 5) {
                         c.tradeInProcess.data = c.getProfile().getTradeInData5();
-                    }
-                    if (Tokens.contains(leading, "cashback")) {
+                    } else if (Tokens.contains(leading, "cashback")) {
                         c.tradeInProcess.data.put("type", "cashback");
-                    }
-                    if (Tokens.contains(leading, "instant")) {
+                        if (WebUI.isOneOfSites("AE", "AE_AR")) {
+                            c.tradeInProcess.data = c.getProfile().getTradeInData2();
+                        }
+                    } else if (Tokens.contains(leading, "instant")) {
                         c.tradeInProcess.data.put("type", "instant");
+                        if (WebUI.isOneOfSites("AE", "AE_AR")) {
+                            c.tradeInProcess.data = c.getProfile().getTradeInData2();
+                        }
                     }
                     leading = Tokens.removeLeading(tokens, "trade-in", "tradein", "use", "with", "id");
                     if (leading.contains("id") && !tokens.isEmpty()) {
@@ -629,11 +633,13 @@ public abstract class Browser {
                 if (c.pfProcess != null) {
                     while (!tokens.isEmpty()) {
                         String value = tokens.remove(0);
-                        leading = Tokens.removeLeading(tokens, "color", "and", "storage");
+                        leading = Tokens.removeLeading(tokens, "color", "and", "storage", "size");
                         if (leading.contains("color")) {
                             PF.selectColor(c, value);
                         } else if (leading.contains("storage")) {
                             PF.selectStorage(c, value);
+                        } else if (leading.contains("size")) {
+                            PF.selectSize(c, value);
                         } else {
                             break;
                         }
@@ -744,6 +750,9 @@ public abstract class Browser {
                     tokens.remove(0);
                     TokenSingleMatch match = Tokens.getBestMatch(tokens, Names.EDITABLES);
                     switch (match.value) {
+                        case "cart":
+                            Checkout.clickEditCart();
+                            break;
                         case "customer info":
                             Checkout.clickEditCustomerInfo();
                             break;
@@ -769,6 +778,9 @@ public abstract class Browser {
                         return;
                     case "samsung logo":
                         WebUI.click("a[data-an-la='logo']");
+                        return;
+                    case "remove icon":
+                        WebUI.click("[data-an-la='remove item']");
                         return;
                 }
                 break;

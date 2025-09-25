@@ -18,6 +18,7 @@ public abstract class Checkout {
     public static String ADDRESS_DETAILS_EDIT = """
             .address-details .actions__edit,
             .checkout-contact-info-header .actions__edit""";
+    public static String CART_EDIT = "[data-an-la='order summary:edit']";
 
     public static String DELIVERY_INFO_EDIT = """
             .delivery-item-container .actions__edit""";
@@ -783,6 +784,17 @@ public abstract class Checkout {
             logger.info("Checkout page loaded success");
         } catch (Exception e) {
             throw new Exception("checkout main content not loaded");
+        }
+    }
+
+    static void clickEditCart() throws Exception {
+        try {
+            WebElement edit = WebUI.findElement(CART_EDIT);
+            WebUI.scrollToCenter(edit);
+            edit.click();
+            logger.info("Clicked edit cart");
+        } catch (Exception e) {
+            throw new Exception("Unable to click edit cart", e);
         }
     }
 

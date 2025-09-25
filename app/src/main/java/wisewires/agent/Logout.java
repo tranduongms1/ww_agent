@@ -6,6 +6,14 @@ public abstract class Logout {
     }
 
     static void fromAEMGNB(Context c) throws Exception {
+        if (!WebUI.getUrl().contains("p6-")) {
+            WebUI.driver.get(c.getShopUrl());
+        }
+        GNB.hoverHumanIcon();
+        WebUI.click("a[an-la='logout']");
+        c.ssoSignedIn = false;
+        WebUI.delay(2);
+        GNB.hoverHumanIcon();
     }
 
     static void fromShop(Context c) throws Exception {
