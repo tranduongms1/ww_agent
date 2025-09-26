@@ -617,20 +617,22 @@ public abstract class Cart {
             if (WebUI.isOneOfSites("IQ_AR", "IQ_KU")) {
                 Cart.selectCityInCart();
             }
-            logger.info("Continue to checkout as guest");
-            String to = """
-                    [data-an-la='proceed to checkout:guest checkout'],
-                    [data-an-la='continue as guest']""";
-            WebUI.wait(10).until(d -> {
-                WebElement btn = WebUI.findElement(to);
-                if (btn == null) {
-                    btn = WebUI.findElement("[data-an-la='proceed to checkout']");
-                }
-                WebUI.scrollToCenter(btn);
-                WebUI.delay(1);
-                btn.click();
-                return true;
-            });
+            if (WebUI.getUrl().contains("/cart")) {
+                logger.info("Continue to checkout as guest");
+                String to = """
+                        [data-an-la='proceed to checkout:guest checkout'],
+                        [data-an-la='continue as guest']""";
+                WebUI.wait(10).until(d -> {
+                    WebElement btn = WebUI.findElement(to);
+                    if (btn == null) {
+                        btn = WebUI.findElement("[data-an-la='proceed to checkout']");
+                    }
+                    WebUI.scrollToCenter(btn);
+                    WebUI.delay(1);
+                    btn.click();
+                    return true;
+                });
+            }
             String email = c.getProfile().getCustomerInfo().get("email");
             Object result = WebUI.wait(30, 1).withMessage("navigate to checkout").until(driver -> {
                 String alert = getCartAlert();
@@ -668,11 +670,13 @@ public abstract class Cart {
             if (WebUI.isOneOfSites("IQ_AR", "IQ_KU")) {
                 Cart.selectCityInCart();
             }
-            logger.info("Continue to checkout as register");
-            WebElement btn = WebUI.waitElement("[data-an-la='proceed to checkout']", 15);
-            WebUI.scrollToCenter(btn);
-            WebUI.delay(1);
-            WebUI.click(btn);
+            if (WebUI.getUrl().contains("/cart")) {
+                logger.info("Continue to checkout as register");
+                WebElement btn = WebUI.waitElement("[data-an-la='proceed to checkout']", 15);
+                WebUI.scrollToCenter(btn);
+                WebUI.delay(1);
+                WebUI.click(btn);
+            }
             WebUI.wait(30).until(driver -> {
                 String url = driver.getCurrentUrl();
                 if (url.contains("/guestlogin/")) {
