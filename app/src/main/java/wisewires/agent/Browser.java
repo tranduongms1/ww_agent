@@ -245,7 +245,6 @@ public abstract class Browser {
                     c.mustGalaxyClubProcess();
                     if (WebUI.getUrl().contains("/cart")) {
                         Cart.addGalaxyClub(c);
-                        ;
                     } else {
                         BC.addGalaxyClub(c);
                     }
