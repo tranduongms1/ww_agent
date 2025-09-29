@@ -68,87 +68,87 @@
   },
   "serviceData": {
     "TradeIn": {
-      "serviceCode": "T-GETMOBIL-TRADEIN",
-      "addToCartType": "append",
-      "provider": "GETMOBIL",
-      "additionalInfos": [
-        {
-          "key": "questionsAndAnswers",
-          "value": "{\"1\":200116,\"2\":200121,\"3\":200139,\"4\":200164}"
-        },
-        {
-          "key": "brandName",
-          "value": "Samsung_1_2"
-        },
-        {
-          "key": "displayAdditionDiscount",
-          "value": "Incl. 0,00 TL exchange bonus"
-        },
-        {
-          "key": "modelId",
-          "value": "600"
-        },
-        {
-          "key": "discountAmount",
-          "value": "38610.0"
-        },
-        {
-          "key": "additionalDiscountWithCurrency",
-          "value": "0,00 TL"
-        },
-        {
-          "key": "offer_id",
-          "value": "2189"
-        },
-        {
-          "key": "offer",
-          "value": "38610"
-        },
-        {
-          "key": "additionalDiscount",
-          "value": "0.0"
-        },
-        {
-          "key": "modelName",
-          "value": "Samsung Galaxy S24 Ultra 512 GB"
-        },
-        {
-          "key": "totalTradeinAmount",
-          "value": "38610.0"
-        },
-        {
-          "key": "price",
-          "value": "38610"
-        },
-        {
-          "key": "brandId",
-          "value": "1_2"
-        },
-        {
-          "key": "tradeinAmount",
-          "value": "38610.0"
-        },
-        {
-          "key": "tradeinAmountWithCurrency",
-          "value": "38.610,00 TL"
-        },
-        {
-          "key": "discountAmount-hash",
-          "value": "fd28a2ed48fc4002930b9153c69a3c78"
-        },
-        {
-          "key": "totalTradeinAmountFormatted",
-          "value": "38.610,00 TL"
-        },
-        {
-          "key": "discountAmountWithCurrency",
-          "value": "38.610,00 TL"
-        },
-        {
-          "key": "imei",
-          "value": "356938035643809"
-        }
-      ]
+  "serviceCode": "T-GETMOBIL-TRADEIN",
+  "addToCartType": "append",
+  "provider": "GETMOBIL",
+  "additionalInfos": [
+    {
+      "key": "questionsAndAnswers",
+      "value": "{\"1\":1,\"2\":200121,\"3\":200139,\"4\":200164}"
+    },
+    {
+      "key": "brandName",
+      "value": "Apple_1_1"
+    },
+    {
+      "key": "displayAdditionDiscount",
+      "value": "Incl. 1.234,00 TL exchange bonus"
+    },
+    {
+      "key": "modelId",
+      "value": "684"
+    },
+    {
+      "key": "discountAmount",
+      "value": "62331.0"
+    },
+    {
+      "key": "additionalDiscountWithCurrency",
+      "value": "1.234,00 TL"
+    },
+    {
+      "key": "offer_id",
+      "value": "3008"
+    },
+    {
+      "key": "offer",
+      "value": "61097"
+    },
+    {
+      "key": "additionalDiscount",
+      "value": "1234.0"
+    },
+    {
+      "key": "modelName",
+      "value": "Apple iPhone 16 Pro Max 512 GB"
+    },
+    {
+      "key": "totalTradeinAmount",
+      "value": "62331.0"
+    },
+    {
+      "key": "price",
+      "value": "61097"
+    },
+    {
+      "key": "brandId",
+      "value": "1_1"
+    },
+    {
+      "key": "tradeinAmount",
+      "value": "61097.0"
+    },
+    {
+      "key": "tradeinAmountWithCurrency",
+      "value": "61.097,00 TL"
+    },
+    {
+      "key": "discountAmount-hash",
+      "value": "fbfadf99bb37f379894b68f197182f55"
+    },
+    {
+      "key": "totalTradeinAmountFormatted",
+      "value": "62.331,00 TL"
+    },
+    {
+      "key": "discountAmountWithCurrency",
+      "value": "62.331,00 TL"
+    },
+    {
+      "key": "imei",
+      "value": "356986169138054"
+    }
+  ]
     },
     "SMC": {
       "categoryCode": "insurance"
