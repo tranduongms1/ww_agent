@@ -665,6 +665,44 @@ public abstract class Cart {
         }
     }
 
+    static void navigateToSplash() throws Exception {
+        try {
+            if (WebUI.isOneOfSites("IQ_AR", "IQ_KU")) {
+                Cart.selectCityInCart();
+            }
+            if (WebUI.getUrl().contains("/cart")) {
+                logger.info("Continue to checkout as guest");
+                String to = """
+                        [data-an-la='proceed to checkout:guest checkout'],
+                        [data-an-la='continue as guest']""";
+                WebUI.wait(10).until(d -> {
+                    WebElement btn = WebUI.findElement(to);
+                    if (btn == null) {
+                        btn = WebUI.findElement("[data-an-la='proceed to checkout']");
+                    }
+                    WebUI.scrollToCenter(btn);
+                    WebUI.delay(1);
+                    btn.click();
+                    return true;
+                });
+            }
+            Object result = WebUI.wait(30, 1).withMessage("navigate to splash").until(driver -> {
+                String alert = getCartAlert();
+                if (alert != null) {
+                    return new Exception(alert);
+                }
+                String url = driver.getCurrentUrl();
+                return url.contains("/guestlogin/");
+            });
+            if (result instanceof Exception) {
+                throw (Exception) result;
+            }
+            logger.info("Navigated to splash page");
+        } catch (Exception e) {
+            throw new Exception("Unable go to splash page", e);
+        }
+    }
+
     static void ssoCheckout(Context c) throws Exception {
         try {
             if (WebUI.isOneOfSites("IQ_AR", "IQ_KU")) {

@@ -617,6 +617,14 @@ public abstract class Browser {
                             BillingAddress.enterField(name, value);
                             break;
                     }
+                } else {
+                    if (WebUI.getUrl().contains("guestlogin/")) {
+                        String name = tokens.remove(0).replaceFirst(":$", "");
+                        switch (name) {
+                            case "email":
+                                Splash.inputEmail(c);
+                        }
+                    }
                 }
                 break;
             }
@@ -830,7 +838,7 @@ public abstract class Browser {
             }
 
             case "continue": {
-                leading = Tokens.removeLeading(tokens, "to", "cart", "checkout", "payment", "page",
+                leading = Tokens.removeLeading(tokens, "to", "cart", "splash", "checkout", "payment", "page",
                         "as", "guest", "register", "user");
                 if (leading.contains("cart")) {
                     if (Util.isPDPage()) {
@@ -839,6 +847,13 @@ public abstract class Browser {
                     } else {
                         BC.continueToCart();
                         Cart.selecCountryInCart(c);
+                    }
+                }
+                if (leading.contains("splash")) {
+                    if (c.ssoSignedIn) {
+                        throw new Exception("Unable to checkout as guest, please logout first");
+                    } else {
+                        Cart.navigateToSplash();
                     }
                 }
                 if (leading.contains("checkout")) {
