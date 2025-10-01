@@ -24,7 +24,14 @@ public abstract class API {
             if (sku.contains(":")) {
                 String[] tokens = sku.split(":");
                 sku = tokens[0];
-                quantity = Integer.parseInt(tokens[1]);
+                String afterColon = tokens[1];
+
+                if (afterColon.matches("\\d+")) {
+                    quantity = Integer.parseInt(afterColon);
+                } else {
+                    childProducts = List.of(
+                            Map.of("product", Map.of("code", afterColon), "quantity", 1));
+                }
             }
             if (sku.contains("(")) {
                 List<String> tokens = new ArrayList<>();
