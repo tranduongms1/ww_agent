@@ -238,6 +238,7 @@ public class CheckoutProcess {
     }
 
     public CheckoutProcess untilSeen(String locator) {
+        String editBtn = "[data-an-la='checkout:customer details:edit']";
         preFillFormFuncs.add((c, formID, form) -> {
             return WebUI.findElement(locator) == null;
         });
@@ -245,6 +246,15 @@ public class CheckoutProcess {
             boolean seen = WebUI.findElement(locator) != null;
             if (seen) {
                 logger.info("Element '%s' is now displayed".formatted(locator));
+            } else {
+                WebElement btn = WebUI.findElement(editBtn);
+                if (btn != null && btn.isDisplayed() && btn.isEnabled()) {
+                    WebUI.scrollToCenter(btn);
+                    WebUI.delay(1);
+                    WebUI.click(btn);
+                    logger.info("Clicked 'Edit' to make element '%s' visible.".formatted(locator));
+                    WebUI.delay(1);
+                }
             }
             return seen;
         });
